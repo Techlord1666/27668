@@ -241,11 +241,10 @@
 <h2 class="text-white text-lg font-black tracking-tighter uppercase italic">
                         27668<span class="text-primary">grafix</span>
 </h2>
-</div>
 <div class="flex gap-8 text-slate-500 text-xs font-bold uppercase tracking-widest">
-<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
-<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
-<a class="hover:text-primary transition-colors" href="#">Contact</a>
+    <a class="hover:text-primary transition-colors cursor-pointer" onclick="openModal('privacyModal')">Privacy Policy</a>
+    <a class="hover:text-primary transition-colors cursor-pointer" onclick="openModal('termsModal')">Terms of Service</a>
+    <a class="hover:text-primary transition-colors cursor-pointer" onclick="openModal('contactModal')">Contact</a>
 </div>
 <div class="flex gap-4">
 <a class="size-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-primary transition-colors group" href="#">
@@ -261,4 +260,83 @@
             </div>
 </div>
 </footer>
+
+        <!-- Main Modal Backdrop -->
+<div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+    
+    <!-- Modal Box -->
+    <div class="bg-white rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto shadow-2xl transform transition-all scale-95 opacity-0 duration-300" id="modalBox">
+        
+        <!-- Modal Header -->
+        <div class="p-6 border-b flex justify-between items-center sticky top-0 bg-white">
+            <h3 id="modalTitle" class="text-xl font-bold text-slate-800 uppercase tracking-tight">Information</h3>
+            <button onclick="closeModal()" class="text-slate-400 hover:text-orange-600 transition-colors text-2xl font-bold">&times;</button>
+        </div>
+
+        <!-- Modal Content -->
+        <div id="modalBody" class="p-6 text-slate-600 leading-relaxed text-sm">
+            <!-- Content changes dynamically -->
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="p-4 border-t text-right">
+            <button onclick="closeModal()" class="bg-orange-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-orange-700 transition-colors">Close</button>
+        </div>
+    </div>
+</div>
+
+        <script>
+    const modalContent = {
+        privacyModal: {
+            title: "Privacy Policy 🛡️",
+            body: "At 27668grafix, your privacy is our priority. We only collect information necessary to fulfill your printing orders and provide design support. We never sell your data to third parties. All uploaded artwork is kept confidential and secure."
+        },
+        termsModal: {
+            title: "Terms of Service 📜",
+            body: "Standard production time is 3-5 working days. For bulk orders via Offset, timelines may vary. Full payment or 70% deposit is required before production begins. Once design is approved, 27668grafix is not liable for spelling errors."
+        },
+        contactModal: {
+            title: "Contact Us 📞",
+            body: "<strong>Address:</strong> Meticulously Produced in Lagos, Nigeria.<br><strong>WhatsApp:</strong> +234 [Your Number Here]<br><strong>Email:</strong> hello@27668grafix.com<br><br>Our team is available 24/7 for design & logistics support."
+        }
+    };
+
+    function openModal(type) {
+        const overlay = document.getElementById('modalOverlay');
+        const box = document.getElementById('modalBox');
+        const title = document.getElementById('modalTitle');
+        const body = document.getElementById('modalBody');
+
+        // Set the content
+        title.innerHTML = modalContent[type].title;
+        body.innerHTML = modalContent[type].body;
+
+        // Show Modal
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+            box.classList.remove('scale-95', 'opacity-0');
+            box.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+
+    function closeModal() {
+        const overlay = document.getElementById('modalOverlay');
+        const box = document.getElementById('modalBox');
+
+        box.classList.remove('scale-100', 'opacity-100');
+        box.classList.add('scale-95', 'opacity-0');
+        
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 300);
+    }
+
+    // Close on click outside the box
+    window.onclick = function(event) {
+        const overlay = document.getElementById('modalOverlay');
+        if (event.target == overlay) {
+            closeModal();
+        }
+    }
+</script>
 </body></html>
