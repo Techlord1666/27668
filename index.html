@@ -23,12 +23,8 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0f0f0f; }
-        .hero-gradient { background: linear-gradient(to bottom, rgba(15,15,15,0.2) 0%, rgba(15,15,15,1) 100%); }
+        .hero-gradient { background: linear-gradient(to bottom, rgba(15,15,15,0.4) 0%, rgba(15,15,15,1) 100%); }
         .fire-glow { box-shadow: 0 0 20px rgba(255, 106, 0, 0.3); }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        .animate-float { animation: float 4s ease-in-out infinite; }
-        
-        /* Standard 3-line Menu Icon Styles */
         .hamburger-line { display: block; width: 24px; height: 2px; background-color: white; margin: 5px auto; transition: all 0.3s ease; }
     </style>
 </head>
@@ -38,255 +34,141 @@
 <header class="fixed top-0 z-[100] w-full bg-background-dark/95 backdrop-blur-lg border-b border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
-            <!-- Logo (Icon Removed as requested) -->
-            <div class="flex items-center gap-2">
-                <h2 class="text-white text-xl md:text-2xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
-            </div>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-10">
-                <a href="store.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Store</a>
-                <a href="about.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">About</a>
-                <a href="javascript:void(0)" onclick="openModal('contactModal')" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Contact us</a>
-            </nav>
-
-            <!-- Actions -->
-            <div class="flex items-center gap-4 md:gap-6">
-                <a href="registration.html" class="bg-primary px-4 md:px-6 py-2 rounded text-[10px] md:text-xs font-black uppercase tracking-widest text-white hover:scale-105 transition-transform">Login</a>
-                
-                <!-- 3-LINE HAMBURGER MENU ICON -->
-                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center w-8 h-8 focus:outline-none">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
+            <h2 class="text-white text-xl md:text-2xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
+            
+            <div class="flex items-center gap-4">
+                <a href="registration.html" class="bg-primary px-5 py-2 rounded text-[10px] font-black uppercase tracking-widest text-white">Login</a>
+                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center w-8 h-8">
+                    <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
                 </button>
             </div>
         </div>
     </div>
-
-    <!-- Mobile Navigation Menu -->
-    <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-background-dark border-b border-white/10 p-6 flex flex-col gap-6">
-        <a href="store.html" class="text-sm font-black uppercase tracking-widest text-white border-b border-white/5 pb-2">Store</a>
-        <a href="about.html" class="text-sm font-black uppercase tracking-widest text-white border-b border-white/5 pb-2">About</a>
-        <a href="javascript:void(0)" onclick="openModal('contactModal'); toggleMobileMenu();" class="text-sm font-black uppercase tracking-widest text-white">Contact Us</a>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-background-dark border-b border-white/10 p-6 flex flex-col gap-6 uppercase text-xs font-bold tracking-widest">
+        <a href="store.html">Store</a>
+        <a href="about.html">About</a>
+        <a href="javascript:void(0)" onclick="openModal('contactModal')">Contact</a>
     </div>
 </header>
 
 <main>
     <!-- Hero Section -->
-    <section class="relative min-h-[80vh] md:min-h-[90vh] flex items-center pt-16 overflow-hidden">
+    <section class="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 hero-gradient z-10"></div>
-            <img class="w-full h-full object-cover object-center" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=2071" alt="Workshop">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=2071" alt="Background">
         </div>
 
-        <div class="relative z-20 max-w-7xl mx-auto px-6 w-full py-12 md:py-20">
+        <div class="relative z-20 max-w-7xl mx-auto px-6 w-full">
             <div class="max-w-4xl">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
                     <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-primary">Crafting Excellence in Lagos</span>
+                    <span class="text-[10px] font-black tracking-widest text-primary uppercase">Crafting Excellence in Lagos</span>
                 </div>
-                <h1 class="text-4xl md:text-8xl font-black leading-[1] md:leading-[0.9] tracking-tighter text-white mb-6 md:mb-8 italic uppercase">
-                    Elevate Your Brand <br>
-                    <span class="text-primary">Without Limits.</span>
+                <h1 class="text-5xl md:text-8xl font-black leading-[1] md:leading-[0.9] tracking-tighter text-white mb-6 italic uppercase">
+                    Elevate Your Brand <br> <span class="text-primary">Without Limits.</span>
                 </h1>
-                <p class="text-slate-300 text-base md:text-xl font-medium max-w-xl mb-8 md:mb-10 leading-relaxed">
-                    High-impact branding solutions from the heart of Nigeria to the world. Premium prints, bold designs, and energetic visuals that command attention.
+                <p class="text-slate-300 text-base md:text-xl font-medium max-w-xl mb-10 leading-relaxed">
+                    High-impact branding solutions from Nigeria to the world. Premium prints and energetic visuals that command attention.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="store.html" class="w-full sm:w-auto text-center bg-primary px-10 py-4 md:py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:fire-glow transition-all">Shop Now</a>
-                    <a href="about.html" class="w-full sm:w-auto text-center border-2 border-white/20 px-10 py-4 md:py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all">Learn More</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Floating Stats (Corrected & Animated) -->
-        <div class="absolute bottom-10 right-6 md:right-10 flex gap-6 md:gap-12 z-20">
-            <div class="text-right animate-float">
-                <p class="text-primary text-3xl md:text-5xl font-black italic tracking-tighter"><span class="counter" data-target="500">0</span>+</p>
-                <p class="text-slate-500 text-[9px] md:text-[10px] font-black uppercase tracking-widest">Global Clients</p>
-            </div>
-            <div class="text-right animate-float" style="animation-delay: 0.5s;">
-                <p class="text-primary text-3xl md:text-5xl font-black italic tracking-tighter"><span class="counter" data-target="10">0</span>k+</p>
-                <p class="text-slate-500 text-[9px] md:text-[10px] font-black uppercase tracking-widest">Prints Delivered</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us (Business Focused Copy) -->
-    <section class="py-16 md:py-24 bg-background-dark">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 md:mb-16">
-                <div class="max-w-xl">
-                    <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-white mb-4">
-                        Why Choose <span class="text-primary">27668grafix?</span>
-                    </h2>
-                    <p class="text-slate-400 text-sm md:text-lg leading-relaxed">
-                        We don't just print ink on paper; we build the visual identity that helps your business dominate. Our meticulously produced materials are engineered to turn first impressions into lifelong customers.
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-card-dark p-8 md:p-10 border border-white/5 rounded-lg group hover:border-primary/50 transition-all">
-                    <span class="material-symbols-outlined text-primary text-4xl mb-6">verified</span>
-                    <h3 class="text-white font-black uppercase tracking-tight text-xl mb-4 italic">Premium Quality</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Using high-gramme cards and sharp Direct Imaging technology to ensure your brand feels expensive and professional.</p>
-                </div>
-                <div class="bg-card-dark p-8 md:p-10 border border-white/5 rounded-lg group hover:border-primary/50 transition-all">
-                    <span class="material-symbols-outlined text-primary text-4xl mb-6">trending_up</span>
-                    <h3 class="text-white font-black uppercase tracking-tight text-xl mb-4 italic">Brand Impact</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Increase your visibility with custom branding and stickers designed to stay in the minds of your target audience.</p>
-                </div>
-                <div class="bg-card-dark p-8 md:p-10 border border-white/5 rounded-lg group hover:border-primary/50 transition-all">
-                    <span class="material-symbols-outlined text-primary text-4xl mb-6">support_agent</span>
-                    <h3 class="text-white font-black uppercase tracking-tight text-xl mb-4 italic">Design Support</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Our designers support you through the entire journey, ensuring total customer happiness and success.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CEO & Quality Section (Redesigned) -->
-    <section class="py-16 md:py-32 bg-background-dark border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
-                <!-- Large CEO Image Space -->
-                <div class="relative order-2 lg:order-1">
-                    <div class="absolute -inset-4 bg-primary/10 blur-3xl rounded-full"></div>
-                    <div class="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/5] bg-slate-800 flex items-center justify-center">
-                        <!-- Placeholder for CEO Image -->
-                        <span class="text-slate-600 font-bold uppercase tracking-widest">CEO IMAGE SPACE</span>
-                        <!-- Replace the span above with: <img src="CEO_IMAGE.jpg" class="w-full h-full object-cover"> -->
-                    </div>
-                </div>
                 
-                <div class="order-1 lg:order-2">
-                    <span class="text-primary font-black uppercase tracking-[0.3em] text-xs">Quality & Vision</span>
-                    <h2 class="text-4xl md:text-7xl font-black text-white italic uppercase tracking-tighter mt-4 mb-8 leading-[1] md:leading-[0.9]">
-                        UNCOMPROMISING <br> EXCELLENCE
-                    </h2>
-                    <p class="text-slate-400 text-lg mb-8">
-                        At 27668grafix, quality is our signature. We utilize Direct Imaging and high-gramme materials to ensure every print reflects the integrity of your brand. From corporate gifts to bulk runs, our service is meticulous, efficient, and reliable.
-                    </p>
-                    
-                    <div class="p-6 md:p-10 bg-white/5 border-l-4 border-primary rounded-r-xl">
-                        <p class="text-slate-200 italic text-lg md:text-xl mb-8">
-                            "Surpassing expectations is our daily goal. We provide creative solutions that build valuable connections between brands and their customers."
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <div>
-                                <p class="text-sm font-black uppercase tracking-widest text-white">David Mobolade Ajibike</p>
-                                <p class="text-primary text-[10px] font-bold uppercase tracking-widest">Founder & CEO, 27668grafix</p>
-                            </div>
-                        </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                    <a href="store.html" class="bg-primary py-4 px-10 rounded text-center text-sm font-black uppercase tracking-widest">Shop Now</a>
+                    <a href="about.html" class="border-2 border-white/20 py-4 px-10 rounded text-center text-sm font-black uppercase tracking-widest">Learn More</a>
+                </div>
+
+                <!-- Corrected Stats: No more overlap on mobile -->
+                <div class="flex gap-10 md:gap-16 border-t border-white/10 pt-8">
+                    <div>
+                        <p class="text-primary text-3xl md:text-5xl font-black italic italic"><span class="counter" data-target="500">0</span>+</p>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Global Clients</p>
+                    </div>
+                    <div>
+                        <p class="text-primary text-3xl md:text-5xl font-black italic"><span class="counter" data-target="10">0</span>k+</p>
+                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Prints Delivered</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 md:py-32 bg-primary relative overflow-hidden">
-        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-10 md:mb-12">Ready to set your <br> Brand on Fire?</h2>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <button onclick="openQuoteModal()" class="bg-black px-12 py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:scale-105 transition-transform flex items-center justify-center">
-                    Get A Quote
-                </button>
-                <a href="store.html" class="border-2 border-white px-12 py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:bg-white hover:text-primary transition-all flex items-center justify-center">Browse Store</a>
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-background-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-white mb-12">
+                Why Choose <span class="text-primary">27668grafix?</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-card-dark p-8 border border-white/5 rounded-xl">
+                    <span class="material-symbols-outlined text-primary text-2xl mb-4">verified</span>
+                    <h3 class="text-white font-black uppercase text-sm mb-2 italic">Premium Quality</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Engineered materials that turn first impressions into lifelong customers.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-card-dark p-8 border border-white/5 rounded-xl">
+                    <span class="material-symbols-outlined text-primary text-2xl mb-4">trending_up</span>
+                    <h3 class="text-white font-black uppercase text-sm mb-2 italic">Brand Visibility</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Custom branding solutions designed to stay in the minds of your audience.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-card-dark p-8 border border-white/5 rounded-xl">
+                    <span class="material-symbols-outlined text-primary text-2xl mb-4">support_agent</span>
+                    <h3 class="text-white font-black uppercase text-sm mb-2 italic">Expert Support</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Direct support through your journey to guarantee total happiness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CEO Section -->
+    <section class="py-20 bg-background-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="rounded-2xl overflow-hidden aspect-[4/5] bg-slate-800 border border-white/10 flex items-center justify-center">
+                <span class="text-slate-600 font-black tracking-widest uppercase">CEO IMAGE</span>
+            </div>
+            <div>
+                <h2 class="text-3xl md:text-6xl font-black text-white italic uppercase tracking-tighter mb-6 leading-tight">
+                    UNCOMPROMISING <br> EXCELLENCE
+                </h2>
+                <p class="text-slate-400 text-base md:text-lg mb-8 leading-relaxed">
+                    At 27668grafix, quality is our signature. We utilize high-gramme materials to ensure every print reflects the integrity of your brand.
+                </p>
+                <div class="p-6 bg-white/5 border-l-4 border-primary rounded-r-xl">
+                    <p class="text-slate-200 italic mb-4">"Surpassing expectations is our daily goal."</p>
+                    <p class="text-xs font-black uppercase tracking-widest text-white">David Mobolade Ajibike</p>
+                    <p class="text-primary text-[10px] font-bold uppercase tracking-widest">Founder & CEO</p>
+                </div>
             </div>
         </div>
     </section>
 </main>
 
-<!-- Footer -->
-<footer class="bg-background-dark py-12 border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-        <h2 class="text-white text-lg font-black tracking-tighter uppercase italic mb-8">27668<span class="text-primary">grafix</span></h2>
-        <div class="flex flex-wrap justify-center gap-6 text-slate-500 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] mb-8">
-            <a href="javascript:void(0)" onclick="openModal('privacyModal')" class="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="javascript:void(0)" onclick="openModal('termsModal')" class="hover:text-primary transition-colors">Terms of Service</a>
-            <a href="javascript:void(0)" onclick="openModal('contactModal')" class="hover:text-primary transition-colors">Contact</a>
+<!-- GET A QUOTE MODAL (Restructured) -->
+<div id="quoteModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-white/10 rounded-2xl max-w-md w-full p-8 relative">
+        <button onclick="closeQuoteModal()" class="absolute top-4 right-4 text-slate-400 hover:text-primary text-3xl">&times;</button>
+        <h3 class="text-2xl font-black text-white italic uppercase tracking-tighter mb-2">Request A Quote</h3>
+        <p class="text-slate-400 text-sm mb-8 uppercase tracking-widest font-bold">What service do you need?</p>
+        
+        <div class="space-y-3 mb-8">
+            <button onclick="sendWA('Custom Apparel')" class="w-full text-left p-4 rounded-lg bg-white/5 border border-white/10 hover:border-primary transition-colors text-sm font-bold uppercase tracking-widest">Custom Apparel</button>
+            <button onclick="sendWA('Corporate Stationery')" class="w-full text-left p-4 rounded-lg bg-white/5 border border-white/10 hover:border-primary transition-colors text-sm font-bold uppercase tracking-widest">Corporate Stationery</button>
+            <button onclick="sendWA('Gift Items')" class="w-full text-left p-4 rounded-lg bg-white/5 border border-white/10 hover:border-primary transition-colors text-sm font-bold uppercase tracking-widest">Gift Items</button>
+            <button onclick="sendWA('General Branding')" class="w-full text-left p-4 rounded-lg bg-white/5 border border-white/10 hover:border-primary transition-colors text-sm font-bold uppercase tracking-widest">General Branding</button>
         </div>
-        <p class="text-slate-700 text-[9px] font-black uppercase tracking-[0.4em]">© 2024 27668GRAFIX PRINTING. LAGOS, NIGERIA.</p>
-    </div>
-</footer>
-
-<!-- Modals & Logic -->
-<div id="modalOverlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-white/10 rounded-2xl max-w-lg w-full p-6 shadow-2xl" id="modalBox">
-        <div class="flex justify-between items-center mb-6">
-            <h3 id="modalTitle" class="text-xl font-bold text-white uppercase italic tracking-tight"></h3>
-            <button onclick="closeModal()" class="text-slate-400 hover:text-primary transition-colors text-3xl">&times;</button>
-        </div>
-        <div id="modalBody" class="text-slate-400 leading-relaxed text-sm"></div>
-    </div>
-</div>
-
-<div id="quoteModalOverlay" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
-    <div id="quoteModalBox" class="bg-slate-900 border border-white/10 rounded-2xl max-w-lg w-full p-8 shadow-2xl text-center">
-        <button onclick="closeQuoteModal()" class="absolute top-4 right-4 text-slate-400 hover:text-primary transition-colors text-3xl">&times;</button>
-        <span class="material-symbols-outlined text-primary text-5xl mb-4">format_quote</span>
-        <h3 id="businessQuote" class="text-2xl font-black italic text-white mb-8"></h3>
-        <a href="https://wa.me/2348033491036" target="_blank" class="flex items-center justify-center w-full h-14 bg-[#25D366] text-white rounded font-black uppercase tracking-widest gap-3 transition-transform hover:scale-105">WhatsApp Us</a>
+        
+        <p class="text-center text-slate-500 text-[10px] uppercase font-black">Choosing a service will open WhatsApp</p>
     </div>
 </div>
 
 <script>
-    // 1. MOBILE MENU LOGIC
     function toggleMobileMenu() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
+        document.getElementById('mobile-menu').classList.toggle('hidden');
     }
 
-    // 2. COUNTER ANIMATION LOGIC (Restored & Fixed)
-    const counters = document.querySelectorAll('.counter');
-    function startCounters() {
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const speed = 200;
-            const inc = target / speed;
-            const updateCount = () => {
-                const current = +counter.innerText;
-                if (current < target) {
-                    counter.innerText = Math.ceil(current + inc);
-                    setTimeout(updateCount, 15);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            updateCount();
-        });
-    }
-
-    // Start counters when page loads
-    window.onload = startCounters;
-
-    // 3. MODAL & QUOTE LOGIC
-    const modalContent = {
-        privacyModal: { title: "Privacy Policy 🛡️", body: "We protect your brand data with total integrity." },
-        termsModal: { title: "Terms of Service 📜", body: "3-5 day production begins after design approval." },
-        contactModal: { 
-            title: "Get In Touch 📞", 
-            body: `<p class="text-white">George Street, Onipanu, Lagos.</p><p class="mt-4">+234803 3491 036</p>`
-        }
-    };
-
-    function openModal(type) {
-        document.getElementById('modalTitle').innerText = modalContent[type].title;
-        document.getElementById('modalBody').innerHTML = modalContent[type].body;
-        document.getElementById('modalOverlay').classList.remove('hidden');
-    }
-
-    function closeModal() {
-        document.getElementById('modalOverlay').classList.add('hidden');
-    }
-
-    const quotes = ["We bring your brand vision to life.", "Quality is our habit.", "Your brand, our priority."];
     function openQuoteModal() {
-        document.getElementById('businessQuote').innerText = quotes[Math.floor(Math.random() * quotes.length)];
         document.getElementById('quoteModalOverlay').classList.remove('hidden');
     }
 
@@ -294,10 +176,35 @@
         document.getElementById('quoteModalOverlay').classList.add('hidden');
     }
 
-    window.onclick = function(e) {
-        if (e.target.id.includes('Overlay')) { closeModal(); closeQuoteModal(); }
+    function sendWA(service) {
+        const url = `https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥%20I%20am%20interested%20in%20a%20quote%20for%20${service}.`;
+        window.open(url, '_blank');
+    }
+
+    // Counter Animation
+    window.onload = () => {
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const speed = 200;
+            const updateCount = () => {
+                const count = +counter.innerText;
+                const inc = target / speed;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 15);
+                } else { counter.innerText = target; }
+            };
+            updateCount();
+        });
     }
 </script>
+
+<!-- Bottom CTA -->
+<section class="py-16 bg-primary text-center">
+    <h2 class="text-3xl md:text-6xl font-black text-white italic uppercase mb-8">Ready to start?</h2>
+    <button onclick="openQuoteModal()" class="bg-black text-white px-12 py-4 rounded-lg font-black uppercase text-sm">Get A Quote</button>
+</section>
 
 </body>
 </html>
