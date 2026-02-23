@@ -267,9 +267,41 @@
 
     // 2. Info Modal Logic
     const modalContent = {
-        privacyModal: { title: "Privacy Policy 🛡️", body: "At 27668grafix, your privacy is our priority. We only collect information necessary to fulfill your printing orders and provide design support. We never sell your data to third parties." },
-        termsModal: { title: "Terms of Service 📜", body: "Standard production time is 3-5 working days. Full payment or 70% deposit is required before production begins. Once design is approved, 27668grafix is not liable for spelling errors." },
-        contactModal: { title: "Contact Us 📞", body: "<strong>Address:</strong> George Street, Onipanu, Shomolu, Lagos.<br><strong>WhatsApp:</strong> +234803 3491 036, +234 708 2439 583<br><strong>Email:</strong> info@27668grafix.com" }
+        privacyModal: { 
+            title: "Privacy Policy 🛡️", 
+            body: "At 27668grafix, your privacy is our priority. We only collect information necessary to fulfill your printing orders and provide design support. We never sell your data to third parties." 
+        },
+        termsModal: { 
+            title: "Terms of Service 📜", 
+            body: "Standard production time is 3-5 working days. Full payment or 70% deposit is required before production begins. Once design is approved, 27668grafix is not liable for spelling errors." 
+        },
+        contactModal: { 
+            title: "Get In Touch 📞", 
+            body: `
+                <div class="space-y-4 text-left">
+                    <p class="text-slate-300">We are available 24/7 for design & logistics support.</p>
+                    
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10 space-y-2">
+                        <p class="text-xs text-primary font-black uppercase tracking-widest">Office Address</p>
+                        <p class="text-white text-sm">George Street, Onipanu, Shomolu, Lagos.</p>
+                    </div>
+
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10 space-y-2">
+                        <p class="text-xs text-primary font-black uppercase tracking-widest">Email Address</p>
+                        <p class="text-white text-sm">info@27668grafix.com</p>
+                    </div>
+
+                    <div class="pt-4">
+                        <a href="https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥%20I%20need%20help%20with%20a%20branding%20project." 
+                           target="_blank" 
+                           class="flex items-center justify-center w-full h-12 bg-[#25D366] text-white rounded font-black uppercase tracking-widest hover:scale-105 transition-transform gap-2 text-xs">
+                            <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.891 11.887-11.891 3.181 0 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.481 8.403 0 6.556-5.332 11.89-11.888 11.89-2.015 0-3.986-.511-5.727-1.483l-6.265 1.642zm6.208-3.804l.343.203c1.44.856 3.085 1.307 4.775 1.307 4.868 0 8.828-3.959 8.83-8.828 0-2.36-.917-4.577-2.583-6.242-1.666-1.666-3.884-2.583-6.241-2.583-4.871 0-8.83 3.959-8.83 8.83 0 1.765.523 3.486 1.513 5.011l.223.344-1.011 3.691 3.781-.992z"/></svg>
+                            WhatsApp Us Now
+                        </a>
+                    </div>
+                </div>
+            ` 
+        }
     };
 
     function openModal(type) {
@@ -278,64 +310,51 @@
         const overlay = document.getElementById('modalOverlay');
         const box = document.getElementById('modalBox');
         overlay.classList.remove('hidden');
-        setTimeout(() => { box.classList.remove('scale-95', 'opacity-0'); box.classList.add('scale-100', 'opacity-100'); }, 10);
+        setTimeout(() => { 
+            box.classList.remove('scale-95', 'opacity-0'); 
+            box.classList.add('scale-100', 'opacity-100'); 
+        }, 10);
     }
 
     function closeModal() {
         const overlay = document.getElementById('modalOverlay');
         const box = document.getElementById('modalBox');
-        box.classList.remove('scale-100', 'opacity-100'); box.classList.add('scale-95', 'opacity-0');
+        box.classList.remove('scale-100', 'opacity-100'); 
+        box.classList.add('scale-95', 'opacity-0');
         setTimeout(() => overlay.classList.add('hidden'), 300);
     }
 
     // 3. Quote Modal Logic
-    const quotes = [ "\"Design is the silent ambassador of your brand.\"", "\"Quality is not an act, it is a habit. We print excellence.\"", "\"We don't just print; we bring your vision to life.\"" ];
+    const quotes = [ 
+        "\"Design is the silent ambassador of your brand.\"", 
+        "\"Quality is not an act, it is a habit. We print excellence.\"", 
+        "\"We don't just print; we bring your vision to life.\"" 
+    ];
+
     function openQuoteModal() {
         document.getElementById('businessQuote').innerText = quotes[Math.floor(Math.random() * quotes.length)];
         const overlay = document.getElementById('quoteModalOverlay');
         const box = document.getElementById('quoteModalBox');
         overlay.classList.remove('hidden');
-        setTimeout(() => { box.classList.remove('scale-95', 'opacity-0'); box.classList.add('scale-100', 'opacity-100'); }, 10);
+        setTimeout(() => { 
+            box.classList.remove('scale-95', 'opacity-0'); 
+            box.classList.add('scale-100', 'opacity-100'); 
+        }, 10);
     }
+
     function closeQuoteModal() {
         const overlay = document.getElementById('quoteModalOverlay');
         const box = document.getElementById('quoteModalBox');
-        box.classList.remove('scale-100', 'opacity-100'); box.classList.add('scale-95', 'opacity-0');
+        box.classList.remove('scale-100', 'opacity-100'); 
+        box.classList.add('scale-95', 'opacity-0');
         setTimeout(() => overlay.classList.add('hidden'), 300);
     }
 
+    // Close on click outside
     window.onclick = function(e) {
-        if (e.target.id.includes('Overlay')) { closeModal(); closeQuoteModal(); }
+        if (e.target.id === 'modalOverlay') { closeModal(); }
+        if (e.target.id === 'quoteModalOverlay') { closeQuoteModal(); }
     }
-
-    contactModal: { 
-    title: "Get In Touch 📞", 
-    body: `
-        <div class="space-y-4">
-            <p class="text-slate-300">We are available 24/7 for design & logistics support.</p>
-            
-            <div class="bg-white/5 p-4 rounded-lg border border-white/10 space-y-2">
-                <p class="text-xs text-primary font-black uppercase tracking-widest">Office Address</p>
-                <p class="text-white text-sm">George Street, Onipanu, Shomolu, Lagos.</p>
-            </div>
-
-            <div class="bg-white/5 p-4 rounded-lg border border-white/10 space-y-2">
-                <p class="text-xs text-primary font-black uppercase tracking-widest">Email Address</p>
-                <p class="text-white text-sm">info@27668grafix.com</p>
-            </div>
-
-            <div class="pt-4">
-                <a href="https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥%20I%20need%20help%20with%20a%20branding%20project." 
-                   target="_blank" 
-                   class="flex items-center justify-center w-full h-12 bg-[#25D366] text-white rounded font-black uppercase tracking-widest hover:scale-105 transition-transform gap-2 text-xs">
-                    <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.891 11.887-11.891 3.181 0 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.481 8.403 0 6.556-5.332 11.89-11.888 11.89-2.015 0-3.986-.511-5.727-1.483l-6.265 1.642zm6.208-3.804l.343.203c1.44.856 3.085 1.307 4.775 1.307 4.868 0 8.828-3.959 8.83-8.828 0-2.36-.917-4.577-2.583-6.242-1.666-1.666-3.884-2.583-6.241-2.583-4.871 0-8.83 3.959-8.83 8.83 0 1.765.523 3.486 1.513 5.011l.223.344-1.011 3.691 3.781-.992z"/></svg>
-                    WhatsApp Us Now
-                </a>
-            </div>
-        </div>
-    ` 
-}
 </script>
-
 </body>
 </html>
