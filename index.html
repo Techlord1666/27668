@@ -26,6 +26,9 @@
         .hero-gradient { background: linear-gradient(to bottom, rgba(15,15,15,0.4) 0%, rgba(15,15,15,1) 100%); }
         .fire-glow { box-shadow: 0 0 20px rgba(255, 106, 0, 0.3); }
         .hamburger-line { display: block; width: 24px; height: 2px; background-color: white; margin: 5px auto; transition: all 0.3s ease; }
+        /* Smooth scrolling for modals */
+        .modal-scroll::-webkit-scrollbar { width: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #ff6a00; border-radius: 10px; }
     </style>
 </head>
 <body class="text-slate-100 antialiased overflow-x-hidden">
@@ -36,6 +39,12 @@
         <div class="flex items-center justify-between h-16 md:h-20">
             <h2 class="text-white text-xl md:text-2xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="store.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Store</a>
+                <a href="about.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">About</a>
+                <a href="javascript:void(0)" onclick="openModal('contactModal')" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Contact</a>
+            </nav>
+
             <div class="flex items-center gap-4">
                 <a href="registration.html" class="bg-primary px-5 py-2 rounded text-[10px] font-black uppercase tracking-widest text-white">Login</a>
                 <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center w-8 h-8">
@@ -48,118 +57,82 @@
     <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-background-dark border-b border-white/10 p-6 flex flex-col gap-6 uppercase text-xs font-bold tracking-widest">
         <a href="store.html">Store</a>
         <a href="about.html">About</a>
-        <a href="javascript:void(0)" onclick="openModal('contactModal')">Contact</a>
+        <a href="javascript:void(0)" onclick="toggleMobileMenu(); openModal('contactModal');">Contact Us</a>
     </div>
 </header>
 
 <main>
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 hero-gradient z-10"></div>
-            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=2071" alt="Background">
-        </div>
-
-        <div class="relative z-20 max-w-7xl mx-auto px-6 w-full">
-            <div class="max-w-4xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-[10px] font-black tracking-widest text-primary uppercase">Crafting Excellence in Lagos</span>
-                </div>
-                <h1 class="text-5xl md:text-8xl font-black leading-[1] md:leading-[0.9] tracking-tighter text-white mb-6 italic uppercase">
-                    Elevate Your Brand <br> <span class="text-primary">Without Limits.</span>
-                </h1>
-                <p class="text-slate-300 text-base md:text-xl font-medium max-w-xl mb-10 leading-relaxed">
-                    High-impact branding solutions from Nigeria to the world. Premium prints and energetic visuals that command attention.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                    <a href="store.html" class="bg-primary py-4 px-10 rounded text-center text-sm font-black uppercase tracking-widest">Shop Now</a>
-                    <a href="about.html" class="border-2 border-white/20 py-4 px-10 rounded text-center text-sm font-black uppercase tracking-widest">Learn More</a>
-                </div>
-
-                <!-- Corrected Stats: No more overlap on mobile -->
-                <div class="flex gap-10 md:gap-16 border-t border-white/10 pt-8">
-                    <div>
-                        <p class="text-primary text-3xl md:text-5xl font-black italic italic"><span class="counter" data-target="500">0</span>+</p>
-                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Global Clients</p>
-                    </div>
-                    <div>
-                        <p class="text-primary text-3xl md:text-5xl font-black italic"><span class="counter" data-target="10">0</span>k+</p>
-                        <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Prints Delivered</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="py-20 bg-background-dark">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-white mb-12">
-                Why Choose <span class="text-primary">27668grafix?</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="bg-card-dark p-8 border border-white/5 rounded-xl">
-                    <span class="material-symbols-outlined text-primary text-2xl mb-4">verified</span>
-                    <h3 class="text-white font-black uppercase text-sm mb-2 italic">Premium Quality</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Engineered materials that turn first impressions into lifelong customers.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="bg-card-dark p-8 border border-white/5 rounded-xl">
-                    <span class="material-symbols-outlined text-primary text-2xl mb-4">trending_up</span>
-                    <h3 class="text-white font-black uppercase text-sm mb-2 italic">Brand Visibility</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Custom branding solutions designed to stay in the minds of your audience.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="bg-card-dark p-8 border border-white/5 rounded-xl">
-                    <span class="material-symbols-outlined text-primary text-2xl mb-4">support_agent</span>
-                    <h3 class="text-white font-black uppercase text-sm mb-2 italic">Expert Support</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Direct support through your journey to guarantee total happiness.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CEO Section -->
-    <section class="py-20 bg-background-dark border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="rounded-2xl overflow-hidden aspect-[4/5] bg-slate-800 border border-white/10 flex items-center justify-center">
-                <span class="text-slate-600 font-black tracking-widest uppercase">CEO IMAGE</span>
-            </div>
-            <div>
-                <h2 class="text-3xl md:text-6xl font-black text-white italic uppercase tracking-tighter mb-6 leading-tight">
-                    UNCOMPROMISING <br> EXCELLENCE
-                </h2>
-                <p class="text-slate-400 text-base md:text-lg mb-8 leading-relaxed">
-                    At 27668grafix, quality is our signature. We utilize high-gramme materials to ensure every print reflects the integrity of your brand.
-                </p>
-                <div class="p-6 bg-white/5 border-l-4 border-primary rounded-r-xl">
-                    <p class="text-slate-200 italic mb-4">"Surpassing expectations is our daily goal."</p>
-                    <p class="text-xs font-black uppercase tracking-widest text-white">David Mobolade Ajibike</p>
-                    <p class="text-primary text-[10px] font-bold uppercase tracking-widest">Founder & CEO</p>
-                </div>
-            </div>
-        </div>
+    <!-- Hero, Why Choose Us, and CEO sections go here (omitted for brevity, keep your previous ones) -->
+    <!-- [REPLACE THIS WITH YOUR HERO & SECTIONS CODE] -->
+    <section class="h-40 flex items-center justify-center bg-background-dark">
+        <p class="text-slate-500 uppercase tracking-widest text-xs">Scroll down for footer & policies</p>
     </section>
 </main>
 
-<!-- GET A QUOTE MODAL (Restructured) -->
-<div id="quoteModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-white/10 rounded-2xl max-w-md w-full p-8 relative">
-        <button onclick="closeQuoteModal()" class="absolute top-4 right-4 text-slate-400 hover:text-primary text-3xl">&times;</button>
-        <h3 class="text-2xl font-black text-white italic uppercase tracking-tighter mb-2">Request A Quote</h3>
-        <p class="text-slate-400 text-sm mb-8 uppercase tracking-widest font-bold">What service do you need?</p>
-        
-        <div class="space-y-3 mb-8">
-            <button onclick="sendWA('Custom Apparel')" class="w-full text-left p-4 rounded-lg bg-white/5 border border-white/10 hover:border-primary transition-colors text-sm font-bold uppercase tracking-widest">Custom Apparel</button>
-            <button onclick="sendWA('Corporate Stationery')" class="w-full text-left p-4 rounded-lg bg-white/5 border border-white/10 hover:border-primary transition-colors text-sm font-bold uppercase tracking-widest">Corporate Stationery</button>
-            <button onclick="sendWA('Gift Items')" class="w-full text-left p-4 rounded-lg bg-white/5 border border-white/10 hover:border-primary transition-colors text-sm font-bold uppercase tracking-widest">Gift Items</button>
-            <button onclick="sendWA('General Branding')" class="w-full text-left p-4 rounded-lg bg-white/5 border border-white/10 hover:border-primary transition-colors text-sm font-bold uppercase tracking-widest">General Branding</button>
+<!-- Footer -->
+<footer class="bg-background-dark border-t border-white/5 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <!-- Brand & Social -->
+        <div class="space-y-6">
+            <h2 class="text-white text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
+            <p class="text-slate-400 text-sm leading-relaxed">Elevating your brand visibility with meticulous craftsmanship and fire designs from Nigeria to the world.</p>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5 invert" alt="FB"></a>
+                <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-5 h-5 invert" alt="X"></a>
+                <a href="#" class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-5 h-5 invert" alt="IG"></a>
+            </div>
         </div>
-        
-        <p class="text-center text-slate-500 text-[10px] uppercase font-black">Choosing a service will open WhatsApp</p>
+
+        <!-- Sitemap -->
+        <div>
+            <h4 class="text-white font-black uppercase tracking-widest text-sm mb-6">Information</h4>
+            <ul class="space-y-4 text-slate-400 text-sm font-medium">
+                <li><a href="about.html" class="hover:text-primary transition-colors">About Us</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Blog</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal('contactModal')" class="hover:text-primary transition-colors">Contact Us</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Sitemap</a></li>
+            </ul>
+        </div>
+
+        <!-- Useful Links -->
+        <div>
+            <h4 class="text-white font-black uppercase tracking-widest text-sm mb-6">Useful Links</h4>
+            <ul class="space-y-4 text-slate-400 text-sm font-medium">
+                <li><a href="javascript:void(0)" onclick="openModal('privacyModal')" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal('returnModal')" class="hover:text-primary transition-colors">Return & Refund Policy</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal('shippingModal')" class="hover:text-primary transition-colors">Shipping Policy</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal('termsModal')" class="hover:text-primary transition-colors">Terms & Conditions</a></li>
+            </ul>
+        </div>
+
+        <!-- Quick Contact -->
+        <div>
+            <h4 class="text-white font-black uppercase tracking-widest text-sm mb-6">Need Help?</h4>
+            <p class="text-slate-400 text-sm mb-4">Chat with us directly for any inquiries.</p>
+            <a href="https://wa.me/2348033491036" class="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded font-black text-xs uppercase tracking-widest">
+                Whatsapp Us
+            </a>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/5 text-center">
+        <p class="text-slate-600 text-[10px] font-black uppercase tracking-[0.4em]">© 2024 27668GRAFIX PRINTING. LAGOS, NIGERIA.</p>
+    </div>
+</footer>
+
+<!-- POLICY MODAL STRUCTURE -->
+<div id="infoModalOverlay" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-white/10 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl relative">
+        <!-- Header -->
+        <div class="p-6 border-b border-white/5 flex justify-between items-center bg-slate-900 rounded-t-2xl">
+            <h3 id="infoModalTitle" class="text-xl font-black text-white italic uppercase tracking-tighter"></h3>
+            <button onclick="closeModal()" class="text-slate-400 hover:text-primary transition-colors text-3xl">&times;</button>
+        </div>
+        <!-- Body (Scrollable) -->
+        <div id="infoModalBody" class="p-8 text-slate-400 leading-relaxed text-sm overflow-y-auto modal-scroll">
+            <!-- Content Injected via JS -->
+        </div>
     </div>
 </div>
 
@@ -168,43 +141,61 @@
         document.getElementById('mobile-menu').classList.toggle('hidden');
     }
 
-    function openQuoteModal() {
-        document.getElementById('quoteModalOverlay').classList.remove('hidden');
+    // POLICY DATA
+    const policyData = {
+        privacyModal: {
+            title: "Privacy Policy",
+            body: `<p>At 27668grafix, we value your privacy. Your design files and personal data are strictly used for order fulfillment and never shared with third parties. We ensure all client information is stored securely.</p>`
+        },
+        shippingModal: {
+            title: "Shipping Policy",
+            body: `
+                <p class="mb-4"><strong>Partners:</strong> We are partnered with Bolt, Kwik.com within Lagos & DHL for deliveries outside Lagos. All orders are trackable.</p>
+                <p class="mb-4"><strong>Lagos Deliveries:</strong> Same-day or next-day delivery after production is complete.</p>
+                <p><strong>International/Outside Lagos:</strong> Worldwide shipping via DHL, typically reaching destinations like the US in 3-5 working days.</p>`
+        },
+        contactModal: {
+            title: "Contact Us",
+            body: `
+                <div class="space-y-4">
+                    <p><strong>Address:</strong> 18, George Street, Igbobi, Lagos.</p>
+                    <p><strong>WhatsApp:</strong> +234 803 3491 036</p>
+                    <p><strong>Email:</strong> 27.668grafix@gmail.com</p>
+                    <a href="https://wa.me/2348033491036" class="block text-center bg-[#25D366] text-white py-3 rounded font-black uppercase tracking-widest text-xs mt-4">Start Chatting</a>
+                </div>`
+        },
+        termsModal: {
+            title: "Terms & Conditions",
+            body: `<p>By placing an order, you agree to our production timelines and quality standards. Orders begin after design approval and payment confirmation.</p>`
+        },
+        returnModal: {
+            title: "Return & Refund Policy",
+            body: `
+                <div class="space-y-4">
+                    <p><strong>Terms:</strong> Our refund and returns policy lasts 30 days. If 30 days have passed, we can’t offer a full refund or exchange.</p>
+                    <p><strong>Eligibility:</strong> Item must be unused, in the same condition as received, and in original packaging.</p>
+                    <p><strong>Process:</strong> Kindly call, chat, or mail us complains. Refunds are processed after replacement options have been exhausted.</p>
+                    <p><strong>Exchanges:</strong> We only replace items if they are defective or damaged. Email us at 27.668grafix@gmail.com and send items to: 18, George Street, Igbobi, Lagos.</p>
+                    <p><strong>Shipping Returns:</strong> You are responsible for your own shipping costs for returning your item. Shipping costs are non-refundable.</p>
+                </div>`
+        }
+    };
+
+    function openModal(type) {
+        const data = policyData[type];
+        document.getElementById('infoModalTitle').innerText = data.title;
+        document.getElementById('infoModalBody').innerHTML = data.body;
+        document.getElementById('infoModalOverlay').classList.remove('hidden');
     }
 
-    function closeQuoteModal() {
-        document.getElementById('quoteModalOverlay').classList.add('hidden');
+    function closeModal() {
+        document.getElementById('infoModalOverlay').classList.add('hidden');
     }
 
-    function sendWA(service) {
-        const url = `https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥%20I%20am%20interested%20in%20a%20quote%20for%20${service}.`;
-        window.open(url, '_blank');
-    }
-
-    // Counter Animation
-    window.onload = () => {
-        const counters = document.querySelectorAll('.counter');
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            const speed = 200;
-            const updateCount = () => {
-                const count = +counter.innerText;
-                const inc = target / speed;
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(updateCount, 15);
-                } else { counter.innerText = target; }
-            };
-            updateCount();
-        });
+    window.onclick = function(e) {
+        if (e.target.id === 'infoModalOverlay') closeModal();
     }
 </script>
-
-<!-- Bottom CTA -->
-<section class="py-16 bg-primary text-center">
-    <h2 class="text-3xl md:text-6xl font-black text-white italic uppercase mb-8">Ready to start?</h2>
-    <button onclick="openQuoteModal()" class="bg-black text-white px-12 py-4 rounded-lg font-black uppercase text-sm">Get A Quote</button>
-</section>
 
 </body>
 </html>
