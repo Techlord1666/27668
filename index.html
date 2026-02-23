@@ -27,66 +27,79 @@
         .fire-glow { box-shadow: 0 0 20px rgba(255, 106, 0, 0.3); }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
         .animate-float { animation: float 4s ease-in-out infinite; }
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="text-slate-100 antialiased">
+<body class="text-slate-100 antialiased overflow-x-hidden">
 
 <!-- Navigation -->
-<header class="sticky top-0 z-50 w-full bg-background-dark/90 backdrop-blur-lg border-b border-white/5">
+<header class="fixed top-0 z-[100] w-full bg-background-dark/95 backdrop-blur-lg border-b border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
+        <div class="flex items-center justify-between h-16 md:h-20">
             <!-- Logo -->
             <div class="flex items-center gap-2">
                 <div class="p-1 bg-primary rounded">
-                    
+                    <span class="material-symbols-outlined text-white text-xl font-bold">layers</span>
                 </div>
-                <h2 class="text-white text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
+                <h2 class="text-white text-lg md:text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
 
-            <!-- Nav Links -->
+            <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center gap-10">
                 <a href="store.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Store</a>
                 <a href="about.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">About</a>
-               <a href="javascript:void(0)" onclick="openModal('contactModal')" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Contact us</a>
+                <a href="javascript:void(0)" onclick="openModal('contactModal')" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Contact us</a>
+            </nav>
 
             <!-- Actions -->
-            <div class="flex items-center gap-6">
-                <span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-white hidden sm:block">shopping_cart</span>
-                <a href="registration.html" class="bg-primary px-6 py-2 rounded text-xs font-black uppercase tracking-widest text-white hover:scale-105 transition-transform">Login</a>
+            <div class="flex items-center gap-4 md:gap-6">
+                <a href="registration.html" class="bg-primary px-4 md:px-6 py-2 rounded text-[10px] md:text-xs font-black uppercase tracking-widest text-white hover:scale-105 transition-transform">Login</a>
+                <!-- Mobile Menu Toggle -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white">
+                    <span id="menu-icon" class="material-symbols-outlined text-3xl">menu</span>
+                </button>
             </div>
         </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-background-dark border-b border-white/10 p-6 flex flex-col gap-6 animate-in slide-in-from-top duration-300">
+        <a href="store.html" class="text-sm font-black uppercase tracking-widest text-white">Store</a>
+        <a href="about.html" class="text-sm font-black uppercase tracking-widest text-white">About</a>
+        <a href="javascript:void(0)" onclick="openModal('contactModal'); toggleMobileMenu();" class="text-sm font-black uppercase tracking-widest text-white">Contact Us</a>
     </div>
 </header>
 
 <main>
     <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+    <section class="relative min-h-[70vh] md:min-h-[90vh] flex items-center pt-16 overflow-hidden">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 hero-gradient z-10"></div>
-            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=2071" alt="Workshop">
+            <img class="w-full h-full object-cover object-center" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=2071" alt="Workshop">
         </div>
 
-        <div class="relative z-20 max-w-7xl mx-auto px-6 w-full">
+        <div class="relative z-20 max-w-7xl mx-auto px-6 w-full py-12 md:py-20">
             <div class="max-w-4xl">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
                     <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Crafting Excellence in Lagos</span>
+                    <span class="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-primary">Crafting Excellence in Lagos</span>
                 </div>
-                <h1 class="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter text-white mb-8 italic uppercase">
+                <h1 class="text-4xl md:text-8xl font-black leading-[1] md:leading-[0.9] tracking-tighter text-white mb-6 md:mb-8 italic uppercase">
                     Elevate Your Brand <br>
                     <span class="text-primary">Without Limits.</span>
                 </h1>
-                <p class="text-slate-300 text-lg md:text-xl font-medium max-w-xl mb-10 leading-relaxed">
+                <p class="text-slate-300 text-base md:text-xl font-medium max-w-xl mb-8 md:mb-10 leading-relaxed">
                     High-impact branding solutions from the heart of Nigeria to the world. Premium prints, bold designs, and energetic visuals that command attention.
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="store.html" class="bg-primary px-10 py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:fire-glow transition-all">Shop Now</a>
-                    <a href="about.html" class="border-2 border-white/20 px-10 py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all">View Portfolio</a>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="store.html" class="w-full sm:w-auto text-center bg-primary px-10 py-4 md:py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:fire-glow transition-all">Shop Now</a>
+                    <a href="about.html" class="w-full sm:w-auto text-center border-2 border-white/20 px-10 py-4 md:py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all">View Portfolio</a>
                 </div>
             </div>
         </div>
 
-        <!-- Floating Stats -->
+        <!-- Floating Stats (Hidden on Mobile) -->
         <div class="absolute bottom-10 right-10 hidden xl:flex gap-12 z-20">
             <div class="text-right animate-float">
                 <p class="text-primary text-4xl font-black italic tracking-tighter"><span class="counter" data-target="500">0</span>+</p>
@@ -100,77 +113,55 @@
     </section>
 
     <!-- Why Choose Us -->
-    <section class="py-24 bg-background-dark">
+    <section class="py-16 md:py-24 bg-background-dark">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 md:mb-16">
                 <div class="max-w-xl">
-                    <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-white mb-6">
+                    <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-white mb-4">
                         Why Choose <span class="text-primary">27668grafix?</span>
                     </h2>
-                    <p class="text-slate-400">We combine Nigerian grit with international quality standards to deliver branding that works.</p>
+                    <p class="text-slate-400 text-sm md:text-base leading-relaxed">We combine Nigerian grit with international quality standards to deliver branding that works.</p>
                 </div>
                 <div class="w-24 h-1 bg-primary mb-2 hidden md:block"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-card-dark p-10 border border-white/5 hover:border-primary/30 transition-all rounded-lg group">
-                    <span class="material-symbols-outlined text-primary text-4xl mb-6 group-hover:scale-110 transition-transform">flag</span>
+                <div class="bg-card-dark p-8 md:p-10 border border-white/5 rounded-lg group">
+                    <span class="material-symbols-outlined text-primary text-4xl mb-6">flag</span>
                     <h3 class="text-white font-black uppercase tracking-tight text-xl mb-4 italic">Proudly Nigerian</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Crafted locally with global standards from the heart of Lagos. We understand the pulse of the Nigerian market.</p>
+                    <p class="text-slate-500 text-sm leading-relaxed">Crafted locally with global standards from the heart of Lagos.</p>
                 </div>
-                <div class="bg-card-dark p-10 border border-white/5 hover:border-primary/30 transition-all rounded-lg group">
-                    <span class="material-symbols-outlined text-primary text-4xl mb-6 group-hover:scale-110 transition-transform">bolt</span>
+                <div class="bg-card-dark p-8 md:p-10 border border-white/5 rounded-lg group">
+                    <span class="material-symbols-outlined text-primary text-4xl mb-6">bolt</span>
                     <h3 class="text-white font-black uppercase tracking-tight text-xl mb-4 italic">3-5 Day Delivery</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Speed is our middle name. Get your high-quality prints processed and delivered in record-breaking time.</p>
+                    <p class="text-slate-500 text-sm leading-relaxed">Speed is our middle name. Delivered in record-breaking time.</p>
                 </div>
-                <div class="bg-card-dark p-10 border border-white/5 hover:border-primary/30 transition-all rounded-lg group">
-                    <span class="material-symbols-outlined text-primary text-4xl mb-6 group-hover:scale-110 transition-transform">public</span>
+                <div class="bg-card-dark p-8 md:p-10 border border-white/5 rounded-lg group">
+                    <span class="material-symbols-outlined text-primary text-4xl mb-6">public</span>
                     <h3 class="text-white font-black uppercase tracking-tight text-xl mb-4 italic">Worldwide Shipping</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">We bring Nigerian excellence to your doorstep, anywhere in the world. Seamless logistics for a global reach.</p>
+                    <p class="text-slate-500 text-sm leading-relaxed">We bring Nigerian excellence to your doorstep, anywhere in the world.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trusted Bar -->
-    <div class="py-12 border-y border-white/5 bg-white/[0.01]">
-        <div class="max-w-7xl mx-auto px-6">
-            <p class="text-center text-[10px] font-black uppercase tracking-[0.5em] text-slate-600 mb-8">Trusted by Industry Leaders</p>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-20 grayscale">
-                <div class="h-6 w-24 bg-white rounded"></div>
-                <div class="h-6 w-24 bg-white rounded"></div>
-                <div class="h-6 w-24 bg-white rounded"></div>
-                <div class="h-6 w-24 bg-white rounded"></div>
-            </div>
-        </div>
-    </div>
-
     <!-- Featured Section -->
-    <section class="py-32 bg-background-dark">
+    <section class="py-16 md:py-32 bg-background-dark">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
                 <div class="relative">
-                    <div class="absolute -inset-10 bg-primary/10 blur-[100px] rounded-full"></div>
-                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=1000" class="rounded-2xl relative z-10 w-full shadow-2xl border border-white/10" alt="Featured Work">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=1000" class="rounded-2xl w-full shadow-2xl border border-white/10" alt="Featured Work">
                 </div>
                 <div>
                     <span class="text-primary font-black uppercase tracking-[0.3em] text-xs">Featured Work</span>
-                    <h2 class="text-4xl md:text-7xl font-black text-white italic uppercase tracking-tighter mt-6 mb-8 leading-[0.9]">
+                    <h2 class="text-3xl md:text-7xl font-black text-white italic uppercase tracking-tighter mt-4 mb-8 leading-[1] md:leading-[0.9]">
                         Premium Branding <br> For Bold Visionaries
                     </h2>
-                    <ul class="space-y-4 mb-12">
-                        <li class="flex items-center gap-3 text-slate-300 font-bold uppercase text-sm"><span class="material-symbols-outlined text-primary">check_circle</span> Custom Apparel & Merchandise</li>
-                        <li class="flex items-center gap-3 text-slate-300 font-bold uppercase text-sm"><span class="material-symbols-outlined text-primary">check_circle</span> High-Impact Corporate Stationery</li>
-                        <li class="flex items-center gap-3 text-slate-300 font-bold uppercase text-sm"><span class="material-symbols-outlined text-primary">check_circle</span> Large Format & Event Branding</li>
-                    </ul>
                     <!-- Testimonial -->
-                    <div class="p-8 bg-white/5 border-l-4 border-primary rounded-r-xl">
-                        <p class="text-slate-300 italic mb-6">"The quality 27668grafix delivered for our tech conference in Abuja was unmatched. They are the fire the industry needed."</p>
+                    <div class="p-6 md:p-8 bg-white/5 border-l-4 border-primary rounded-r-xl">
+                        <p class="text-slate-300 italic text-sm md:text-base mb-6">"The quality 27668grafix delivered for our tech conference in Abuja was unmatched. They are the fire the industry needed."</p>
                         <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center overflow-hidden">
-                                <span class="material-symbols-outlined text-slate-500">person</span>
-                            </div>
-                            <span class="text-xs font-black uppercase tracking-widest text-white">— CEO, DAVID MOBOLADE AJIBIKE</span>
+                            <span class="text-[10px] md:text-xs font-black uppercase tracking-widest text-white">— CEO, DAVID MOBOLADE AJIBIKE</span>
                         </div>
                     </div>
                 </div>
@@ -179,24 +170,23 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-32 bg-primary relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+    <section class="py-20 md:py-32 bg-primary relative overflow-hidden">
         <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-5xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-12">Ready to set your <br> Brand on Fire?</h2>
-            <div class="flex flex-wrap justify-center gap-6">
-                <button onclick="openQuoteModal()" class="bg-black px-12 py-6 rounded text-sm font-black uppercase tracking-widest text-white hover:scale-105 transition-transform flex items-center gap-3">
+            <h2 class="text-4xl md:text-8xl font-black text-white italic uppercase tracking-tighter mb-10 md:mb-12">Ready to set your <br> Brand on Fire?</h2>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <button onclick="openQuoteModal()" class="bg-black px-12 py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:scale-105 transition-transform flex items-center justify-center gap-3">
                     Get A Quote <span class="material-symbols-outlined">arrow_forward</span>
                 </button>
-                <a href="store.html" class="border-2 border-white px-12 py-6 rounded text-sm font-black uppercase tracking-widest text-white hover:bg-white hover:text-primary transition-all">Browse Store</a>
+                <a href="store.html" class="border-2 border-white px-12 py-5 rounded text-sm font-black uppercase tracking-widest text-white hover:bg-white hover:text-primary transition-all flex items-center justify-center">Browse Store</a>
             </div>
         </div>
     </section>
 </main>
 
 <!-- Footer -->
-<footer class="bg-background-dark py-20 border-t border-white/5">
+<footer class="bg-background-dark py-12 border-t border-white/5">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="flex items-center gap-2">
                 <div class="p-1 bg-primary rounded">
                     <span class="material-symbols-outlined text-white text-sm font-bold">layers</span>
@@ -204,157 +194,101 @@
                 <h2 class="text-white text-lg font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
             
-            <div class="flex gap-8 text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">
-                <a href="#" onclick="openModal('privacyModal')" class="hover:text-primary transition-colors">Privacy Policy</a>
-                <a href="#" onclick="openModal('termsModal')" class="hover:text-primary transition-colors">Terms of Service</a>
-                <a href="#" onclick="openModal('contactModal')" class="hover:text-primary transition-colors">Contact</a>
-            </div>
-
-            <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
-                    <span class="material-symbols-outlined text-slate-400 group-hover:text-white text-sm">language</span>
-                </a>
-                <a href="#" class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-primary transition-all group">
-                    <span class="material-symbols-outlined text-slate-400 group-hover:text-white text-sm">alternate_email</span>
-                </a>
+            <div class="flex flex-wrap justify-center gap-6 text-slate-500 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em]">
+                <a href="javascript:void(0)" onclick="openModal('privacyModal')" class="hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="javascript:void(0)" onclick="openModal('termsModal')" class="hover:text-primary transition-colors">Terms of Service</a>
+                <a href="javascript:void(0)" onclick="openModal('contactModal')" class="hover:text-primary transition-colors">Contact</a>
             </div>
         </div>
-        <p class="text-center text-[10px] font-black uppercase tracking-[0.5em] text-slate-700 mt-20">© 2024 27668GRAFIX PRINTING. ALL RIGHTS RESERVED. LAGOS, NIGERIA.</p>
+        <p class="text-center text-[9px] font-black uppercase tracking-[0.4em] text-slate-700 mt-12">© 2024 27668GRAFIX PRINTING. ALL RIGHTS RESERVED. LAGOS, NIGERIA.</p>
     </div>
 </footer>
 
-<!-- Info Modal -->
+<!-- Modals -->
 <div id="modalOverlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-white/10 rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto shadow-2xl transform transition-all scale-95 opacity-0" id="modalBox">
+    <div class="bg-slate-900 border border-white/10 rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto shadow-2xl transform transition-all scale-95 opacity-0 duration-300" id="modalBox">
         <div class="p-6 border-b border-white/5 flex justify-between items-center sticky top-0 bg-slate-900">
-            <h3 id="modalTitle" class="text-xl font-bold text-white uppercase italic tracking-tight">Information</h3>
+            <h3 id="modalTitle" class="text-xl font-bold text-white uppercase italic tracking-tight"></h3>
             <button onclick="closeModal()" class="text-slate-400 hover:text-primary transition-colors text-3xl">&times;</button>
         </div>
         <div id="modalBody" class="p-6 text-slate-400 leading-relaxed text-sm"></div>
     </div>
 </div>
 
-<!-- Quote Modal -->
 <div id="quoteModalOverlay" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
     <div id="quoteModalBox" class="bg-slate-900 border border-white/10 rounded-2xl max-w-lg w-full p-8 shadow-2xl transform transition-all scale-95 opacity-0 relative overflow-hidden text-center">
-        <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 blur-[80px] rounded-full"></div>
         <button onclick="closeQuoteModal()" class="absolute top-4 right-4 text-slate-400 hover:text-primary transition-colors text-3xl">&times;</button>
         <span class="material-symbols-outlined text-primary text-5xl mb-4">format_quote</span>
-        <h3 id="businessQuote" class="text-2xl font-black italic text-white tracking-tighter leading-tight mb-4">"Design is the silent ambassador of your brand."</h3>
-        <p class="text-slate-500 text-[10px] uppercase tracking-widest font-black mb-8">— 27668grafix Philosophy</p>
-        <a href="https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥%20I%20saw%20your%20website%20and%20I%20would%20like%20to%20get%20a%20quote." target="_blank" class="flex items-center justify-center w-full h-14 bg-[#25D366] text-white rounded-lg font-black uppercase tracking-widest hover:scale-105 transition-transform gap-3">
-            Continue to WhatsApp
-        </a>
+        <h3 id="businessQuote" class="text-2xl font-black italic text-white tracking-tighter mb-4"></h3>
+        <a href="https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥" target="_blank" class="flex items-center justify-center w-full h-14 bg-[#25D366] text-white rounded-lg font-black uppercase tracking-widest hover:scale-105 transition-transform gap-3">Continue to WhatsApp</a>
     </div>
 </div>
 
 <script>
-    // 1. Counter Logic
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => {
-        const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const speed = 200;
-            const inc = target / speed;
-            if (count < target) {
-                counter.innerText = Math.ceil(count + inc);
-                setTimeout(updateCount, 20);
-            } else { counter.innerText = target; }
-        };
-        updateCount();
-    });
+    // Toggle Mobile Menu
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+        menu.classList.toggle('hidden');
+        icon.innerText = menu.classList.contains('hidden') ? 'menu' : 'close';
+    }
 
-    // 2. Info Modal Logic
+    // Modal Content
     const modalContent = {
-        privacyModal: { 
-            title: "Privacy Policy 🛡️", 
-            body: "At 27668grafix, your privacy is our priority. We only collect information necessary to fulfill your printing orders and provide design support. We never sell your data to third parties." 
-        },
-        termsModal: { 
-            title: "Terms of Service 📜", 
-            body: "Standard production time is 3-5 working days. Full payment or 70% deposit is required before production begins. Once design is approved, 27668grafix is not liable for spelling errors." 
-        },
+        privacyModal: { title: "Privacy Policy 🛡️", body: "At 27668grafix, your privacy is our priority. We only collect information necessary to fulfill your printing orders." },
+        termsModal: { title: "Terms of Service 📜", body: "Standard production time is 3-5 working days. Once design is approved, 27668grafix is not liable for spelling errors." },
         contactModal: { 
             title: "Get In Touch 📞", 
             body: `
                 <div class="space-y-4 text-left">
                     <p class="text-slate-300">We are available 24/7 for design & logistics support.</p>
-                    
-                    <div class="bg-white/5 p-4 rounded-lg border border-white/10 space-y-2">
-                        <p class="text-xs text-primary font-black uppercase tracking-widest">Office Address</p>
+                    <div class="bg-white/5 p-4 rounded-lg border border-white/10">
+                        <p class="text-[10px] text-primary font-black uppercase tracking-widest">Office Address</p>
                         <p class="text-white text-sm">George Street, Onipanu, Shomolu, Lagos.</p>
                     </div>
-
-                    <div class="bg-white/5 p-4 rounded-lg border border-white/10 space-y-2">
-                        <p class="text-xs text-primary font-black uppercase tracking-widest">Email Address</p>
-                        <p class="text-white text-sm">info@27668grafix.com</p>
-                    </div>
-
                     <div class="pt-4">
-                        <a href="https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥%20I%20need%20help%20with%20a%20branding%20project." 
-                           target="_blank" 
-                           class="flex items-center justify-center w-full h-12 bg-[#25D366] text-white rounded font-black uppercase tracking-widest hover:scale-105 transition-transform gap-2 text-xs">
-                            <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.891 11.887-11.891 3.181 0 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.481 8.403 0 6.556-5.332 11.89-11.888 11.89-2.015 0-3.986-.511-5.727-1.483l-6.265 1.642zm6.208-3.804l.343.203c1.44.856 3.085 1.307 4.775 1.307 4.868 0 8.828-3.959 8.83-8.828 0-2.36-.917-4.577-2.583-6.242-1.666-1.666-3.884-2.583-6.241-2.583-4.871 0-8.83 3.959-8.83 8.83 0 1.765.523 3.486 1.513 5.011l.223.344-1.011 3.691 3.781-.992z"/></svg>
-                            WhatsApp Us Now
-                        </a>
+                        <a href="https://wa.me/2348033491036" target="_blank" class="flex items-center justify-center w-full h-12 bg-[#25D366] text-white rounded font-black uppercase tracking-widest gap-2 text-xs">WhatsApp Us Now</a>
                     </div>
-                </div>
-            ` 
+                </div>`
         }
     };
 
     function openModal(type) {
-        document.getElementById('modalTitle').innerHTML = modalContent[type].title;
+        document.getElementById('modalTitle').innerText = modalContent[type].title;
         document.getElementById('modalBody').innerHTML = modalContent[type].body;
         const overlay = document.getElementById('modalOverlay');
         const box = document.getElementById('modalBox');
         overlay.classList.remove('hidden');
-        setTimeout(() => { 
-            box.classList.remove('scale-95', 'opacity-0'); 
-            box.classList.add('scale-100', 'opacity-100'); 
-        }, 10);
+        setTimeout(() => { box.classList.add('scale-100', 'opacity-100'); }, 10);
     }
 
     function closeModal() {
         const overlay = document.getElementById('modalOverlay');
         const box = document.getElementById('modalBox');
-        box.classList.remove('scale-100', 'opacity-100'); 
-        box.classList.add('scale-95', 'opacity-0');
+        box.classList.remove('scale-100', 'opacity-100');
         setTimeout(() => overlay.classList.add('hidden'), 300);
     }
 
-    // 3. Quote Modal Logic
-    const quotes = [ 
-        "\"Design is the silent ambassador of your brand.\"", 
-        "\"Quality is not an act, it is a habit. We print excellence.\"", 
-        "\"We don't just print; we bring your vision to life.\"" 
-    ];
-
+    const quotes = [ "\"Design is the silent ambassador.\"", "\"We bring your vision to life.\"" ];
     function openQuoteModal() {
         document.getElementById('businessQuote').innerText = quotes[Math.floor(Math.random() * quotes.length)];
         const overlay = document.getElementById('quoteModalOverlay');
         const box = document.getElementById('quoteModalBox');
         overlay.classList.remove('hidden');
-        setTimeout(() => { 
-            box.classList.remove('scale-95', 'opacity-0'); 
-            box.classList.add('scale-100', 'opacity-100'); 
-        }, 10);
+        setTimeout(() => { box.classList.add('scale-100', 'opacity-100'); }, 10);
     }
-
     function closeQuoteModal() {
         const overlay = document.getElementById('quoteModalOverlay');
         const box = document.getElementById('quoteModalBox');
-        box.classList.remove('scale-100', 'opacity-100'); 
-        box.classList.add('scale-95', 'opacity-0');
+        box.classList.remove('scale-100', 'opacity-100');
         setTimeout(() => overlay.classList.add('hidden'), 300);
     }
 
-    // Close on click outside
     window.onclick = function(e) {
-        if (e.target.id === 'modalOverlay') { closeModal(); }
-        if (e.target.id === 'quoteModalOverlay') { closeQuoteModal(); }
+        if (e.target.id === 'modalOverlay') closeModal();
+        if (e.target.id === 'quoteModalOverlay') closeQuoteModal();
     }
 </script>
+
 </body>
 </html>
