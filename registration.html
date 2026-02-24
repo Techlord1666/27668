@@ -44,6 +44,63 @@
                 radial-gradient(at 0% 0%, rgba(255, 106, 0, 0.15) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(255, 106, 0, 0.1) 0px, transparent 50%);
         }
+
+        <script>
+    const infoContent = {
+        privacy: {
+            title: "Privacy Policy 🛡️",
+            body: "At 27668grafix, we value your privacy. Your design files and personal data are strictly used for order fulfillment and never shared with third parties. We ensure all client information is stored securely on our encrypted servers."
+        },
+        terms: {
+            title: "Terms & Conditions 📜",
+            body: "Production begins only after design approval and payment confirmation. 27668grafix is not liable for errors (spelling or layout) once a client has signed off on the final proof. Standard production time is 3-5 working days."
+        },
+        support: {
+            title: "Support 📞",
+            body: `
+                <p><strong>Office Address:</strong> 18, George Street, Igbobi, Lagos.</p>
+                <p><strong>WhatsApp:</strong> +234 803 3491 036</p>
+                <p><strong>Email:</strong> 27.668grafix@gmail.com</p>
+                <p class="pt-4 text-primary font-bold">Our team is available 24/7 for design & logistics support.</p>
+            `
+        }
+    };
+
+    function openInfoModal(type) {
+        const overlay = document.getElementById('infoModalOverlay');
+        const box = document.getElementById('infoModalBox');
+        const title = document.getElementById('infoTitle');
+        const body = document.getElementById('infoBody');
+
+        title.innerText = infoContent[type].title;
+        body.innerHTML = infoContent[type].body;
+
+        overlay.classList.remove('hidden');
+        setTimeout(() => {
+            box.classList.remove('scale-95', 'opacity-0');
+            box.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+
+    function closeInfoModal() {
+        const overlay = document.getElementById('infoModalOverlay');
+        const box = document.getElementById('infoModalBox');
+
+        box.classList.remove('scale-100', 'opacity-100');
+        box.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 300);
+    }
+
+    // Close when clicking outside the box
+    window.addEventListener('click', (e) => {
+        const overlay = document.getElementById('infoModalOverlay');
+        if (e.target === overlay) {
+            closeInfoModal();
+        }
+    });
+</script>
     </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
@@ -136,7 +193,7 @@
 <div class="mt-8 text-center">
 <p class="text-slate-500 text-sm">
                             Don't have an account? 
-                            <a class="text-primary font-bold hover:underline" href="#">Join the elite</a>
+                            <a class="text-primary font-bold hover:underline" href="signup.html">Join the elite</a>
 </p>
 </div>
 </div>
@@ -144,9 +201,9 @@
 <div class="flex flex-col md:flex-row items-center justify-between gap-4 px-2 text-[10px] uppercase tracking-[0.2em] text-slate-600 font-bold">
 <p>© 2024 27668grafix Nigeria</p>
 <div class="flex gap-6">
-<a class="hover:text-primary transition-colors" href="#">Privacy</a>
-<a class="hover:text-primary transition-colors" href="#">Terms</a>
-<a class="hover:text-primary transition-colors" href="#">Support</a>
+    <a class="hover:text-primary transition-colors cursor-pointer" onclick="openInfoModal('privacy')">Privacy</a>
+    <a class="hover:text-primary transition-colors cursor-pointer" onclick="openInfoModal('terms')">Terms</a>
+    <a class="hover:text-primary transition-colors cursor-pointer" onclick="openInfoModal('support')">Support</a>
 </div>
 </div>
 </div>
@@ -159,4 +216,27 @@
 <span class="material-symbols-outlined text-[200px] text-primary -rotate-12">auto_awesome</span>
 </div>
 </div>
+
+        <!-- Info Modal Overlay -->
+<div id="infoModalOverlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] hidden flex items-center justify-center p-4">
+    <div id="infoModalBox" class="glass-effect p-8 rounded-2xl max-w-lg w-full transform transition-all scale-95 opacity-0 duration-300 relative">
+        <!-- Close Button -->
+        <button onclick="closeInfoModal()" class="absolute top-4 right-4 text-slate-400 hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+
+        <div class="text-left">
+            <h3 id="infoTitle" class="text-2xl font-bold text-white mb-4 uppercase tracking-tighter italic"></h3>
+            <div id="infoBody" class="text-slate-400 text-sm leading-relaxed space-y-4">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+        
+        <button onclick="closeInfoModal()" class="mt-8 w-full bg-primary/20 border border-primary/50 text-primary font-bold py-3 rounded-lg hover:bg-primary hover:text-white transition-all">
+            Understood
+        </button>
+    </div>
+</div>
+
+        
 </body></html>
