@@ -18,59 +18,80 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0f0f0f; color: white; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .sidebar-link.active { background: #ff6a00; color: white; }
+        
+        /* Sidebar Link Styling */
+        .sidebar-link { color: #94a3b8; transition: all 0.3s ease; }
+        .sidebar-link.active { background: #ff6a00 !important; color: white !important; box-shadow: 0 4px 15px rgba(255, 106, 0, 0.3); }
+        .sidebar-link:hover:not(.active) { background: rgba(255, 255, 255, 0.05); color: white; }
+
+        /* Prevent Icons from showing as text words */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+        }
+        
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        /* Prevent long words from breaking sidebar layout */
-        .sidebar-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     </style>
 </head>
 <body class="antialiased overflow-hidden">
 
     <div class="flex h-screen overflow-hidden">
         <!-- SIDEBAR -->
-        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-card-dark border-r border-white/5 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
-            <div class="flex flex-col h-full p-5">
-                <!-- Brand Logo -->
-                <h2 class="text-xl font-black italic uppercase tracking-tighter mb-8 px-2">27668<span class="text-primary">grafix</span></h2>
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-[100] w-64 bg-card-dark border-r border-white/5 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full p-4">
+                <!-- Brand -->
+                <div class="p-4 mb-6">
+                    <h2 class="text-xl font-black italic uppercase tracking-tighter">27668<span class="text-primary">grafix</span></h2>
+                </div>
                 
-                <!-- Main Nav -->
-                <nav class="space-y-1.5 flex-1">
-                    <button onclick="showSection('overview')" class="sidebar-link active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[11px] font-bold uppercase tracking-wider text-slate-400 transition-all">
-                        <span class="material-symbols-outlined text-lg">dashboard</span> 
-                        <span class="sidebar-text">Overview</span>
+                <!-- Navigation -->
+                <nav class="flex-1 space-y-1 overflow-y-auto no-scrollbar px-2">
+                    <p class="px-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 mb-2">Main Portal</p>
+                    
+                    <button onclick="showSection('overview', this)" class="sidebar-link active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest">
+                        <span class="material-symbols-outlined">dashboard</span> 
+                        <span class="truncate">Overview</span>
                     </button>
-                    <button onclick="showSection('orders')" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[11px] font-bold uppercase tracking-wider text-slate-400 transition-all">
-                        <span class="material-symbols-outlined text-lg">shopping_bag</span> 
-                        <span class="sidebar-text">My Orders</span>
+                    
+                    <button onclick="showSection('orders', this)" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest">
+                        <span class="material-symbols-outlined">shopping_bag</span> 
+                        <span class="truncate">Orders</span>
                     </button>
-                    <button onclick="showSection('wallet')" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[11px] font-bold uppercase tracking-wider text-slate-400 transition-all">
-                        <span class="material-symbols-outlined text-lg">account_balance_wallet</span> 
-                        <span class="sidebar-text">My Wallet</span>
+                    
+                    <button onclick="showSection('wallet', this)" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest">
+                        <span class="material-symbols-outlined">account_balance_wallet</span> 
+                        <span class="truncate">Wallet</span>
                     </button>
-                    <button onclick="showSection('settings')" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[11px] font-bold uppercase tracking-wider text-slate-400 transition-all">
-                        <span class="material-symbols-outlined text-lg">settings</span> 
-                        <span class="sidebar-text">Settings</span>
+                    
+                    <button onclick="showSection('settings', this)" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest">
+                        <span class="material-symbols-outlined">settings</span> 
+                        <span class="truncate">Settings</span>
                     </button>
 
-                    <!-- Divider & External Links -->
+                    <!-- Links -->
                     <div class="pt-6 border-t border-white/5 mt-6 space-y-1">
-                        <p class="px-4 text-[9px] uppercase font-black text-slate-600 tracking-[0.2em] mb-2">Quick Links</p>
+                        <p class="px-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 mb-2">Quick Access</p>
                         <a href="index.html" class="flex items-center gap-3 px-4 py-2 text-[10px] text-slate-500 hover:text-white uppercase font-bold transition-colors">
                             <span class="material-symbols-outlined text-sm">home</span> Home
                         </a>
                         <a href="store.html" class="flex items-center gap-3 px-4 py-2 text-[10px] text-slate-500 hover:text-white uppercase font-bold transition-colors">
                             <span class="material-symbols-outlined text-sm">store</span> Store
                         </a>
-                        <a href="about.html" class="flex items-center gap-3 px-4 py-2 text-[10px] text-slate-500 hover:text-white uppercase font-bold transition-colors">
-                            <span class="material-symbols-outlined text-sm">info</span> About Us
-                        </a>
                     </div>
                 </nav>
 
-                <!-- SINGLE LOGOUT BUTTON AT THE BOTTOM -->
-                <div class="pt-4 border-t border-white/5">
+                <!-- Logout (Only One Button) -->
+                <div class="p-2 border-t border-white/5">
                     <button onclick="handleLogout()" class="w-full flex items-center gap-3 px-4 py-4 text-red-500 font-black uppercase text-[11px] tracking-widest hover:bg-red-500/10 rounded-xl transition-all">
-                        <span class="material-symbols-outlined text-lg">logout</span> Logout
+                        <span class="material-symbols-outlined">logout</span> 
+                        <span>Logout</span>
                     </button>
                 </div>
             </div>
@@ -78,117 +99,97 @@
 
         <!-- MAIN CONTENT -->
         <main class="flex-1 flex flex-col min-w-0 lg:ml-64 bg-background-dark">
-            <!-- TOP NAV -->
-            <header class="h-16 md:h-20 flex items-center justify-between px-4 md:px-8 border-b border-white/5 bg-background-dark/50 backdrop-blur-md sticky top-0 z-40">
-                <button onclick="toggleSidebar()" class="lg:hidden text-white p-2 hover:bg-white/5 rounded-lg transition-colors">
-                    <span class="material-symbols-outlined">menu</span>
-                </button>
+            <!-- Header -->
+            <header class="h-16 md:h-20 flex items-center justify-between px-6 border-b border-white/5 bg-background-dark/50 backdrop-blur-md sticky top-0 z-40">
+                <button onclick="toggleSidebar()" class="lg:hidden text-white"><span class="material-symbols-outlined">menu</span></button>
                 
                 <div class="hidden md:block">
-                    <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 italic">Elite Portal <span class="text-primary mx-2">//</span> Secure Session</h3>
+                    <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">Secure Elite Portal</h3>
                 </div>
 
-                <div class="flex items-center gap-3 md:gap-4">
-                    <div class="text-right hidden xs:block">
-                        <p id="userNameDisplay" class="text-xs md:text-sm font-black uppercase italic truncate max-w-[120px]">User Name</p>
-                        <p id="userBalanceDisplay" class="text-[9px] md:text-[10px] text-primary font-bold">₦0.00</p>
+                <div class="flex items-center gap-4">
+                    <div class="text-right hidden sm:block">
+                        <p id="userNameDisplay" class="text-xs font-black uppercase italic truncate max-w-[150px]">User Name</p>
+                        <p id="userBalanceDisplay" class="text-[10px] text-primary font-bold">₦0.00</p>
                     </div>
-                    <img id="userAvatarDisplay" src="https://ui-avatars.com/api/?name=User&background=ff6a00&color=fff" class="w-9 h-9 md:w-11 md:h-11 rounded-full border border-primary/20 object-cover shadow-lg" alt="Profile">
+                    <img id="userAvatarDisplay" src="https://ui-avatars.com/api/?name=User&background=ff6a00&color=fff" class="w-10 h-10 rounded-full border border-primary/20 object-cover" alt="Profile">
                 </div>
             </header>
 
-            <!-- SECTIONS CONTAINER -->
+            <!-- Sections Container -->
             <div class="flex-1 overflow-y-auto p-4 md:p-8 no-scrollbar">
                 
-                <!-- OVERVIEW SECTION -->
-                <section id="overviewSection" class="dashboard-section space-y-6 md:space-y-8 animate-in fade-in duration-500">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                        <div class="glass p-5 md:p-6 rounded-2xl">
-                            <p class="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Active Orders</p>
-                            <h4 class="text-2xl md:text-3xl font-black italic">0</h4>
+                <!-- Overview -->
+                <section id="overviewSection" class="dashboard-section space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="glass p-6 rounded-2xl">
+                            <p class="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Orders</p>
+                            <h4 class="text-2xl font-black italic">0</h4>
                         </div>
-                        <div class="glass p-5 md:p-6 rounded-2xl border-l-2 border-primary">
-                            <p class="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Wallet Balance</p>
-                            <h4 id="overviewBalance" class="text-2xl md:text-3xl font-black italic text-primary">₦0.00</h4>
+                        <div class="glass p-6 rounded-2xl border-l-2 border-primary">
+                            <p class="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Balance</p>
+                            <h4 id="overviewBalance" class="text-2xl font-black italic text-primary">₦0.00</h4>
                         </div>
-                        <div class="glass p-5 md:p-6 rounded-2xl sm:col-span-2 md:col-span-1">
-                            <p class="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Total Spent</p>
-                            <h4 class="text-2xl md:text-3xl font-black italic">₦0.00</h4>
+                        <div class="glass p-6 rounded-2xl">
+                            <p class="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Spent</p>
+                            <h4 class="text-2xl font-black italic">₦0.00</h4>
                         </div>
                     </div>
-
-                    <div class="glass rounded-2xl overflow-hidden">
-                        <div class="p-5 border-b border-white/5 flex justify-between items-center bg-white/5">
-                            <h5 class="font-black uppercase tracking-widest text-[11px] italic">Recent Activity</h5>
-                            <a href="#" class="text-[9px] text-primary font-bold uppercase">Refresh</a>
-                        </div>
-                        <div class="p-12 text-center text-slate-600">
-                            <span class="material-symbols-outlined text-4xl mb-4 opacity-20">history</span>
-                            <p class="text-xs uppercase font-bold tracking-widest">No recent transactions yet</p>
-                        </div>
+                    <div class="glass rounded-2xl p-12 text-center text-slate-600">
+                        <span class="material-symbols-outlined text-4xl mb-2 opacity-20">history</span>
+                        <p class="text-xs font-bold uppercase tracking-widest">No recent activity</p>
                     </div>
                 </section>
 
-                <!-- OTHER SECTIONS (ORDERS, WALLET, SETTINGS) REMAIN THE SAME BUT WRAPPED IN PROPER CLASSES -->
-                <section id="ordersSection" class="dashboard-section hidden space-y-6">
-                    <h2 class="text-xl md:text-2xl font-black italic uppercase tracking-tighter">Track <span class="text-primary">Orders</span></h2>
-                    <div class="glass rounded-2xl p-10 text-center">
-                        <p class="text-slate-400 text-sm">You haven't placed any orders yet.</p>
-                        <a href="store.html" class="inline-block mt-6 bg-primary px-8 py-3 rounded-xl font-black uppercase text-[10px] tracking-widest">Go to Store</a>
+                <!-- Orders -->
+                <section id="ordersSection" class="dashboard-section hidden">
+                    <h2 class="text-xl font-black uppercase italic mb-6">Track Orders</h2>
+                    <div class="glass rounded-2xl p-10 text-center text-slate-500">
+                        <p>No orders found in your history.</p>
                     </div>
                 </section>
 
-                <section id="walletSection" class="dashboard-section hidden space-y-6">
-                    <div class="max-w-md mx-auto space-y-6">
-                        <div class="bg-gradient-to-br from-primary to-orange-800 p-8 rounded-3xl shadow-2xl shadow-primary/20 text-center">
-                            <p class="text-white/70 text-[10px] font-black uppercase tracking-widest mb-2">Available Funds</p>
-                            <h4 id="walletBalanceBig" class="text-4xl md:text-5xl font-black italic mb-6">₦0.00</h4>
-                            <button onclick="toggleFundInput()" class="bg-white text-primary px-10 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest">Add Funds</button>
-                        </div>
-                        <div id="fundInputArea" class="hidden glass p-6 rounded-2xl space-y-4 animate-in slide-in-from-top-2 duration-300">
-                            <input type="number" id="fundAmount" placeholder="Amount (₦)" class="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-6 outline-none focus:border-primary text-xl font-bold">
-                            <button onclick="payWithPaystack()" class="w-full bg-primary py-4 rounded-xl font-black uppercase text-xs">Secure Payment</button>
-                        </div>
+                <!-- Wallet -->
+                <section id="walletSection" class="dashboard-section hidden">
+                    <div class="max-w-md mx-auto bg-gradient-to-br from-primary to-orange-800 p-8 rounded-3xl text-center shadow-2xl">
+                        <p class="text-white/70 text-[10px] font-black uppercase mb-2">Available Wallet Balance</p>
+                        <h4 id="walletBalanceBig" class="text-4xl font-black italic mb-6">₦0.00</h4>
+                        <button onclick="toggleFundInput()" class="bg-white text-primary px-8 py-3 rounded-xl font-black uppercase text-[10px]">Add Funds</button>
+                    </div>
+                    <div id="fundInputArea" class="hidden max-w-md mx-auto mt-6 glass p-6 rounded-2xl space-y-4">
+                        <input type="number" id="fundAmount" placeholder="Amount (₦)" class="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-6 text-xl font-bold outline-none">
+                        <button onclick="payWithPaystack()" class="w-full bg-primary py-4 rounded-xl font-black uppercase text-xs">Pay Securely</button>
                     </div>
                 </section>
 
-                <section id="settingsSection" class="dashboard-section hidden space-y-8">
-                    <h2 class="text-xl md:text-2xl font-black italic uppercase tracking-tighter">Account <span class="text-primary">Settings</span></h2>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Settings -->
+                <section id="settingsSection" class="dashboard-section hidden">
+                    <h2 class="text-xl font-black uppercase italic mb-8">Settings</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="glass p-8 rounded-2xl text-center flex flex-col items-center h-fit">
-                            <div class="relative group cursor-pointer">
-                                <img id="settingsAvatarPreview" src="https://ui-avatars.com/api/?name=User" class="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-primary/20 object-cover" alt="Profile">
-                                <label class="absolute inset-0 flex items-center justify-center bg-black/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="relative group">
+                                <img id="settingsAvatarPreview" src="https://ui-avatars.com/api/?name=User" class="w-24 h-24 rounded-full border-4 border-primary/20 object-cover">
+                                <label class="absolute inset-0 flex items-center justify-center bg-black/60 rounded-full opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity">
                                     <span class="material-symbols-outlined text-white">photo_camera</span>
                                     <input type="file" id="avatarUpload" class="hidden" accept="image/*" onchange="previewAndUploadAvatar()">
                                 </label>
                             </div>
-                            <p class="mt-4 text-[9px] text-slate-500 font-bold uppercase tracking-widest">Change Profile Photo</p>
+                            <p class="mt-4 text-[9px] text-slate-500 font-bold uppercase tracking-widest">Update Photo</p>
                         </div>
-                        <div class="lg:col-span-2 glass p-6 md:p-8 rounded-2xl space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                                <div class="space-y-1.5">
-                                    <label class="text-[9px] font-black uppercase text-slate-500 tracking-widest">Full Name</label>
-                                    <input type="text" id="setFullName" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 outline-none focus:border-primary text-sm">
-                                </div>
-                                <div class="space-y-1.5">
-                                    <label class="text-[9px] font-black uppercase text-slate-500 tracking-widest">Phone Number</label>
-                                    <input type="tel" id="setPhone" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 outline-none focus:border-primary text-sm">
-                                </div>
-                                <div class="md:col-span-2 space-y-1.5">
-                                    <label class="text-[9px] font-black uppercase text-slate-500 tracking-widest">Delivery Address</label>
-                                    <textarea id="setAddress" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 outline-none focus:border-primary h-24 text-sm"></textarea>
-                                </div>
-                            </div>
-                            <button onclick="updateProfile()" id="saveProfileBtn" class="bg-primary px-8 py-3 rounded-xl font-black uppercase text-[10px] tracking-widest">Save Changes</button>
+                        <div class="lg:col-span-2 glass p-6 rounded-2xl space-y-4">
+                            <input type="text" id="setFullName" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-primary">
+                            <input type="tel" id="setPhone" placeholder="Phone Number" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-primary">
+                            <textarea id="setAddress" placeholder="Delivery Address" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 h-24 outline-none focus:border-primary"></textarea>
+                            <button onclick="updateProfile()" id="saveProfileBtn" class="bg-primary px-8 py-3 rounded-xl font-black uppercase text-[10px]">Save Changes</button>
                         </div>
                     </div>
                 </section>
+
             </div>
         </main>
     </div>
 
-    <!-- SCRIPTS REMAIN UNCHANGED FROM PREVIOUS WORKING VERSION -->
+    <!-- SCRIPTS -->
     <script>
         const SUPABASE_URL = 'https://bmyimmssovqcznwixceu.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
@@ -198,7 +199,7 @@
 
         async function checkUser() {
             const { data: { user } } = await supabaseClient.auth.getUser();
-            if (!user) { window.location.href = 'login.html'; } 
+            if (!user) window.location.href = 'login.html';
             else { currentUser = user; loadUserData(); }
         }
 
@@ -215,17 +216,19 @@
             document.getElementById('userAvatarDisplay').src = avatar;
             document.getElementById('settingsAvatarPreview').src = avatar;
 
-            const formattedBalance = new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(balance);
-            document.getElementById('userBalanceDisplay').innerText = formattedBalance;
-            document.getElementById('overviewBalance').innerText = formattedBalance;
-            document.getElementById('walletBalanceBig').innerText = formattedBalance;
+            const fmt = new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(balance);
+            document.getElementById('userBalanceDisplay').innerText = fmt;
+            document.getElementById('overviewBalance').innerText = fmt;
+            document.getElementById('walletBalanceBig').innerText = fmt;
         }
 
-        function showSection(id) {
+        function showSection(id, btn) {
             document.querySelectorAll('.dashboard-section').forEach(s => s.classList.add('hidden'));
             document.getElementById(id + 'Section').classList.remove('hidden');
+            
             document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-            if (event) event.currentTarget.classList.add('active');
+            btn.classList.add('active');
+            
             if(window.innerWidth < 1024) toggleSidebar();
         }
 
@@ -234,7 +237,7 @@
 
         async function updateProfile() {
             const btn = document.getElementById('saveProfileBtn');
-            btn.innerText = "Processing...";
+            btn.innerText = "Saving...";
             const { error } = await supabaseClient.auth.updateUser({
                 data: { 
                     full_name: document.getElementById('setFullName').value,
@@ -242,17 +245,15 @@
                     address: document.getElementById('setAddress').value
                 }
             });
-            if (error) alert(error.message);
-            else { alert("Success!"); loadUserData(); }
+            if (error) alert(error.message); else { alert("Profile Updated!"); loadUserData(); }
             btn.innerText = "Save Changes";
         }
 
         async function previewAndUploadAvatar() {
             const file = document.getElementById('avatarUpload').files[0];
             if (!file) return;
-            document.getElementById('settingsAvatarPreview').style.opacity = "0.5";
             const fileExt = file.name.split('.').pop();
-            const filePath = `${currentUser.id}/profile_pic.${fileExt}`;
+            const filePath = `${currentUser.id}/profile.${fileExt}`;
             const { error: uploadError } = await supabaseClient.storage.from('avatars').upload(filePath, file, { upsert: true });
             if (uploadError) return alert(uploadError.message);
             const { data } = supabaseClient.storage.from('avatars').getPublicUrl(filePath);
@@ -268,8 +269,8 @@
                 email: currentUser.email,
                 amount: amount * 100,
                 callback: async function() {
-                    const currentBalance = currentUser.user_metadata.balance || 0;
-                    await supabaseClient.auth.updateUser({ data: { balance: parseFloat(currentBalance) + parseFloat(amount) } });
+                    const bal = parseFloat(currentUser.user_metadata.balance || 0) + parseFloat(amount);
+                    await supabaseClient.auth.updateUser({ data: { balance: bal } });
                     location.reload();
                 }
             });
