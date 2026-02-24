@@ -1,184 +1,144 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Join the Elite | 27668grafix Registration</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Supabase Library -->
+    <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Join the Elite | 27668grafix</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
             darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#ff6a00",
-                        "background-dark": "#121212",
-                    },
-                    fontFamily: { "display": ["Inter", "sans-serif"] }
-                },
-            },
+            theme: { extend: { colors: { "primary": "#ff6a00", "background-dark": "#121212" }, fontFamily: { "display": ["Inter", "sans-serif"] } } }
         }
     </script>
     <style>
         .glass-effect { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .bg-mesh {
-            background-color: #121212;
-            background-image: radial-gradient(at 0% 0%, rgba(255, 106, 0, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(255, 106, 0, 0.1) 0px, transparent 50%);
-        }
+        .bg-mesh { background-color: #121212; background-image: radial-gradient(at 0% 0%, rgba(255, 106, 0, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(255, 106, 0, 0.1) 0px, transparent 50%); }
     </style>
 </head>
-<body class="font-display bg-background-dark text-slate-100 antialiased overflow-x-hidden">
-<div class="relative min-h-screen w-full flex flex-col bg-mesh">
-    
-    <!-- Header -->
+<body class="font-display bg-background-dark text-slate-100 antialiased overflow-x-hidden bg-mesh">
     <header class="w-full flex items-center justify-between px-6 lg:px-20 py-6 absolute top-0 z-50">
         <div class="flex items-center gap-3">
-            <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">27</div>
+            <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white"><span class="material-symbols-outlined">grid_view</span></div>
             <h1 class="text-xl font-bold tracking-tight uppercase">27668grafix</h1>
         </div>
-        <a href="index.html" class="text-sm text-slate-400 hover:text-white transition-colors">Back to Home</a>
     </header>
 
-    <main class="flex-1 flex items-center justify-center p-6 mt-16">
-        <div class="w-full max-w-[520px] space-y-8">
+    <main class="min-h-screen flex items-center justify-center p-6 pt-24">
+        <div class="w-full max-w-[500px] space-y-8">
             <div class="glass-effect p-8 md:p-10 rounded-xl shadow-2xl">
                 <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold mb-2 tracking-tight">Join the Elite</h2>
+                    <h2 class="text-3xl font-bold mb-2 tracking-tight italic">Join the Elite</h2>
                     <p class="text-slate-400 text-sm">Create an account to start your branding journey.</p>
                 </div>
 
                 <!-- Role Switcher -->
                 <div class="flex p-1 mb-8 bg-black/20 rounded-lg">
                     <label class="flex-1 cursor-pointer">
-                        <input checked class="peer hidden" name="role" type="radio" value="customer"/>
-                        <div class="py-2.5 text-center text-sm font-semibold rounded-md transition-all peer-checked:bg-primary peer-checked:text-white text-slate-400">Customer</div>
+                        <input checked class="peer hidden" name="role" type="radio" value="customer" onchange="toggleCorporateField()"/>
+                        <div class="py-2 text-center text-sm font-semibold rounded-md transition-all peer-checked:bg-primary peer-checked:text-white text-slate-400">Customer</div>
                     </label>
                     <label class="flex-1 cursor-pointer">
-                        <input class="peer hidden" name="role" type="radio" value="corporate"/>
-                        <div class="py-2.5 text-center text-sm font-semibold rounded-md transition-all peer-checked:bg-primary peer-checked:text-white text-slate-400">Corporate Partner</div>
+                        <input class="peer hidden" name="role" type="radio" value="corporate" onchange="toggleCorporateField()"/>
+                        <div class="py-2 text-center text-sm font-semibold rounded-md transition-all peer-checked:bg-primary peer-checked:text-white text-slate-400">Corporate Partner</div>
                     </label>
                 </div>
 
                 <form id="signupForm" class="space-y-4">
-                    <!-- Full Name -->
-                    <div class="space-y-1.5">
-                        <label class="text-xs font-semibold uppercase text-slate-500">Full Name</label>
-                        <div class="relative group">
-                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">person</span>
-                            <input required id="fullname" class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary/50 outline-none text-white" placeholder="John Doe" type="text"/>
-                        </div>
+                    <input type="text" id="fullname" placeholder="Full Name" required class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary outline-none">
+                    
+                    <!-- Special Corporate Field (Hidden by default) -->
+                    <div id="corporateGroup" class="hidden animate-pulse">
+                        <input type="text" id="companyName" placeholder="Company Name" class="w-full bg-white/5 border border-primary/30 rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary outline-none">
                     </div>
 
-                    <!-- Email -->
-                    <div class="space-y-1.5">
-                        <label class="text-xs font-semibold uppercase text-slate-500">Email Address</label>
-                        <div class="relative group">
-                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">mail</span>
-                            <input required id="email" class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary/50 outline-none text-white" placeholder="name@company.com" type="email"/>
-                        </div>
-                    </div>
-
-                    <!-- Phone Number -->
-                    <div class="space-y-1.5">
-                        <label class="text-xs font-semibold uppercase text-slate-500">Phone Number</label>
-                        <div class="relative group">
-                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">call</span>
-                            <input required id="phone" class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary/50 outline-none text-white" placeholder="+234..." type="tel"/>
-                        </div>
-                    </div>
-
-                    <!-- Password -->
-                    <div class="space-y-1.5">
-                        <label class="text-xs font-semibold uppercase text-slate-500">Password</label>
-                        <div class="relative group">
-                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">lock</span>
-                            <input required id="password" class="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary/50 outline-none text-white" placeholder="••••••••" type="password"/>
-                        </div>
-                    </div>
-
-                    <button id="submitBtn" class="w-full bg-primary hover:bg-orange-600 text-white font-bold py-4 rounded-lg shadow-lg shadow-primary/20 transition-all mt-4" type="submit">
-                        Create Account
-                    </button>
+                    <input type="email" id="email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary outline-none">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary outline-none">
+                    <input type="password" id="password" placeholder="Password" required class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 focus:ring-2 focus:ring-primary outline-none">
+                    
+                    <button type="submit" id="submitBtn" class="w-full bg-primary hover:bg-orange-600 text-white font-bold py-4 rounded-lg transition-all">Create Account</button>
                 </form>
 
-                <div class="mt-8 text-center">
-                    <p class="text-slate-500 text-sm">Already an elite member? <a class="text-primary font-bold hover:underline" href="login.html">Sign In</a></p>
+                <p class="mt-6 text-center text-slate-500 text-sm">Already a member? <a href="login.html" class="text-primary font-bold">Sign In</a></p>
+            </div>
+            
+            <!-- Footer Links -->
+            <div class="flex justify-between text-[10px] uppercase font-bold text-slate-600">
+                <p>© 2024 27668grafix</p>
+                <div class="flex gap-4">
+                    <span class="cursor-pointer hover:text-primary" onclick="openInfoModal('privacy')">Privacy</span>
+                    <span class="cursor-pointer hover:text-primary" onclick="openInfoModal('terms')">Terms</span>
                 </div>
             </div>
         </div>
     </main>
-</div>
 
-<!-- SUCCESS OVERLAY (This will pop up) -->
-<div id="successOverlay" class="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-6 text-center">
-    <div class="max-w-sm">
-        <div class="size-20 bg-green-500 rounded-full flex items-center justify-center text-white mx-auto mb-6">
-            <span class="material-symbols-outlined text-5xl">check_circle</span>
+    <!-- SUCCESS OVERLAY -->
+    <div id="successOverlay" class="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-6 text-center">
+        <div>
+            <span class="material-symbols-outlined text-primary text-7xl mb-4">check_circle</span>
+            <h2 class="text-3xl font-black uppercase italic text-white">Successful!</h2>
+            <p class="text-slate-400">Redirecting you to the login page...</p>
         </div>
-        <h2 class="text-3xl font-black italic uppercase mb-2 text-white">SUCCESSFUL!</h2>
-        <p class="text-slate-400 mb-8">Welcome to the Elite. We are redirecting you to the login page now...</p>
     </div>
-</div>
 
-<script>
-    // --- SUPABASE CONFIGURATION ---
-    const SUPABASE_URL = 'https://bmyimmssovqcznwixceu.supabase.co'; 
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
-    
-    // Naming the client 'supabaseClient' to avoid library conflicts
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    <!-- MODAL -->
+    <div id="infoModalOverlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] hidden flex items-center justify-center p-4">
+        <div id="infoModalBox" class="glass-effect p-8 rounded-2xl max-w-lg w-full relative">
+            <h3 id="infoTitle" class="text-xl font-bold text-white mb-4 italic"></h3>
+            <div id="infoBody" class="text-slate-400 text-sm leading-relaxed"></div>
+            <button onclick="closeInfoModal()" class="mt-6 w-full py-2 bg-primary/20 text-primary rounded">Close</button>
+        </div>
+    </div>
 
-    const signupForm = document.getElementById('signupForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const successOverlay = document.getElementById('successOverlay');
+    <script>
+        const SUPABASE_URL = 'https://bmyimmssovqcznwixceu.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    signupForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        // Disable button while processing
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Creating Account...';
+        function toggleCorporateField() {
+            const role = document.querySelector('input[name="role"]:checked').value;
+            document.getElementById('corporateGroup').style.display = (role === 'corporate') ? 'block' : 'none';
+        }
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const fullname = document.getElementById('fullname').value;
-        const phone = document.getElementById('phone').value;
-        const role = document.querySelector('input[name="role"]:checked').value;
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Processing...";
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const role = document.querySelector('input[name="role"]:checked').value;
 
-        try {
-            // 1. Sign up user with Supabase Auth
             const { data, error } = await supabaseClient.auth.signUp({
-                email: email,
-                password: password,
-                options: {
-                    data: {
-                        full_name: fullname,
-                        phone_number: phone,
-                        user_role: role
-                    }
-                }
+                email: email, password: password,
+                options: { data: { 
+                    full_name: document.getElementById('fullname').value, 
+                    phone: document.getElementById('phone').value,
+                    user_role: role,
+                    company: document.getElementById('companyName').value || "None"
+                } }
             });
 
-            if (error) throw error;
+            if (error) { alert(error.message); btn.innerText = "Create Account"; }
+            else { 
+                document.getElementById('successOverlay').classList.remove('hidden');
+                setTimeout(() => window.location.href = 'login.html', 3000);
+            }
+        });
 
-            // 2. If successful, show the pop-up
-            successOverlay.classList.remove('hidden');
-            
-            // 3. Wait 3 seconds then redirect to login
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 3000);
-
-        } catch (error) {
-            alert("Registration failed: " + error.message);
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Create Account';
+        const infoContent = {
+            privacy: { title: "Privacy Policy 🛡️", body: "We protect your design files and personal data strictly for order fulfillment." },
+            terms: { title: "Terms & Conditions 📜", body: "Production begins after design sign-off. We are not liable for spelling errors after approval." }
+        };
+        function openInfoModal(type) {
+            document.getElementById('infoTitle').innerText = infoContent[type].title;
+            document.getElementById('infoBody').innerText = infoContent[type].body;
+            document.getElementById('infoModalOverlay').classList.remove('hidden');
         }
-    });
-</script>
+        function closeInfoModal() { document.getElementById('infoModalOverlay').classList.add('hidden'); }
+    </script>
 </body>
 </html>
