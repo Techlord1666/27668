@@ -1,377 +1,356 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Product Catalog | 27668grafix</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Premium Store | 27668grafix - Custom Branding Catalog</title>
+    <meta name="description" content="Order premium Nigerian branding, corporate gifts, and custom prints. High-quality souvenirs meticulously produced in Lagos.">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
         tailwind.config = {
             darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#ff6a00",
-                        "background-light": "#f8f7f5",
-                        "background-dark": "#23170f",
-                    },
-                    fontFamily: {
-                        "display": ["Inter"]
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-                },
-            },
+            theme: { extend: { colors: { "primary": "#ff6a00", "background-dark": "#0f0f0f", "card-dark": "#161616" } } }
         }
     </script>
-<style>
-        body { font-family: 'Inter', sans-serif; }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f0f0f; color: white; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .hamburger-line { display: block; width: 24px; height: 2px; background-color: white; margin: 5px auto; transition: all 0.3s ease; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
-<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-<!-- Header Section -->
-<header class="sticky top-0 z-50 flex items-center justify-between border-b border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-3 lg:px-20">
-<div class="flex items-center gap-8">
-<div class="flex items-center gap-3 text-primary">
-<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
-<span class="material-symbols-outlined">print</span>
-</div>
-<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">27668grafix</h2>
-</div>
-<div class="hidden md:flex flex-1 items-center gap-6">
-<label class="relative flex items-center w-80">
-<span class="absolute left-3 text-slate-400 material-symbols-outlined">search</span>
-<input class="w-full h-10 pl-10 pr-4 rounded-lg border-none bg-slate-200/50 dark:bg-primary/10 text-slate-900 dark:text-slate-100 placeholder:text-slate-500 focus:ring-2 focus:ring-primary" placeholder="Search premium products..."/>
-</label>
-</div>
-</div>
-<div class="flex items-center gap-6">
-<nav class="hidden lg:flex items-center gap-8">
-<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Home</a>
-<a class="text-sm font-semibold text-primary" href="#">Store</a>
-<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Portfolio</a>
-<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Contact</a>
-</nav>
-<div class="flex items-center gap-3 border-l border-slate-300 dark:border-slate-700 pl-6">
-<button class="relative flex items-center justify-center size-10 rounded-lg bg-slate-200/50 dark:bg-primary/10 hover:bg-primary/20 transition-all">
-<span class="material-symbols-outlined">shopping_cart</span>
-<span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">3</span>
-</button>
-<button class="flex items-center justify-center size-10 rounded-lg bg-slate-200/50 dark:bg-primary/10 hover:bg-primary/20 transition-all">
-<span class="material-symbols-outlined">person</span>
-</button>
-</div>
-</div>
+<body class="antialiased overflow-x-hidden">
+
+<!-- Navigation -->
+<header class="fixed top-0 z-[100] w-full bg-background-dark/95 backdrop-blur-lg border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+            <h2 class="text-white text-xl md:text-2xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
+            
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white">Home</a>
+                <a href="store.html" class="text-xs font-bold uppercase tracking-widest text-primary">Store</a>
+                <a href="about.html" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white">About Us</a>
+                <a href="javascript:void(0)" onclick="openModal('contactModal')" class="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="registration.html" class="bg-primary px-5 py-2 rounded text-[10px] font-black uppercase tracking-widest text-white">Account</a>
+                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center w-8 h-8">
+                    <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </div>
 </header>
-<div class="flex flex-1">
-<!-- Sidebar Navigation -->
-<aside class="hidden md:flex w-72 flex-col border-r border-primary/10 p-6 gap-8 bg-background-light dark:bg-background-dark/50">
-<div class="flex flex-col gap-4">
-<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Categories</h3>
-<div class="flex flex-col gap-1">
-<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary font-semibold" href="#">
-<span class="material-symbols-outlined text-[20px]">featured_seasonal_and_gifts</span>
-<span>Corporate Gifts</span>
-</a>
-<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-primary/5 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-primary">checkroom</span>
-<span class="text-slate-600 dark:text-slate-300 group-hover:text-primary">Apparel</span>
-</a>
-<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-primary/5 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-primary">branding_watermark</span>
-<span class="text-slate-600 dark:text-slate-300 group-hover:text-primary">Personal Branding</span>
-</a>
-<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-primary/5 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-primary">edit_note</span>
-<span class="text-slate-600 dark:text-slate-300 group-hover:text-primary">Stationery</span>
-</a>
-<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-primary/5 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-primary">layers</span>
-<span class="text-slate-600 dark:text-slate-300 group-hover:text-primary">Large Format</span>
-</a>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 w-full z-[90] bg-background-dark border-b border-white/10 p-6 flex flex-col gap-6 uppercase text-xs font-bold tracking-widest">
+    <a href="index.html">Home</a>
+    <a href="store.html" class="text-primary">Store</a>
+    <a href="about.html">About Us</a>
+    <a href="javascript:void(0)" onclick="openModal('contactModal')">Contact Us</a>
 </div>
-</div>
-<div class="flex flex-col gap-4">
-<h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Availability</h3>
-<div class="flex flex-col gap-3">
-<label class="flex items-center gap-3 cursor-pointer">
-<input checked="" class="rounded border-slate-300 text-primary focus:ring-primary dark:bg-slate-800" type="checkbox"/>
-<span class="text-sm text-slate-600 dark:text-slate-300">Ready to Ship</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer">
-<input class="rounded border-slate-300 text-primary focus:ring-primary dark:bg-slate-800" type="checkbox"/>
-<span class="text-sm text-slate-600 dark:text-slate-300">Custom Order</span>
-</label>
-</div>
-</div>
-<div class="mt-auto p-4 rounded-xl bg-primary/10 border border-primary/20">
-<p class="text-sm font-bold text-primary mb-1">Bulk Order Discount</p>
-<p class="text-xs text-slate-500 dark:text-slate-400">Get up to 25% off on orders above ₦500,000.</p>
-</div>
-</aside>
-<!-- Main Product Grid -->
-<main class="flex-1 p-6 lg:p-10 bg-background-light dark:bg-background-dark">
-<div class="max-w-7xl mx-auto flex flex-col gap-8">
-<!-- Title & Controls -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-<div>
-<h1 class="text-4xl font-black tracking-tight text-slate-900 dark:text-slate-100">Product Catalog</h1>
-<p class="text-slate-500 dark:text-slate-400 mt-2">Premium Nigerian printing and branding solutions.</p>
-</div>
-<div class="flex items-center gap-3">
-<div class="flex items-center gap-2 px-3 py-2 bg-slate-200/50 dark:bg-primary/10 rounded-lg text-sm font-medium">
-<span>Sort:</span>
-<select class="bg-transparent border-none p-0 pr-6 text-sm focus:ring-0">
-<option>Newest Arrivals</option>
-<option>Price: Low to High</option>
-<option>Price: High to Low</option>
-<option>Best Sellers</option>
-</select>
-</div>
-</div>
-</div>
-<!-- Product Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-<!-- Product Card 1 -->
-<div class="group flex flex-col bg-white dark:bg-slate-800/40 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all shadow-sm hover:shadow-xl">
-<div class="relative aspect-[4/5] bg-slate-100 dark:bg-slate-900 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Black premium custom branded hoodie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUluR3y3-y5ikMOXnrPFD0HX1xL5AoxSYOkUM5GwPYiWUawzZE3pb6s_CqRe6wQwFCd6Nr7IqGTe01T0JnDXUAz3Bcu_x9QyKB_3H4XcWHu5qLsb1DrSQXVI0l8Wrrx8JpziD_E1wZpxWruG1mu0PIOAIfg8_1uCusPdUCsjUs3d84lLbWATbqaMthZW-4cY6BWonSMmIDJAOav272kJTXpq3-WWEce0qWot8MVGs4tG36GXPljqOelNhppkz7IyBMHyNdlcgChG8"/>
-<span class="absolute top-3 left-3 bg-green-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Ready to Ship</span>
-<button class="absolute top-3 right-3 size-8 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur flex items-center justify-center text-slate-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="material-symbols-outlined text-[20px]">favorite</span>
-</button>
-</div>
-<div class="p-4 flex flex-col gap-3">
-<div>
-<p class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Apparel</p>
-<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Custom Premium Hoodie</h3>
-</div>
-<div class="flex items-center justify-between">
-<p class="text-xl font-black text-slate-900 dark:text-slate-100">₦18,500</p>
-<p class="text-xs text-slate-500">Min. order: 12pcs</p>
-</div>
-<button class="w-full py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">edit</span>
-                                    Quick Customize
-                                </button>
-</div>
-</div>
-<!-- Product Card 2 -->
-<div class="group flex flex-col bg-white dark:bg-slate-800/40 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all shadow-sm hover:shadow-xl">
-<div class="relative aspect-[4/5] bg-slate-100 dark:bg-slate-900 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Branded ceramic coffee mug on a table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlyQFGvdUhHLCy65TE_N5C2zb71H1kK8qQqIIhrnB2vZ5Mre2o7gaNc5IUdzWFgGhrPTEaIO8T1fDjbi51FAt03hvgmdc4WSziwGFP9dwftknwnACzxlRpOfxWE0TnDQIrhxQuH7k6Eqm2vERbGPrAGBVsGqSK_PX4exZUVHRg1KIa252phze_Bk_hceZmEXpuuUGiMDLMKLfDbLNjSRVVrryREPGvWn6d-rcMLZLsmedT8egkNXMx1ZgL2YGgVhsc5TKy82FqWwM"/>
-<span class="absolute top-3 left-3 bg-green-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Ready to Ship</span>
-</div>
-<div class="p-4 flex flex-col gap-3">
-<div>
-<p class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Corporate Gifts</p>
-<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Branded Ceramic Mug</h3>
-</div>
-<div class="flex items-center justify-between">
-<p class="text-xl font-black text-slate-900 dark:text-slate-100">₦4,200</p>
-<p class="text-xs text-slate-500">Min. order: 50pcs</p>
-</div>
-<button class="w-full py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">edit</span>
-                                    Quick Customize
-                                </button>
-</div>
-</div>
-<!-- Product Card 3 -->
-<div class="group flex flex-col bg-white dark:bg-slate-800/40 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all shadow-sm hover:shadow-xl">
-<div class="relative aspect-[4/5] bg-slate-100 dark:bg-slate-900 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Stacked premium matte finish business cards" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7SKEOmpmshhJNgR2QZ43wgAgPKA0PjgK8tJuKgvGL_wjKS7x14LWY0XF-J4nQIYH_zeQOeurDTC8gsRVmsY58NHqBpM9LqXNjhtO8QAhll3p1fpVCSB6Rbez8d2ZZRYb1GuQRYeUEMSWIJG3Q7gZ4qscz8IO7Fz5xd7iBuaUSJpw-RciEncxj8U620MxshitxebXDiGBYuhrQql-QoFmuHMcCgaie76ldfzLgW114klI6bCBviRY0CI4p_mx_bnUqVDN6eGtfZfk"/>
-<span class="absolute top-3 right-3 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Top Seller</span>
-</div>
-<div class="p-4 flex flex-col gap-3">
-<div>
-<p class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Stationery</p>
-<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Executive Business Cards</h3>
-</div>
-<div class="flex items-center justify-between">
-<p class="text-xl font-black text-slate-900 dark:text-slate-100">₦12,000</p>
-<p class="text-xs text-slate-500">Box of 100</p>
-</div>
-<button class="w-full py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">edit</span>
-                                    Quick Customize
-                                </button>
-</div>
-</div>
-<!-- Product Card 4 -->
-<div class="group flex flex-col bg-white dark:bg-slate-800/40 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all shadow-sm hover:shadow-xl">
-<div class="relative aspect-[4/5] bg-slate-100 dark:bg-slate-900 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Sleek aluminum water bottle with laser engraved logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmZfLJzFuNabpg4h0uiEY94ZPpjMaDrlbGXWeM6YfDFnw49yc-D8hOFhbQIl1N8sEAu3mw36mijK_Me1-IRpInWLxHVKuVRSw-m8nYTjbmd-qGOmCNBVU4kUTO1Jvp0Dmk_XwVgXe4sBf4KZ9IvR1uo5MbQGRgnEiM3IFb_HLDUMuzH7Da80MwLP-trUrEsF9x-rvKSn-lg41BEd7zkF3Q1h3keavHeenZCayDFgkRg6MJRXKD9sOE4l1v01aM1hwz_2khx393jeY"/>
-<span class="absolute top-3 left-3 bg-green-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Ready to Ship</span>
-</div>
-<div class="p-4 flex flex-col gap-3">
-<div>
-<p class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Corporate Gifts</p>
-<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Laser Engraved Flask</h3>
-</div>
-<div class="flex items-center justify-between">
-<p class="text-xl font-black text-slate-900 dark:text-slate-100">₦8,500</p>
-<p class="text-xs text-slate-500">Min. order: 20pcs</p>
-</div>
-<button class="w-full py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">edit</span>
-                                    Quick Customize
-                                </button>
-</div>
-</div>
-<!-- Product Card 5 -->
-<div class="group flex flex-col bg-white dark:bg-slate-800/40 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all shadow-sm hover:shadow-xl">
-<div class="relative aspect-[4/5] bg-slate-100 dark:bg-slate-900 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Corporate notebook and pen set with logo branding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWL0CbbsiUZxSSJT4dgNso50jgmyp3uB4YOUIndE9gzELeZfx94SOLwNjPB2NH3q5gxOKQFkLlmxLAsxTB78lHqEEFLL1mO1jdzUf8ohEzTo1JmejUznGoZZH5rScIXdHM0prn5arK4iWmdAGXsIWq-sEXy9eHSJAChQYmHSEu6eOoU8flyUhTli261LRER8_E3yk5UQlPttxH786hRPx_24_L3hl357hXaVT9OU_oHn2p95yRytnKenHgR7RQ_9XPBT6QznNBsIY"/>
-<span class="absolute top-3 left-3 bg-green-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Ready to Ship</span>
-</div>
-<div class="p-4 flex flex-col gap-3">
-<div>
-<p class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Stationery</p>
-<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Executive Gift Set</h3>
-</div>
-<div class="flex items-center justify-between">
-<p class="text-xl font-black text-slate-900 dark:text-slate-100">₦15,000</p>
-<p class="text-xs text-slate-500">Min. order: 10 sets</p>
-</div>
-<button class="w-full py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">edit</span>
-                                    Quick Customize
-                                </button>
-</div>
-</div>
-<!-- Product Card 6 -->
-<div class="group flex flex-col bg-white dark:bg-slate-800/40 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all shadow-sm hover:shadow-xl">
-<div class="relative aspect-[4/5] bg-slate-100 dark:bg-slate-900 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern mesh cap with embroidered brand logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXmK1G3unBBAs-q_5p-1jEjP2ZgXIT_WCcp7tUFE7ebo4O_yDlOUjnz6CvR61ayoQDFHGHiVZx39QAE6NSwY893pLBPlXW74s-8bWi14U0nobcFbz4WRPC5EPzfw8ZXswx-5zC66RgXJqnJAunG5FW4mwBonwzI_zVRBhNYmYBSVXh9nsraXtseS8SKccP6UWQND2Jl6bSAc6ceFg2ZVrxZOe1OWw7cmD9Tm9qVmtwhkdYhYpyNdyIzfwnkWERyUl8qhkjShckZ2U"/>
-<span class="absolute top-3 right-3 bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Best Seller</span>
-</div>
-<div class="p-4 flex flex-col gap-3">
-<div>
-<p class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Apparel</p>
-<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Trucker Mesh Cap</h3>
-</div>
-<div class="flex items-center justify-between">
-<p class="text-xl font-black text-slate-900 dark:text-slate-100">₦5,500</p>
-<p class="text-xs text-slate-500">Min. order: 25pcs</p>
-</div>
-<button class="w-full py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">edit</span>
-                                    Quick Customize
-                                </button>
-</div>
-</div>
-<!-- Product Card 7 -->
-<div class="group flex flex-col bg-white dark:bg-slate-800/40 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all shadow-sm hover:shadow-xl">
-<div class="relative aspect-[4/5] bg-slate-100 dark:bg-slate-900 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High quality printed roll-up banner stand" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhtpxzsILgIfsJE0_wlIS2RLxlio4m54M618e_3djYrKNUnU0XwXoptKEYM4_w4ZmTFMZB08Tys5dfh8QBj95itI6Jb9qdKuk7O6P-aH7WS_Rb1VvDDOHQAV0tom6OWutPz8AlL-IRFHZmQPOvDduxmM913uNfIj0fv0B6vd3c63RavOEwB0ogd455fIJwliWi778xzeiuikd2kCpcEfsUZmYM2uyL7YQYEqjte65xj2dE6VJi9NTqqDlW_q8RAFgEL1KuJLZxhLE"/>
-<span class="absolute top-3 left-3 bg-green-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Ready to Ship</span>
-</div>
-<div class="p-4 flex flex-col gap-3">
-<div>
-<p class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Large Format</p>
-<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Pro Roll-up Banner</h3>
-</div>
-<div class="flex items-center justify-between">
-<p class="text-xl font-black text-slate-900 dark:text-slate-100">₦45,000</p>
-<p class="text-xs text-slate-500">Includes Stand</p>
-</div>
-<button class="w-full py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">edit</span>
-                                    Quick Customize
-                                </button>
-</div>
-</div>
-<!-- Product Card 8 -->
-<div class="group flex flex-col bg-white dark:bg-slate-800/40 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all shadow-sm hover:shadow-xl">
-<div class="relative aspect-[4/5] bg-slate-100 dark:bg-slate-900 overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Luxury custom printed box packaging" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI5bql0W-d8eG2ZBTxtxPf2pDK-wkBG7xDDioRWexKNtrFrXFxa4fibIqh8dh4tXOzAosAERBnBg1mlC8i_J_5CA3ZGFXchw-4tKk6UFGm3Y0hM4swH9a-szf2EZ6n9SxACxUMYZDy6_AWGROTEJA8La0s-7dr6t4f5Hhg0KLv0FyelAIeV8ZK88TBWzwPRWf3xrgQbPC_RyCOyQS1Z-VVrLL5Cc1JiUSjDc2M5EspOUbMdu_a_hZIwRzuWjHC0OhDKlhtCemlU5M"/>
-</div>
-<div class="p-4 flex flex-col gap-3">
-<div>
-<p class="text-xs text-primary font-bold uppercase tracking-widest mb-1">Personal Branding</p>
-<h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Luxury Gift Boxes</h3>
-</div>
-<div class="flex items-center justify-between">
-<p class="text-xl font-black text-slate-900 dark:text-slate-100">₦1,200</p>
-<p class="text-xs text-slate-500">Min. order: 100pcs</p>
-</div>
-<button class="w-full py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">edit</span>
-                                    Quick Customize
-                                </button>
-</div>
-</div>
-</div>
-<!-- Pagination -->
-<div class="flex items-center justify-center gap-2 py-10">
-<button class="size-10 flex items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<button class="size-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</button>
-<button class="size-10 flex items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-primary/10 transition-colors">2</button>
-<button class="size-10 flex items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-primary/10 transition-colors">3</button>
-<span class="mx-2 text-slate-500">...</span>
-<button class="size-10 flex items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-primary/10 transition-colors">12</button>
-<button class="size-10 flex items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-</div>
+
+<main class="pt-24 pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Store Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+            <div>
+                <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-white mb-2">The <span class="text-primary">Catalog.</span></h1>
+                <p class="text-slate-500 text-sm md:text-base font-medium">Premium Nigerian Branding & Unique Souvenirs.</p>
+            </div>
+            <div class="w-full md:w-80 relative">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+                <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Search products..." class="w-full bg-card-dark border border-white/10 rounded-xl py-3 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary outline-none">
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-10">
+            <!-- Sidebar Categories -->
+            <aside class="w-full lg:w-64 space-y-8">
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-widest text-primary mb-6">Categories</h4>
+                    <div class="flex flex-wrap lg:flex-col gap-2">
+                        <button onclick="loadProducts('all')" class="cat-btn active text-left px-4 py-2 rounded-lg bg-white/5 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-all">All Items</button>
+                        <button onclick="loadProducts('Apparel')" class="cat-btn text-left px-4 py-2 rounded-lg bg-white/5 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-all">Apparel</button>
+                        <button onclick="loadProducts('Gifts')" class="cat-btn text-left px-4 py-2 rounded-lg bg-white/5 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-all">Corporate Gifts</button>
+                        <button onclick="loadProducts('Stationery')" class="cat-btn text-left px-4 py-2 rounded-lg bg-white/5 text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-all">Stationery</button>
+                    </div>
+                </div>
+                <div class="p-6 rounded-2xl bg-primary/5 border border-primary/20 hidden lg:block">
+                    <p class="text-primary text-[10px] font-black uppercase mb-2">Wholesale</p>
+                    <p class="text-slate-400 text-xs">Bulk order discounts available on orders above ₦250,000.</p>
+                </div>
+            </aside>
+
+            <!-- Product Grid -->
+            <div id="productGrid" class="flex-1 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Products will load here dynamically -->
+                <div class="col-span-full py-20 text-center space-y-4 opacity-50">
+                    <span class="material-symbols-outlined text-6xl">inventory_2</span>
+                    <p class="text-xl font-bold italic uppercase">Your store is ready. Start uploading products.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
-</div>
+
 <!-- Footer -->
-<footer class="bg-slate-100 dark:bg-background-dark/80 border-t border-primary/10 py-12 px-6 lg:px-20">
-<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-<div class="col-span-1 md:col-span-1">
-<div class="flex items-center gap-2 text-primary mb-6">
-<span class="material-symbols-outlined">print</span>
-<h2 class="text-lg font-bold">27668grafix</h2>
-</div>
-<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                        The ultimate destination for premium Nigerian branding and printing services. Quality that speaks for your brand.
-                    </p>
-</div>
-<div>
-<h4 class="font-bold mb-6">Quick Links</h4>
-<ul class="flex flex-col gap-4 text-sm text-slate-500 dark:text-slate-400">
-<li><a class="hover:text-primary transition-colors" href="#">Order Status</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Shipping Policy</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Bulk Order Pricing</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Contact Support</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold mb-6">Connect</h4>
-<ul class="flex flex-col gap-4 text-sm text-slate-500 dark:text-slate-400">
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">location_on</span> Lagos, Nigeria</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">mail</span> hello@27668grafix.com</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">call</span> +234 800 000 0000</li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold mb-6">Newsletter</h4>
-<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Subscribe for branding tips and exclusive offers.</p>
-<div class="flex gap-2">
-<input class="flex-1 rounded-lg bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-sm focus:ring-primary" placeholder="Email address" type="email"/>
-<button class="px-4 py-2 bg-primary text-white rounded-lg font-bold text-sm">Join</button>
-</div>
-</div>
-</div>
-<div class="max-w-7xl mx-auto border-t border-slate-200 dark:border-slate-800 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-<p class="text-xs text-slate-500">© 2024 27668grafix Limited. All rights reserved.</p>
-<div class="flex items-center gap-6">
-<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">social_leaderboard</span>
-<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">share</span>
-<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">alternate_email</span>
-</div>
-</div>
+<footer class="bg-background-dark border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div>
+            <h2 class="text-white text-xl font-black uppercase italic mb-6">27668<span class="text-primary">grafix</span></h2>
+            <div class="flex gap-4 text-slate-500 text-[10px] font-black uppercase tracking-widest">
+                <a href="javascript:void(0)" onclick="openModal('privacyModal')" class="hover:text-white">Privacy</a>
+                <a href="javascript:void(0)" onclick="openModal('returnModal')" class="hover:text-white">Returns</a>
+                <a href="javascript:void(0)" onclick="openModal('shippingModal')" class="hover:text-white">Shipping</a>
+            </div>
+        </div>
+        <div class="text-center">
+            <p class="text-slate-700 text-[9px] font-black uppercase tracking-[0.4em]">© 2024 27668GRAFIX PRINTING. LAGOS.</p>
+        </div>
+        <div class="flex justify-end items-center gap-6">
+            <!-- SECRET ADMIN BUTTON -->
+            <button onclick="adminLogin()" class="text-slate-800 hover:text-slate-500 text-[9px] font-black uppercase tracking-widest">Admin Access</button>
+            <a href="https://wa.me/2348033491036" class="text-primary font-black uppercase text-xs tracking-widest">Chat with Us</a>
+        </div>
+    </div>
 </footer>
+
+<!-- MODALS -->
+
+<!-- Product Detail Modal -->
+<div id="productModal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-xl hidden overflow-y-auto no-scrollbar">
+    <div class="min-h-screen p-4 md:p-10 flex items-center justify-center">
+        <div class="bg-card-dark max-w-5xl w-full rounded-3xl overflow-hidden shadow-2xl relative grid grid-cols-1 lg:grid-cols-2">
+            <button onclick="closeProductModal()" class="absolute top-6 right-6 z-10 text-white bg-black/50 p-2 rounded-full">&times;</button>
+            
+            <!-- Gallery -->
+            <div class="p-4 space-y-4">
+                <img id="mainDetailImg" class="w-full aspect-square object-cover rounded-2xl shadow-lg shadow-black/50">
+                <div id="thumbList" class="flex gap-2 overflow-x-auto no-scrollbar"></div>
+            </div>
+
+            <!-- Details -->
+            <div class="p-8 md:p-12 space-y-8">
+                <div>
+                    <span id="detailCat" class="text-primary text-[10px] font-black uppercase tracking-[0.3em]">Category</span>
+                    <h2 id="detailTitle" class="text-3xl md:text-5xl font-black italic uppercase tracking-tighter text-white mt-2">Product Name</h2>
+                    <p id="detailPrice" class="text-2xl font-black text-white mt-4">₦0.00</p>
+                </div>
+                
+                <div class="space-y-4 border-t border-white/5 pt-8">
+                    <p class="text-slate-500 text-[10px] font-black uppercase tracking-widest">Description</p>
+                    <p id="detailDesc" class="text-slate-300 leading-relaxed"></p>
+                </div>
+
+                <div class="flex items-center gap-4 text-green-500">
+                    <span class="material-symbols-outlined text-sm">schedule</span>
+                    <span id="detailTime" class="text-xs font-bold uppercase tracking-widest">Ready in 3-5 days</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8">
+                    <button id="orderBtn" class="bg-primary text-white py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-lg shadow-primary/20">Order Now</button>
+                    <a id="waContactBtn" target="_blank" class="bg-white/5 border border-white/10 text-white py-4 rounded-xl font-black uppercase text-xs tracking-widest flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-sm">chat</span> Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</body></html>
+
+<!-- Order Information Modal -->
+<div id="orderModal" class="fixed inset-0 z-[200] bg-black/90 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 p-8 rounded-3xl max-w-md w-full border border-white/10 shadow-2xl">
+        <h3 class="text-2xl font-black italic uppercase text-white mb-2">Order Details</h3>
+        <p class="text-slate-500 text-[10px] uppercase font-bold tracking-widest mb-8">Tell us what you need</p>
+        <div class="space-y-4">
+            <input type="text" id="orderName" placeholder="Your Full Name" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-primary">
+            <input type="number" id="orderQty" placeholder="Quantity Needed" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-primary">
+            <textarea id="orderNote" placeholder="Any specific customization?" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 h-24 outline-none focus:border-primary"></textarea>
+            <button onclick="finalizeOrder()" class="w-full bg-primary py-4 rounded-xl font-black uppercase text-xs mt-4">Confirm to WhatsApp</button>
+            <button onclick="closeOrderModal()" class="w-full text-slate-500 text-[10px] font-bold uppercase py-2">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- ADMIN UPLOAD MODAL -->
+<div id="adminModal" class="fixed inset-0 z-[200] bg-black/95 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-900 p-8 rounded-3xl max-w-2xl w-full border border-primary/20 my-10">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="text-2xl font-black italic uppercase text-primary">Upload Product</h3>
+            <button onclick="document.getElementById('adminModal').classList.add('hidden')" class="text-slate-400">&times;</button>
+        </div>
+        
+        <form id="uploadForm" class="space-y-6">
+            <input type="text" id="pName" placeholder="Product Name" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none">
+            <div class="grid grid-cols-2 gap-4">
+                <input type="number" id="pPrice" placeholder="Price (₦)" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none">
+                <input type="text" id="pTime" placeholder="Delivery Time (e.g 3-5 days)" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none">
+            </div>
+            <select id="pCat" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none text-slate-400">
+                <option value="Apparel">Apparel</option>
+                <option value="Gifts">Corporate Gifts</option>
+                <option value="Stationery">Stationery</option>
+            </select>
+            <textarea id="pDesc" placeholder="Product Description" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 h-32 outline-none"></textarea>
+            
+            <div class="space-y-2">
+                <label class="text-[10px] font-black uppercase text-primary tracking-widest">Images (Select up to 5)</label>
+                <input type="file" id="pImages" multiple accept="image/*" class="w-full text-slate-500 text-xs">
+            </div>
+
+            <button type="submit" id="pSubmit" class="w-full bg-primary py-5 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl shadow-primary/20">Publish Product</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // SUPABASE CONFIG
+    const SUPABASE_URL = 'https://bmyimmssovqcznwixceu.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let allProducts = [];
+    let currentSelectedProduct = null;
+
+    // Load Products
+    async function loadProducts(cat = 'all') {
+        let query = supabaseClient.from('products').select('*').order('created_at', { ascending: false });
+        if(cat !== 'all') query = query.eq('category', cat);
+        
+        const { data, error } = await query;
+        if(error) return console.error(error);
+        
+        allProducts = data;
+        renderProducts(data);
+    }
+
+    function renderProducts(list) {
+        const grid = document.getElementById('productGrid');
+        if(list.length === 0) {
+            grid.innerHTML = `<div class="col-span-full py-20 text-center opacity-30 italic uppercase font-black">No products in this category yet</div>`;
+            return;
+        }
+
+        grid.innerHTML = list.map(p => `
+            <div onclick="openProductDetail('${p.id}')" class="group bg-card-dark rounded-3xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all cursor-pointer">
+                <div class="aspect-square relative overflow-hidden">
+                    <img src="${p.images[0]}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="p-6 space-y-1">
+                    <p class="text-primary text-[9px] font-black uppercase tracking-widest">${p.category}</p>
+                    <h3 class="text-white font-black italic uppercase truncate">${p.name}</h3>
+                    <p class="text-white text-lg font-black">₦${parseFloat(p.price).toLocaleString()}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Search Filter
+    function filterProducts() {
+        const term = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = allProducts.filter(p => p.name.toLowerCase().includes(term) || p.description.toLowerCase().includes(term));
+        renderProducts(filtered);
+    }
+
+    // Details Logic
+    function openProductDetail(id) {
+        const p = allProducts.find(x => x.id === id);
+        currentSelectedProduct = p;
+        
+        document.getElementById('detailCat').innerText = p.category;
+        document.getElementById('detailTitle').innerText = p.name;
+        document.getElementById('detailPrice').innerText = `₦${parseFloat(p.price).toLocaleString()}`;
+        document.getElementById('detailDesc').innerText = p.description;
+        document.getElementById('detailTime').innerText = `Ready for delivery in ${p.delivery_time}`;
+        document.getElementById('mainDetailImg').src = p.images[0];
+        
+        // Render Thumbs
+        const thumbList = document.getElementById('thumbList');
+        thumbList.innerHTML = p.images.map(img => `
+            <img src="${img}" onclick="document.getElementById('mainDetailImg').src='${img}'" class="w-16 h-16 rounded-lg object-cover border border-white/10 cursor-pointer hover:border-primary">
+        `).join('');
+
+        document.getElementById('waContactBtn').href = `https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥%20I%20am%20inquiring%20about%20the%20${p.name}.`;
+        document.getElementById('orderBtn').onclick = () => document.getElementById('orderModal').classList.remove('hidden');
+
+        document.getElementById('productModal').classList.remove('hidden');
+    }
+
+    function closeProductModal() { document.getElementById('productModal').classList.add('hidden'); }
+    function closeOrderModal() { document.getElementById('orderModal').classList.add('hidden'); }
+
+    // WhatsApp Order Generation
+    function finalizeOrder() {
+        const name = document.getElementById('orderName').value;
+        const qty = document.getElementById('orderQty').value;
+        const note = document.getElementById('orderNote').value;
+
+        if(!name || !qty) return alert("Please fill your name and quantity");
+
+        const msg = `Hello 27668grafix! 🔥 %0A%0A*NEW ORDER REQUEST*%0A*Item:* ${currentSelectedProduct.name}%0A*Price:* ₦${currentSelectedProduct.price}%0A*Quantity:* ${qty}%0A%0A*Customer Info:*%0A*Name:* ${name}%0A*Customization:* ${note}%0A%0A_Sent from 27668grafix Store_`;
+        
+        window.open(`https://wa.me/2348033491036?text=${msg}`, '_blank');
+        closeOrderModal();
+    }
+
+    // ADMIN LOGIC
+    function adminLogin() {
+        const pw = prompt("Enter Admin Password:");
+        if(pw === "27668grafix") {
+            document.getElementById('adminModal').classList.remove('hidden');
+        } else {
+            alert("Unauthorized access.");
+        }
+    }
+
+    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('pSubmit');
+        btn.innerText = "Uploading Images...";
+        btn.disabled = true;
+
+        const files = document.getElementById('pImages').files;
+        const imageUrls = [];
+
+        // 1. Upload each image to storage
+        for(let file of files) {
+            const path = `products/${Date.now()}_${file.name}`;
+            const { data, error } = await supabaseClient.storage.from('products').upload(path, file);
+            if(data) {
+                const { data: urlData } = supabaseClient.storage.from('products').getPublicUrl(path);
+                imageUrls.push(urlData.publicUrl);
+            }
+        }
+
+        // 2. Save product to DB
+        const { error: dbError } = await supabaseClient.from('products').insert([{
+            name: document.getElementById('pName').value,
+            price: document.getElementById('pPrice').value,
+            delivery_time: document.getElementById('pTime').value,
+            category: document.getElementById('pCat').value,
+            description: document.getElementById('pDesc').value,
+            images: imageUrls
+        }]);
+
+        if(dbError) alert(dbError.message);
+        else {
+            alert("Product Live!");
+            location.reload();
+        }
+    });
+
+    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+    // Init
+    window.onload = () => loadProducts();
+</script>
+
+</body>
+</html>
