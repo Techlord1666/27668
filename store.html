@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Store | 27668grafix - Premium Branding Catalog</title>
-    <meta name="description" content="Premium Nigerian branding and custom prints. Order high-quality souvenirs and corporate gifts meticulously produced in Lagos.">
+    <meta name="description" content="Order premium Nigerian branding, corporate gifts, and custom prints. High-quality souvenirs meticulously produced in Lagos.">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
@@ -21,6 +21,7 @@
         .hamburger-line { display: block; width: 24px; height: 2px; background-color: white; margin: 5px auto; transition: all 0.3s ease; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #ff6a00; border-radius: 10px; }
+        img { border: none !important; outline: none !important; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
@@ -39,7 +40,7 @@
             </nav>
 
             <div class="flex items-center gap-4">
-                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center w-8 h-8">
+                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center w-8 h-8 focus:outline-none">
                     <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
                 </button>
             </div>
@@ -58,14 +59,14 @@
 <main class="pt-24 pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
         <h1 class="text-4xl md:text-7xl font-black italic uppercase tracking-tighter text-white mb-4">Branding <span class="text-primary">Catalog.</span></h1>
-        <p class="text-slate-500 text-sm md:text-lg max-w-2xl mx-auto">Explore our premium range of unique souvenirs and sharp prints.</p>
+        <p class="text-slate-500 text-sm md:text-lg max-w-2xl mx-auto">Premium Nigerian branding solutions meticulously produced for impact.</p>
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Products load here -->
+            <!-- Loading Placeholder -->
             <div class="col-span-full py-20 text-center opacity-30 italic uppercase font-black">
-                <p>Catalog is empty. Use Admin Access to upload.</p>
+                <p>Loading Catalog...</p>
             </div>
         </div>
     </div>
@@ -73,9 +74,9 @@
 
 <!-- Footer -->
 <footer class="bg-background-dark border-t border-white/5 py-12">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center text-center md:text-left">
         <div>
-            <h2 class="text-white text-xl font-black uppercase italic">27668<span class="text-primary">grafix</span></h2>
+            <h2 class="text-white text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
         </div>
         <div class="flex justify-center gap-6 text-slate-500 text-[10px] font-black uppercase tracking-widest">
             <a href="javascript:void(0)" onclick="openPolicyModal('privacy')" class="hover:text-white">Privacy</a>
@@ -83,19 +84,21 @@
             <a href="javascript:void(0)" onclick="openPolicyModal('shipping')" class="hover:text-white">Shipping</a>
         </div>
         <div class="flex flex-col md:items-end gap-2">
-            <button onclick="adminAuth()" class="text-slate-800 hover:text-slate-500 text-[9px] font-black uppercase tracking-widest">Admin Access</button>
+            <button onclick="adminAuth()" class="text-slate-900 hover:text-slate-600 text-[9px] font-black uppercase tracking-widest">Admin Access</button>
             <p class="text-slate-700 text-[9px] font-black uppercase tracking-[0.4em]">© 2024 LAGOS, NIGERIA.</p>
         </div>
     </div>
 </footer>
 
-<!-- PRODUCT DETAIL MODAL -->
+<!-- MODALS -->
+
+<!-- Product Detail Modal -->
 <div id="productModal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-xl hidden overflow-y-auto no-scrollbar">
     <div class="min-h-screen p-4 md:p-10 flex items-center justify-center">
         <div class="bg-card-dark max-w-5xl w-full rounded-3xl overflow-hidden relative grid grid-cols-1 lg:grid-cols-2 border border-white/5">
             <button onclick="closeProductModal()" class="absolute top-6 right-6 z-10 text-white bg-black/50 w-10 h-10 flex items-center justify-center rounded-full text-2xl font-bold">&times;</button>
             <div class="p-4 space-y-4">
-                <img id="mainDetailImg" class="w-full aspect-square object-cover rounded-2xl">
+                <img id="mainDetailImg" class="w-full aspect-square object-cover rounded-2xl bg-slate-900">
                 <div id="thumbList" class="flex gap-2 overflow-x-auto no-scrollbar pb-2"></div>
             </div>
             <div class="p-8 md:p-12 flex flex-col justify-center">
@@ -104,21 +107,18 @@
                 <p id="detailPrice" class="text-2xl font-black text-white mt-4"></p>
                 <div class="space-y-4 border-t border-white/5 pt-8 mt-8">
                     <p id="detailDesc" class="text-slate-400 text-sm leading-relaxed"></p>
-                    <p id="detailTime" class="text-green-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                        <span class="material-symbols-outlined text-sm">local_shipping</span> Delivery Info
-                    </p>
+                    <p id="detailTime" class="text-green-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2"></p>
                 </div>
                 <div class="grid grid-cols-1 gap-4 pt-10">
-                    <button onclick="openOrderForm()" class="bg-primary text-white py-4 rounded-xl font-black uppercase text-sm tracking-widest shadow-lg shadow-primary/20">Order via WhatsApp</button>
-                    <!-- DELETE BUTTON FOR ADMIN -->
-                    <button id="adminDeleteBtn" class="text-red-500/30 hover:text-red-500 text-[10px] font-black uppercase tracking-widest mt-4">Delete Product (Admin Only)</button>
+                    <button onclick="openOrderForm()" class="bg-primary text-white py-4 rounded-xl font-black uppercase text-sm tracking-widest">Order Now</button>
+                    <button id="adminDeleteBtn" class="text-red-500/20 hover:text-red-500 text-[10px] font-black uppercase tracking-widest mt-4">Delete Product (Admin Only)</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- POLICY MODAL -->
+<!-- Info Modal -->
 <div id="policyModal" class="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-white/10 rounded-2xl max-w-xl w-full p-8 relative">
         <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-3xl">&times;</button>
@@ -127,65 +127,70 @@
     </div>
 </div>
 
-<!-- ORDER MODAL -->
+<!-- Order Modal -->
 <div id="orderModal" class="fixed inset-0 z-[200] bg-black/95 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 p-8 rounded-3xl max-w-md w-full border border-white/10">
+    <div class="bg-slate-900 p-8 rounded-3xl max-w-md w-full border border-white/10 shadow-2xl">
         <h3 class="text-2xl font-black italic uppercase text-white mb-6">Order Details</h3>
-        <div class="space-y-4">
-            <input type="text" id="orderName" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-primary text-white">
-            <input type="number" id="orderQty" placeholder="Quantity" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-primary text-white">
-            <textarea id="orderNote" placeholder="Any special instructions?" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 h-24 outline-none focus:border-primary text-white"></textarea>
-            <button onclick="sendOrder()" class="w-full bg-primary py-4 rounded-xl font-black uppercase text-xs mt-4">Confirm to WhatsApp</button>
+        <div class="space-y-4 text-left">
+            <input type="text" id="orderName" placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-primary text-white">
+            <input type="number" id="orderQty" placeholder="Quantity Needed" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-primary text-white">
+            <textarea id="orderNote" placeholder="Any customization notes?" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 h-24 outline-none focus:border-primary text-white"></textarea>
+            <button onclick="sendOrder()" class="w-full bg-primary py-4 rounded-xl font-black uppercase text-xs mt-4">Send to WhatsApp</button>
         </div>
     </div>
 </div>
 
-<!-- ADMIN UPLOAD MODAL -->
+<!-- Admin Upload Modal -->
 <div id="adminModal" class="fixed inset-0 z-[200] bg-black/95 hidden flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-slate-900 p-8 rounded-3xl max-w-2xl w-full border border-primary/20 my-10 relative">
         <button onclick="document.getElementById('adminModal').classList.add('hidden')" class="absolute top-6 right-6 text-slate-400 text-3xl">&times;</button>
-        <h3 class="text-2xl font-black italic uppercase text-primary mb-8">Upload New Product</h3>
+        <h3 class="text-2xl font-black italic uppercase text-primary mb-8 text-center">Admin: Upload Product</h3>
         <form id="uploadForm" class="space-y-4">
             <input type="text" id="pName" placeholder="Product Name" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none text-white">
             <div class="grid grid-cols-2 gap-4">
                 <input type="number" id="pPrice" placeholder="Price (₦)" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none text-white">
-                <input type="text" id="pTime" placeholder="Ready in (e.g. 3-5 days)" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none text-white">
+                <input type="text" id="pTime" placeholder="Delivery Time (e.g. 3-5 days)" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none text-white">
             </div>
             <select id="pCat" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none text-slate-400">
-                <option value="Apparel">Apparel</option>
                 <option value="Corporate Gifts">Corporate Gifts</option>
+                <option value="Apparel">Apparel</option>
                 <option value="Stationery">Stationery</option>
                 <option value="Souvenirs">Souvenirs</option>
             </select>
-            <textarea id="pDesc" placeholder="Full Description..." required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 h-32 outline-none text-white"></textarea>
-            <label class="text-[10px] font-black uppercase text-primary tracking-widest block">Select Images (Max 5)</label>
+            <textarea id="pDesc" placeholder="Description of the item..." required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 h-32 outline-none text-white"></textarea>
+            <label class="text-[10px] font-black uppercase text-primary tracking-widest block">Upload Photos (Select up to 5)</label>
             <input type="file" id="pImages" multiple accept="image/*" class="w-full text-slate-500 text-xs">
-            <button type="submit" id="pSubmit" class="w-full bg-primary py-5 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl mt-6">Publish Now</button>
+            <button type="submit" id="pSubmit" class="w-full bg-primary py-5 rounded-2xl font-black uppercase text-xs mt-6 tracking-widest">Publish Live</button>
         </form>
     </div>
 </div>
 
 <script>
-    // SUPABASE CONFIG
+    // --- SUPABASE SETUP ---
     const SUPABASE_URL = 'https://bmyimmssovqcznwixceu.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
     const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     let allProducts = [];
-    let currentP = null;
+    let activeProduct = null;
 
-    async function fetchStore() {
+    // --- FETCH PRODUCTS ---
+    async function fetchCatalog() {
         const { data, error } = await sb.from('products').select('*').order('created_at', { ascending: false });
-        if(data) { allProducts = data; renderStore(data); }
+        if(data) { allProducts = data; renderCatalog(data); }
+        else { console.error(error); }
     }
 
-    function renderStore(list) {
+    function renderCatalog(list) {
         const grid = document.getElementById('productGrid');
-        if(list.length === 0) return;
+        if(list.length === 0) {
+            grid.innerHTML = `<div class="col-span-full py-20 text-center opacity-30 italic uppercase font-black">No products in store yet.</div>`;
+            return;
+        }
         grid.innerHTML = list.map(p => `
             <div onclick="openP('${p.id}')" class="group bg-card-dark rounded-3xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all cursor-pointer">
                 <div class="aspect-square overflow-hidden bg-slate-900">
-                    <img src="${p.images[0]}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <img src="${p.images[0]}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
                 <div class="p-6">
                     <p class="text-primary text-[9px] font-black uppercase tracking-widest mb-1">${p.category}</p>
@@ -196,70 +201,84 @@
         `).join('');
     }
 
+    // --- PRODUCT POPUP ---
     function openP(id) {
-        currentP = allProducts.find(x => x.id === id);
-        document.getElementById('detailTitle').innerText = currentP.name;
-        document.getElementById('detailCat').innerText = currentP.category;
-        document.getElementById('detailPrice').innerText = `₦${parseFloat(currentP.price).toLocaleString()}`;
-        document.getElementById('detailDesc').innerText = currentP.description;
-        document.getElementById('detailTime').innerHTML = `<span class='material-symbols-outlined text-sm'>local_shipping</span> Ready for delivery in ${currentP.delivery_time}`;
-        document.getElementById('mainDetailImg').src = currentP.images[0];
+        activeProduct = allProducts.find(x => x.id === id);
+        document.getElementById('detailTitle').innerText = activeProduct.name;
+        document.getElementById('detailCat').innerText = activeProduct.category;
+        document.getElementById('detailPrice').innerText = `₦${parseFloat(activeProduct.price).toLocaleString()}`;
+        document.getElementById('detailDesc').innerText = activeProduct.description;
+        document.getElementById('detailTime').innerHTML = `<span class='material-symbols-outlined text-sm'>local_shipping</span> Delivery: ${activeProduct.delivery_time}`;
+        document.getElementById('mainDetailImg').src = activeProduct.images[0];
         
         const thumbs = document.getElementById('thumbList');
-        thumbs.innerHTML = currentP.images.map(i => `<img src="${i}" onclick="document.getElementById('mainDetailImg').src='${i}'" class="w-16 h-16 rounded-lg object-cover border border-white/10 cursor-pointer hover:border-primary">`).join('');
+        thumbs.innerHTML = activeProduct.images.map(i => `<img src="${i}" onclick="document.getElementById('mainDetailImg').src='${i}'" class="w-16 h-16 rounded-lg object-cover border border-white/10 cursor-pointer hover:border-primary">`).join('');
         
-        // Delete functionality
-        document.getElementById('adminDeleteBtn').onclick = () => handleDelete(currentP.id);
-
+        document.getElementById('adminDeleteBtn').onclick = () => deleteItem(activeProduct.id);
         document.getElementById('productModal').classList.remove('hidden');
     }
 
-    async function handleDelete(id) {
-        const pw = prompt("Admin Password required to delete:");
-        if(pw === "27668grafix") {
+    // --- ADMIN ACTIONS ---
+    async function deleteItem(id) {
+        const pass = prompt("Enter Admin Password to DELETE:");
+        if(pass === "27668grafix") {
             const { error } = await sb.from('products').delete().eq('id', id);
-            if(!error) { alert("Product Deleted."); location.reload(); }
-            else alert(error.message);
-        } else { alert("Incorrect Password."); }
+            if(!error) { alert("Deleted."); location.reload(); }
+            else { alert(error.message); }
+        } else { alert("Wrong Password."); }
     }
 
     function adminAuth() {
-        const pw = prompt("Enter Admin Password:");
-        if(pw === "27668grafix") document.getElementById('adminModal').classList.remove('hidden');
-        else alert("Unauthorized.");
+        if(prompt("Enter Admin Password:") === "27668grafix") document.getElementById('adminModal').classList.remove('hidden');
+        else alert("Denied.");
     }
 
+    // --- CORRECTED UPLOAD LOGIC ---
     document.getElementById('uploadForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('pSubmit');
-        btn.innerText = "Uploading..."; btn.disabled = true;
+        btn.innerText = "Processing..."; btn.disabled = true;
+
         const files = document.getElementById('pImages').files;
         const urls = [];
-        for(let f of files) {
-            const path = `shop/${Date.now()}_${f.name}`;
-            const { data } = await sb.storage.from('products').upload(path, f);
-            if(data) {
-                const { data: u } = sb.storage.from('products').getPublicUrl(path);
-                urls.push(u.publicUrl);
+
+        try {
+            for(let f of files) {
+                // Clean file name
+                const fileName = `${Date.now()}_${f.name.replace(/\s/g, '_')}`;
+                // Upload to bucket 'products'
+                const { data, error: uploadError } = await sb.storage.from('products').upload(fileName, f);
+                if(uploadError) throw uploadError;
+
+                // Get Public Link
+                const { data: urlData } = sb.storage.from('products').getPublicUrl(fileName);
+                urls.push(urlData.publicUrl);
             }
+
+            const { error: dbError } = await sb.from('products').insert([{
+                name: document.getElementById('pName').value,
+                price: document.getElementById('pPrice').value,
+                delivery_time: document.getElementById('pTime').value,
+                category: document.getElementById('pCat').value,
+                description: document.getElementById('pDesc').value,
+                images: urls
+            }]);
+
+            if(dbError) throw dbError;
+            location.reload();
+
+        } catch (err) {
+            alert(err.message);
+            btn.innerText = "Publish Live"; btn.disabled = false;
         }
-        const { error } = await sb.from('products').insert([{
-            name: document.getElementById('pName').value,
-            price: document.getElementById('pPrice').value,
-            delivery_time: document.getElementById('pTime').value,
-            category: document.getElementById('pCat').value,
-            description: document.getElementById('pDesc').value,
-            images: urls
-        }]);
-        if(!error) location.reload(); else alert(error.message);
     });
 
-    // Policies
+    // --- POLICY MODALS ---
     const policyText = {
-        privacy: { title: "Privacy Policy", body: "<p>We protect your brand data with total integrity. Your design files and information are strictly for production use and never shared.</p>" },
-        returns: { title: "Return & Refund", body: "<p>30-day window for returns of defective or damaged goods. Once design is approved and printed, custom items are only eligible for replacement if the error is on our part.</p>" },
-        shipping: { title: "Shipping Information", body: "<p>Partners: Bolt & Kwik (Lagos), DHL (International). Delivery takes 3-5 working days following production completion.</p>" },
-        contact: { title: "Contact Us", body: "<p>WhatsApp: +234 803 3491 036</p><p>Email: 27.668grafix@gmail.com</p><p>Address: 18, George Street, Igbobi, Shomolu, Lagos.</p>" }
+        privacy: { title: "Privacy Policy", body: "<p>We prioritize your brand's confidentiality. Design files and personal data are never shared with third parties.</p>" },
+        returns: { title: "Returns & Refund", body: "<p>30-day window for defective goods. Custom branded items are eligible for replacement if the error is on our part.</p>" },
+        shipping: { title: "Shipping Policy", body: "<p>Lagos: 1-2 days via Bolt/Kwik. International: 3-5 days via DHL. All items are meticulously tracked.</p>" },
+        contact: { title: "Contact Us", body: "<p>WhatsApp: +234 803 3491 036</p><p>Email: 27.668grafix@gmail.com</p><p>Address: 18, George Street, Igbobi, Lagos.</p>" }
     };
 
     function openPolicyModal(type) {
@@ -267,19 +286,19 @@
         document.getElementById('policyBody').innerHTML = policyText[type].body;
         document.getElementById('policyModal').classList.remove('hidden');
     }
+
     function closePolicyModal() { document.getElementById('policyModal').classList.add('hidden'); }
     function closeProductModal() { document.getElementById('productModal').classList.add('hidden'); }
-    function openOrderForm() { document.getElementById('orderModal').classList.remove('hidden'); }
     function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+    function openOrderForm() { document.getElementById('orderModal').classList.remove('hidden'); }
 
     function sendOrder() {
-        const msg = `Hello 27668grafix! 🔥 %0A%0A*ORDER REQUEST*%0A*Item:* ${currentP.name}%0A*Qty:* ${document.getElementById('orderQty').value}%0A*Customer:* ${document.getElementById('orderName').value}%0A*Note:* ${document.getElementById('orderNote').value}`;
+        const msg = `Hello 27668grafix! 🔥 %0A%0A*ORDER REQUEST*%0A*Item:* ${activeProduct.name}%0A*Qty:* ${document.getElementById('orderQty').value}%0A*Customer:* ${document.getElementById('orderName').value}%0A*Notes:* ${document.getElementById('orderNote').value}`;
         window.open(`https://wa.me/2348033491036?text=${msg}`, '_blank');
     }
 
-    window.onload = fetchStore;
+    window.onload = fetchCatalog;
     window.onclick = (e) => { if(e.target.id.includes('Modal')) { closePolicyModal(); document.getElementById('orderModal').classList.add('hidden'); } }
 </script>
-
 </body>
 </html>
