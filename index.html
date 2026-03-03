@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>27668grafix | Premium Gold & Black Branding Powerhouse</title>
+    <title>27668grafix | Luxury Gold & Black Printing</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -13,99 +13,161 @@
                 extend: {
                     colors: {
                         "primary": "#D4AF37", // Luxury Gold
-                        "gold-bright": "#FFD700", // Bright Gold for text
-                        "dark": "#000000", // Pure Black
+                        "gold-bright": "#FFD700", // High-visibility Gold
+                        "dark": "#000000",
                     },
                 },
             },
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #000000; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; }
         .hamburger-line { display: block; width: 24px; height: 2px; background-color: #000000; margin: 5px auto; }
         
-        /* Client Slider Animation */
+        /* Infinite Client Slider */
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .client-track { display: flex; width: calc(250px * 36); animation: scroll 40s linear infinite; }
-        .client-logo { width: 150px; height: 80px; object-fit: contain; margin: 0 40px; filter: grayscale(100%); transition: all 0.3s; }
-        .client-logo:hover { filter: grayscale(0%); transform: scale(1.1); }
+        .client-logo { width: 140px; height: 70px; object-fit: contain; margin: 0 40px; filter: grayscale(100%); opacity: 0.6; }
         
-        .gold-glow { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-        .gold-border { border-color: #D4AF37; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+        
+        /* Ensure Logo shows */
+        .logo-circle { width: 48px; height: 48px; border-radius: 50%; border: 2px solid #D4AF37; object-fit: cover; background: #eee; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
 
 <!-- Navigation -->
-<header class="fixed top-0 z-[100] w-full bg-white/90 backdrop-blur-lg border-b border-slate-100">
+<header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-lg border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
-            <!-- Circular Logo -->
             <div class="flex items-center gap-3">
-                <img src="logo.png" alt="27668grafix Logo" class="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-primary shadow-lg object-cover">
+                <img src="logo.png" alt="Logo" class="logo-circle">
                 <h2 class="text-dark text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
             
             <nav class="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest">
-                <a href="store.html" class="text-slate-600 hover:text-primary">Store</a>
-                <a href="about.html" class="text-slate-600 hover:text-primary">About</a>
-                <a href="#contact-section" class="text-slate-600 hover:text-primary">Contact</a>
+                <a href="store.html" class="hover:text-primary">Store</a>
+                <a href="about.html" class="hover:text-primary">About</a>
+                <a href="javascript:void(0)" onclick="openModal('contactModal')" class="hover:text-primary">Contact</a>
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="login.html" class="hidden sm:block text-[11px] font-black uppercase text-dark border-b-2 border-primary pb-1">Login</a>
-                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center w-8 h-8">
-                    <span class="hamburger-line bg-dark"></span><span class="hamburger-line bg-dark"></span><span class="hamburger-line bg-dark"></span>
+                <a href="login.html" class="hidden sm:block text-[11px] font-black uppercase text-dark border-b-2 border-primary">Login</a>
+                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center">
+                    <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
                 </button>
             </div>
         </div>
     </div>
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-white border-b border-primary p-6 flex flex-col gap-6 uppercase text-xs font-bold tracking-widest shadow-2xl">
-        <a href="store.html">Store</a>
-        <a href="about.html">About</a>
-        <a href="login.html">Login</a>
-        <a href="#contact-section" onclick="toggleMobileMenu()">Contact Us</a>
-    </div>
 </header>
 
-<main class="pt-20">
-    <!-- Hero Section -->
-    <section class="relative py-24 px-6 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
-            <div class="w-20 h-1 bg-primary mb-8"></div>
-            <h1 class="text-4xl md:text-7xl font-black text-dark leading-tight uppercase italic tracking-tighter mb-6">
-                We Design, Print, Brand <br> giving your Brand <span class="text-primary gold-glow italic">visibility</span>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 w-full z-[90] bg-white border-b border-primary p-6 flex flex-col gap-6 uppercase text-xs font-bold tracking-widest shadow-2xl">
+    <a href="store.html">Store</a>
+    <a href="about.html">About</a>
+    <a href="login.html">Login</a>
+    <a href="javascript:void(0)" onclick="toggleMobileMenu(); openModal('contactModal');">Contact</a>
+</div>
+
+<main class="pt-16">
+    <!-- Hero Image (No Text Overlay) -->
+    <section class="w-full h-[40vh] md:h-[60vh] overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=2071" class="w-full h-full object-cover" alt="Print Shop">
+    </section>
+
+    <!-- Hero Content (Left Aligned as requested) -->
+    <section class="py-16 px-6 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto flex flex-col items-start text-left">
+            <h4 class="text-dark font-black uppercase tracking-widest text-sm mb-6">TRUSTED PRINT SHOP 🔥</h4>
+            
+            <h1 class="text-4xl md:text-6xl font-black text-dark leading-tight uppercase tracking-tighter mb-8 max-w-4xl">
+                We Design, Print, Brand <br> giving your Brand visibility
             </h1>
-            <p class="text-slate-600 text-lg max-w-3xl mb-12 leading-relaxed font-medium">
-                Get your business more visibility by custom branding, luxe prints, and high-impact promotional gifting items. Verified source of quality meticulously produced in Nigeria.
+
+            <p class="text-slate-700 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
+                Get your business more visibility by custom branding, prints, stickers for party souvenirs & promotional gifting items.
             </p>
-            <div class="flex flex-col sm:flex-row gap-6">
-                <a href="https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥%20I%20want%20to%20start%20printing." target="_blank" class="bg-dark text-primary border-2 border-primary px-12 py-5 rounded-full font-black uppercase text-xs tracking-[0.2em] hover:bg-primary hover:text-dark transition-all shadow-xl">Start Printing</a>
-                <a href="store.html" class="border-2 border-dark text-dark px-12 py-5 rounded-full font-black uppercase text-xs tracking-[0.2em] hover:bg-dark hover:text-white transition-all">Browse Catalog</a>
+
+            <!-- Checkmark List -->
+            <ul class="space-y-4 mb-12">
+                <li class="flex items-center gap-4 text-md font-bold text-dark">
+                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                    Verified source of quality print materials
+                </li>
+                <li class="flex items-center gap-4 text-md font-bold text-dark">
+                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                    Proudly & meticulously produced in Nigeria
+                </li>
+                <li class="flex items-center gap-4 text-md font-bold text-dark">
+                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                    Delivery in <span class="text-primary font-black uppercase">3 to 5 work days</span>
+                </li>
+                <li class="flex items-center gap-4 text-md font-bold text-dark">
+                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                    Designers supports on the Journey
+                </li>
+            </ul>
+
+            <!-- Single Gold Button -->
+            <a href="https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥" target="_blank" 
+               class="bg-primary text-white px-10 py-4 rounded-lg font-black uppercase text-xs tracking-widest flex items-center gap-3 shadow-xl hover:scale-105 transition-transform">
+                Start Printing <span class="material-symbols-outlined">chevron_right</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Product Range (Circles as per screenshot) -->
+    <section class="py-20 bg-slate-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="text-3xl font-black uppercase italic tracking-tighter">Our Products Range</h2>
+                <a href="store.html" class="text-[10px] font-black uppercase tracking-widest border-b-2 border-primary">Browse all catalog</a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                <div class="text-center group cursor-pointer">
+                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
+                    <p class="text-[10px] font-black uppercase tracking-widest">Umbrellas</p>
+                </div>
+                <div class="text-center group cursor-pointer">
+                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
+                    <p class="text-[10px] font-black uppercase tracking-widest">T-Shirts</p>
+                </div>
+                <div class="text-center group cursor-pointer">
+                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1514228742587-6b1558fbed20?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
+                    <p class="text-[10px] font-black uppercase tracking-widest">Ceramic Mugs</p>
+                </div>
+                <div class="text-center group cursor-pointer">
+                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
+                    <p class="text-[10px] font-black uppercase tracking-widest">Hoodies</p>
+                </div>
+                <div class="text-center group cursor-pointer">
+                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1544816153-1215800f9440?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
+                    <p class="text-[10px] font-black uppercase tracking-widest">Tote Bags</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- The Creed Section (Brand Development) -->
-    <section class="py-20 bg-dark text-white text-center border-y-4 border-primary">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-10">Our Professional Creed</h2>
-            <p class="text-2xl md:text-5xl font-black uppercase italic tracking-tighter leading-none mb-6">
+    <!-- THE CREED (BLACK & GOLD) -->
+    <section class="py-24 bg-dark text-white border-y-4 border-primary">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-12 italic">Our CREED</h2>
+            <p class="text-3xl md:text-6xl font-black uppercase italic tracking-tighter leading-none mb-8">
                 Idesign graphics.web. <span class="text-primary">Iprint.</span> Ibrand. <span class="text-primary">Ideliver.</span>
             </p>
             <p class="text-primary/70 text-xs md:text-sm font-bold uppercase tracking-widest">
-                Promotional Gifts Branding • High-End Printing • Brand Development Solutions
+                Promotional Gifts Branding • Printing & Designs • Brand Development
             </p>
         </div>
     </section>
 
-    <!-- Client Slider -->
-    <section class="py-16 bg-white overflow-hidden">
-        <p class="text-center text-[9px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">Trusted by Global Visionaries</p>
+    <!-- Client Logo Slider -->
+    <section class="py-16 bg-white overflow-hidden border-b border-slate-100">
+        <p class="text-center text-[9px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">Trusted Industry Leaders</p>
         <div class="client-track">
+            <!-- 18 Logo images listed in your prompt -->
             <img src="27668grafix.com-ncs-skane-logo.png" class="client-logo">
             <img src="27668grafix.jpg" class="client-logo">
             <img src="ecs2.png" class="client-logo">
@@ -124,72 +186,36 @@
             <img src="27668grafix.com-design-chic-logo.jpg" class="client-logo">
             <img src="27668grafix.com-rehoboth-logo.jpg" class="client-logo">
             <img src="27668grafix.com-rccg-logo.png" class="client-logo">
-            <!-- Duplicates -->
+            <!-- Loop -->
             <img src="27668grafix.com-ncs-skane-logo.png" class="client-logo">
             <img src="27668grafix.jpg" class="client-logo">
-            <img src="ecs2.png" class="client-logo">
-            <img src="AIPLABRO-LOGO.jpg" class="client-logo">
-            <img src="27668grafix.com-optimalgroup.logo_.jpg" class="client-logo">
-            <img src="harwosprint.ng-corporate-logo.jpg" class="client-logo">
-        </div>
-    </section>
-
-    <!-- Visual Contact Section -->
-    <section id="contact-section" class="py-24 bg-slate-50 px-6 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="relative rounded-3xl overflow-hidden aspect-video lg:aspect-square bg-dark flex items-center justify-center">
-                <img src="logo.png" class="w-1/2 opacity-20 absolute grayscale animate-pulse" alt="">
-                <div class="relative z-10 text-center space-y-6">
-                    <span class="material-symbols-outlined text-primary text-6xl">location_on</span>
-                    <h3 class="text-white text-3xl font-black uppercase italic tracking-tighter">Visit the Studio</h3>
-                    <p class="text-primary font-bold uppercase text-xs tracking-[0.3em]">Meticulously Produced in Lagos</p>
-                </div>
-            </div>
-            <div class="space-y-10">
-                <h2 class="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">Get in <span class="text-primary">Touch.</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <p class="text-[10px] font-black uppercase tracking-widest text-primary">Phone & WhatsApp</p>
-                        <p class="text-lg font-bold">234 803 349 1036</p>
-                        <p class="text-lg font-bold">+234 708 2439 583</p>
-                    </div>
-                    <div class="space-y-2">
-                        <p class="text-[10px] font-black uppercase tracking-widest text-primary">Email Support</p>
-                        <p class="text-lg font-bold">info@27668grafix.com</p>
-                        <p class="text-lg font-bold">27.668grafix@gmail.com</p>
-                    </div>
-                </div>
-                <a href="https://wa.me/2348033491036" class="inline-flex items-center gap-4 bg-dark text-primary px-10 py-5 rounded-xl font-black uppercase text-xs tracking-widest hover:scale-105 transition-all">
-                    <span class="material-symbols-outlined">chat</span> Open WhatsApp Chat
-                </a>
-            </div>
         </div>
     </section>
 </main>
 
-<!-- Detailed Footer -->
+<!-- BLACK & BRIGHT GOLD FOOTER (Detailed) -->
 <footer class="bg-black text-primary pt-24 pb-12 px-6">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-            <!-- Brand Column -->
+            <!-- Col 1: Brand -->
             <div class="space-y-8">
                 <div class="flex items-center gap-3">
-                    <img src="logo.png" class="w-10 h-10 rounded-full border border-primary">
+                    <img src="logo.png" class="logo-circle">
                     <h2 class="text-white text-xl font-black italic uppercase tracking-tighter">27668<span class="text-primary">grafix</span></h2>
                 </div>
-                <p class="text-gold-bright text-sm leading-relaxed font-medium">
-                    The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events. We turn vision into reality.
+                <p class="text-gold-bright text-sm leading-relaxed font-bold italic">
+                    The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events.
                 </p>
                 <div class="flex gap-4">
-                    <a href="https://www.facebook.com/share/1DNgLLHFEY/" class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center hover:bg-primary transition-all border border-primary/20"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5 invert"></a>
-                    <a href="https://x.com/27668grafix" class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center hover:bg-primary transition-all border border-primary/20"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-5 h-5 invert"></a>
-                    <a href="https://www.instagram.com/27668grafix" class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center hover:bg-primary transition-all border border-primary/20"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-5 h-5 invert"></a>
+                    <a href="https://www.facebook.com/share/1DNgLLHFEY/" class="w-10 h-10 rounded border border-primary/30 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5 invert"></a>
+                    <a href="https://x.com/27668grafix" class="w-10 h-10 rounded border border-primary/30 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-5 h-5 invert"></a>
+                    <a href="https://www.instagram.com/27668grafix" class="w-10 h-10 rounded border border-primary/30 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-5 h-5 invert"></a>
                 </div>
             </div>
 
-            <!-- Contact Detail Column -->
+            <!-- Col 2: Studio Details -->
             <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-xs mb-8">Studio Details</h4>
+                <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Studio Details</h4>
                 <ul class="space-y-6 text-gold-bright text-xs font-bold uppercase tracking-widest">
                     <li class="flex items-start gap-4">
                         <span class="material-symbols-outlined text-primary">location_on</span>
@@ -203,45 +229,49 @@
                         <span class="material-symbols-outlined text-primary">mail</span>
                         <span class="lowercase">info@27668grafix.com</span>
                     </li>
+                    <li class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary">mail</span>
+                        <span class="lowercase">27.668grafix@gmail.com</span>
+                    </li>
                 </ul>
             </div>
 
-            <!-- Info Links -->
+            <!-- Col 3: Information -->
             <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-xs mb-8">Information</h4>
+                <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Information</h4>
                 <ul class="space-y-4 text-gold-bright text-xs font-bold uppercase tracking-widest">
                     <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
                     <li><a href="javascript:void(0)" onclick="openModal('privacyModal')" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('returnModal')" class="hover:text-white transition-colors">Return & Refund Policy</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('returnModal')" class="hover:text-white transition-colors">Return & Refund</a></li>
                     <li><a href="javascript:void(0)" onclick="openModal('shippingModal')" class="hover:text-white transition-colors">Shipping Policy</a></li>
                 </ul>
             </div>
 
-            <!-- Payment -->
+            <!-- Col 4: Payments -->
             <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-xs mb-8">Accepted Payments</h4>
-                <p class="text-gold-bright text-[10px] mb-6 font-bold uppercase tracking-widest">Direct payment to account for quick service.</p>
-                <div class="flex flex-wrap gap-3 opacity-80">
+                <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Payments Accepted</h4>
+                <div class="flex flex-wrap gap-4 opacity-80 mb-8">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4">
                     <img src="https://cdn.freelogovectors.net/wp-content/uploads/2023/11/verve-logo-freelogovectors.net_.png" class="h-4">
                 </div>
+                <a href="https://wa.me/2348033491036" class="inline-flex items-center gap-3 bg-primary text-black px-6 py-3 rounded-lg font-black text-[10px] uppercase tracking-widest">Need Help? Chat Us</a>
             </div>
         </div>
         <div class="text-center pt-12 border-t border-primary/20">
-            <p class="text-primary font-black uppercase text-[10px] tracking-[0.5em]">© 2024 27.668GRAFIX PRINTING. ALL RIGHTS RESERVED.</p>
+            <p class="text-primary font-black uppercase text-[10px] tracking-[0.5em]">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</p>
         </div>
     </div>
 </footer>
 
-<!-- Policy Modals -->
+<!-- Policy Modals Logic -->
 <div id="infoModalOverlay" class="fixed inset-0 bg-dark/95 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
-    <div class="bg-black border-2 border-primary rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-[0_0_50px_rgba(212,175,55,0.2)] relative">
+    <div class="bg-black border-2 border-primary rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl relative">
         <div class="p-6 border-b border-primary/20 flex justify-between items-center">
             <h3 id="infoModalTitle" class="text-xl font-black text-primary uppercase italic"></h3>
             <button onclick="closeModal()" class="text-primary hover:text-white text-4xl">&times;</button>
         </div>
-        <div id="infoModalBody" class="p-8 text-gold-bright leading-relaxed text-sm overflow-y-auto modal-scroll"></div>
+        <div id="infoModalBody" class="p-8 text-gold-bright leading-relaxed text-sm overflow-y-auto modal-scroll space-y-4"></div>
     </div>
 </div>
 
@@ -249,12 +279,9 @@
     function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
     
     const policyData = {
-        privacyModal: { title: "Privacy Policy", body: "<p>Your design files and personal data are strictly used for order fulfillment and never shared with third parties.</p>" },
-        returnModal: { 
-            title: "Return & Refund", 
-            body: `<div class='space-y-4 font-bold uppercase text-xs tracking-widest'><p>Our policy lasts 30 days. Items must be unused and in original packaging.</p><p>Refunds are made after a replacement of perfect product has been exhausted.</p></div>` 
-        },
-        shippingModal: { title: "Shipping Policy", body: "<p>Partners: Bolt, Kwik.com and DHL. International orders reach US in 3-5 work days.</p>" }
+        privacyModal: { title: "Privacy Policy", body: "<p>Your brand files and personal data are strictly used for order fulfillment and never shared with third parties.</p>" },
+        returnModal: { title: "Return & Refund", body: "<p>Policy lasts 30 days. Items must be unused and in original packaging.</p>" },
+        shippingModal: { title: "Shipping Policy", body: "<p>Partners: Bolt, Kwik.com and DHL. International delivery in 3-5 work days.</p>" }
     };
 
     function openModal(type) {
@@ -264,7 +291,6 @@
         document.getElementById('infoModalOverlay').classList.remove('hidden');
     }
     function closeModal() { document.getElementById('infoModalOverlay').classList.add('hidden'); }
-    window.onclick = function(e) { if (e.target.id === 'infoModalOverlay') closeModal(); }
 </script>
 
 </body>
