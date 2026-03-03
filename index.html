@@ -58,10 +58,18 @@
 </header>
 
 <!-- Mobile Menu -->
-<div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 w-full z-[90] bg-white border-b border-primary p-6 flex flex-col gap-6 uppercase text-xs font-bold tracking-widest shadow-2xl">
-    <a href="store.html">Store</a>
-    <a href="about.html">About Us</a>
-    <a href="login.html">Login</a>
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[110] bg-white p-8 flex flex-col gap-6 uppercase text-sm font-black tracking-widest shadow-2xl">
+    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-4">
+        <h2 class="text-dark italic">27668<span class="text-primary">GRAFIX</span></h2>
+        <button onclick="toggleMobileMenu()" class="text-3xl text-primary">&times;</button>
+    </div>
+    <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-primary">Home</a>
+    <a href="store.html" onclick="toggleMobileMenu()" class="hover:text-primary">Store</a>
+    <a href="about.html" onclick="toggleMobileMenu()" class="hover:text-primary">About Us</a>
+    <a href="signup.html" onclick="toggleMobileMenu()" class="hover:text-primary">Signup</a>
+    <a href="login.html" onclick="toggleMobileMenu()" class="hover:text-primary text-dark">Login</a>
+    <a href="#contact-form-section" onclick="toggleMobileMenu()" class="text-primary">Contact Us</a>
 </div>
 
 <main class="pt-16">
