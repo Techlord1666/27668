@@ -11,7 +11,7 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#D4AF37", // Luxury Gold
+                        "primary": "#D4AF37", 
                         "gold-bright": "#FFD700",
                         "dark": "#000000",
                     },
@@ -29,190 +29,141 @@
         .client-track { display: flex; width: calc(250px * 36); animation: scroll 40s linear infinite; }
         .client-logo { width: 140px; height: 70px; object-fit: contain; margin: 0 40px; filter: grayscale(100%); opacity: 0.6; }
         
-        /* Box Backgrounds from Screenshot */
         .box-beige { background-color: #F2EDE7; }
         .box-green { background-color: #D0D9D1; }
+        /* Transparent Gold Box */
+        .gold-glass { background: rgba(212, 175, 55, 0.08); border: 2px solid rgba(212, 175, 55, 0.3); }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
 
-<!-- Navigation -->
 <header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-dark">
         <div class="flex items-center justify-between h-16 md:h-20">
             <div class="flex items-center gap-3">
-                <div class="logo-container">
-                    <img src="logo.png" alt="27668grafix Logo">
-                </div>
+                <div class="logo-container"><img src="logo.png" alt="27668grafix Logo"></div>
                 <h2 class="text-dark text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
-            
             <nav class="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest">
                 <a href="store.html" class="hover:text-primary transition-colors">Store</a>
                 <a href="about.html" class="hover:text-primary transition-colors">About</a>
                 <a href="#footer-contact" class="hover:text-primary transition-colors">Contact</a>
             </nav>
-
             <div class="flex items-center gap-4">
-                <a href="login.html" class="hidden sm:block text-[11px] font-black uppercase text-dark border-b-2 border-primary">Login</a>
-                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5">
-                    <div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div>
-                </button>
+                <a href="login.html" class="hidden sm:block text-[11px] font-black uppercase border-b-2 border-primary">Login</a>
+                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5"><div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div></button>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 w-full z-[90] bg-white border-b border-primary p-6 flex flex-col gap-6 uppercase text-xs font-bold tracking-widest shadow-2xl">
+    <a href="store.html">Store</a>
+    <a href="about.html">About Us</a>
+    <a href="login.html">Login</a>
+</div>
+
 <main class="pt-16">
-    <!-- Hero Image Area -->
+    <!-- 1. Hero Image Area -->
     <section class="w-full h-[35vh] md:h-[55vh] overflow-hidden">
         <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=2071" class="w-full h-full object-cover" alt="Workshop">
     </section>
 
-    <!-- Content Section (Aligned Left) -->
-    <section class="py-16 px-6 lg:px-20 bg-white border-b border-slate-50">
+    <!-- 2. Hero Content Section -->
+    <section class="py-16 px-6 lg:px-20 bg-white">
         <div class="max-w-7xl mx-auto flex flex-col items-start text-left">
-            <h4 class="text-dark font-black uppercase tracking-widest text-xs mb-6 flex items-center gap-2">TRUSTED PRINT SHOP 🔥</h4>
-            <h1 class="text-4xl md:text-6xl font-black text-dark leading-tight uppercase tracking-tighter mb-8 max-w-3xl">
-                We Design, Print, Brand <br> giving your Brand visibility
-            </h1>
-            <p class="text-slate-600 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
-                Get your business more visibility, by custom branding, prints, stickers for party souvenirs & promotional gifting items.
-            </p>
+            <h4 class="text-dark font-black uppercase tracking-widest text-xs mb-6">TRUSTED PRINT SHOP 🔥</h4>
+            <h1 class="text-4xl md:text-6xl font-black text-dark leading-tight uppercase tracking-tighter mb-8 max-w-3xl">We Design, Print, Brand <br> giving your Brand visibility</h1>
+            <p class="text-slate-600 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">Get your business more visibility, by custom branding, prints, stickers for party souvenirs & promotional gifting items.</p>
             <ul class="space-y-6 mb-12">
-                <li class="flex items-center gap-4 text-lg font-bold">
-                    <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                    Verified source of quality print materials
-                </li>
-                <li class="flex items-center gap-4 text-lg font-bold">
-                    <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                    Proudly & meticulously produced in Nigeria
-                </li>
-                <li class="flex items-center gap-4 text-lg font-bold">
-                    <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                    Delivery in <span class="text-primary font-black ml-1 uppercase">3 to 5 work days</span>
-                </li>
-                <li class="flex items-center gap-4 text-lg font-bold">
-                    <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                    Designers supports on the Journey
-                </li>
+                <li class="flex items-center gap-4 text-lg font-bold"><svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Verified source of quality print materials</li>
+                <li class="flex items-center gap-4 text-lg font-bold"><svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Proudly & meticulously produced in Nigeria</li>
+                <li class="flex items-center gap-4 text-lg font-bold"><svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Delivery in <span class="text-primary font-black uppercase ml-1">3 to 5 work days</span></li>
+                <li class="flex items-center gap-4 text-lg font-bold"><svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Designers supports on the Journey</li>
             </ul>
-            <a href="https://wa.me/2348033491036" target="_blank" class="bg-primary text-white px-10 py-5 rounded-lg font-black uppercase text-sm tracking-widest flex items-center gap-4 hover:bg-dark transition-all">
-                START PRINTING 
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-            </a>
+            <a href="https://wa.me/2348033491036" target="_blank" class="bg-primary text-white px-10 py-5 rounded-lg font-black uppercase text-sm tracking-widest flex items-center gap-4 hover:bg-dark transition-all shadow-xl shadow-primary/20">START PRINTING <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg></a>
         </div>
     </section>
 
-    <!-- Our Products Range Section (Using EXACT filenames provided) -->
-    <section class="py-20 px-6 lg:px-20 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-black uppercase italic tracking-tighter text-dark mb-2">Our Products Range</h2>
-                    <p class="text-slate-500 text-sm max-w-xl">Explore our range, from personalized branding prints, stickers, souvenirs & promotional gifts.</p>
-                </div>
-                <a href="store.html" class="flex items-center gap-2 border-2 border-slate-200 px-6 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest hover:border-primary transition-all">
-                    Browse all catalog <svg class="w-4 h-4 text-primary ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-                </a>
+    <!-- 3. Products Range Section -->
+    <section class="py-20 px-6 lg:px-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="space-y-4 group">
+                <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200"><img src="27.668grafix.com-promotional-gifting-items-paperbag-product.jpg" class="w-full h-full object-cover" alt="Paper Bags"></div>
+                <h3 class="text-sm font-black uppercase tracking-widest">Paper Bags</h3>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Paper Bags -->
-                <div class="space-y-4 group cursor-pointer">
-                    <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-sm border border-slate-100">
-                        <img src="27.668grafix.com-promotional-gifting-items-paperbag-product.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Paper Bags">
-                    </div>
-                    <h3 class="text-sm font-black uppercase tracking-widest text-dark">Paper Bags</h3>
-                </div>
-                <!-- Callcards -->
-                <div class="space-y-4 group cursor-pointer">
-                    <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-sm border border-slate-100">
-                        <img src="27888grafix.com-direct-imaging-callcards-.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Callcards">
-                    </div>
-                    <h3 class="text-sm font-black uppercase tracking-widest text-dark">Callcards</h3>
-                </div>
-                <!-- Brochures -->
-                <div class="space-y-4 group cursor-pointer">
-                    <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-sm border border-slate-100">
-                        <img src="27668grafix.com-direct-imaging-brochures-.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Brochures">
-                    </div>
-                    <h3 class="text-sm font-black uppercase tracking-widest text-dark">Brochures</h3>
-                </div>
+            <div class="space-y-4 group">
+                <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200"><img src="27888grafix.com-direct-imaging-callcards-.jpeg" class="w-full h-full object-cover" alt="Callcards"></div>
+                <h3 class="text-sm font-black uppercase tracking-widest">Callcards</h3>
+            </div>
+            <div class="space-y-4 group">
+                <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200"><img src="27668grafix.com-direct-imaging-brochures-.jpeg" class="w-full h-full object-cover" alt="Brochures"></div>
+                <h3 class="text-sm font-black uppercase tracking-widest">Brochures</h3>
             </div>
         </div>
     </section>
 
-    <!-- Twin Feature Boxes (Professional Redesign) -->
+    <!-- 4. Twin Boxes Section -->
     <section class="py-12 px-6 lg:px-20 bg-white">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <!-- Left Box -->
-            <div class="box-beige rounded-[3rem] p-10 md:p-14 relative flex flex-col justify-between min-h-[500px]">
-                <div>
-                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-800 mb-4 flex items-center gap-2">CREATIVE, UNIQUE, SHARP PRINTS ♻️</p>
-                    <h3 class="text-3xl md:text-4xl font-black text-dark leading-tight uppercase italic tracking-tighter">Direct Imaging or <br> Offset by MO for <br> bulk runs</h3>
-                </div>
-                <div class="relative mt-auto pt-10">
-                    <div class="flex flex-col gap-4 relative z-10">
-                        <div class="bg-white px-5 py-3 rounded-full shadow-lg flex items-center gap-3 w-fit text-xs font-bold border border-slate-100">
-                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
-                            High Grammes Cards
-                        </div>
-                        <div class="bg-white px-5 py-3 rounded-full shadow-lg flex items-center gap-3 w-fit text-xs font-bold border border-slate-100">
-                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
-                            Sharp Prints
-                        </div>
-                    </div>
-                    <!-- Hand holding box image -->
-                    <img src="https://images.unsplash.com/photo-1526280760708-f742911af817?w=500&q=80" class="absolute -bottom-10 -right-4 w-2/3 h-full object-contain pointer-events-none" alt="Professional Box">
-                </div>
+            <div class="box-beige rounded-[3rem] p-10 flex flex-col justify-between min-h-[450px]">
+                <h3 class="text-3xl font-black text-dark leading-tight uppercase italic tracking-tighter">Direct Imaging or <br> Offset by MO for bulk runs</h3>
+                <img src="https://images.unsplash.com/photo-1526280760708-f742911af817?w=500" class="w-2/3 ml-auto rounded-xl shadow-lg">
             </div>
-
-            <!-- Right Box -->
-            <div class="box-green rounded-[3rem] p-10 md:p-14 relative flex flex-col justify-between min-h-[500px]">
-                <div>
-                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-4">3-5 WORKING DAYS, READY TO SHIP🔥</p>
-                    <h3 class="text-3xl md:text-4xl font-black text-dark leading-tight uppercase italic tracking-tighter mb-8 italic">we print. we brand. <br> we deliver to your <br> doorstep!</h3>
-                    <ul class="space-y-4 mb-10">
-                        <li class="flex items-center gap-4 text-sm font-bold text-slate-700">
-                            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg> Save cost & time
-                        </li>
-                        <li class="flex items-center gap-4 text-sm font-bold text-slate-700">
-                            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg> More brand impact
-                        </li>
-                    </ul>
-                    <a href="store.html" class="bg-dark text-white px-10 py-4 rounded-xl font-black uppercase text-xs tracking-widest inline-flex items-center gap-3 hover:scale-105 transition-transform">
-                        Customize Now <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-                    </a>
-                </div>
-                <!-- Orange mailer bag image -->
-                <img src="https://images.unsplash.com/photo-1591154665854-01dbce58e4ee?w=400&q=80" class="absolute -bottom-4 -right-4 w-1/2 h-1/2 object-contain rotate-12 drop-shadow-2xl" alt="Mailer bag">
+            <div class="box-green rounded-[3rem] p-10 flex flex-col justify-between min-h-[450px]">
+                <h3 class="text-3xl font-black text-dark leading-tight uppercase italic tracking-tighter italic">we print. we brand. <br> we deliver to your doorstep!</h3>
+                <a href="store.html" class="bg-dark text-white px-10 py-4 rounded-xl font-black uppercase text-xs w-fit">Customize Now ></a>
+                <img src="https://images.unsplash.com/photo-1591154665854-01dbce58e4ee?w=400" class="w-1/2 ml-auto rotate-12 drop-shadow-xl">
             </div>
         </div>
     </section>
 
-    <!-- The Creed Section -->
-    <section class="py-24 bg-dark text-white border-y-4 border-primary">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-12">Our CREED</h2>
-            <p class="text-3xl md:text-6xl font-black uppercase italic tracking-tighter leading-none mb-8">
-                Idesign graphics.web. <span class="text-primary">Iprint.</span> Ibrand. <span class="text-primary">Ideliver.</span>
-            </p>
-            <p class="text-primary/70 text-xs md:text-sm font-bold uppercase tracking-widest">Promotional Gifts Branding • Printing & Designs • Brand Development</p>
-        </div>
-    </section>
-
-    <!-- Client Logo Slider -->
-    <section class="py-16 bg-white overflow-hidden">
-        <p class="text-center text-[9px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">Trusted Industry Leaders</p>
+    <!-- 5. Client Logo Slider (ABOVE How It Works) -->
+    <section class="py-16 bg-white overflow-hidden border-y border-slate-100">
+        <p class="text-center text-[9px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10 italic">"See the list of Clients we serve & impact creative solutions."</p>
         <div class="client-track">
             <img src="27668grafix.jpg" class="client-logo"><img src="ecs2.png" class="client-logo"><img src="AIPLABRO-LOGO.jpg" class="client-logo"><img src="euromed.jpg" class="client-logo"><img src="images-1.png" class="client-logo"><img src="ecs3.png" class="client-logo"><img src="UBA-logo-3.gif" class="client-logo">
-            <img src="27668grafix.jpg" class="client-logo"><img src="ecs2.png" class="client-logo"><img src="AIPLABRO-LOGO.jpg" class="client-logo">
+            <img src="27668grafix.jpg" class="client-logo"><img src="ecs2.png" class="client-logo"><img src="AIPLABRO-LOGO.jpg" class="client-logo"><img src="euromed.jpg" class="client-logo">
+        </div>
+    </section>
+
+    <!-- 6. How It Works (Gold Box BELOW Slider) -->
+    <section class="py-20 px-6 lg:px-20 bg-white">
+        <div class="max-w-5xl mx-auto gold-glass rounded-[3rem] p-10 md:p-20 relative">
+            <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-dark mb-12">How it works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-dark">
+                <div class="space-y-4">
+                    <span class="w-12 h-12 bg-dark text-primary rounded-full flex items-center justify-center font-black text-xl">1</span>
+                    <h4 class="font-black uppercase text-xs tracking-widest leading-tight">Customize your prints or branding</h4>
+                    <p class="text-slate-700 text-sm leading-relaxed">Choose from 412 custom products, customize your design with graphics, text or your own uploaded images.</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="w-12 h-12 bg-dark text-primary rounded-full flex items-center justify-center font-black text-xl">2</span>
+                    <h4 class="font-black uppercase text-xs tracking-widest leading-tight">Set up shipping instructions</h4>
+                    <p class="text-slate-700 text-sm leading-relaxed">Get your custom packaging when you need it, with delivery in as little as 7 days for some products.</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="w-12 h-12 bg-dark text-primary rounded-full flex items-center justify-center font-black text-xl">3</span>
+                    <h4 class="font-black uppercase text-xs tracking-widest leading-tight">Track the progress of orders</h4>
+                    <p class="text-slate-700 text-sm leading-relaxed">Get your custom packaging when you need it, with delivery in as little as 7 days for some products.</p>
+                </div>
+            </div>
+            <div class="mt-16 flex justify-center">
+                <a href="https://wa.me/2348033491036" target="_blank" class="bg-dark text-primary px-12 py-5 rounded-full font-black uppercase text-xs tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">Start Printing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. The Creed (BELOW How It Works) -->
+    <section class="py-24 bg-dark text-white border-y-4 border-primary">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-3xl md:text-6xl font-black uppercase italic tracking-tighter leading-none">Idesign graphics.web. <span class="text-primary gold-glow">Iprint.</span> Ibrand. <span class="text-primary gold-glow">Ideliver.</span></p>
         </div>
     </section>
 </main>
 
-<!-- BLACK & GOLD FOOTER -->
+<!-- Detailed Footer -->
 <footer id="footer-contact" class="bg-black text-primary pt-24 pb-12 px-6">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
@@ -222,29 +173,32 @@
                     <h2 class="text-white text-xl font-black italic uppercase tracking-tighter">27668<span class="text-primary">grafix</span></h2>
                 </div>
                 <p class="text-gold-bright text-sm font-bold italic leading-relaxed">The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events.</p>
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/share/1DNgLLHFEY/" class="w-10 h-10 rounded border border-primary/30 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5 invert"></a>
+                    <a href="https://x.com/27668grafix" class="w-10 h-10 rounded border border-primary/30 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-5 h-5 invert"></a>
+                    <a href="https://www.instagram.com/27668grafix" class="w-10 h-10 rounded border border-primary/30 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-5 h-5 invert"></a>
+                </div>
             </div>
             <div>
                 <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Studio Details</h4>
                 <ul class="space-y-6 text-gold-bright text-xs font-bold uppercase tracking-widest">
                     <li>18, George Street, Igbobi, Shomolu, Lagos.</li>
                     <li>234 803 349 1036</li>
-                    <li class="lowercase">info@27668grafix.com</li>
+                    <li class="lowercase font-normal">info@27668grafix.com</li>
+                    <li class="lowercase font-normal">27.668grafix@gmail.com</li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Quick Links</h4>
+                <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Information</h4>
                 <ul class="space-y-4 text-gold-bright text-xs font-bold uppercase tracking-widest">
-                    <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="store.html" class="hover:text-white transition-colors">Store</a></li>
+                    <li><a href="about.html" class="hover:text-white">About Us</a></li>
+                    <li><a href="store.html" class="hover:text-white">Store Catalog</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Accepted Payments</h4>
-                <div class="flex flex-wrap gap-4 opacity-80 mb-8">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4">
-                </div>
-                <a href="https://wa.me/2348033491036" class="inline-flex items-center gap-3 bg-primary text-black px-6 py-3 rounded-lg font-black text-[10px] uppercase tracking-widest">Chat with Us</a>
+                <div class="flex flex-wrap gap-4 opacity-80 mb-8"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4"></div>
+                <a href="https://wa.me/2348033491036" class="bg-primary text-black px-8 py-3 rounded-lg font-black text-[10px] uppercase block text-center transition-all hover:scale-105">Chat with Us</a>
             </div>
         </div>
         <div class="text-center pt-12 border-t border-primary/10">
