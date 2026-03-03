@@ -601,6 +601,62 @@
         </div>
     </div>
 </section>
+
+    <!-- CONTACT FORM SECTION -->
+<section id="contact-form-section" class="py-24 px-6 lg:px-20 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <!-- Left Side: Visual Branding -->
+            <div class="space-y-8">
+                <h4 class="text-primary font-black uppercase tracking-[0.3em] text-xs italic">Get in Touch</h4>
+                <h2 class="text-4xl md:text-5xl font-black text-dark uppercase italic tracking-tighter leading-tight">
+                    Ready to Start <br> Your <span class="text-primary">Branding Journey?</span>
+                </h2>
+                <p class="text-slate-600 font-medium leading-relaxed">
+                    Our team of expert designers and print specialists are ready to bring your vision to life. Fill out the form and we will reach out via WhatsApp or Email immediately.
+                </p>
+                <div class="flex items-center gap-4 text-dark font-black uppercase text-[10px] tracking-widest">
+                    <span class="flex items-center gap-2"><div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div> 24/7 Support</span>
+                    <span class="flex items-center gap-2"><div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div> Global Logistics</span>
+                </div>
+            </div>
+
+            <!-- Right Side: The Form -->
+            <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-slate-100">
+                <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">Your Full Name</label>
+                        <input type="text" id="cName" required class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-bold" placeholder="e.g. David Ajibike">
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">Service Required</label>
+                        <select id="cService" class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-bold text-slate-500">
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Corporate Branding">Corporate Branding</option>
+                            <option value="Promotional Gifts">Promotional Gifts</option>
+                            <option value="Custom Apparel">Custom Apparel</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">How can we help?</label>
+                        <textarea id="cMessage" required class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-bold h-32" placeholder="Describe your project details..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-dark text-primary py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl hover:bg-primary hover:text-dark transition-all transform hover:scale-105 active:scale-95">
+                        Send Message to WhatsApp
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Logic for the form -->
+
 <!-- Detailed Footer -->
 <!-- Finalized Premium Black & Gold Footer -->
 <footer id="footer-contact" class="bg-black text-primary pt-20 pb-10 px-6 border-t-2 border-primary/20">
@@ -782,6 +838,18 @@
     // Close on backdrop click
     window.onclick = function(e) {
         if (e.target.id === 'policyModalOverlay') closePolicyModal();
+    }
+
+      function handleContactSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById('cName').value;
+        const service = document.getElementById('cService').value;
+        const message = document.getElementById('cMessage').value;
+
+        // Formats message for WhatsApp
+        const waText = `Hello 27668grafix! 🔥%0A%0A*NEW CONTACT INQUIRY*%0A*Name:* ${name}%0A*Service:* ${service}%0A*Message:* ${message}%0A%0A_Sent from website contact form_`;
+        
+        window.open(`https://wa.me/2348033491036?text=${waText}`, '_blank');
     }
 </script>
 
