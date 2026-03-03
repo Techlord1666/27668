@@ -3,17 +3,16 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>27668grafix | Luxury Gold & Black Printing</title>
+    <title>27668grafix | Premium Gold & Black Printing</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         "primary": "#D4AF37", // Luxury Gold
-                        "gold-bright": "#FFD700", // High-visibility Gold
+                        "gold-bright": "#FFD700",
                         "dark": "#000000",
                     },
                 },
@@ -22,41 +21,42 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; }
-        .hamburger-line { display: block; width: 24px; height: 2px; background-color: #000000; margin: 5px auto; }
+        /* Professional Logo Circle */
+        .logo-container { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #D4AF37; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; }
+        .logo-container img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* Infinite Client Slider */
+        /* Client Slider Animation */
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .client-track { display: flex; width: calc(250px * 36); animation: scroll 40s linear infinite; }
         .client-logo { width: 140px; height: 70px; object-fit: contain; margin: 0 40px; filter: grayscale(100%); opacity: 0.6; }
-        
-        .modal-scroll::-webkit-scrollbar { width: 4px; }
-        .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
-        
-        /* Ensure Logo shows */
-        .logo-circle { width: 48px; height: 48px; border-radius: 50%; border: 2px solid #D4AF37; object-fit: cover; background: #eee; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
 
 <!-- Navigation -->
-<header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-lg border-b border-slate-100">
+<header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
+            <!-- Fixed Logo -->
             <div class="flex items-center gap-3">
-                <img src="logo.png" alt="Logo" class="logo-circle">
+                <div class="logo-container">
+                    <img src="logo.png" alt="27668grafix Logo">
+                </div>
                 <h2 class="text-dark text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
             
             <nav class="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest">
-                <a href="store.html" class="hover:text-primary">Store</a>
-                <a href="about.html" class="hover:text-primary">About</a>
-                <a href="javascript:void(0)" onclick="openModal('contactModal')" class="hover:text-primary">Contact</a>
+                <a href="store.html" class="hover:text-primary transition-colors">Store</a>
+                <a href="about.html" class="hover:text-primary transition-colors">About</a>
+                <a href="#contact-section" class="hover:text-primary transition-colors">Contact</a>
             </nav>
 
             <div class="flex items-center gap-4">
                 <a href="login.html" class="hidden sm:block text-[11px] font-black uppercase text-dark border-b-2 border-primary">Login</a>
-                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center">
-                    <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5">
+                    <div class="w-6 h-0.5 bg-dark"></div>
+                    <div class="w-6 h-0.5 bg-dark"></div>
+                    <div class="w-6 h-0.5 bg-dark"></div>
                 </button>
             </div>
         </div>
@@ -66,94 +66,65 @@
 <!-- Mobile Menu -->
 <div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 w-full z-[90] bg-white border-b border-primary p-6 flex flex-col gap-6 uppercase text-xs font-bold tracking-widest shadow-2xl">
     <a href="store.html">Store</a>
-    <a href="about.html">About</a>
+    <a href="about.html">About Us</a>
     <a href="login.html">Login</a>
-    <a href="javascript:void(0)" onclick="toggleMobileMenu(); openModal('contactModal');">Contact</a>
+    <a href="#contact-section" onclick="toggleMobileMenu()">Contact</a>
 </div>
 
 <main class="pt-16">
-    <!-- Hero Image (No Text Overlay) -->
-    <section class="w-full h-[40vh] md:h-[60vh] overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=2071" class="w-full h-full object-cover" alt="Print Shop">
+    <!-- Hero Image Area -->
+    <section class="w-full h-[35vh] md:h-[55vh] overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=2071" class="w-full h-full object-cover" alt="Workshop">
     </section>
 
-    <!-- Hero Content (Left Aligned as requested) -->
+    <!-- Content Section (Aligned Left as per screenshot) -->
     <section class="py-16 px-6 lg:px-20 bg-white">
         <div class="max-w-7xl mx-auto flex flex-col items-start text-left">
-            <h4 class="text-dark font-black uppercase tracking-widest text-sm mb-6">TRUSTED PRINT SHOP 🔥</h4>
+            <h4 class="text-dark font-black uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
+                TRUSTED PRINT SHOP 🔥
+            </h4>
             
-            <h1 class="text-4xl md:text-6xl font-black text-dark leading-tight uppercase tracking-tighter mb-8 max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-black text-dark leading-tight uppercase tracking-tighter mb-8 max-w-3xl">
                 We Design, Print, Brand <br> giving your Brand visibility
             </h1>
 
-            <p class="text-slate-700 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-medium">
-                Get your business more visibility by custom branding, prints, stickers for party souvenirs & promotional gifting items.
+            <p class="text-slate-600 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+                Get your business more visibility, by custom branding, prints, stickers for party souvenirs & promotional gifting items.
             </p>
 
-            <!-- Checkmark List -->
-            <ul class="space-y-4 mb-12">
-                <li class="flex items-center gap-4 text-md font-bold text-dark">
-                    <span class="material-symbols-outlined text-primary">check_circle</span>
+            <!-- Corrected Feature List with SVG Ticks -->
+            <ul class="space-y-6 mb-12">
+                <li class="flex items-center gap-4 text-lg font-bold">
+                    <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                     Verified source of quality print materials
                 </li>
-                <li class="flex items-center gap-4 text-md font-bold text-dark">
-                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                <li class="flex items-center gap-4 text-lg font-bold">
+                    <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                     Proudly & meticulously produced in Nigeria
                 </li>
-                <li class="flex items-center gap-4 text-md font-bold text-dark">
-                    <span class="material-symbols-outlined text-primary">check_circle</span>
-                    Delivery in <span class="text-primary font-black uppercase">3 to 5 work days</span>
+                <li class="flex items-center gap-4 text-lg font-bold">
+                    <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    Delivery in <span class="text-primary font-black ml-1 uppercase">3 to 5 work days</span>
                 </li>
-                <li class="flex items-center gap-4 text-md font-bold text-dark">
-                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                <li class="flex items-center gap-4 text-lg font-bold">
+                    <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                     Designers supports on the Journey
                 </li>
             </ul>
 
-            <!-- Single Gold Button -->
-            <a href="https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥" target="_blank" 
-               class="bg-primary text-white px-10 py-4 rounded-lg font-black uppercase text-xs tracking-widest flex items-center gap-3 shadow-xl hover:scale-105 transition-transform">
-                Start Printing <span class="material-symbols-outlined">chevron_right</span>
+            <!-- Corrected Button -->
+            <a href="https://wa.me/2348033491036" target="_blank" 
+               class="bg-primary text-white px-10 py-5 rounded-lg font-black uppercase text-sm tracking-widest flex items-center justify-center gap-4 hover:bg-dark transition-all shadow-xl shadow-primary/20">
+                START PRINTING 
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
             </a>
         </div>
     </section>
 
-    <!-- Product Range (Circles as per screenshot) -->
-    <section class="py-20 bg-slate-50 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-12">
-                <h2 class="text-3xl font-black uppercase italic tracking-tighter">Our Products Range</h2>
-                <a href="store.html" class="text-[10px] font-black uppercase tracking-widest border-b-2 border-primary">Browse all catalog</a>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
-                <div class="text-center group cursor-pointer">
-                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
-                    <p class="text-[10px] font-black uppercase tracking-widest">Umbrellas</p>
-                </div>
-                <div class="text-center group cursor-pointer">
-                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
-                    <p class="text-[10px] font-black uppercase tracking-widest">T-Shirts</p>
-                </div>
-                <div class="text-center group cursor-pointer">
-                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1514228742587-6b1558fbed20?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
-                    <p class="text-[10px] font-black uppercase tracking-widest">Ceramic Mugs</p>
-                </div>
-                <div class="text-center group cursor-pointer">
-                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
-                    <p class="text-[10px] font-black uppercase tracking-widest">Hoodies</p>
-                </div>
-                <div class="text-center group cursor-pointer">
-                    <div class="aspect-square rounded-full bg-white border border-slate-200 mb-4 overflow-hidden"><img src="https://images.unsplash.com/photo-1544816153-1215800f9440?w=400" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"></div>
-                    <p class="text-[10px] font-black uppercase tracking-widest">Tote Bags</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- THE CREED (BLACK & GOLD) -->
+    <!-- The Creed Section -->
     <section class="py-24 bg-dark text-white border-y-4 border-primary">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-12 italic">Our CREED</h2>
+            <h2 class="text-primary text-[10px] font-black uppercase tracking-[0.5em] mb-12">Our CREED</h2>
             <p class="text-3xl md:text-6xl font-black uppercase italic tracking-tighter leading-none mb-8">
                 Idesign graphics.web. <span class="text-primary">Iprint.</span> Ibrand. <span class="text-primary">Ideliver.</span>
             </p>
@@ -163,134 +134,74 @@
         </div>
     </section>
 
-    <!-- Client Logo Slider -->
-    <section class="py-16 bg-white overflow-hidden border-b border-slate-100">
-        <p class="text-center text-[9px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">Trusted Industry Leaders</p>
+    <!-- Client Slider -->
+    <section class="py-16 bg-white overflow-hidden">
+        <p class="text-center text-[9px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">Trusted by Industry Leaders</p>
         <div class="client-track">
-            <!-- 18 Logo images listed in your prompt -->
-            <img src="27668grafix.com-ncs-skane-logo.png" class="client-logo">
             <img src="27668grafix.jpg" class="client-logo">
             <img src="ecs2.png" class="client-logo">
             <img src="AIPLABRO-LOGO.jpg" class="client-logo">
-            <img src="27668grafix.com-optimalgroup.logo_.jpg" class="client-logo">
-            <img src="harwosprint.ng-corporate-logo.jpg" class="client-logo">
             <img src="euromed.jpg" class="client-logo">
             <img src="images-1.png" class="client-logo">
             <img src="ecs3.png" class="client-logo">
-            <img src="images (2).png" class="client-logo">
-            <img src="27668grafix.com-union-homes-logo.png" class="client-logo">
             <img src="UBA-logo-3.gif" class="client-logo">
-            <img src="27668grafix.com-comegain-consult.jpg" class="client-logo">
-            <img src="ecs.png" class="client-logo">
-            <img src="27668grafix.com-gti-logo-scaled.jpg" class="client-logo">
-            <img src="27668grafix.com-design-chic-logo.jpg" class="client-logo">
-            <img src="27668grafix.com-rehoboth-logo.jpg" class="client-logo">
-            <img src="27668grafix.com-rccg-logo.png" class="client-logo">
-            <!-- Loop -->
-            <img src="27668grafix.com-ncs-skane-logo.png" class="client-logo">
+            <!-- Duplicates -->
             <img src="27668grafix.jpg" class="client-logo">
+            <img src="ecs2.png" class="client-logo">
+            <img src="AIPLABRO-LOGO.jpg" class="client-logo">
         </div>
     </section>
 </main>
 
-<!-- BLACK & BRIGHT GOLD FOOTER (Detailed) -->
-<footer class="bg-black text-primary pt-24 pb-12 px-6">
+<!-- BLACK & GOLD FOOTER -->
+<footer id="contact-section" class="bg-black text-primary pt-24 pb-12 px-6">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-            <!-- Col 1: Brand -->
             <div class="space-y-8">
                 <div class="flex items-center gap-3">
-                    <img src="logo.png" class="logo-circle">
+                    <div class="logo-container border-white/20"><img src="logo.png"></div>
                     <h2 class="text-white text-xl font-black italic uppercase tracking-tighter">27668<span class="text-primary">grafix</span></h2>
                 </div>
-                <p class="text-gold-bright text-sm leading-relaxed font-bold italic">
+                <p class="text-gold-bright text-sm font-bold italic leading-relaxed">
                     The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events.
                 </p>
-                <div class="flex gap-4">
-                    <a href="https://www.facebook.com/share/1DNgLLHFEY/" class="w-10 h-10 rounded border border-primary/30 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5 invert"></a>
-                    <a href="https://x.com/27668grafix" class="w-10 h-10 rounded border border-primary/30 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-5 h-5 invert"></a>
-                    <a href="https://www.instagram.com/27668grafix" class="w-10 h-10 rounded border border-primary/30 flex items-center justify-center hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-5 h-5 invert"></a>
-                </div>
             </div>
 
-            <!-- Col 2: Studio Details -->
             <div>
                 <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Studio Details</h4>
                 <ul class="space-y-6 text-gold-bright text-xs font-bold uppercase tracking-widest">
-                    <li class="flex items-start gap-4">
-                        <span class="material-symbols-outlined text-primary">location_on</span>
-                        <span>18, George Street, Igbobi, Shomolu, Lagos.</span>
-                    </li>
-                    <li class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-primary">call</span>
-                        <span>234 803 349 1036</span>
-                    </li>
-                    <li class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-primary">mail</span>
-                        <span class="lowercase">info@27668grafix.com</span>
-                    </li>
-                    <li class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-primary">mail</span>
-                        <span class="lowercase">27.668grafix@gmail.com</span>
-                    </li>
+                    <li class="flex items-start gap-4"><span>18, George Street, Igbobi, Shomolu, Lagos.</span></li>
+                    <li class="flex items-center gap-4"><span>234 803 349 1036</span></li>
+                    <li class="flex items-center gap-4"><span class="lowercase">info@27668grafix.com</span></li>
+                    <li class="flex items-center gap-4"><span class="lowercase">27.668grafix@gmail.com</span></li>
                 </ul>
             </div>
 
-            <!-- Col 3: Information -->
             <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Information</h4>
+                <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Quick Links</h4>
                 <ul class="space-y-4 text-gold-bright text-xs font-bold uppercase tracking-widest">
                     <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('privacyModal')" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('returnModal')" class="hover:text-white transition-colors">Return & Refund</a></li>
-                    <li><a href="javascript:void(0)" onclick="openModal('shippingModal')" class="hover:text-white transition-colors">Shipping Policy</a></li>
+                    <li><a href="store.html" class="hover:text-white transition-colors">Store</a></li>
                 </ul>
             </div>
 
-            <!-- Col 4: Payments -->
             <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Payments Accepted</h4>
+                <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Accepted Payments</h4>
                 <div class="flex flex-wrap gap-4 opacity-80 mb-8">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4">
-                    <img src="https://cdn.freelogovectors.net/wp-content/uploads/2023/11/verve-logo-freelogovectors.net_.png" class="h-4">
                 </div>
-                <a href="https://wa.me/2348033491036" class="inline-flex items-center gap-3 bg-primary text-black px-6 py-3 rounded-lg font-black text-[10px] uppercase tracking-widest">Need Help? Chat Us</a>
+                <a href="https://wa.me/2348033491036" class="inline-flex items-center gap-3 bg-primary text-black px-6 py-3 rounded-lg font-black text-[10px] uppercase tracking-widest">Chat with Us</a>
             </div>
         </div>
-        <div class="text-center pt-12 border-t border-primary/20">
+        <div class="text-center pt-12 border-t border-primary/10">
             <p class="text-primary font-black uppercase text-[10px] tracking-[0.5em]">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</p>
         </div>
     </div>
 </footer>
 
-<!-- Policy Modals Logic -->
-<div id="infoModalOverlay" class="fixed inset-0 bg-dark/95 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
-    <div class="bg-black border-2 border-primary rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl relative">
-        <div class="p-6 border-b border-primary/20 flex justify-between items-center">
-            <h3 id="infoModalTitle" class="text-xl font-black text-primary uppercase italic"></h3>
-            <button onclick="closeModal()" class="text-primary hover:text-white text-4xl">&times;</button>
-        </div>
-        <div id="infoModalBody" class="p-8 text-gold-bright leading-relaxed text-sm overflow-y-auto modal-scroll space-y-4"></div>
-    </div>
-</div>
-
 <script>
     function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
-    
-    const policyData = {
-        privacyModal: { title: "Privacy Policy", body: "<p>Your brand files and personal data are strictly used for order fulfillment and never shared with third parties.</p>" },
-        returnModal: { title: "Return & Refund", body: "<p>Policy lasts 30 days. Items must be unused and in original packaging.</p>" },
-        shippingModal: { title: "Shipping Policy", body: "<p>Partners: Bolt, Kwik.com and DHL. International delivery in 3-5 work days.</p>" }
-    };
-
-    function openModal(type) {
-        const data = policyData[type];
-        document.getElementById('infoModalTitle').innerText = data.title;
-        document.getElementById('infoModalBody').innerHTML = data.body;
-        document.getElementById('infoModalOverlay').classList.remove('hidden');
-    }
-    function closeModal() { document.getElementById('infoModalOverlay').classList.add('hidden'); }
 </script>
 
 </body>
