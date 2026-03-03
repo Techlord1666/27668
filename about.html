@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>About Us | 27668grafix - Premium Branding</title>
+    <title>About Our Legacy | 27668grafix</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <script>
@@ -31,6 +31,7 @@
         
         .modal-scroll::-webkit-scrollbar { width: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+        .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(255,255,255,1) 100%); }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
@@ -40,23 +41,20 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
             <div class="flex items-center gap-3">
-                <div class="logo-container"><img src="logo.png" alt="Logo"></div>
+                <div class="logo-container"><img src="logo.png" alt="27668grafix Logo"></div>
                 <h2 class="text-dark text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
             
             <nav class="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest">
                 <a href="index.html" class="hover:text-primary transition-colors">Home</a>
                 <a href="store.html" class="hover:text-primary transition-colors">Store</a>
-                <a href="about.html" class="text-primary border-b-2 border-primary">About</a>
+                <a href="about.html" class="text-primary border-b-2 border-primary">About Us</a>
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="login.html" class="hidden sm:block text-[11px] font-black uppercase text-dark">Login</a>
-                <!-- SVG Hamburger Menu (No words) -->
+                <a href="login.html" class="hidden sm:block text-[11px] font-black uppercase text-dark border-b-2 border-primary pb-1">Login</a>
                 <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5">
-                    <div class="w-6 h-0.5 bg-dark"></div>
-                    <div class="w-6 h-0.5 bg-dark"></div>
-                    <div class="w-6 h-0.5 bg-dark"></div>
+                    <div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div>
                 </button>
             </div>
         </div>
@@ -71,16 +69,32 @@
     <a href="javascript:void(0)" onclick="toggleMobileMenu(); openModal('contactModal');">Contact</a>
 </div>
 
-<main class="pt-24">
-    <!-- SECTION 1: Joy of Smart Prints -->
-    <section class="py-16 px-6 lg:px-20 bg-white">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<main>
+    <!-- SECTION 1: NEW HERO SECTION -->
+    <section class="relative h-[70vh] md:h-[85vh] w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-10 hero-gradient"></div>
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070" class="absolute inset-0 w-full h-full object-cover" alt="Branding Legacy">
+        
+        <div class="relative z-20 text-center px-6 max-w-5xl">
+            <span class="inline-block px-5 py-1.5 rounded-full bg-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-6 border border-primary/30 backdrop-blur-sm">Our Legacy & Vision</span>
+            <h1 class="text-white text-5xl md:text-8xl font-black leading-none uppercase italic tracking-tighter mb-6">
+                Redefining <span class="text-primary">Excellence.</span>
+            </h1>
+            <p class="text-slate-100 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed shadow-sm">
+                Nigeria's premium branding powerhouse, delivering world-class craftsmanship from the heart of Lagos to the global stage.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Joy of Smart Prints (Moved below Hero) -->
+    <section class="py-24 px-6 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="order-2 lg:order-1">
-                <img src="ABOUT1.PNG" alt="Smart Prints" class="w-full h-auto rounded-3xl shadow-2xl border border-slate-100">
+                <img src="ABOUT1.PNG" alt="Smart Prints" class="w-full h-auto rounded-[2.5rem] shadow-2xl border border-slate-100">
             </div>
             <div class="order-1 lg:order-2 space-y-8 text-left">
-                <h1 class="text-4xl md:text-6xl font-black text-dark uppercase italic tracking-tighter leading-tight">Bringing Joy of <br> <span class="text-primary">Smart Prints & Branding</span></h1>
-                <p class="text-slate-500 text-lg leading-relaxed max-w-lg">Gift Set for Everyone. Get a headstart with free design templates you can customize in a few clicks.</p>
+                <h2 class="text-4xl md:text-6xl font-black text-dark uppercase italic tracking-tighter leading-tight">Bringing Joy of <br> <span class="text-primary">Smart Prints & Branding</span></h2>
+                <p class="text-slate-500 text-lg leading-relaxed max-w-lg font-medium">Gift Set for Everyone. Get a headstart with free design templates you can customize in a few clicks.</p>
                 <ul class="space-y-4">
                     <li class="flex items-center gap-4 text-dark font-bold text-sm uppercase tracking-widest">
                         <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
@@ -91,55 +105,54 @@
                         Mix and match colors, sizes, and designs
                     </li>
                 </ul>
-                <a href="https://wa.me/2348033491036" class="inline-block bg-dark text-white px-10 py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-xl hover:bg-primary transition-all">Start Designing ></a>
+                <a href="https://wa.me/2348033491036" class="inline-block bg-dark text-white px-10 py-5 rounded-xl font-black uppercase text-xs tracking-widest shadow-xl hover:bg-primary transition-all">Start Designing ></a>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 2: What Makes Us Different (STRICT SVG ICONS - NO WORDS) -->
+    <!-- SECTION 3: What Makes Us Different -->
     <section class="py-24 px-6 lg:px-20 bg-slate-50 border-y border-slate-100 text-center">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-20 text-dark">What Makes <span class="text-primary">27.668grafix</span> Different?</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-20 gap-x-12">
-                <!-- Icon 1 -->
+                <!-- SVG Icon 1 -->
                 <div class="flex flex-col items-center space-y-4">
                     <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg></div>
                     <h4 class="font-black uppercase text-sm tracking-widest text-dark">Quality service</h4>
-                    <p class="text-slate-500 text-[11px] font-bold uppercase leading-tight">Top Notch Finished Products</p>
+                    <p class="text-slate-500 text-[10px] font-black uppercase">Top Notch Finished Products</p>
                 </div>
-                <!-- Icon 2 -->
+                <!-- SVG Icon 2 -->
                 <div class="flex flex-col items-center space-y-4">
                     <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
                     <h4 class="font-black uppercase text-sm tracking-widest text-dark">Outstanding quality</h4>
-                    <p class="text-slate-500 text-[11px] font-bold uppercase leading-tight">We dont compromise standard</p>
+                    <p class="text-slate-500 text-[10px] font-black uppercase">We dont compromise standard</p>
                 </div>
                 <!-- Icon 3 -->
                 <div class="flex flex-col items-center space-y-4">
                     <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg></div>
                     <h4 class="font-black uppercase text-sm tracking-widest text-dark">Happi Delivery</h4>
-                    <p class="text-slate-500 text-[11px] font-bold uppercase leading-tight">Not Done Until Delivery</p>
+                    <p class="text-slate-500 text-[10px] font-black uppercase">Not Done Until Delivery</p>
                 </div>
                 <!-- Icon 4 -->
                 <div class="flex flex-col items-center space-y-4">
-                    <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m3.29-19.29A7 7 0 1112.58 13M16 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></div>
+                    <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg></div>
                     <h4 class="font-black uppercase text-sm tracking-widest text-dark">Custom Support</h4>
-                    <p class="text-slate-500 text-[11px] font-bold uppercase leading-tight">Customer Satisfaction!</p>
+                    <p class="text-slate-500 text-[10px] font-black uppercase">Customer Satisfaction!</p>
                 </div>
                 <!-- Icon 5 -->
                 <div class="flex flex-col items-center space-y-4">
                     <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg></div>
-                    <h4 class="font-black uppercase text-sm tracking-widest text-dark">Worldwide</h4>
+                    <h4 class="font-black uppercase text-sm tracking-widest text-dark">Shipping worldwide</h4>
                 </div>
                 <!-- Icon 6 -->
                 <div class="flex flex-col items-center space-y-4">
                     <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
-                    <h4 class="font-black uppercase text-sm tracking-widest text-dark">Flexible Min</h4>
+                    <h4 class="font-black uppercase text-sm tracking-widest text-dark">Minimums Minimized</h4>
                 </div>
                 <!-- Icon 7 -->
                 <div class="flex flex-col items-center space-y-4">
                     <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
-                    <h4 class="font-black uppercase text-sm tracking-widest text-dark">High Speed</h4>
-                    <p class="text-slate-500 text-[11px] font-bold uppercase leading-tight">Urgent Orders (3-5 Days)</p>
+                    <h4 class="font-black uppercase text-sm tracking-widest text-dark">High Speed Services</h4>
                 </div>
                 <!-- Icon 8 -->
                 <div class="flex flex-col items-center space-y-4">
@@ -150,29 +163,32 @@
         </div>
     </section>
 
-    <!-- SECTION 3: Best Solution & Mission -->
+    <!-- SECTION 4: Best Solution & Product Collage -->
     <section class="py-24 px-6 lg:px-20 bg-white">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div class="space-y-10">
-                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter leading-tight text-dark">We are your best solution for <span class="text-primary">Promotional Items</span></h2>
+                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter leading-tight text-dark">We are your best solution for <span class="text-primary leading-tight text-outline">Promotional Items and Print Productions</span></h2>
                 <div class="space-y-6 text-slate-500 text-sm leading-relaxed">
-                    <p><strong>Designs</strong> - Creative Concepts that sells your brand. Logo, Callcards, Letterheads, Brochures & more.</p>
-                    <p><strong>Branding</strong> - Souvenirs, Promotional Gifts, Advertising - Roll up Stands, Billboards.</p>
+                    <p><strong>Designs</strong> - Creative Concepts that sells your brand and appeals. Logo, Callcards, Brochures & other collaterals.</p>
+                    <p><strong>Print</strong> - Technology meets Skills & experience. Better and faster with experience.</p>
+                    <p><strong>Branding</strong> - Souvenirs, Promotional Gifts, Indoor & Outdoor advertising - Roll up Stands, X-Banners, Billboards.</p>
                 </div>
                 <div class="border-t border-slate-100 pt-8">
-                    <h4 class="text-dark font-black uppercase text-xs tracking-[0.2em] mb-4">Our Mission</h4>
-                    <p class="text-slate-600 leading-relaxed italic">Solving needs through creativity and tech skills perfectly, no hiccups!</p>
+                    <h4 class="text-dark font-black uppercase text-xs tracking-[0.2em] mb-4 underline decoration-primary decoration-4 underline-offset-8">Our Mission</h4>
+                    <p class="text-slate-600 leading-relaxed italic font-medium">In a fast paced developing world, only solution providers are truly value added. Solving needs through creativity and tech skills perfectly, no hiccups!</p>
                 </div>
                 <div class="flex gap-16">
                     <div><p class="text-4xl font-black text-primary italic tracking-tighter">1k+</p><p class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Happy clients</p></div>
                     <div><p class="text-4xl font-black text-primary italic tracking-tighter">92%</p><p class="text-[10px] font-black uppercase text-slate-400 tracking-widest">5 Star Reviews</p></div>
                 </div>
             </div>
-            <div class="flex justify-center"><img src="ABOUT2.PNG" alt="Branding Collage" class="w-full max-w-lg drop-shadow-2xl"></div>
+            <div class="flex justify-center">
+                <img src="ABOUT2.PNG" alt="Product Collage" class="w-full max-w-lg drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
+            </div>
         </div>
     </section>
 
-    <!-- Client Slider (Infinite) -->
+    <!-- SECTION 5: Client Logo Slider -->
     <section class="py-12 bg-white overflow-hidden border-y border-slate-100">
         <div class="client-track">
             <img src="27668grafix.jpg" class="client-logo"><img src="ecs2.png" class="client-logo"><img src="AIPLABRO-LOGO.jpg" class="client-logo"><img src="euromed.jpg" class="client-logo"><img src="images-1.png" class="client-logo"><img src="ecs3.png" class="client-logo"><img src="UBA-logo-3.gif" class="client-logo">
@@ -180,7 +196,7 @@
         </div>
     </section>
 
-    <!-- SECTION 4: The Team -->
+    <!-- SECTION 6: The Team -->
     <section class="py-24 px-6 lg:px-20 bg-slate-50 text-center">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-20 text-dark">Meet our team!</h2>
@@ -189,28 +205,28 @@
                 <div class="space-y-4"><img src="CEO002.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg"><h5 class="text-dark font-black uppercase italic text-sm">Oyebaya Olamide</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Video / Camera / Editor</p></div>
                 <div class="space-y-4"><img src="CEO003.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg"><h5 class="text-dark font-black uppercase italic text-sm">Samuel Awolola</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Production</p></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto text-center">
                 <div class="space-y-4"><img src="CEO004.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg"><h5 class="text-dark font-black uppercase italic text-sm">Elizabeth Damilola Ajibike</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Product Designer</p></div>
-                <div class="space-y-4"><img src="CEO005.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg"><h5 class="text-dark font-black uppercase italic text-sm">Adafunke Opeyemi Adeyemo</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Logistics</p></div>
+                <div class="space-y-4"><img src="CEO005.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg"><h5 class="text-dark font-black uppercase italic text-sm">Adafunke Opeyemi Adeyemo</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Logistics & Support</p></div>
             </div>
         </div>
     </section>
 </main>
 
-<!-- BLACK & GOLD FOOTER (Full Contact & Logic) -->
+<!-- BLACK & GOLD FOOTER -->
 <footer class="bg-black text-primary pt-24 pb-12 px-6">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
             <div class="space-y-8">
-                <div class="flex items-center gap-3"><div class="logo-container border-white/20"><img src="logo.png"></div><h2 class="text-white text-xl font-black italic uppercase">27668<span class="text-primary">grafix</span></h2></div>
-                <p class="text-gold-bright text-sm font-bold italic leading-relaxed">Promotional Gifts & Souvenirs for all events.</p>
+                <div class="flex items-center gap-3"><div class="logo-container border-white/20"><img src="logo.png"></div><h2 class="text-white text-xl font-black italic uppercase tracking-tighter">27668<span class="text-primary">grafix</span></h2></div>
+                <p class="text-gold-bright text-sm italic font-bold leading-relaxed tracking-wide">The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events.</p>
             </div>
             <div>
                 <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Studio Details</h4>
                 <ul class="space-y-6 text-gold-bright text-xs font-bold uppercase tracking-widest leading-relaxed">
                     <li>18, George Street, Igbobi, Shomolu, Lagos.</li>
                     <li>234 803 349 1036 / +234 708 2439 583</li>
-                    <li class="lowercase">info@27668grafix.com</li>
+                    <li class="lowercase font-normal tracking-wider">info@27668grafix.com</li>
                 </ul>
             </div>
             <div>
@@ -218,34 +234,39 @@
                 <ul class="space-y-4 text-gold-bright text-xs font-bold uppercase tracking-widest">
                     <li><button onclick="openModal('returnModal')" class="hover:text-white transition-colors">Return & Refund Policy</button></li>
                     <li><button onclick="openModal('shippingModal')" class="hover:text-white transition-colors">Shipping Policy</button></li>
+                    <li><button onclick="openModal('privacyModal')" class="hover:text-white transition-colors">Privacy Policy</button></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Accepted Payments</h4>
-                <div class="flex flex-wrap gap-4 opacity-80 mb-8"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4"></div>
-                <a href="https://wa.me/2348033491036" class="bg-primary text-black px-8 py-3 rounded-lg font-black text-[10px] uppercase text-center block">Chat with Us</a>
+                <div class="flex flex-wrap gap-4 opacity-90 mb-8"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4 bg-white px-1 rounded"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4 bg-white px-1 rounded"></div>
+                <a href="https://wa.me/2348033491036" class="bg-primary text-black px-8 py-3 rounded-lg font-black text-[10px] uppercase text-center block tracking-widest hover:scale-105 transition-transform shadow-lg shadow-primary/20">Chat with Us</a>
             </div>
         </div>
-        <div class="text-center pt-12 border-t border-primary/20 text-primary font-black uppercase text-[10px]">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</div>
+        <div class="text-center pt-12 border-t border-primary/20 text-primary font-black uppercase text-[10px] tracking-[0.4em]">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</div>
     </div>
 </footer>
 
-<!-- POLICY MODAL -->
+<!-- MODAL SYSTEM -->
 <div id="infoModalOverlay" class="fixed inset-0 bg-dark/95 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
-    <div class="bg-black border-2 border-primary rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl relative">
+    <div class="bg-black border-2 border-primary rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl relative overflow-hidden">
         <div class="p-6 border-b border-primary/20 flex justify-between items-center">
             <h3 id="infoModalTitle" class="text-xl font-black text-primary uppercase italic"></h3>
             <button onclick="closeModal()" class="text-primary hover:text-white text-4xl">&times;</button>
         </div>
-        <div id="infoModalBody" class="p-8 text-gold-bright leading-relaxed text-sm overflow-y-auto modal-scroll space-y-4"></div>
+        <div id="infoModalBody" class="p-8 text-gold-bright leading-relaxed text-sm overflow-y-auto modal-scroll space-y-4 font-bold"></div>
     </div>
 </div>
 
 <script>
     function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
     const policyData = {
-        returnModal: { title: "Return & Refund", body: `<div class='space-y-4'><p>30-Day Policy. Items must be unused and in original packaging.</p><p>Exchanges available for damaged goods. Contact: 27.668grafix@gmail.com</p></div>` },
-        shippingModal: { title: "Shipping Policy", body: "<p>Lagos: 1-2 days via Bolt/Kwik. International: 3-5 days via DHL. Trackable shipments.</p>" }
+        privacyModal: { title: "Privacy Policy", body: "<p>We protect your design files and personal data strictly for order fulfillment.</p>" },
+        returnModal: { 
+            title: "Return & Refund", 
+            body: `<div class='space-y-4'><p>30-Day Policy. Items must be unused and in original packaging.</p><p>Refunds are made after a replacement of perfect product has been exhausted.</p></div>` 
+        },
+        shippingModal: { title: "Shipping Policy", body: "<p>Lagos: 1-2 days via Bolt/Kwik. International: 3-5 days via DHL.</p>" }
     };
     function openModal(type) {
         const data = policyData[type];
