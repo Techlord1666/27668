@@ -20,37 +20,38 @@
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; }
-        .logo-container { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #D4AF37; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; scroll-behavior: smooth; }
+        .logo-container { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #D4AF37; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; shrink-0; }
         .logo-container img { width: 100%; height: 100%; object-fit: cover; }
         
         /* Client Slider Animation */
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .client-track { display: flex; width: calc(250px * 36); animation: scroll 40s linear infinite; }
-        .client-logo { width: 140px; height: 70px; object-fit: contain; margin: 0 40px; filter: grayscale(100%); opacity: 0.6; }
+        .client-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+        .client-logo { width: 120px; height: 60px; object-fit: contain; margin: 0 30px; filter: grayscale(100%); opacity: 0.6; }
         
+        /* Box Backgrounds */
         .box-beige { background-color: #F2EDE7; }
         .box-green { background-color: #D0D9D1; }
-        /* Transparent Gold Box */
-        .gold-glass { background: rgba(212, 175, 55, 0.08); border: 2px solid rgba(212, 175, 55, 0.3); }
+        .gold-glass { background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); }
+
+        .hamburger-line { display: block; width: 24px; height: 2px; background-color: #000; margin: 5px 0; transition: 0.3s; }
+        .modal-scroll::-webkit-scrollbar { width: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
 
+<!-- Navigation -->
 <header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
-  <!-- Navigation -->
-<header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
-            <!-- Logo -->
             <div class="flex items-center gap-3">
-                <div class="logo-container"><img src="logo.png" alt="27668grafix Logo"></div>
-                <h2 class="text-dark text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
+                <div class="logo-container"><img src="logo.png" alt="Logo"></div>
+                <h2 class="text-dark text-lg md:text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
             
-            <!-- Desktop Nav -->
             <nav class="hidden lg:flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-slate-600">
-                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+                <a href="index.html" class="text-primary">Home</a>
                 <a href="store.html" class="hover:text-primary transition-colors">Store</a>
                 <a href="about.html" class="hover:text-primary transition-colors">About</a>
                 <a href="signup.html" class="hover:text-primary transition-colors">Signup</a>
@@ -58,818 +59,190 @@
                 <a href="#contact-form-section" class="hover:text-primary transition-colors">Contact</a>
             </nav>
 
-            <div class="flex items-center gap-4">
-                <!-- Mobile Toggle Button (3 Lines) -->
-                <button onclick="toggleMobileMenu()" class="lg:hidden flex flex-col gap-1.5 p-2">
-                    <div class="w-6 h-0.5 bg-dark"></div>
-                    <div class="w-6 h-0.5 bg-dark"></div>
-                    <div class="w-6 h-0.5 bg-dark"></div>
-                </button>
-            </div>
+            <button onclick="toggleMobileMenu()" class="lg:hidden flex flex-col justify-center items-end p-2">
+                <span class="hamburger-line"></span><span class="hamburger-line w-4"></span><span class="hamburger-line"></span>
+            </button>
         </div>
     </div>
 </header>
 
 <!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="hidden fixed inset-0 z-[110] bg-white p-8 flex flex-col gap-6 uppercase text-sm font-black tracking-widest shadow-2xl">
-    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-4">
-        <h2 class="text-dark italic">27668<span class="text-primary">GRAFIX</span></h2>
-        <button onclick="toggleMobileMenu()" class="text-3xl text-primary">&times;</button>
+<div id="mobile-menu" class="hidden fixed inset-0 z-[110] bg-white p-6 flex flex-col gap-6 uppercase text-sm font-black tracking-widest">
+    <div class="flex justify-between items-center pb-4 border-b border-slate-100">
+        <div class="logo-container"><img src="logo.png"></div>
+        <button onclick="toggleMobileMenu()" class="text-4xl">&times;</button>
     </div>
-    <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-primary">Home</a>
-    <a href="store.html" onclick="toggleMobileMenu()" class="hover:text-primary">Store</a>
-    <a href="about.html" onclick="toggleMobileMenu()" class="hover:text-primary">About Us</a>
-    <a href="signup.html" onclick="toggleMobileMenu()" class="hover:text-primary">Signup</a>
-    <a href="login.html" onclick="toggleMobileMenu()" class="hover:text-primary text-dark">Login</a>
+    <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+    <a href="store.html" onclick="toggleMobileMenu()">Store Catalog</a>
+    <a href="about.html" onclick="toggleMobileMenu()">About Us</a>
+    <a href="signup.html" onclick="toggleMobileMenu()">Create Account</a>
+    <a href="login.html" onclick="toggleMobileMenu()">Login</a>
     <a href="#contact-form-section" onclick="toggleMobileMenu()" class="text-primary">Contact Us</a>
 </div>
-    
+
 <main class="pt-16">
-    <!-- 1. Hero Image Area -->
-    <section class="w-full h-[35vh] md:h-[55vh] overflow-hidden">
+    <!-- Hero Image Area -->
+    <section class="w-full h-[35vh] md:h-[65vh] overflow-hidden">
         <img src="Hero.png" class="w-full h-full object-cover" alt="Workshop">
     </section>
 
-    <!-- 2. Hero Content Section -->
-    <section class="py-16 px-6 lg:px-20 bg-white">
+    <!-- Hero Content (Left Aligned) -->
+    <section class="py-12 md:py-20 px-4 sm:px-6 lg:px-20 bg-white">
         <div class="max-w-7xl mx-auto flex flex-col items-start text-left">
-            <h4 class="text-dark font-black uppercase tracking-widest text-xs mb-6">TRUSTED PRINT SHOP 🔥</h4>
-            <h1 class="text-4xl md:text-6xl font-black text-dark leading-tight uppercase tracking-tighter mb-8 max-w-3xl">We Design, Print, Brand <br> giving your Brand visibility</h1>
-            <p class="text-slate-600 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">Get your business more visibility, by custom branding, prints, stickers for party souvenirs & promotional gifting items.</p>
-            <ul class="space-y-6 mb-12">
-                <li class="flex items-center gap-4 text-lg font-bold"><svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Verified source of quality print materials</li>
-                <li class="flex items-center gap-4 text-lg font-bold"><svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Proudly & meticulously produced in Nigeria</li>
-                <li class="flex items-center gap-4 text-lg font-bold"><svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Delivery in <span class="text-primary font-black uppercase ml-1">3 to 5 work days</span></li>
-                <li class="flex items-center gap-4 text-lg font-bold"><svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Designers supports on the Journey</li>
+            <h4 class="text-dark font-black uppercase tracking-widest text-[10px] mb-4">TRUSTED PRINT SHOP 🔥</h4>
+            <h1 class="text-3xl md:text-6xl font-black text-dark leading-tight uppercase tracking-tighter mb-6 max-w-3xl italic">
+                We Design, Print, Brand <br> giving your Brand visibility
+            </h1>
+            <p class="text-slate-600 text-base md:text-xl max-w-2xl mb-10 leading-relaxed">
+                Get your business more visibility, by custom branding, prints, stickers for party souvenirs & promotional gifting items.
+            </p>
+            <ul class="space-y-4 mb-10">
+                <li class="flex items-center gap-3 text-sm md:text-lg font-bold">
+                    <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Verified source of quality materials
+                </li>
+                <li class="flex items-center gap-3 text-sm md:text-lg font-bold">
+                    <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Meticulously produced in Nigeria
+                </li>
+                <li class="flex items-center gap-3 text-sm md:text-lg font-bold">
+                    <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Delivery in 3 to 5 work days
+                </li>
             </ul>
-            <a href="https://wa.me/2348033491036" target="_blank" class="bg-primary text-white px-10 py-5 rounded-lg font-black uppercase text-sm tracking-widest flex items-center gap-4 hover:bg-dark transition-all shadow-xl shadow-primary/20">START PRINTING <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg></a>
+            <a href="https://wa.me/2348033491036" target="_blank" class="bg-primary text-white px-8 md:px-12 py-4 rounded-lg font-black uppercase text-xs tracking-widest flex items-center gap-3 hover:bg-dark transition-all shadow-xl">
+                START PRINTING <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+            </a>
         </div>
     </section>
 
-    <!-- 3. Products Range Section -->
-    <section class="py-20 px-6 lg:px-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div class="space-y-4 group">
-                <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200"><img src="27.668grafix.com-promotional-gifting-items-paperbag-product.jpg" class="w-full h-full object-cover" alt="Paper Bags"></div>
-                <h3 class="text-sm font-black uppercase tracking-widest">Paper Bags</h3>
+    <!-- Twin Boxes Section -->
+    <section class="py-10 px-4 sm:px-6 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+            <div class="box-beige rounded-[2.5rem] p-8 md:p-12 relative flex flex-col justify-between min-h-[400px] border border-slate-200 overflow-hidden shadow-sm">
+                <h3 class="text-2xl md:text-3xl font-black text-dark leading-tight uppercase italic tracking-tighter">Direct Imaging or <br> Offset by MO for <br> bulk runs</h3>
+                <img src="BOX.PNG" class="w-2/3 ml-auto object-contain mt-4">
             </div>
-            <div class="space-y-4 group">
-                <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200"><img src="27888grafix.com-direct-imaging-callcards-.jpeg" class="w-full h-full object-cover" alt="Callcards"></div>
-                <h3 class="text-sm font-black uppercase tracking-widest">Callcards</h3>
-            </div>
-            <div class="space-y-4 group">
-                <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200"><img src="27668grafix.com-direct-imaging-brochures-.jpeg" class="w-full h-full object-cover" alt="Brochures"></div>
-                <h3 class="text-sm font-black uppercase tracking-widest">Brochures</h3>
+            <div class="box-green rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between min-h-[400px] border border-slate-200">
+                <h3 class="text-2xl md:text-3xl font-black text-dark leading-tight uppercase italic tracking-tighter italic">we print. we brand. <br> we deliver to your doorstep!</h3>
+                <a href="store.html" class="bg-dark text-white px-8 py-3 rounded-xl font-black uppercase text-[10px] w-fit hover:bg-primary transition-all">Customize Now ></a>
+                <img src="https://images.unsplash.com/photo-1591154665854-01dbce58e4ee?w=400" class="w-1/2 ml-auto rotate-12 drop-shadow-lg mt-4">
             </div>
         </div>
     </section>
 
-   <!-- 4. Twin Boxes Section -->
-<section class="py-12 px-6 lg:px-20 bg-white">
-    <!-- WRAPPER START: This makes them side-by-side on laptop -->
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        
-        <!-- Box Left: Direct Imaging / High Grammes -->
-        <div class="box-beige rounded-[3rem] p-8 md:p-14 relative flex flex-col min-h-[500px] border border-slate-200 overflow-hidden shadow-sm">
-            <!-- Top Content -->
-            <div class="relative z-10">
-                <p class="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-slate-800 mb-3 flex items-center gap-2">
-                    CREATIVE, UNIQUE, SHARP PRINTS ♻️
-                </p>
-                <h3 class="text-3xl md:text-4xl font-black text-dark leading-[1.1] uppercase italic tracking-tighter mb-8">
-                    Direct Imaging or <br> Offset by MO for <br> bulk runs
-                </h3>
-            </div>
-
-            <!-- Floating Badges -->
-            <div class="absolute bottom-28 md:bottom-32 left-6 md:left-12 space-y-4 z-20">
-                <div class="bg-white px-5 py-3 rounded-full shadow-xl flex items-center gap-3 w-fit text-[10px] md:text-xs font-bold border border-slate-50">
-                    <span class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
-                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
-                    </span>
-                    High Grammes Cards
-                </div>
-                <div class="bg-white px-5 py-3 rounded-full shadow-xl flex items-center gap-3 w-fit text-[10px] md:text-xs font-bold border border-slate-50">
-                    <span class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
-                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
-                    </span>
-                    Sharp Prints
-                </div>
-            </div>
-
-            <!-- Main Image (BOX.PNG) -->
-            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[400px] flex justify-center items-end">
-                <img src="BOX.PNG" class="w-full h-auto object-contain" alt="Hands holding print box">
-            </div>
-        </div>
-
-        <!-- Box Right: Logistics/Doorstep Delivery -->
-        <div class="box-green rounded-[3rem] p-8 md:p-12 flex flex-col justify-between min-h-[500px] relative border border-slate-200 overflow-hidden shadow-sm">
-            <div class="relative z-10">
-                <!-- Top Label -->
-                <p class="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-slate-800 mb-4">
-                    3-5 WORKING DAYS, READY TO SHIP 🔥
-                </p>
-                
-                <!-- Main Title -->
-                <h3 class="text-3xl md:text-4xl font-black text-dark leading-[1.1] uppercase italic tracking-tighter mb-8 italic">
-                    we print. we brand. <br> we deliver to your <br> doorstep!
-                </h3>
-                
-                <!-- Feature List -->
-                <ul class="space-y-4 mb-10">
-                    <li class="flex items-center gap-4 text-sm font-bold text-slate-900">
-                        <span class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                        </span>
-                        Save cost & time
-                    </li>
-                    <li class="flex items-center gap-4 text-sm font-bold text-slate-900">
-                        <span class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                        </span>
-                        More brand impact
-                    </li>
-                    <li class="flex items-center gap-4 text-sm font-bold text-slate-900">
-                        <span class="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                        </span>
-                        Become sustainable
-                    </li>
-                </ul>
-
-                <!-- Black Button -->
-                <a href="store.html" class="inline-flex items-center gap-3 bg-black text-white px-10 py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl">
-                    Customize Now 
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-                </a>
-            </div>
-
-            <!-- Mailer Bag Image Positioned like the screenshot -->
-            <div class="absolute -bottom-6 -right-6 w-1/2 md:w-3/5 pointer-events-none z-0">
-                
-        </div>
-
-    </div> <!-- WRAPPER END -->
-</section>
-
-    <!-- 5. Client Logo Slider (ABOVE How It Works) -->
-    <section class="py-16 bg-white overflow-hidden border-y border-slate-100">
-        <p class="text-center text-[9px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10 italic">"See the list of Clients we serve & impact creative solutions."</p>
+    <!-- Client Slider -->
+    <section class="py-12 bg-white overflow-hidden border-y border-slate-100">
+        <p class="text-center text-[9px] font-black uppercase tracking-[0.4em] text-slate-400 mb-8 italic px-4">"See the list of Clients we serve & impact creative solutions."</p>
         <div class="client-track">
             <img src="27668grafix.jpg" class="client-logo"><img src="ecs2.png" class="client-logo"><img src="AIPLABRO-LOGO.jpg" class="client-logo"><img src="euromed.jpg" class="client-logo"><img src="images-1.png" class="client-logo"><img src="ecs3.png" class="client-logo"><img src="UBA-logo-3.gif" class="client-logo">
+            <!-- Duplicate for infinite loop -->
             <img src="27668grafix.jpg" class="client-logo"><img src="ecs2.png" class="client-logo"><img src="AIPLABRO-LOGO.jpg" class="client-logo"><img src="euromed.jpg" class="client-logo">
         </div>
     </section>
 
-    <!-- 6. How It Works (Gold Box BELOW Slider) -->
-   <!-- How it Works Section with Side Image -->
-<section class="py-20 px-6 lg:px-20 bg-white">
-    <div class="max-w-7xl mx-auto gold-glass rounded-[3rem] p-10 md:p-20 relative overflow-hidden">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <!-- Left Side: Write-up (7 columns on desktop) -->
-            <div class="lg:col-span-7 relative z-10 text-dark">
-                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-12 text-left">How it works</h2>
-                
-                <div class="space-y-10">
-                    <!-- Step 1 -->
-                    <div class="flex gap-6 items-start">
-                        <span class="w-12 h-12 bg-dark text-primary rounded-full flex items-center justify-center font-black text-xl shrink-0 shadow-lg">1</span>
-                        <div>
-                            <h4 class="font-black uppercase text-xs tracking-widest leading-tight mb-2">Customize your prints or branding</h4>
-                            <p class="text-slate-700 text-sm leading-relaxed max-w-md">Choose from 412 custom products, customize your design with graphics, text or your own uploaded images.</p>
-                        </div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="flex gap-6 items-start">
-                        <span class="w-12 h-12 bg-dark text-primary rounded-full flex items-center justify-center font-black text-xl shrink-0 shadow-lg">2</span>
-                        <div>
-                            <h4 class="font-black uppercase text-xs tracking-widest leading-tight mb-2">Set up shipping instructions</h4>
-                            <p class="text-slate-700 text-sm leading-relaxed max-w-md">Get your custom packaging when you need it, with delivery in as little as 7 days for some products.</p>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="flex gap-6 items-start">
-                        <span class="w-12 h-12 bg-dark text-primary rounded-full flex items-center justify-center font-black text-xl shrink-0 shadow-lg">3</span>
-                        <div>
-                            <h4 class="font-black uppercase text-xs tracking-widest leading-tight mb-2">Track the progress of orders</h4>
-                            <p class="text-slate-700 text-sm leading-relaxed max-w-md">Get your custom packaging when you need it, with delivery in as little as 7 days for some products.</p>
-                        </div>
-                    </div>
+    <!-- How It Works (Gold Box) -->
+    <section class="py-16 px-4 md:px-20 bg-white">
+        <div class="max-w-7xl mx-auto gold-glass rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-16 flex flex-col lg:flex-row gap-12 items-center">
+            <div class="flex-1 space-y-10">
+                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-dark">How it works</h2>
+                <div class="space-y-8">
+                    <div class="flex gap-5"><span class="w-8 h-8 bg-dark text-primary rounded-full flex items-center justify-center font-black shrink-0 text-sm">1</span><div><h4 class="font-black uppercase text-[10px] mb-1">Customize</h4><p class="text-slate-600 text-xs md:text-sm">Choose from 412 custom products, customize with graphics or text.</p></div></div>
+                    <div class="flex gap-5"><span class="w-8 h-8 bg-dark text-primary rounded-full flex items-center justify-center font-black shrink-0 text-sm">2</span><div><h4 class="font-black uppercase text-[10px] mb-1">Shipping</h4><p class="text-slate-600 text-xs md:text-sm">Get custom packaging in as little as 7 days for some products.</p></div></div>
+                    <div class="flex gap-5"><span class="w-8 h-8 bg-dark text-primary rounded-full flex items-center justify-center font-black shrink-0 text-sm">3</span><div><h4 class="font-black uppercase text-[10px] mb-1">Track</h4><p class="text-slate-600 text-xs md:text-sm">Stay updated on your branding journey from production to doorstep.</p></div></div>
                 </div>
-
-                <div class="mt-16 flex justify-start">
-                    <a href="https://wa.me/2348033491036?text=Hello%2027668grafix!%20🔥" target="_blank" class="bg-dark text-primary px-12 py-5 rounded-full font-black uppercase text-xs tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
-                        Start Printing
-                    </a>
-                </div>
+                <a href="https://wa.me/2348033491036" target="_blank" class="inline-block bg-dark text-primary px-10 py-4 rounded-full font-black uppercase text-[10px] tracking-widest shadow-xl">Start Printing</a>
             </div>
-
-            <!-- Right Side: Image BBAN.PNG (5 columns on desktop) -->
-            <div class="lg:col-span-5 relative flex justify-center items-center">
-                <!-- Subtle glow behind the image to make it pop -->
-                <div class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full"></div>
-                <img src="LOGO BBAN.PNG" alt="Branding Banner" class="relative z-10 w-full max-w-[450px] h-auto object-contain drop-shadow-2xl animate-float">
-            </div>
-
-        </div>
-    </div>
-</section>
-
-    <!-- 7. The Creed (BELOW How It Works) -->
-    <section class="py-24 bg-dark text-white border-y-4 border-primary">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-3xl md:text-6xl font-black uppercase italic tracking-tighter leading-none">Idesign graphics.web. <span class="text-primary gold-glow">Iprint.</span> Ibrand. <span class="text-primary gold-glow">Ideliver.</span></p>
+            <div class="flex-1 w-full"><img src="LOGO BBAN.PNG" class="w-full h-auto drop-shadow-2xl rounded-2xl"></div>
         </div>
     </section>
 
-
-    <!-- Promotional Gifts & Souvenirs Grid Section -->
-<section class="py-24 px-6 lg:px-20 bg-white">
-    <div class="max-w-7xl mx-auto text-center">
-        <!-- Header text exactly as per screenshot -->
-        <h2 class="text-3xl md:text-4xl font-black text-dark tracking-tighter mb-4 max-w-3xl mx-auto">
-            Promotional gifts & souvenirs you’ve seen around today
-        </h2>
-        <p class="text-slate-500 text-sm md:text-base max-w-4xl mx-auto mb-20 leading-relaxed">
-            Get service support at any point of your design, prints, branding or delivery journey to guarantee total customer happiness success.
-        </p>
-
-        <!-- The Oval Image Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
-            
-            <!-- Item 1: Umbrella -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27668grafix.com-customised-branding-umbrella.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Umbrella">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Corporate Branded Umbrella <sup class="text-slate-400 font-bold ml-1">15</sup>
-                </p>
-            </div>
-
-            <!-- Item 2: Tshirt -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27668grafix.com-customised-branding-tshirt.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Tshirt">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Corporate Branded Tshirt <sup class="text-slate-400 font-bold ml-1">8</sup>
-                </p>
-            </div>
-
-            <!-- Item 3: Thermal Bottles -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27668grafix.com-customised-branding-thermal-water-bottle.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Thermal Water Bottles">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Thermal Water Bottles <sup class="text-slate-400 font-bold ml-1">5</sup>
-                </p>
-            </div>
-
-            <!-- Item 4: Ceramic Mugs -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27668grafix.com-customised-branding-ceramic-mug-11oz.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Ceramic Mugs">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Ceramic Mugs <sup class="text-slate-400 font-bold ml-1">9</sup>
-                </p>
-            </div>
-
-            <!-- Item 5: Magik Mug -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27.668grafix.com-magik-mugs-branding-promotional-gifting-souvenirs-shop.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Magik Mug">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Magik Mug <sup class="text-slate-400 font-bold ml-1">18</sup>
-                </p>
-            </div>
-
-            <!-- Item 6: Phone Pouches -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27668grafix.com-customised-branding-phone-pouche.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Pouches">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Customised pouches <sup class="text-slate-400 font-bold ml-1">25</sup>
-                </p>
-            </div>
-
-            <!-- Item 7: Boxed Gifts -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27668grafix.com-corporate-gift-product.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Boxed Gifts">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Boxed Gifts <sup class="text-slate-400 font-bold ml-1">15</sup>
-                </p>
-            </div>
-
-            <!-- Item 8: Branded Hoodies -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27668grafix.com-customised-branding-hoodie.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Hoodies">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Branded Hoodies <sup class="text-slate-400 font-bold ml-1">16</sup>
-                </p>
-            </div>
-
-            <!-- Item 9: Tote Bag -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27668grafix.com-customised-branding-tote-bag.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Tote Bag">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Tote Bag <sup class="text-slate-400 font-bold ml-1">12</sup>
-                </p>
-            </div>
-
-            <!-- Item 10: Throw Pillow -->
-            <div class="flex flex-col items-center group cursor-pointer">
-                <div class="w-full aspect-[4/5] rounded-full overflow-hidden border border-slate-100 bg-slate-50 mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <img src="27668grafix.com-customised-branding-throw-pillow.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Throw Pillow">
-                </div>
-                <p class="text-[11px] font-black uppercase tracking-widest text-dark">
-                    Throw Pillow <sup class="text-slate-400 font-bold ml-1">6</sup>
-                </p>
-            </div>
-
+    <!-- The Creed -->
+    <section class="py-20 bg-dark text-white border-y-4 border-primary">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-2xl md:text-5xl font-black uppercase italic tracking-tighter leading-tight">Idesign graphics.web. <span class="text-primary">Iprint.</span> Ibrand. <span class="text-primary">Ideliver.</span></p>
         </div>
+    </section>
 
-        <!-- View all products button from screenshot -->
-        <div class="mt-24">
-            <a href="store.html" class="inline-flex items-center gap-2 border-2 border-slate-200 px-10 py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:border-primary transition-all">
-                View all products 
-                <svg class="w-4 h-4 text-primary ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-            </a>
-        </div>
-    </div>
-</section>
-
-
-    <!-- Testimonials Section with Smooth Sliding Display -->
-<section class="py-24 bg-slate-50 overflow-hidden border-t border-slate-100">
-    <div class="max-w-7xl mx-auto px-6 text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-black text-dark tracking-tighter mb-4">See what our customers say</h2>
-        <p class="text-slate-500 text-sm md:text-base max-w-3xl mx-auto">
-            Get service support at any point of your printing and branding journey to guarantee total customer service success.
-        </p>
-    </div>
-
-    <!-- The Sliding Container -->
-    <div class="relative flex overflow-x-hidden">
-        <!-- Flex track for the sliding cards -->
-        <div class="flex animate-testimonial-slide gap-6 py-4">
-            
-            <!-- Review 1: Olu Adeyemo -->
-            <div class="w-[350px] md:w-[450px] flex-shrink-0 bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-                <div>
-                    <div class="flex text-primary mb-6">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="text-slate-700 italic text-lg leading-relaxed mb-8">
-                        “ Its unimaginable that creative & prints production from Nigeria gets to the US in 5days and its a wow! experience.”
-                    </p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-slate-100 overflow-hidden border border-slate-200">
-                        <img src="https://ui-avatars.com/api/?name=Olu+Adeyemo&background=D4AF37&color=fff" class="w-full h-full object-cover">
-                    </div>
-                    <div class="text-left">
-                        <h5 class="text-sm font-black uppercase text-dark">Olu Adeyemo</h5>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">Founder & CEO, Rehoboth Properties Florida</p>
-                    </div>
-                </div>
+    <!-- Contact Form Section -->
+    <section id="contact-form-section" class="py-20 px-4 md:px-20 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter">Get in <span class="text-primary">Touch</span></h2>
+                <p class="text-slate-500 mt-4 font-medium uppercase text-xs tracking-widest">Ready to start your branding journey?</p>
             </div>
-
-            <!-- Review 2: Sanjay Sanyal -->
-            <div class="w-[350px] md:w-[450px] flex-shrink-0 bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-                <div>
-                    <div class="flex text-primary mb-6">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="text-slate-700 italic text-lg leading-relaxed mb-8">
-                        “ Keep doing well creatively & building valuable connection.”
-                    </p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-slate-100 overflow-hidden border border-slate-200">
-                        <img src="https://ui-avatars.com/api/?name=Sanjay+Sanyal&background=D4AF37&color=fff" class="w-full h-full object-cover">
-                    </div>
-                    <div class="text-left">
-                        <h5 class="text-sm font-black uppercase text-dark">Sanjay Sanyal</h5>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">MD - AIPLABRO</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Review 3: Olumide Akinsanmi -->
-            <div class="w-[350px] md:w-[450px] flex-shrink-0 bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-                <div>
-                    <div class="flex text-primary mb-6">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="text-slate-700 italic text-lg leading-relaxed mb-8">
-                        “ Super Quality Cotton t-shirts and branding is durable, proud of one of our own... good products, good service.”
-                    </p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-slate-100 overflow-hidden border border-slate-200 text-center flex items-center justify-center font-black text-xs text-primary">OA</div>
-                    <div class="text-left">
-                        <h5 class="text-sm font-black uppercase text-dark">Olumide Akinsanmi</h5>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">Team Lead -A.O.D RCCG Okota / President FGS85 Lagos</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Review 4: Steven Amangbo -->
-            <div class="w-[350px] md:w-[450px] flex-shrink-0 bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-                <div>
-                    <div class="flex text-primary mb-6">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="text-slate-700 italic text-lg leading-relaxed mb-8">
-                        “ 27.668grafix ! you people keep surpassing my expectations, you're so full of intergrity.”
-                    </p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-slate-100 overflow-hidden border border-slate-200">
-                         <img src="https://ui-avatars.com/api/?name=Steven+Amangbo&background=D4AF37&color=fff" class="w-full h-full object-cover">
-                    </div>
-                    <div class="text-left">
-                        <h5 class="text-sm font-black uppercase text-dark">Steven Amangbo</h5>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">Treasury Unit UBA</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Review 5: Samuel Awolola -->
-            <div class="w-[350px] md:w-[450px] flex-shrink-0 bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-                <div>
-                    <div class="flex text-primary mb-6">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <p class="text-slate-700 italic text-lg leading-relaxed mb-8">
-                        “ 27.668 should keep up the energy in giving creative solutions above & below the line. good, efficient & quick all the times.”
-                    </p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-slate-100 overflow-hidden border border-slate-200">
-                        <img src="https://ui-avatars.com/api/?name=Samuel+Awolola&background=D4AF37&color=fff" class="w-full h-full object-cover">
-                    </div>
-                    <div class="text-left">
-                        <h5 class="text-sm font-black uppercase text-dark">Samuel Awolola</h5>
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">Founder & CEO, Harwosprints.ng</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Duplicate items for seamless loop -->
-            <div class="w-[350px] md:w-[450px] flex-shrink-0 bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-                <div><div class="flex text-primary mb-6">★ ★ ★ ★ ★</div><p class="text-slate-700 italic text-lg leading-relaxed mb-8">“ Its unimaginable that creative & prints production from Nigeria gets to the US in 5days...”</p></div>
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-slate-100 overflow-hidden border border-slate-200"><img src="https://ui-avatars.com/api/?name=Olu+Adeyemo&background=D4AF37&color=fff"></div><div class="text-left"><h5 class="text-sm font-black uppercase">Olu Adeyemo</h5></div></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Add this inside your <style> tag at the top of the file -->
-<style>
-    @keyframes testimonialSlide {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-    .animate-testimonial-slide {
-        display: flex;
-        width: max-content;
-        animation: testimonialSlide 50s linear infinite;
-    }
-    .animate-testimonial-slide:hover {
-        animation-play-state: paused;
-    }
-</style>
-    
-</main>
-
-    <!-- Features Glass Box Section -->
-<section class="py-20 px-6 lg:px-20 bg-white">
-    <div class="max-w-7xl mx-auto gold-glass rounded-[3rem] p-10 md:p-16 relative overflow-hidden">
-        <!-- Background decorative glow -->
-        <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
-            
-            <!-- Feature 1: Low Minimums -->
-            <div class="space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-dark flex items-center justify-center shadow-lg border border-primary/30">
-                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                    </svg>
-                </div>
-                <h4 class="text-dark font-black uppercase text-xs tracking-widest leading-tight">Low minimums</h4>
-                <p class="text-slate-600 text-xs font-bold leading-relaxed uppercase">Low minimums & easily customizable</p>
-            </div>
-
-            <!-- Feature 2: 24/7 Support -->
-            <div class="space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-dark flex items-center justify-center shadow-lg border border-primary/30">
-                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                    </svg>
-                </div>
-                <h4 class="text-dark font-black uppercase text-xs tracking-widest leading-tight">Free 24/7 support</h4>
-                <p class="text-slate-600 text-xs font-bold leading-relaxed uppercase">Free 24/7 design & logistics support</p>
-            </div>
-
-            <!-- Feature 3: Shipping -->
-            <div class="space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-dark flex items-center justify-center shadow-lg border border-primary/30">
-                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a3.5 3.5 0 013.5 3.5V17a4 4 0 11-8 0v-3.5A3.5 3.5 0 0110.5 10H9a2 2 0 00-2 2v.5a2 2 0 01-2 2H3m13-13.5V5a2 2 0 012 2v.5a2 2 0 002 2h1"></path>
-                    </svg>
-                </div>
-                <h4 class="text-dark font-black uppercase text-xs tracking-widest leading-tight">Nigeria & Worldwide</h4>
-                <p class="text-slate-600 text-xs font-bold leading-relaxed uppercase">Get free shipping within Nigeria for orders over ₦250,000.</p>
-            </div>
-
-            <!-- Feature 4: Easy Payment -->
-            <div class="space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-dark flex items-center justify-center shadow-lg border border-primary/30">
-                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                    </svg>
-                </div>
-                <h4 class="text-dark font-black uppercase text-xs tracking-widest leading-tight">Easy Payment</h4>
-                <p class="text-slate-600 text-xs font-bold leading-relaxed uppercase">Direct payment to account for quick service</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-    <!-- CONTACT FORM SECTION -->
-<section id="contact-form-section" class="py-24 px-6 lg:px-20 bg-slate-50 border-t border-slate-100">
-    <div class="max-w-5xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            <!-- Left Side: Visual Branding -->
-            <div class="space-y-8">
-                <h4 class="text-primary font-black uppercase tracking-[0.3em] text-xs italic">Get in Touch</h4>
-                <h2 class="text-4xl md:text-5xl font-black text-dark uppercase italic tracking-tighter leading-tight">
-                    Ready to Start <br> Your <span class="text-primary">Branding Journey?</span>
-                </h2>
-                <p class="text-slate-600 font-medium leading-relaxed">
-                    Our team of expert designers and print specialists are ready to bring your vision to life. Fill out the form and we will reach out via WhatsApp or Email immediately.
-                </p>
-                <div class="flex items-center gap-4 text-dark font-black uppercase text-[10px] tracking-widest">
-                    <span class="flex items-center gap-2"><div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div> 24/7 Support</span>
-                    <span class="flex items-center gap-2"><div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div> Global Logistics</span>
-                </div>
-            </div>
-
-            <!-- Right Side: The Form -->
-            <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-slate-100">
+            <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-2xl">
                 <form onsubmit="handleContactSubmit(event)" class="space-y-6">
-                    <div class="space-y-1">
-                        <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">Your Full Name</label>
-                        <input type="text" id="cName" required class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-bold" placeholder="e.g. David Ajibike">
-                    </div>
-                    
-                    <div class="space-y-1">
-                        <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">Service Required</label>
-                        <select id="cService" class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-bold text-slate-500">
-                            <option value="General Inquiry">General Inquiry</option>
-                            <option value="Corporate Branding">Corporate Branding</option>
-                            <option value="Promotional Gifts">Promotional Gifts</option>
-                            <option value="Custom Apparel">Custom Apparel</option>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" id="cName" placeholder="Your Name" required class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none font-bold text-sm">
+                        <select id="cService" class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none font-bold text-sm">
+                            <option>Corporate Branding</option><option>Promotional Gifts</option><option>Custom Apparel</option>
                         </select>
                     </div>
-
-                    <div class="space-y-1">
-                        <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">How can we help?</label>
-                        <textarea id="cMessage" required class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-bold h-32" placeholder="Describe your project details..."></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full bg-dark text-primary py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl hover:bg-primary hover:text-dark transition-all transform hover:scale-105 active:scale-95">
-                        Send Message to WhatsApp
-                    </button>
+                    <textarea id="cMessage" placeholder="Tell us about your project..." required class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none font-bold text-sm h-32"></textarea>
+                    <button type="submit" class="w-full bg-dark text-primary py-5 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl hover:bg-primary hover:text-dark transition-all">Send to WhatsApp</button>
                 </form>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
+</main>
 
-<!-- Logic for the form -->
-<script>
-    function handleContactSubmit(e) {
-        e.preventDefault();
-        const name = document.getElementById('cName').value;
-        const service = document.getElementById('cService').value;
-        const message = document.getElementById('cMessage').value;
-
-        // Formats message for WhatsApp
-        const waText = `Hello 27668grafix! 🔥%0A%0A*NEW CONTACT INQUIRY*%0A*Name:* ${name}%0A*Service:* ${service}%0A*Message:* ${message}%0A%0A_Sent from website contact form_`;
-        
-        window.open(`https://wa.me/2348033491036?text=${waText}`, '_blank');
-    }
-</script>
 <!-- Detailed Footer -->
-<!-- Finalized Premium Black & Gold Footer -->
-<footer id="footer-contact" class="bg-black text-primary pt-20 pb-10 px-6 border-t-2 border-primary/20">
-    <div class="max-w-7xl mx-auto">
-        <!-- Main Footer Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            
-            <!-- Column 1: Branding & Socials -->
-            <div class="space-y-8">
-                <div class="space-y-4">
-                    <h2 class="text-white text-3xl font-black uppercase italic leading-tight">
-                        The Perfect Prints <br> Solutions, <br> 
-                        <span class="text-primary">Promotional Gifts & <br> Souvenirs for all events</span>
-                    </h2>
-                </div>
-                <div class="flex gap-4">
-                    <a href="https://www.facebook.com/share/1DNgLLHFEY/" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center hover:bg-primary hover:text-black transition-all">
-                        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5 invert" alt="FB">
-                    </a>
-                    <a href="https://x.com/27668grafix" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center hover:bg-primary hover:text-black transition-all">
-                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-5 h-5 invert" alt="X">
-                    </a>
-                    <a href="https://www.instagram.com/27668grafix" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center hover:bg-primary hover:text-black transition-all">
-                        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-5 h-5 invert" alt="IG">
-                    </a>
-                </div>
-            </div>
-
-            <!-- Column 2: Contact Us -->
-            <div class="space-y-6">
-                <h4 class="text-white font-black uppercase tracking-widest text-sm">Contact Us</h4>
-                <div class="space-y-4 text-gold-bright text-sm font-bold">
-                    <p class="leading-relaxed">
-                        <span class="text-white block mb-1 uppercase text-[10px]">Chat & Call</span>
-                        234 803 349 1036
-                    </p>
-                    <p class="leading-relaxed">
-                        <span class="text-white block mb-1 uppercase text-[10px]">WhatsApp chat or call</span>
-                        +234 708 2439 583
-                    </p>
-                    <p class="lowercase font-normal opacity-80">
-                        info@27668grafix.com<br>27.668grafix@gmail.com
-                    </p>
-                    <p class="font-normal opacity-80 leading-relaxed italic">
-                        18, George Street, Igbobi, Shomolu, Lagos.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Column 3: Information (Pop-up Links) -->
-            <div class="space-y-6">
-                <h4 class="text-white font-black uppercase tracking-widest text-sm">Information</h4>
-                <ul class="space-y-3 text-gold-bright text-xs font-bold uppercase tracking-widest">
-                    <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
-                    
-                    <li><button onclick="openPolicyModal('return')" class="hover:text-white transition-all text-left">Return & Refund Policy</button></li>
-                    <li><button onclick="openPolicyModal('contact')" class="hover:text-white transition-all text-left">Contact Us</button></li>
-                    <li><button onclick="openPolicyModal('shipping')" class="hover:text-white transition-all text-left">Shipping Policy</button></li>
-                </ul>
-            </div>
-
-            <!-- Column 4: Useful Links -->
-            <div class="space-y-6">
-                <h4 class="text-white font-black uppercase tracking-widest text-sm">Useful links</h4>
-                <ul class="space-y-3 text-gold-bright text-xs font-bold uppercase tracking-widest opacity-70">
-                    <li><a href="login.html" class="hover:text-white transition-colors">My Account</a></li>
-                    
-                    <li><a href="signup.html" class="hover:text-white transition-colors">Become a Partner</a></li>
-                    <li><a href="store.html" class="hover:text-white transition-colors">Custom Products</a></li>
-                    <li><a href="https://wa.me/2348033491036" class="hover:text-white transition-colors">Make your own shirt</a></li>
-                </ul>
+<footer class="bg-black text-primary pt-20 pb-10 px-4 md:px-8 border-t-2 border-primary/20">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div class="space-y-6">
+            <h2 class="text-white text-xl font-black uppercase italic">27668<span class="text-primary">grafix</span></h2>
+            <p class="text-gold-bright text-xs font-bold italic leading-relaxed">The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events.</p>
+            <div class="flex gap-4">
+                <a href="https://www.facebook.com/share/1DNgLLHFEY/" target="_blank" class="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center invert"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-4 h-4"></a>
+                <a href="https://x.com/27668grafix" target="_blank" class="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center invert"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-4 h-4"></a>
+                <a href="https://www.instagram.com/27668grafix" target="_blank" class="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center invert"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-4 h-4"></a>
             </div>
         </div>
-
-        <!-- Bottom Bar: Copyright & Payments -->
-        <div class="pt-8 border-t border-primary/20 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-left space-y-2">
-                <p class="text-primary/50 text-[10px] font-black uppercase tracking-[0.3em]">© 27.668GRAFIX 2024.</p>
-                <div class="flex gap-4 text-[9px] font-black uppercase tracking-widest text-gold-bright">
-                    <button onclick="openPolicyModal('terms')" class="hover:text-white">Terms & Conditions</button>
-                    <button onclick="openPolicyModal('privacy')" class="hover:text-white">Privacy Policy</button>
-                </div>
-            </div>
-            
-            <!-- Payment Card Icons -->
-            <div class="flex flex-wrap gap-2 opacity-90">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="h-5 bg-white px-1 rounded" alt="PayPal">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-5 bg-white px-1 rounded" alt="Mastercard">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-5 bg-white px-1 rounded" alt="Visa">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg" class="h-5 bg-white px-1 rounded" alt="Apple Pay">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Google_Pay_Logo.svg" class="h-5 bg-white px-1 rounded" alt="Google Pay">
-            </div>
+        <div class="text-xs space-y-4">
+            <h4 class="text-white font-black uppercase">Contact Us</h4>
+            <p>18, George Street, Igbobi, Shomolu, Lagos.</p>
+            <p>234 803 349 1036</p>
+            <p class="lowercase">info@27668grafix.com</p>
+        </div>
+        <div class="text-xs space-y-4">
+            <h4 class="text-white font-black uppercase">Information</h4>
+            <button onclick="openPolicyModal('return')" class="block hover:text-white uppercase font-bold">Returns & Refund</button>
+            <button onclick="openPolicyModal('shipping')" class="block hover:text-white uppercase font-bold">Shipping Policy</button>
+        </div>
+        <div class="space-y-4">
+            <h4 class="text-white font-black uppercase text-xs">Payments</h4>
+            <div class="flex gap-2 opacity-80 bg-white p-2 rounded w-fit"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4"></div>
         </div>
     </div>
+    <div class="text-center pt-8 border-t border-primary/10 text-[9px] font-black uppercase tracking-[0.4em]">© 27.668GRAFIX 2024. ALL RIGHTS RESERVED.</div>
 </footer>
 
-<!-- POLICY MODAL STRUCTURE -->
-<div id="policyModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[250] hidden flex items-center justify-center p-4">
-    <div class="bg-black border-2 border-primary rounded-[2rem] max-w-2xl w-full max-h-[80vh] flex flex-col shadow-[0_0_60px_rgba(212,175,55,0.2)]">
-        <div class="p-6 border-b border-primary/20 flex justify-between items-center">
-            <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic tracking-tighter"></h3>
-            <button onclick="closePolicyModal()" class="text-white hover:text-primary text-4xl transition-colors">&times;</button>
-        </div>
-        <div id="policyModalBody" class="p-8 text-gold-bright leading-relaxed text-sm overflow-y-auto modal-scroll space-y-6 font-medium">
-            <!-- Text Injected Here -->
-        </div>
-        <div class="p-4 border-t border-primary/10 text-center">
-            <button onclick="closePolicyModal()" class="bg-primary text-black px-10 py-2 rounded-full font-black uppercase text-[10px] tracking-widest">Close</button>
-        </div>
+<!-- Policy Modal -->
+<div id="policyModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[250] hidden flex items-center justify-center p-4">
+    <div class="bg-black border border-primary rounded-3xl max-w-xl w-full p-8 shadow-2xl relative">
+        <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
+        <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6"></h3>
+        <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto max-h-[60vh] modal-scroll"></div>
     </div>
 </div>
 
 <script>
-    const fullPolicies = {
-        return: {
-            title: "Return & Refund Policy",
-            body: `
-                <div class="space-y-4">
-                    <p class="text-white font-black text-lg">Terms & Conditions</p>
-                    <p>Our refund and returns policy lasts <strong>30 days</strong>. If 30 days have passed since your purchase, we can’t offer you a full refund or exchange.</p>
-                    <p>To be eligible for a return, your item/s must be <strong>unused</strong> and in the same condition that you received it. It must also be in the original packaging.</p>
-                    <p>Refunds are made after a replacement of perfect product has been exhausted. We import our product from the highest source of quality.</p>
-                    <hr class="border-primary/20">
-                    <p class="text-white font-black text-lg">Refund Process</p>
-                    <p>Once your return is received and inspected, we will notify you of our commitment to replace the product if the error is on our part. We exhaust all avenues to keep our customers happy via replacement first.</p>
-                    <p><strong>Late Refunds:</strong> If you haven’t received a refund yet, check your bank account, then contact your bank. If the issue persists, contact us at 27.668grafix@gmail.com.</p>
-                    <p><strong>Sale items:</strong> Only regular priced items may be refunded. Sale items are final.</p>
-                    <hr class="border-primary/20">
-                    <p class="text-white font-black text-lg">Exchanges & Shipping</p>
-                    <p>We only replace items if they are defective or damaged. Send items to: <strong>harwosprint.ng – 18, George Street, Igbobi, Lagos.</strong></p>
-                    <p>You will be responsible for paying for your own shipping costs for returning your item. Shipping costs are non-refundable.</p>
-                </div>`
-        },
-        shipping: {
-            title: "Shipping Policy",
-            body: `
-                <div class="space-y-4">
-                    <p><strong>Partners:</strong> We are partnered with Bolt, Kwik.com (within Lagos) & DHL (outside Lagos). All shipments are trackable.</p>
-                    <p>The initial cost of shipping order is charged with cost of product/s and varies depending on distance.</p>
-                    <p>We provide free shipping within Nigeria for orders over <strong>₦250,000</strong>.</p>
-                    <p>International delivery typically takes <strong>3-5 work days</strong> after production is completed.</p>
-                </div>`
-        },
-        contact: {
-            title: "Contact Information",
-            body: `
-                <div class="space-y-4">
-                    <p><strong>Studio Address:</strong> 18, George Street, Igbobi, Shomolu, Lagos.</p>
-                    <p><strong>Phone 1:</strong> 234 803 349 1036</p>
-                    <p><strong>Phone 2:</strong> +234 708 2439 583</p>
-                    <p><strong>Email:</strong> info@27668grafix.com</p>
-                    <p><strong>Personal Email:</strong> 27.668grafix@gmail.com</p>
-                    <a href="https://wa.me/2348033491036" class="block bg-[#25D366] text-white text-center py-4 rounded-xl font-black uppercase mt-6">Chat on WhatsApp</a>
-                </div>`
-        },
-        terms: {
-            title: "Terms of Service",
-            body: "<p>By using 27668grafix, you agree to our production timelines (3-5 work days) and quality standards. Orders are confirmed only after design sign-off and payment verification.</p>"
-        },
-        privacy: {
-            title: "Privacy Policy",
-            body: "<p>We prioritize your brand integrity. Your design files and personal data are strictly used for order fulfillment and are never shared with third-party marketing agencies.</p>"
-        }
-    };
-
+    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
     function openPolicyModal(type) {
-        const data = fullPolicies[type];
-        document.getElementById('policyModalTitle').innerText = data.title;
-        document.getElementById('policyModalBody').innerHTML = data.body;
+        const p = {
+            return: { title: "Returns & Refund", body: "30-day policy for unused items in original packaging. Contact us for replacements first." },
+            shipping: { title: "Shipping Policy", body: "Lagos: 1-2 days via Bolt/Kwik. International: 3-5 days via DHL. Trackable shipments." }
+        };
+        document.getElementById('policyModalTitle').innerText = p[type].title;
+        document.getElementById('policyModalBody').innerText = p[type].body;
         document.getElementById('policyModalOverlay').classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Stop page scroll
     }
-
-    function closePolicyModal() {
-        document.getElementById('policyModalOverlay').classList.add('hidden');
-        document.body.style.overflow = 'auto'; // Resume page scroll
-    }
-
-    // Close on backdrop click
-    window.onclick = function(e) {
-        if (e.target.id === 'policyModalOverlay') closePolicyModal();
+    function closePolicyModal() { document.getElementById('policyModalOverlay').classList.add('hidden'); }
+    function handleContactSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById('cName').value;
+        const msg = document.getElementById('cMessage').value;
+        window.open(`https://wa.me/2348033491036?text=Hello!%20My%20name%20is%20${name}.%20${msg}`, '_blank');
     }
 </script>
-
-<style>
-    .text-gold-bright { color: #FFD700; }
-    .modal-scroll::-webkit-scrollbar { width: 4px; }
-    .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
-</style>
 
 </body>
 </html>
