@@ -38,32 +38,52 @@
 <body class="antialiased overflow-x-hidden">
 
 <header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
+  <!-- Navigation -->
+<header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-dark">
         <div class="flex items-center justify-between h-16 md:h-20">
+            <!-- Logo -->
             <div class="flex items-center gap-3">
                 <div class="logo-container"><img src="logo.png" alt="27668grafix Logo"></div>
                 <h2 class="text-dark text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
-            <nav class="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest">
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-6 text-[10px] font-black uppercase tracking-widest text-slate-600">
+                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
                 <a href="store.html" class="hover:text-primary transition-colors">Store</a>
                 <a href="about.html" class="hover:text-primary transition-colors">About</a>
-                <a href="#footer-contact" class="hover:text-primary transition-colors">Contact</a>
+                <a href="signup.html" class="hover:text-primary transition-colors">Signup</a>
+                <a href="login.html" class="hover:text-primary transition-colors">Login</a>
+                <a href="#contact-form-section" class="hover:text-primary transition-colors">Contact</a>
             </nav>
+
             <div class="flex items-center gap-4">
-                <a href="login.html" class="hidden sm:block text-[11px] font-black uppercase border-b-2 border-primary">Login</a>
-                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5"><div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div></button>
+                <!-- Mobile Toggle Button (3 Lines) -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden flex flex-col gap-1.5 p-2">
+                    <div class="w-6 h-0.5 bg-dark"></div>
+                    <div class="w-6 h-0.5 bg-dark"></div>
+                    <div class="w-6 h-0.5 bg-dark"></div>
+                </button>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 w-full z-[90] bg-white border-b border-primary p-6 flex flex-col gap-6 uppercase text-xs font-bold tracking-widest shadow-2xl">
-    <a href="store.html">Store</a>
-    <a href="about.html">About Us</a>
-    <a href="login.html">Login</a>
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[110] bg-white p-8 flex flex-col gap-6 uppercase text-sm font-black tracking-widest shadow-2xl">
+    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-4">
+        <h2 class="text-dark italic">27668<span class="text-primary">GRAFIX</span></h2>
+        <button onclick="toggleMobileMenu()" class="text-3xl text-primary">&times;</button>
+    </div>
+    <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-primary">Home</a>
+    <a href="store.html" onclick="toggleMobileMenu()" class="hover:text-primary">Store</a>
+    <a href="about.html" onclick="toggleMobileMenu()" class="hover:text-primary">About Us</a>
+    <a href="signup.html" onclick="toggleMobileMenu()" class="hover:text-primary">Signup</a>
+    <a href="login.html" onclick="toggleMobileMenu()" class="hover:text-primary text-dark">Login</a>
+    <a href="#contact-form-section" onclick="toggleMobileMenu()" class="text-primary">Contact Us</a>
 </div>
-
+    
 <main class="pt-16">
     <!-- 1. Hero Image Area -->
     <section class="w-full h-[35vh] md:h-[55vh] overflow-hidden">
@@ -593,6 +613,74 @@
         </div>
     </div>
 </section>
+
+    <!-- CONTACT FORM SECTION -->
+<section id="contact-form-section" class="py-24 px-6 lg:px-20 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <!-- Left Side: Visual Branding -->
+            <div class="space-y-8">
+                <h4 class="text-primary font-black uppercase tracking-[0.3em] text-xs italic">Get in Touch</h4>
+                <h2 class="text-4xl md:text-5xl font-black text-dark uppercase italic tracking-tighter leading-tight">
+                    Ready to Start <br> Your <span class="text-primary">Branding Journey?</span>
+                </h2>
+                <p class="text-slate-600 font-medium leading-relaxed">
+                    Our team of expert designers and print specialists are ready to bring your vision to life. Fill out the form and we will reach out via WhatsApp or Email immediately.
+                </p>
+                <div class="flex items-center gap-4 text-dark font-black uppercase text-[10px] tracking-widest">
+                    <span class="flex items-center gap-2"><div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div> 24/7 Support</span>
+                    <span class="flex items-center gap-2"><div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div> Global Logistics</span>
+                </div>
+            </div>
+
+            <!-- Right Side: The Form -->
+            <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-slate-100">
+                <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">Your Full Name</label>
+                        <input type="text" id="cName" required class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-bold" placeholder="e.g. David Ajibike">
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">Service Required</label>
+                        <select id="cService" class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-bold text-slate-500">
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Corporate Branding">Corporate Branding</option>
+                            <option value="Promotional Gifts">Promotional Gifts</option>
+                            <option value="Custom Apparel">Custom Apparel</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest ml-1">How can we help?</label>
+                        <textarea id="cMessage" required class="w-full bg-slate-50 border-none rounded-xl py-4 px-6 outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-bold h-32" placeholder="Describe your project details..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-dark text-primary py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl hover:bg-primary hover:text-dark transition-all transform hover:scale-105 active:scale-95">
+                        Send Message to WhatsApp
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Logic for the form -->
+<script>
+    function handleContactSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById('cName').value;
+        const service = document.getElementById('cService').value;
+        const message = document.getElementById('cMessage').value;
+
+        // Formats message for WhatsApp
+        const waText = `Hello 27668grafix! 🔥%0A%0A*NEW CONTACT INQUIRY*%0A*Name:* ${name}%0A*Service:* ${service}%0A*Message:* ${message}%0A%0A_Sent from website contact form_`;
+        
+        window.open(`https://wa.me/2348033491036?text=${waText}`, '_blank');
+    }
+</script>
 <!-- Detailed Footer -->
 <!-- Finalized Premium Black & Gold Footer -->
 <footer id="footer-contact" class="bg-black text-primary pt-20 pb-10 px-6 border-t-2 border-primary/20">
