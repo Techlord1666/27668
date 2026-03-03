@@ -37,39 +37,49 @@
 </head>
 <body class="antialiased overflow-x-hidden">
 
+<!-- Navigation -->
 <header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
             <div class="flex items-center gap-3">
-                <div class="logo-container"><img src="logo.png" alt="27668grafix Logo"></div>
+                <div class="logo-container"><img src="logo.png" alt="Logo"></div>
                 <h2 class="text-dark text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
-            <nav class="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest">
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest text-slate-600">
+                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
                 <a href="store.html" class="hover:text-primary transition-colors">Store</a>
                 <a href="about.html" class="hover:text-primary transition-colors">About</a>
-                <a href="#footer-contact" class="hover:text-primary transition-colors">Contact</a>
+                <a href="signup.html" class="hover:text-primary transition-colors">Signup</a>
+                <a href="login.html" class="hover:text-primary transition-colors">Login</a>
+                <a href="#contact-form-section" class="hover:text-primary transition-colors">Contact</a>
             </nav>
-            <div class="flex items-center gap-4">
-                <a href="login.html" class="hidden sm:block text-[11px] font-black uppercase border-b-2 border-primary">Login</a>
-                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5"><div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div><div class="w-6 h-0.5 bg-dark"></div></button>
-            </div>
+
+            <!-- MOBILE OPEN BUTTON (3 Lines) -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden flex flex-col gap-1.5 p-2 bg-slate-50 rounded-lg">
+                <div class="w-6 h-0.5 bg-dark"></div>
+                <div class="w-6 h-0.5 bg-dark"></div>
+                <div class="w-6 h-0.5 bg-dark"></div>
+            </button>
         </div>
     </div>
-
-    <div id="mobile-menu" class="hidden fixed inset-0 z-[110] bg-white p-8 flex flex-col gap-6 uppercase text-sm font-black tracking-widest shadow-2xl">
-    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-4">
-        <h2 class="text-dark italic">27668<span class="text-primary">GRAFIX</span></h2>
-        <button onclick="toggleMobileMenu()" class="text-3xl text-primary">&times;</button>
-    </div>
-    <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-primary">Home</a>
-    <a href="store.html" onclick="toggleMobileMenu()" class="hover:text-primary">Store</a>
-    <a href="about.html" onclick="toggleMobileMenu()" class="hover:text-primary">About Us</a>
-    <a href="signup.html" onclick="toggleMobileMenu()" class="hover:text-primary">Signup</a>
-    <a href="login.html" onclick="toggleMobileMenu()" class="hover:text-primary text-dark">Login</a>
-    <a href="#contact-form-section" onclick="toggleMobileMenu()" class="text-primary">Contact Us</a>
-</div>
-
 </header>
+
+    <!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-[200] bg-white p-8 flex flex-col gap-8 uppercase text-sm font-black tracking-widest shadow-2xl overflow-y-auto">
+    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-4">
+        <h2 class="text-dark italic font-black text-xl">27668<span class="text-primary">GRAFIX</span></h2>
+        <!-- CLOSE BUTTON -->
+        <button onclick="toggleMobileMenu()" class="text-4xl text-primary leading-none">&times;</button>
+    </div>
+    <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-primary py-2 border-b border-slate-50">Home</a>
+    <a href="store.html" onclick="toggleMobileMenu()" class="hover:text-primary py-2 border-b border-slate-50">Store Catalog</a>
+    <a href="about.html" onclick="toggleMobileMenu()" class="hover:text-primary py-2 border-b border-slate-50">About Us</a>
+    <a href="signup.html" onclick="toggleMobileMenu()" class="hover:text-primary py-2 border-b border-slate-50">Create Account</a>
+    <a href="login.html" onclick="toggleMobileMenu()" class="hover:text-primary py-2 border-b border-slate-50">Login</a>
+    <a href="#contact-form-section" onclick="toggleMobileMenu()" class="text-primary pt-4 font-black">Contact Us</a>
+</div>
 
 <!-- Mobile Menu -->
 <!-- Mobile Menu Overlay -->
@@ -853,6 +863,20 @@
         
         window.open(`https://wa.me/2348033491036?text=${waText}`, '_blank');
     }
+
+   
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        // This removes 'hidden' to show it, and adds it back to hide it
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Stop scrolling behind menu
+        } else {
+            menu.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+    }
+
 </script>
 
 <style>
