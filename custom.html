@@ -23,198 +23,192 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; }
-        .sidebar-link { color: #475569; transition: all 0.3s ease; }
+        .sidebar-link { color: #475569; transition: all 0.3s ease; display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-radius: 12px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; width: 100%; }
         .sidebar-link.active { background: #D4AF37 !important; color: #ffffff !important; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
         .sidebar-link:hover:not(.active) { background: #f8f8f8; color: #D4AF37; }
-        .logo-circle { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #D4AF37; object-fit: cover; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .logo-circle { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #D4AF37; object-fit: cover; background: #fff; }
+        .glass-card { background: #ffffff; border: 1px solid #f1f1f1; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         
-        /* Mobile Sidebar Animation */
-        #sidebar { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        /* Mobile Sidebar */
+        #sidebar { transition: transform 0.3s ease-in-out; z-index: 150; }
+        
+        /* Policy Modal Scroll */
+        .modal-scroll::-webkit-scrollbar { width: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
     </style>
 </head>
-<body class="antialiased overflow-hidden bg-white">
+<body class="antialiased bg-white">
 
-    <div class="flex h-screen overflow-hidden relative">
-        <!-- SIDEBAR -->
-        <aside id="sidebar" class="fixed inset-y-0 left-0 z-[100] w-64 bg-white border-r border-slate-100 transform -translate-x-full lg:translate-x-0 lg:static flex-shrink-0 shadow-2xl lg:shadow-none">
-            <div class="flex flex-col h-full p-5">
-                <!-- Brand Header -->
-                <div class="flex items-center gap-3 mb-10 px-2">
-                    <img src="logo.png" class="logo-circle" alt="Logo">
-                    <h2 class="text-dark text-xl font-black italic uppercase tracking-tighter">27668<span class="text-primary">grafix</span></h2>
-                </div>
-                
-                <!-- Main Nav (NO DUPLICATES, NO BROKEN ICONS) -->
-                <nav class="flex-1 space-y-2">
-                    <button onclick="showSection('overview', this)" class="sidebar-link active w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-[11px] font-black uppercase tracking-widest">
-                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                        <span>Overview</span>
-                    </button>
-
-                    <button onclick="showSection('orders', this)" class="sidebar-link w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-[11px] font-black uppercase tracking-widest">
-                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                        <span>Orders</span>
-                    </button>
-
-                    <button onclick="showSection('wallet', this)" class="sidebar-link w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-[11px] font-black uppercase tracking-widest">
-                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                        <span>Wallet</span>
-                    </button>
-
-                    <button onclick="showSection('settings', this)" class="sidebar-link w-full flex items-center gap-4 px-5 py-3.5 rounded-xl text-[11px] font-black uppercase tracking-widest">
-                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        <span>Settings</span>
-                    </button>
-
-                    <!-- Nav Divider -->
-                    <div class="pt-6 border-t border-slate-50 mt-6 space-y-1">
-                        <a href="index.html" class="flex items-center gap-4 px-5 py-2.5 text-[10px] font-black uppercase text-slate-400 hover:text-primary tracking-widest">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                            Home
-                        </a>
-                        <a href="store.html" class="flex items-center gap-4 px-5 py-2.5 text-[10px] font-black uppercase text-slate-400 hover:text-primary tracking-widest">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                            Store
-                        </a>
-                    </div>
-                </nav>
-
-                <!-- Single Logout Button -->
-                <div class="pt-4 border-t border-slate-50">
-                    <button onclick="handleLogout()" class="w-full flex items-center gap-4 px-5 py-4 text-red-500 font-black uppercase text-[11px] tracking-widest hover:bg-red-50 rounded-xl transition-all">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-                        <span>Logout</span>
-                    </button>
-                </div>
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white border-r border-slate-100 transform -translate-x-full lg:translate-x-0 flex-shrink-0 shadow-2xl lg:shadow-none">
+        <div class="flex flex-col h-full p-5">
+            <div class="flex items-center gap-3 mb-10 px-2">
+                <img src="logo.png" class="logo-circle" alt="Logo">
+                <h2 class="text-dark text-xl font-black italic uppercase tracking-tighter italic">27668<span class="text-primary">grafix</span></h2>
             </div>
-        </aside>
-
-        <!-- MAIN CONTENT -->
-        <main class="flex-1 flex flex-col min-w-0 bg-white relative">
-            <!-- Header -->
-            <header class="h-16 md:h-20 flex items-center justify-between px-6 border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-40">
-                <button onclick="toggleSidebar()" class="lg:hidden text-dark p-2 hover:bg-slate-50 rounded-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            
+            <nav class="flex-1 space-y-2">
+                <button onclick="showSection('overview', this)" class="sidebar-link active">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Overview
                 </button>
-                <div class="hidden md:block">
-                    <h3 class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-300">Secure Elite Portal // Active Session</h3>
+                <button onclick="showSection('orders', this)" class="sidebar-link">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    Orders
+                </button>
+                <button onclick="showSection('wallet', this)" class="sidebar-link">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                    Wallet
+                </button>
+                <button onclick="showSection('settings', this)" class="sidebar-link">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path></svg>
+                    Settings
+                </button>
+
+                <div class="pt-6 border-t border-slate-50 mt-6 space-y-1">
+                    <a href="index.html" class="sidebar-link"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> Home</a>
+                    <a href="store.html" class="sidebar-link"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg> Store</a>
                 </div>
-                <div class="flex items-center gap-4">
-                    <div class="text-right hidden sm:block">
-                        <p id="userNameDisplay" class="text-xs font-black uppercase italic truncate max-w-[120px]">User Name</p>
-                        <p id="userBalanceDisplay" class="text-[10px] text-primary font-bold">₦0.00</p>
-                    </div>
-                    <img id="userAvatarDisplay" src="" class="w-10 h-10 md:w-11 md:h-11 rounded-full border-2 border-primary/20 object-cover" alt="Profile">
+            </nav>
+
+            <button onclick="handleLogout()" class="mt-auto flex items-center gap-4 px-5 py-4 text-red-500 font-black uppercase text-[11px] tracking-widest hover:bg-red-50 rounded-xl transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="flex-1 flex flex-col min-w-0 lg:ml-64 min-h-screen overflow-y-auto">
+        
+        <!-- HEADER -->
+        <header class="h-16 md:h-20 flex items-center justify-between px-6 border-b border-slate-100 bg-white/95 backdrop-blur-md sticky top-0 z-40">
+            <button onclick="toggleSidebar()" class="lg:hidden text-dark p-2 rounded-lg hover:bg-slate-50">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            <h3 class="hidden md:block text-[10px] font-black uppercase tracking-[0.4em] text-slate-300 italic">Secure Elite Portal // Active Session</h3>
+            <div class="flex items-center gap-4">
+                <div class="text-right hidden sm:block">
+                    <p id="userNameDisplay" class="text-xs font-black uppercase italic truncate max-w-[120px]">User Name</p>
+                    <p id="userBalanceDisplay" class="text-[10px] text-primary font-bold">₦0.00</p>
                 </div>
-            </header>
-
-            <!-- Content -->
-            <div class="flex-1 overflow-y-auto p-6 md:p-10 no-scrollbar pb-20">
-                <!-- 1. OVERVIEW -->
-                <section id="overviewSection" class="dashboard-section space-y-8 animate-in fade-in duration-500">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl">
-                            <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Orders</p>
-                            <h4 class="text-3xl font-black italic">0</h4>
-                        </div>
-                        <div class="bg-white border-2 border-primary/20 p-8 rounded-3xl shadow-sm">
-                            <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Balance</p>
-                            <h4 id="overviewBalance" class="text-3xl font-black italic text-primary">₦0.00</h4>
-                        </div>
-                        <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl">
-                            <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Points</p>
-                            <h4 class="text-3xl font-black italic">0</h4>
-                        </div>
-                    </div>
-                    <div class="border-2 border-dashed border-slate-100 rounded-[2.5rem] p-20 text-center text-slate-300">
-                        <p class="font-bold uppercase tracking-widest text-xs">No recent activity detected</p>
-                    </div>
-                </section>
-
-                <!-- 2. ORDERS -->
-                <section id="ordersSection" class="dashboard-section hidden space-y-6">
-                    <h2 class="text-2xl font-black uppercase italic italic tracking-tighter">My <span class="text-primary">Orders</span></h2>
-                    <div class="bg-slate-50 rounded-3xl p-12 text-center border border-slate-100">
-                        <p class="text-slate-400">Your history is currently empty.</p>
-                        <a href="store.html" class="inline-block mt-6 bg-dark text-white px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest">Go to store</a>
-                    </div>
-                </section>
-
-                <!-- 3. WALLET -->
-                <section id="walletSection" class="dashboard-section hidden">
-                    <div class="max-w-md mx-auto bg-dark p-10 rounded-[3.5rem] text-center shadow-2xl border-b-8 border-primary">
-                        <p class="text-primary text-[10px] font-black uppercase tracking-widest mb-4">Current Balance</p>
-                        <h4 id="walletBalanceBig" class="text-white text-5xl font-black italic mb-8">₦0.00</h4>
-                        <button onclick="toggleFundInput()" class="bg-primary text-black px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-widest">Add Funds</button>
-                    </div>
-                    <div id="fundInputArea" class="hidden max-w-md mx-auto mt-8 bg-slate-50 p-8 rounded-3xl border border-slate-100 space-y-4">
-                        <input type="number" id="fundAmount" placeholder="Amount (₦)" class="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-xl font-black outline-none focus:border-primary">
-                        <button onclick="payWithPaystack()" class="w-full bg-dark text-primary py-4 rounded-2xl font-black uppercase text-xs tracking-widest">Secure Payment</button>
-                    </div>
-                </section>
-
-                <!-- 4. SETTINGS -->
-                <section id="settingsSection" class="dashboard-section hidden space-y-8">
-                    <h2 class="text-2xl font-black uppercase italic tracking-tighter">Edit <span class="text-primary">Profile</span></h2>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div class="bg-white border border-slate-100 p-10 rounded-3xl text-center flex flex-col items-center">
-                            <div class="relative group cursor-pointer">
-                                <img id="settingsAvatarPreview" class="w-32 h-32 rounded-full border-4 border-primary/20 object-cover shadow-xl">
-                                <label class="absolute inset-0 flex items-center justify-center bg-black/60 rounded-full opacity-0 group-hover:opacity-100 transition-all">
-                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    <input type="file" id="avatarUpload" class="hidden" accept="image/*" onchange="previewAndUploadAvatar()">
-                                </label>
-                            </div>
-                            <p class="mt-4 text-[10px] text-slate-400 font-black uppercase tracking-widest">Update Photo</p>
-                        </div>
-                        <div class="lg:col-span-2 bg-slate-50 p-8 rounded-3xl border border-slate-100 space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <input type="text" id="setFullName" placeholder="Full Name" class="w-full bg-white border border-slate-200 rounded-xl p-4 outline-none focus:border-primary font-bold text-sm">
-                                <input type="tel" id="setPhone" placeholder="Phone Number" class="w-full bg-white border border-slate-200 rounded-xl p-4 outline-none focus:border-primary font-bold text-sm">
-                                <textarea id="setAddress" placeholder="Delivery Address" class="md:col-span-2 w-full bg-white border border-slate-200 rounded-xl p-4 h-24 outline-none focus:border-primary font-bold text-sm"></textarea>
-                            </div>
-                            <button onclick="updateProfile()" id="saveProfileBtn" class="bg-dark text-primary px-10 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest">Save Profile</button>
-                        </div>
-                    </div>
-                </section>
+                <img id="userAvatarDisplay" src="" class="w-10 h-10 md:w-11 md:h-11 rounded-full border-2 border-primary/20 object-cover shadow-sm">
             </div>
+        </header>
 
-            <!-- DASHBOARD FOOTER -->
-            <footer class="bg-black text-primary pt-24 pb-12 px-6">
-                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-3"><img src="logo.png" class="logo-circle"><h2 class="text-white text-xl font-black italic uppercase">27668<span class="text-primary">grafix</span></h2></div>
-                        <p class="text-gold-bright text-xs font-bold italic leading-relaxed">The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events.</p>
+        <!-- DASHBOARD CONTENT -->
+        <div class="p-6 md:p-10 space-y-10 flex-1 bg-white">
+            
+            <!-- OVERVIEW -->
+            <section id="overviewSection" class="dashboard-section space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card p-8 rounded-3xl">
+                        <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Active Orders</p>
+                        <h4 class="text-3xl font-black italic">0</h4>
                     </div>
-                    <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest">
+                    <div class="glass-card p-8 rounded-3xl border-l-4 border-primary">
+                        <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Wallet Balance</p>
+                        <h4 id="overviewBalance" class="text-3xl font-black italic text-primary">₦0.00</h4>
+                    </div>
+                    <div class="glass-card p-8 rounded-3xl">
+                        <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Total Rewards</p>
+                        <h4 class="text-3xl font-black italic">0</h4>
+                    </div>
+                </div>
+                <div class="p-20 text-center border-2 border-dashed border-slate-100 rounded-[3rem] text-slate-300">
+                    <p class="font-black uppercase tracking-widest text-xs">No recent transactions to show</p>
+                </div>
+            </section>
+
+            <!-- ORDERS -->
+            <section id="ordersSection" class="dashboard-section hidden space-y-6">
+                <h2 class="text-2xl font-black uppercase italic tracking-tighter">My <span class="text-primary">Orders</span></h2>
+                <div class="glass-card rounded-3xl p-12 text-center">
+                    <p class="text-slate-400 font-medium">You haven't placed any orders yet.</p>
+                    <a href="store.html" class="inline-block mt-6 bg-dark text-white px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest transition-all hover:bg-primary">Browse store</a>
+                </div>
+            </section>
+
+            <!-- WALLET -->
+            <section id="walletSection" class="dashboard-section hidden">
+                <div class="max-w-md mx-auto bg-dark p-10 rounded-[3.5rem] text-center shadow-2xl border-b-8 border-primary">
+                    <p class="text-primary text-[10px] font-black uppercase mb-4">Available Funds</p>
+                    <h4 id="walletBalanceBig" class="text-white text-5xl font-black italic mb-8">₦0.00</h4>
+                    <button onclick="toggleFundInput()" class="bg-primary text-black px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:scale-105 transition-transform">Fund Wallet</button>
+                </div>
+                <div id="fundInputArea" class="hidden max-w-md mx-auto mt-8 glass-card p-8 rounded-3xl space-y-4">
+                    <input type="number" id="fundAmount" placeholder="Amount (₦)" class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-xl font-black outline-none focus:border-primary">
+                    <button onclick="payWithPaystack()" class="w-full bg-dark text-primary py-4 rounded-2xl font-black uppercase text-xs tracking-widest">Pay Securely</button>
+                </div>
+            </section>
+
+            <!-- SETTINGS -->
+            <section id="settingsSection" class="dashboard-section hidden space-y-8">
+                <h2 class="text-2xl font-black uppercase italic tracking-tighter">Account <span class="text-primary">Settings</span></h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-10 rounded-[2.5rem] text-center flex flex-col items-center">
+                        <div class="relative group cursor-pointer">
+                            <img id="settingsAvatarPreview" class="w-32 h-32 rounded-full border-4 border-primary/20 object-cover shadow-xl">
+                            <label class="absolute inset-0 flex items-center justify-center bg-black/60 rounded-full opacity-0 group-hover:opacity-100 transition-all">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <input type="file" id="avatarUpload" class="hidden" accept="image/*" onchange="previewAndUploadAvatar()">
+                            </label>
+                        </div>
+                        <p class="mt-4 text-[10px] text-slate-400 font-black uppercase tracking-widest">Update Photo</p>
+                    </div>
+                    <div class="lg:col-span-2 glass-card p-8 rounded-[2.5rem] space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input type="text" id="setFullName" placeholder="Full Name" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 outline-none focus:border-primary font-bold text-sm transition-all">
+                            <input type="tel" id="setPhone" placeholder="Phone Number" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 outline-none focus:border-primary font-bold text-sm transition-all">
+                            <textarea id="setAddress" placeholder="Delivery Address" class="md:col-span-2 w-full bg-slate-50 border border-slate-200 rounded-xl p-4 h-24 outline-none focus:border-primary font-bold text-sm transition-all"></textarea>
+                        </div>
+                        <button onclick="updateProfile()" id="saveProfileBtn" class="bg-dark text-primary px-10 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest hover:scale-105 transition-transform">Save Profile</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- BLACK & GOLD FOOTER (Inside scroll area) -->
+        <footer class="bg-black text-primary pt-24 pb-12 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                    <div class="space-y-6 text-left">
+                        <div class="flex items-center gap-3"><img src="logo.png" class="logo-circle"><h2 class="text-white text-xl font-black italic uppercase">27668<span class="text-primary">grafix</span></h2></div>
+                        <p class="text-gold-bright text-xs font-bold italic leading-relaxed">Perfect Printing Solutions, Promotional Gifts & Souvenirs for all events.</p>
+                        <div class="flex gap-4">
+                            <a href="https://www.facebook.com/share/1DNgLLHFEY/" target="_blank" class="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center invert"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-4 h-4"></a>
+                            <a href="https://x.com/27668grafix" target="_blank" class="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center invert"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-4 h-4"></a>
+                            <a href="https://www.instagram.com/27668grafix" target="_blank" class="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center invert"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-4 h-4"></a>
+                        </div>
+                    </div>
+                    <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest text-left">
                         <h4 class="text-white font-black border-l-2 border-primary pl-3">Studio</h4>
                         <p>18, George Street, Igbobi, Shomolu, Lagos.</p>
                         <p>234 803 349 1036</p>
                         <p class="lowercase">info@27668grafix.com</p>
                     </div>
-                    <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest">
-                        <h4 class="text-white font-black border-l-2 border-primary pl-3">Information</h4>
-                        <button onclick="openPolicyModal('return')" class="block hover:text-white">Returns & Refund</button>
-                        <button onclick="openPolicyModal('shipping')" class="block hover:text-white">Shipping Policy</button>
-                        <button onclick="openPolicyModal('privacy')" class="block hover:text-white">Privacy Policy</button>
+                    <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest text-left">
+                        <h4 class="text-white font-black border-l-2 border-primary pl-3">Info</h4>
+                        <button onclick="openPolicyModal('return')" class="block hover:text-white transition-all text-left">Returns & Refund</button>
+                        <button onclick="openPolicyModal('shipping')" class="block hover:text-white transition-all text-left">Shipping Policy</button>
+                        <button onclick="openPolicyModal('privacy')" class="block hover:text-white transition-all text-left">Privacy Policy</button>
                     </div>
-                    <div class="space-y-6">
+                    <div class="space-y-6 text-left">
                         <h4 class="text-white font-black uppercase text-[11px] tracking-widest border-l-2 border-primary pl-3">Payments</h4>
-                        <div class="flex gap-2 opacity-90"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4 bg-white px-1 rounded"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4 bg-white px-1 rounded"></div>
-                        <a href="https://wa.me/2348033491036" class="block bg-primary text-black text-center py-2 rounded-lg font-black text-[9px] transition-all hover:scale-105">Chat Us</a>
+                        <div class="flex gap-2 opacity-90 bg-white p-2 rounded w-fit"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4"></div>
+                        <a href="https://wa.me/2348033491036" class="block bg-primary text-black text-center py-3 rounded-xl font-black text-[10px] uppercase transition-all hover:scale-105">Chat with Us</a>
                     </div>
                 </div>
                 <div class="text-center pt-8 border-t border-primary/10 text-[9px] font-black uppercase tracking-[0.4em]">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</div>
-            </footer>
-        </main>
+            </div>
+        </footer>
     </div>
 
-    <!-- POLICY MODALS -->
+    <!-- POLICY MODAL -->
     <div id="policyModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[250] hidden flex items-center justify-center p-4">
-        <div class="bg-black border-2 border-primary rounded-3xl max-w-xl w-full p-8 shadow-2xl relative">
+        <div class="bg-black border border-primary rounded-3xl max-w-xl w-full p-8 shadow-2xl relative">
             <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl font-bold">&times;</button>
-            <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6"></h3>
+            <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6 tracking-widest"></h3>
             <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto max-h-[60vh] modal-scroll space-y-4"></div>
         </div>
     </div>
@@ -258,7 +252,11 @@
             if(window.innerWidth < 1024) toggleSidebar();
         }
 
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('-translate-x-full'); }
+        function toggleSidebar() { 
+            const sb = document.getElementById('sidebar');
+            sb.classList.toggle('-translate-x-full');
+        }
+
         function toggleFundInput() { document.getElementById('fundInputArea').classList.toggle('hidden'); }
 
         async function updateProfile() {
