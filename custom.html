@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -11,202 +11,224 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
-            darkMode: "class",
-            theme: { extend: { colors: { "primary": "#ff6a00", "background-dark": "#0f0f0f", "card-dark": "#161616" } } }
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#D4AF37", 
+                        "gold-bright": "#FFD700",
+                        "dark": "#000000",
+                        "light-bg": "#ffffff",
+                        "card-white": "#f8f9fa"
+                    },
+                },
+            },
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0f0f0f; color: white; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        
-        /* Sidebar Link Styling */
-        .sidebar-link { color: #94a3b8; transition: all 0.3s ease; }
-        .sidebar-link.active { background: #ff6a00 !important; color: white !important; box-shadow: 0 4px 15px rgba(255, 106, 0, 0.3); }
-        .sidebar-link:hover:not(.active) { background: rgba(255, 255, 255, 0.05); color: white; }
-
-        /* Prevent Icons from showing as text words */
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            line-height: 1;
-            text-transform: none;
-            letter-spacing: normal;
-            word-wrap: normal;
-            white-space: nowrap;
-            direction: ltr;
-            -webkit-font-smoothing: antialiased;
-        }
-        
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; }
+        .glass { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 8px 32px rgba(0,0,0,0.05); }
+        .sidebar-link { color: #64748b; transition: all 0.3s ease; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
+        .sidebar-link.active { background: #D4AF37 !important; color: white !important; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); }
         .no-scrollbar::-webkit-scrollbar { display: none; }
+        .logo-circle { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #D4AF37; object-fit: cover; background: #fff; }
+        .modal-scroll::-webkit-scrollbar { width: 4px; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
     </style>
 </head>
-<body class="antialiased overflow-hidden">
+<body class="antialiased overflow-hidden bg-white text-dark">
 
     <div class="flex h-screen overflow-hidden">
         <!-- SIDEBAR -->
-        <aside id="sidebar" class="fixed inset-y-0 left-0 z-[100] w-64 bg-card-dark border-r border-white/5 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
-            <div class="flex flex-col h-full p-4">
-                <!-- Brand -->
-                <div class="p-4 mb-6">
-                    <h2 class="text-xl font-black italic uppercase tracking-tighter">27668<span class="text-primary">grafix</span></h2>
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-100 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+            <div class="flex flex-col h-full p-6">
+                <div class="flex items-center gap-3 mb-10">
+                    <img src="logo.png" class="logo-circle" alt="Logo">
+                    <h2 class="text-xl font-black italic uppercase tracking-tighter italic">27668<span class="text-primary">grafix</span></h2>
                 </div>
                 
-                <!-- Navigation -->
-                <nav class="flex-1 space-y-1 overflow-y-auto no-scrollbar px-2">
-                    <p class="px-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 mb-2">Main Portal</p>
-                    
-                    <button onclick="showSection('overview', this)" class="sidebar-link active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest">
-                       
-                        <span class="truncate">Overview</span>
+                <nav class="space-y-2 flex-1">
+                    <button onclick="showSection('overview', this)" class="sidebar-link active w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all">
+                        <span class="material-symbols-outlined text-lg">dashboard</span> Overview
                     </button>
-                    
-                    <button onclick="showSection('orders', this)" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest">
-                        
-                        <span class="truncate">Orders</span>
+                    <button onclick="showSection('orders', this)" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all">
+                        <span class="material-symbols-outlined text-lg">shopping_bag</span> My Orders
                     </button>
-                    
-                    <button onclick="showSection('wallet', this)" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest">
-                       
-                        <span class="truncate">Wallet</span>
+                    <button onclick="showSection('wallet', this)" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all">
+                        <span class="material-symbols-outlined text-lg">account_balance_wallet</span> Wallet
                     </button>
-                    
-                    <button onclick="showSection('settings', this)" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest">
-                        
-                        <span class="truncate">Settings</span>
+                    <button onclick="showSection('settings', this)" class="sidebar-link w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all">
+                        <span class="material-symbols-outlined text-lg">settings</span> Settings
                     </button>
 
-                    <!-- Links -->
-                    <div class="pt-6 border-t border-white/5 mt-6 space-y-1">
-                        <p class="px-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 mb-2">Quick Access</p>
-                        <a href="index.html" class="flex items-center gap-3 px-4 py-2 text-[10px] text-slate-500 hover:text-white uppercase font-bold transition-colors">
-                             Home
-                        </a>
-                        <a href="store.html" class="flex items-center gap-3 px-4 py-2 text-[10px] text-slate-500 hover:text-white uppercase font-bold transition-colors">
-                             Store
-                        </a>
+                    <div class="pt-6 border-t border-slate-100 mt-6 space-y-2">
+                        <a href="index.html" class="flex items-center gap-3 px-4 py-2 text-[10px] text-slate-400 hover:text-primary uppercase font-black">Home</a>
+                        <a href="store.html" class="flex items-center gap-3 px-4 py-2 text-[10px] text-slate-400 hover:text-primary uppercase font-black">Store</a>
                     </div>
                 </nav>
 
-                <!-- Logout (Only One Button) -->
-                <div class="p-2 border-t border-white/5">
-                    <button onclick="handleLogout()" class="w-full flex items-center gap-3 px-4 py-4 text-red-500 font-black uppercase text-[11px] tracking-widest hover:bg-red-500/10 rounded-xl transition-all">
-                        
-                        <span>Logout</span>
-                    </button>
-                </div>
+                <button onclick="handleLogout()" class="mt-auto flex items-center gap-3 px-4 py-3 text-red-500 font-black uppercase text-[10px] tracking-widest hover:bg-red-50 rounded-xl transition-all">
+                    <span class="material-symbols-outlined text-lg">logout</span> Logout
+                </button>
             </div>
         </aside>
 
-        <!-- MAIN CONTENT -->
-        <main class="flex-1 flex flex-col min-w-0 lg:ml-64 bg-background-dark">
-            <!-- Header -->
-            <header class="h-16 md:h-20 flex items-center justify-between px-6 border-b border-white/5 bg-background-dark/50 backdrop-blur-md sticky top-0 z-40">
-                <button onclick="toggleSidebar()" class="lg:hidden text-white"><span class="material-symbols-outlined">menu</span></button>
-                
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-1 flex flex-col min-w-0 lg:ml-64 bg-white h-screen overflow-y-auto no-scrollbar">
+            
+            <!-- TOP HEADER -->
+            <header class="h-20 flex items-center justify-between px-6 border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-40">
+                <button onclick="toggleSidebar()" class="lg:hidden text-dark"><span class="material-symbols-outlined">menu</span></button>
                 <div class="hidden md:block">
-                    <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">Secure Elite Portal</h3>
+                    <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 italic">Secure Elite Portal <span class="text-primary mx-2">//</span> Verified</h3>
                 </div>
-
                 <div class="flex items-center gap-4">
                     <div class="text-right hidden sm:block">
-                        <p id="userNameDisplay" class="text-xs font-black uppercase italic truncate max-w-[150px]">User Name</p>
+                        <p id="userNameDisplay" class="text-sm font-black uppercase italic truncate max-w-[150px]">Loading...</p>
                         <p id="userBalanceDisplay" class="text-[10px] text-primary font-bold">₦0.00</p>
                     </div>
-                    <img id="userAvatarDisplay" src="https://ui-avatars.com/api/?name=User&background=ff6a00&color=fff" class="w-10 h-10 rounded-full border border-primary/20 object-cover" alt="Profile">
+                    <img id="userAvatarDisplay" src="https://ui-avatars.com/api/?name=User&background=D4AF37&color=fff" class="w-11 h-11 rounded-full border-2 border-primary/20 object-cover shadow-sm" alt="Profile">
                 </div>
             </header>
 
-            <!-- Sections Container -->
-            <div class="flex-1 overflow-y-auto p-4 md:p-8 no-scrollbar">
+            <!-- DASHBOARD SECTIONS -->
+            <div class="p-6 md:p-10 space-y-12">
                 
-                <!-- Overview -->
-                <section id="overviewSection" class="dashboard-section space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="glass p-6 rounded-2xl">
-                            <p class="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Orders</p>
-                            <h4 class="text-2xl font-black italic">0</h4>
+                <!-- 1. OVERVIEW -->
+                <section id="overviewSection" class="dashboard-section space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass p-8 rounded-3xl">
+                            <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Active Orders</p>
+                            <h4 class="text-3xl font-black italic">0</h4>
                         </div>
-                        <div class="glass p-6 rounded-2xl border-l-2 border-primary">
-                            <p class="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Balance</p>
-                            <h4 id="overviewBalance" class="text-2xl font-black italic text-primary">₦0.00</h4>
+                        <div class="glass p-8 rounded-3xl border-l-4 border-primary">
+                            <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Available Balance</p>
+                            <h4 id="overviewBalance" class="text-3xl font-black italic text-primary">₦0.00</h4>
                         </div>
-                        <div class="glass p-6 rounded-2xl">
-                            <p class="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Spent</p>
-                            <h4 class="text-2xl font-black italic">₦0.00</h4>
+                        <div class="glass p-8 rounded-3xl">
+                            <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Total Points</p>
+                            <h4 class="text-3xl font-black italic">0</h4>
                         </div>
-                    </div>
-                    <div class="glass rounded-2xl p-12 text-center text-slate-600">
-                        <span class="material-symbols-outlined text-4xl mb-2 opacity-20">history</span>
-                        <p class="text-xs font-bold uppercase tracking-widest">No recent activity</p>
                     </div>
                 </section>
 
-                <!-- Orders -->
-                <section id="ordersSection" class="dashboard-section hidden">
-                    <h2 class="text-xl font-black uppercase italic mb-6">Track Orders</h2>
-                    <div class="glass rounded-2xl p-10 text-center text-slate-500">
-                        <p>No orders found in your history.</p>
+                <!-- 2. ORDERS -->
+                <section id="ordersSection" class="dashboard-section hidden space-y-6">
+                    <h2 class="text-2xl font-black italic uppercase tracking-tighter">Track <span class="text-primary">Orders</span></h2>
+                    <div class="glass rounded-3xl p-12 text-center border-dashed border-2 border-slate-200">
+                        <p class="text-slate-400 font-medium italic">You haven't placed any branding orders yet.</p>
                     </div>
                 </section>
 
-                <!-- Wallet -->
+                <!-- 3. WALLET -->
                 <section id="walletSection" class="dashboard-section hidden">
-                    <div class="max-w-md mx-auto bg-gradient-to-br from-primary to-orange-800 p-8 rounded-3xl text-center shadow-2xl">
-                        <p class="text-white/70 text-[10px] font-black uppercase mb-2">Available Wallet Balance</p>
-                        <h4 id="walletBalanceBig" class="text-4xl font-black italic mb-6">₦0.00</h4>
-                        <button onclick="toggleFundInput()" class="bg-white text-primary px-8 py-3 rounded-xl font-black uppercase text-[10px]">Add Funds</button>
+                    <div class="max-w-md mx-auto bg-dark p-10 rounded-[3rem] text-center shadow-2xl border-b-8 border-primary">
+                        <p class="text-primary text-[10px] font-black uppercase tracking-widest mb-4">Account Balance</p>
+                        <h4 id="walletBalanceBig" class="text-white text-5xl font-black italic mb-8">₦0.00</h4>
+                        <button onclick="toggleFundInput()" class="bg-primary text-black px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-widest transition-transform hover:scale-105">Fund Wallet</button>
                     </div>
-                    <div id="fundInputArea" class="hidden max-w-md mx-auto mt-6 glass p-6 rounded-2xl space-y-4">
-                        <input type="number" id="fundAmount" placeholder="Amount (₦)" class="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-6 text-xl font-bold outline-none">
-                        <button onclick="payWithPaystack()" class="w-full bg-primary py-4 rounded-xl font-black uppercase text-xs">Pay Securely</button>
+                    <div id="fundInputArea" class="hidden max-w-md mx-auto mt-8 glass p-8 rounded-3xl space-y-4">
+                        <input type="number" id="fundAmount" placeholder="Enter Amount (₦)" class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-xl font-black outline-none focus:border-primary">
+                        <button onclick="payWithPaystack()" class="w-full bg-dark text-primary py-4 rounded-2xl font-black uppercase text-xs tracking-widest">Secure Payment</button>
                     </div>
                 </section>
 
-                <!-- Settings -->
-                <section id="settingsSection" class="dashboard-section hidden">
-                    <h2 class="text-xl font-black uppercase italic mb-8">Settings</h2>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <div class="glass p-8 rounded-2xl text-center flex flex-col items-center h-fit">
+                <!-- 4. SETTINGS -->
+                <section id="settingsSection" class="dashboard-section hidden space-y-8">
+                    <h2 class="text-2xl font-black italic uppercase tracking-tighter">Profile <span class="text-primary">Settings</span></h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="glass p-8 rounded-3xl text-center flex flex-col items-center">
                             <div class="relative group">
-                                <img id="settingsAvatarPreview" src="https://ui-avatars.com/api/?name=User" class="w-24 h-24 rounded-full border-4 border-primary/20 object-cover">
-                                <label class="absolute inset-0 flex items-center justify-center bg-black/60 rounded-full opacity-0 group-hover:opacity-100 cursor-pointer transition-opacity">
+                                <img id="settingsAvatarPreview" src="" class="w-32 h-32 rounded-full border-4 border-primary shadow-xl object-cover">
+                                <label class="absolute inset-0 flex items-center justify-center bg-black/60 rounded-full opacity-0 group-hover:opacity-100 cursor-pointer transition-all">
                                     <span class="material-symbols-outlined text-white">photo_camera</span>
                                     <input type="file" id="avatarUpload" class="hidden" accept="image/*" onchange="previewAndUploadAvatar()">
                                 </label>
                             </div>
-                            <p class="mt-4 text-[9px] text-slate-500 font-bold uppercase tracking-widest">Update Photo</p>
+                            <p class="mt-4 text-[10px] text-slate-400 font-black uppercase tracking-widest">Click photo to update</p>
                         </div>
-                        <div class="lg:col-span-2 glass p-6 rounded-2xl space-y-4">
-                            <input type="text" id="setFullName" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-primary">
-                            <input type="tel" id="setPhone" placeholder="Phone Number" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 outline-none focus:border-primary">
-                            <textarea id="setAddress" placeholder="Delivery Address" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 h-24 outline-none focus:border-primary"></textarea>
-                            <button onclick="updateProfile()" id="saveProfileBtn" class="bg-primary px-8 py-3 rounded-xl font-black uppercase text-[10px]">Save Changes</button>
+                        <div class="lg:col-span-2 glass p-8 rounded-3xl space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <input type="text" id="setFullName" placeholder="Full Name" class="w-full bg-slate-50 border border-slate-100 rounded-xl p-4 outline-none focus:border-primary font-bold">
+                                <input type="tel" id="setPhone" placeholder="Phone Number" class="w-full bg-slate-50 border border-slate-100 rounded-xl p-4 outline-none focus:border-primary font-bold">
+                                <textarea id="setAddress" placeholder="Full Delivery Address" class="md:col-span-2 w-full bg-slate-50 border border-slate-100 rounded-xl p-4 h-24 outline-none focus:border-primary font-bold"></textarea>
+                            </div>
+                            <button onclick="updateProfile()" id="saveProfileBtn" class="bg-dark text-primary px-10 py-4 rounded-xl font-black uppercase text-xs tracking-widest">Save Changes</button>
                         </div>
                     </div>
                 </section>
-
             </div>
+
+            <!-- DASHBOARD FOOTER (Identical to Home Page) -->
+            <footer class="bg-black text-primary pt-20 pb-12 px-6 mt-auto">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-3">
+                                <img src="logo.png" class="logo-circle">
+                                <h2 class="text-white text-xl font-black italic uppercase tracking-tighter">27668<span class="text-primary">grafix</span></h2>
+                            </div>
+                            <p class="text-gold-bright text-xs font-bold italic leading-relaxed opacity-80">The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Studio Details</h4>
+                            <ul class="space-y-4 text-gold-bright text-xs font-bold uppercase tracking-widest">
+                                <li>18, George Street, Igbobi, Shomolu, Lagos.</li>
+                                <li>234 803 349 1036</li>
+                                <li class="lowercase">info@27668grafix.com</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Policies</h4>
+                            <ul class="space-y-4 text-gold-bright text-xs font-bold uppercase tracking-widest">
+                                <li><button onclick="openPolicyModal('return')" class="hover:text-white transition-colors">Returns & Refunds</button></li>
+                                <li><button onclick="openPolicyModal('shipping')" class="hover:text-white transition-colors">Shipping Info</button></li>
+                                <li><button onclick="openPolicyModal('privacy')" class="hover:text-white transition-colors">Privacy Policy</button></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Payments</h4>
+                            <div class="flex flex-wrap gap-4 opacity-80 mb-6 bg-white p-2 rounded-lg w-fit">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4">
+                            </div>
+                            <a href="https://wa.me/2348033491036" class="bg-primary text-black px-6 py-2 rounded-lg font-black text-[10px] uppercase">Chat Support</a>
+                        </div>
+                    </div>
+                    <div class="text-center pt-8 border-t border-primary/20">
+                        <p class="text-primary/50 font-black uppercase text-[10px] tracking-[0.4em]">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</p>
+                    </div>
+                </div>
+            </footer>
         </main>
+    </div>
+
+    <!-- POP-UP MODAL SYSTEM -->
+    <div id="policyModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[250] hidden flex items-center justify-center p-4">
+        <div class="bg-black border border-primary rounded-3xl max-w-xl w-full p-8 shadow-2xl relative">
+            <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl font-bold">&times;</button>
+            <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6"></h3>
+            <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto max-h-[60vh] modal-scroll space-y-4"></div>
+        </div>
     </div>
 
     <!-- SCRIPTS -->
     <script>
         const SUPABASE_URL = 'https://bmyimmssovqcznwixceu.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         let currentUser = null;
 
         async function checkUser() {
-            const { data: { user } } = await supabaseClient.auth.getUser();
+            const { data: { user } } = await sb.auth.getUser();
             if (!user) window.location.href = 'login.html';
             else { currentUser = user; loadUserData(); }
         }
 
         function loadUserData() {
             const meta = currentUser.user_metadata;
-            const fullName = meta.full_name || "Elite User";
-            const avatar = meta.avatar_url || `https://ui-avatars.com/api/?name=${fullName}&background=ff6a00&color=fff`;
+            const fullName = meta.full_name || "Elite Member";
+            const avatar = meta.avatar_url || `https://ui-avatars.com/api/?name=${fullName}&background=D4AF37&color=fff`;
             const balance = meta.balance || 0;
 
             document.getElementById('userNameDisplay').innerText = fullName;
@@ -225,10 +247,8 @@
         function showSection(id, btn) {
             document.querySelectorAll('.dashboard-section').forEach(s => s.classList.add('hidden'));
             document.getElementById(id + 'Section').classList.remove('hidden');
-            
             document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
             btn.classList.add('active');
-            
             if(window.innerWidth < 1024) toggleSidebar();
         }
 
@@ -238,14 +258,14 @@
         async function updateProfile() {
             const btn = document.getElementById('saveProfileBtn');
             btn.innerText = "Saving...";
-            const { error } = await supabaseClient.auth.updateUser({
+            const { error } = await sb.auth.updateUser({
                 data: { 
                     full_name: document.getElementById('setFullName').value,
                     phone: document.getElementById('setPhone').value,
                     address: document.getElementById('setAddress').value
                 }
             });
-            if (error) alert(error.message); else { alert("Profile Updated!"); loadUserData(); }
+            if (!error) { alert("Profile Updated!"); loadUserData(); }
             btn.innerText = "Save Changes";
         }
 
@@ -254,10 +274,10 @@
             if (!file) return;
             const fileExt = file.name.split('.').pop();
             const filePath = `${currentUser.id}/profile.${fileExt}`;
-            const { error: uploadError } = await supabaseClient.storage.from('avatars').upload(filePath, file, { upsert: true });
+            const { data, error: uploadError } = await sb.storage.from('avatars').upload(filePath, file, { upsert: true });
             if (uploadError) return alert(uploadError.message);
-            const { data } = supabaseClient.storage.from('avatars').getPublicUrl(filePath);
-            await supabaseClient.auth.updateUser({ data: { avatar_url: data.publicUrl } });
+            const { data: urlData } = sb.storage.from('avatars').getPublicUrl(filePath);
+            await sb.auth.updateUser({ data: { avatar_url: urlData.publicUrl } });
             location.reload();
         }
 
@@ -265,22 +285,32 @@
             const amount = document.getElementById('fundAmount').value;
             if (amount < 500) return alert("Min deposit ₦500");
             let handler = PaystackPop.setup({
-                key: 'YOUR_PAYSTACK_PUBLIC_KEY',
+                key: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your real key
                 email: currentUser.email,
                 amount: amount * 100,
                 callback: async function() {
                     const bal = parseFloat(currentUser.user_metadata.balance || 0) + parseFloat(amount);
-                    await supabaseClient.auth.updateUser({ data: { balance: bal } });
+                    await sb.auth.updateUser({ data: { balance: bal } });
                     location.reload();
                 }
             });
             handler.openIframe();
         }
 
-        async function handleLogout() {
-            await supabaseClient.auth.signOut();
-            window.location.href = 'login.html';
+        async function handleLogout() { await sb.auth.signOut(); window.location.href = 'login.html'; }
+
+        // Policy Logic
+        const policyText = {
+            privacy: { title: "Privacy Policy", body: "<p>We prioritize your brand's confidentiality. Design files and personal data are never shared with third parties.</p>" },
+            return: { title: "Return & Refund", body: "<p>30-day window for defective goods. Custom items eligible for replacement if the error is on our part.</p>" },
+            shipping: { title: "Shipping Policy", body: "<p>Lagos: 1-2 days via Bolt/Kwik. International: 3-5 days via DHL.</p>" }
+        };
+        function openPolicyModal(type) {
+            document.getElementById('policyModalTitle').innerText = policyText[type].title;
+            document.getElementById('policyModalBody').innerHTML = policyText[type].body;
+            document.getElementById('policyModalOverlay').classList.remove('hidden');
         }
+        function closePolicyModal() { document.getElementById('policyModalOverlay').classList.add('hidden'); }
 
         checkUser();
     </script>
