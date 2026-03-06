@@ -27,7 +27,7 @@
 </head>
 <body class="antialiased overflow-x-hidden bg-white">
 
-<!-- 1. NAVIGATION -->
+<!-- NAVIGATION -->
 <header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
@@ -71,65 +71,52 @@
             <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Premium Prints & Souvenirs // Lagos, Nigeria</p>
         </div>
 
-        <!-- 2. PRODUCT GRID (5 columns laptop, 2 columns mobile) -->
+        <!-- PRODUCT GRID (5 columns laptop, 2 columns mobile) -->
         <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
-            <!-- Dynamic Products Loading -->
+            <!-- Products load here -->
         </div>
     </div>
 </main>
 
-<!-- 3. DETAILED BLACK & GOLD FOOTER (Matches Home) -->
+<!-- BLACK & GOLD FOOTER -->
 <footer id="footer-contact" class="bg-black text-primary pt-20 pb-10 px-6 border-t-2 border-primary/20">
     <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-left">
             <div class="space-y-8">
-                <h2 class="text-white text-3xl font-black uppercase italic leading-tight">
-                    Perfect Prints <br> <span class="text-primary">Promotional Gifts & <br> Souvenirs for all events</span>
-                </h2>
+                <h2 class="text-white text-3xl font-black uppercase italic leading-tight">Perfect Prints <br> <span class="text-primary">Promotional Gifts & <br> Souvenirs for all events</span></h2>
                 <div class="flex gap-4">
-                    <a href="https://www.facebook.com/share/1DNgLLHFEY/" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5"></a>
-                    <a href="https://x.com/27668grafix" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-5 h-5"></a>
-                    <a href="https://www.instagram.com/27668grafix" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-5 h-5"></a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5"></a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-5 h-5"></a>
                 </div>
             </div>
-
             <div class="space-y-6">
                 <h4 class="text-white font-black uppercase tracking-widest text-sm">Contact Us</h4>
                 <div class="space-y-4 text-gold-bright text-sm font-bold">
                     <p>234 803 349 1036</p>
-                    <p>+234 708 2439 583</p>
-                    <p class="lowercase font-normal opacity-80 italic">info@27668grafix.com<br>27.668grafix@gmail.com</p>
-                    <p class="font-normal opacity-80">18, George Street, Igbobi, Shomolu, Lagos.</p>
+                    <p class="lowercase font-normal opacity-80 italic">info@27668grafix.com</p>
+                    <p class="font-normal opacity-80 uppercase text-[10px]">18, George Street, Igbobi, Lagos.</p>
                 </div>
             </div>
-
             <div class="space-y-6">
                 <h4 class="text-white font-black uppercase tracking-widest text-sm">Information</h4>
                 <ul class="space-y-3 text-gold-bright text-xs font-bold uppercase tracking-widest">
-                    <li><button onclick="openPolicyModal('return')" class="hover:text-white text-left">Return & Refund Policy</button></li>
-                    <li><button onclick="openPolicyModal('contact')" class="hover:text-white text-left">Contact Us</button></li>
-                    <li><button onclick="openPolicyModal('shipping')" class="hover:text-white text-left">Shipping Policy</button></li>
+                    <li><button onclick="openPolicyModal('return')" class="hover:text-white">Return & Refund Policy</button></li>
+                    <li><button onclick="openPolicyModal('shipping')" class="hover:text-white">Shipping Policy</button></li>
                 </ul>
             </div>
-
-            <div class="space-y-6">
-                <h4 class="text-white font-black uppercase tracking-widest text-sm">Accepted Cards</h4>
-                <div class="flex flex-wrap gap-2 opacity-90">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-5 bg-white px-1 rounded">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-5 bg-white px-1 rounded">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="h-5 bg-white px-1 rounded">
+            <div class="space-y-6 text-left">
+                <h4 class="text-white font-black uppercase tracking-widest text-sm">Payments</h4>
+                <div class="flex flex-wrap gap-2 opacity-90 mb-4 bg-white p-2 rounded w-fit">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4">
                 </div>
-                <a href="https://wa.me/2348033491036" class="block bg-primary text-black text-center py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:scale-105 transition-all">Chat with Us</a>
+                <a href="https://wa.me/2348033491036" class="inline-block bg-primary text-black px-6 py-2 rounded-lg font-black text-[10px] uppercase transition-all hover:scale-105">Chat Us</a>
             </div>
         </div>
-        <div class="text-center pt-8 border-t border-primary/20 text-primary font-black uppercase text-[10px] tracking-[0.4em]">© 27.668GRAFIX 2024. ALL RIGHTS RESERVED.</div>
     </div>
 </footer>
 
-<!-- 4. MODALS (Cart, Checkout, Details, Policies) -->
-
-<!-- Cart Sidebar -->
+<!-- CART SIDEBAR -->
 <div id="cartSidebar" class="fixed inset-0 z-[200] hidden">
     <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="toggleCart()"></div>
     <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl p-6 md:p-10 flex flex-col">
@@ -145,39 +132,72 @@
     </div>
 </div>
 
-<!-- Checkout Modal -->
-<div id="checkoutModal" class="fixed inset-0 z-[250] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-[2.5rem] max-w-xl w-full p-6 md:p-10 shadow-2xl my-8">
-        <div class="flex justify-between items-center mb-8">
-            <h3 class="text-2xl font-black uppercase italic tracking-tighter">Checkout Details</h3>
-            <button onclick="document.getElementById('checkoutModal').classList.add('hidden')" class="text-2xl">&times;</button>
+<!-- IMPROVED SCROLLABLE CHECKOUT MODAL -->
+<div id="checkoutModal" class="fixed inset-0 z-[250] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-[2rem] sm:rounded-[2.5rem] max-w-xl w-full flex flex-col max-h-[90vh] shadow-2xl overflow-hidden">
+        <!-- Sticky Modal Header -->
+        <div class="flex justify-between items-center p-6 sm:p-8 border-b border-slate-100 bg-white">
+            <h3 class="text-xl sm:text-2xl font-black uppercase italic tracking-tighter">Checkout Details</h3>
+            <button onclick="document.getElementById('checkoutModal').classList.add('hidden')" class="text-3xl text-slate-400 hover:text-dark transition-colors">&times;</button>
         </div>
-        <form id="checkoutForm" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" id="custName" placeholder="Full Name" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm outline-none focus:ring-2 focus:ring-primary">
-                <input type="tel" id="custPhone" placeholder="Phone Number" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm outline-none focus:ring-2 focus:ring-primary">
-            </div>
-            <input type="email" id="custEmail" placeholder="Email Address" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm outline-none focus:ring-2 focus:ring-primary">
-            <textarea id="custAddress" placeholder="Shipping Address (Street, City, State)" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm h-20 outline-none focus:ring-2 focus:ring-primary"></textarea>
-            <textarea id="billingAddress" placeholder="Billing Address" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm h-20 outline-none focus:ring-2 focus:ring-primary"></textarea>
-            <textarea id="projDesc" placeholder="Describe your branding project details..." class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm h-24 outline-none focus:ring-2 focus:ring-primary"></textarea>
-            <div class="bg-primary/5 p-5 rounded-2xl border border-primary/20 flex justify-between items-center">
-                <p class="text-xs font-black uppercase">Final Total:</p>
-                <p id="checkoutAmount" class="text-2xl font-black text-primary italic">₦0.00</p>
-            </div>
-            <button type="submit" class="w-full bg-dark text-primary py-5 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl">Proceed Payments</button>
-        </form>
+
+        <!-- Scrollable Modal Body -->
+        <div class="overflow-y-auto p-6 sm:p-8 space-y-6 modal-scroll">
+            <form id="checkoutForm" class="space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-black uppercase tracking-widest text-slate-400 block ml-1">Full Name</label>
+                        <input type="text" id="custName" placeholder="Full Name" required class="w-full bg-slate-50 border-none rounded-xl p-4 font-bold text-sm outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[9px] font-black uppercase tracking-widest text-slate-400 block ml-1">Phone Number</label>
+                        <input type="tel" id="custPhone" placeholder="Phone Number" required class="w-full bg-slate-50 border-none rounded-xl p-4 font-bold text-sm outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                </div>
+                
+                <div class="space-y-1">
+                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-400 block ml-1">Email Address</label>
+                    <input type="email" id="custEmail" placeholder="Email Address (For Receipt)" required class="w-full bg-slate-50 border-none rounded-xl p-4 font-bold text-sm outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                
+                <div class="space-y-1">
+                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-400 block ml-1">Shipping Address</label>
+                    <textarea id="custAddress" placeholder="Street, City, State" required class="w-full bg-slate-50 border-none rounded-xl p-4 font-bold text-sm h-20 outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+                
+                <div class="space-y-1">
+                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-400 block ml-1">Billing Address</label>
+                    <textarea id="billingAddress" placeholder="Billing Address (If different)" required class="w-full bg-slate-50 border-none rounded-xl p-4 font-bold text-sm h-20 outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+                
+                <div class="space-y-1">
+                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-400 block ml-1">Project Description</label>
+                    <textarea id="projDesc" placeholder="Any specific branding or customization notes?" class="w-full bg-slate-50 border-none rounded-xl p-4 font-bold text-sm h-24 outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+
+                <!-- Final Amount Card -->
+                <div class="bg-primary/5 p-5 rounded-2xl border border-primary/20 flex justify-between items-center sticky bottom-0 bg-white shadow-inner">
+                    <div>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-slate-400">Final Total</p>
+                        <p id="checkoutAmount" class="text-2xl font-black text-primary italic">₦0.00</p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <button type="submit" class="bg-dark text-primary px-8 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest shadow-xl hover:scale-105 transition-transform">Proceed Payments</button>
+                        <button type="button" onclick="document.getElementById('checkoutModal').classList.add('hidden')" class="text-red-500 font-black text-[9px] uppercase tracking-widest text-center hover:underline">Cancel Transaction</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<!-- Product Popup -->
+<!-- PRODUCT POPUP -->
 <div id="productModal" class="fixed inset-0 z-[150] bg-white hidden overflow-y-auto no-scrollbar">
     <div class="min-h-screen flex items-center justify-center p-4 md:p-10">
         <div class="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white">
-            <button onclick="closeProductModal()" class="fixed top-6 right-6 text-4xl leading-none">&times;</button>
+            <button onclick="closeProductModal()" class="fixed top-6 right-6 text-4xl">&times;</button>
             <div class="space-y-4">
                 <img id="mainDetailImg" class="w-full aspect-square object-cover rounded-[2.5rem] border border-slate-50">
-                <div id="thumbList" class="flex gap-2 overflow-x-auto no-scrollbar"></div>
             </div>
             <div class="space-y-8 py-10">
                 <div>
@@ -192,23 +212,22 @@
                         <span id="buyQty" class="px-5 font-black">1</span>
                         <button onclick="changeQty(1)" class="px-5 py-3 hover:bg-slate-50 font-black">+</button>
                     </div>
-                    <button id="addToCartBtn" class="flex-1 bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs tracking-widest">Add to Cart</button>
+                    <button id="addToCartBtn" class="flex-1 bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-xl">Add to Cart</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Policy Modal (Pop-up) -->
+<!-- Policy Modal -->
 <div id="policyModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[300] hidden flex items-center justify-center p-4">
     <div class="bg-black border-2 border-primary rounded-[2rem] max-w-2xl w-full p-8 shadow-2xl relative flex flex-col max-h-[80vh]">
-        <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl font-bold transition-colors hover:text-primary">&times;</button>
+        <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl font-bold">&times;</button>
         <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6"></h3>
-        <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto modal-scroll space-y-4 font-medium pr-2"></div>
+        <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto modal-scroll space-y-4 pr-2"></div>
     </div>
 </div>
 
-<!-- 5. SCRIPTS -->
 <script>
     const SUPABASE_URL = 'https://bmyimmssovqcznwixceu.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
@@ -262,10 +281,10 @@
         let total = 0;
         list.innerHTML = cart.map(i => {
             total += i.price * i.qty;
-            return `<div class="flex gap-4 items-center">
+            return `<div class="flex gap-4 items-center border-b border-slate-50 pb-4">
                 <img src="${i.images[0]}" class="w-14 h-14 rounded-xl object-cover">
-                <div class="flex-1"><h4 class="text-xs font-black uppercase italic">${i.name}</h4><p class="text-[10px] font-bold">Qty: ${i.qty}</p></div>
-                <button onclick="removeFromCart('${i.id}')" class="text-red-500 font-black text-[10px] uppercase">X</button>
+                <div class="flex-1 text-left"><h4 class="text-xs font-black uppercase italic">${i.name}</h4><p class="text-[10px] font-bold">Qty: ${i.qty} x ₦${i.price.toLocaleString()}</p></div>
+                <button onclick="removeFromCart('${i.id}')" class="text-red-500 font-black text-[10px] uppercase">Remove</button>
             </div>`;
         }).join('');
         document.getElementById('cartTotalText').innerText = `₦${total.toLocaleString()}`;
@@ -279,21 +298,19 @@
     function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
     function openCheckout() { if(cart.length === 0) return alert("Cart is empty"); document.getElementById('checkoutModal').classList.remove('hidden'); }
 
-    // Paystack Logic
     document.getElementById('checkoutForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-        const email = document.getElementById('custEmail').value;
         const name = document.getElementById('custName').value;
         const desc = document.getElementById('projDesc').value;
 
         let handler = PaystackPop.setup({
-            key: 'YOUR_PAYSTACK_PUBLIC_KEY', // REPLACE WITH REAL KEY
-            email: email,
+            key: 'YOUR_PAYSTACK_PUBLIC_KEY',
+            email: document.getElementById('custEmail').value,
             amount: total * 100,
             callback: function(res) {
                 const summary = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
-                const msg = `Order Paid! ₦${total.toLocaleString()}%0A*Name:* ${name}%0A*Items:* ${summary}%0A*Notes:* ${desc}`;
+                const msg = `Payment Successful! ₦${total.toLocaleString()}%0A*Name:* ${name}%0A*Items:* ${summary}%0A*Notes:* ${desc}`;
                 window.open(`https://wa.me/2348033491036?text=${msg}`);
                 cart = []; updateCartUI(); location.reload();
             }
@@ -301,17 +318,14 @@
         handler.openIframe();
     });
 
-    // Policy Popup Logic
     const fullPolicies = {
-        return: { title: "Return & Refund Policy", body: `<p><strong>Terms:</strong> Our return policy lasts 30 days. Items must be unused and in original packaging.</p><p>Exchanges are only for defective goods. Contact info@27668grafix.com for assistance.</p>` },
-        shipping: { title: "Shipping Policy", body: `<p><strong>Partners:</strong> Bolt, Kwik.com (Lagos) & DHL (Global).</p><p>Nigeria: 1-2 work days. International: 3-5 work days after production completion.</p>` },
-        contact: { title: "Contact Us", body: `<p><strong>WhatsApp:</strong> 234 803 349 1036</p><p><strong>Email:</strong> info@27668grafix.com</p><p><strong>Studio:</strong> 18, George Street, Igbobi, Shomolu, Lagos.</p>` }
+        return: { title: "Return Policy", body: "30-day return policy for unused items." },
+        shipping: { title: "Shipping Policy", body: "Lagos 1-2 days. International 3-5 days." },
+        contact: { title: "Contact Info", body: "WhatsApp: 234 803 349 1036" }
     };
-
     function openPolicyModal(type) {
-        const data = fullPolicies[type];
-        document.getElementById('policyModalTitle').innerText = data.title;
-        document.getElementById('policyModalBody').innerHTML = data.body;
+        document.getElementById('policyModalTitle').innerText = fullPolicies[type].title;
+        document.getElementById('policyModalBody').innerHTML = fullPolicies[type].body;
         document.getElementById('policyModalOverlay').classList.remove('hidden');
     }
     function closePolicyModal() { document.getElementById('policyModalOverlay').classList.add('hidden'); }
