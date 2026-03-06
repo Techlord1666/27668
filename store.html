@@ -3,25 +3,25 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Store | 27668grafix - Premium Catalog</title>
+    <title>Store | 27668grafix - Premium Branding</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { "primary": "#D4AF37", "dark": "#000000", "light-gray": "#f8f9fa" } } }
+            theme: { extend: { colors: { "primary": "#D4AF37", "dark": "#000000" } } }
         }
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #000000; }
         .hamburger-line { display: block; width: 24px; height: 2px; background-color: #000; margin: 5px auto; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .cart-badge { position: absolute; top: -5px; right: -5px; background: #D4AF37; color: black; font-size: 10px; font-weight: 900; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .cart-badge { position: absolute; top: -2px; right: -2px; background: #D4AF37; color: black; font-size: 9px; font-weight: 900; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid white; }
+        input, textarea, select { font-size: 16px !important; border: 1px solid #e2e8f0 !important; }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="antialiased overflow-x-hidden bg-white">
 
 <!-- Navigation -->
 <header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
@@ -29,20 +29,20 @@
         <div class="flex items-center justify-between h-16 md:h-20">
             <h2 class="text-dark text-xl md:text-2xl font-black tracking-tighter uppercase italic cursor-pointer" onclick="window.location.href='index.html'">27668<span class="text-primary">grafix</span></h2>
             
-            <div class="flex items-center gap-6">
-                <nav class="hidden md:flex items-center gap-8">
-                    <a href="index.html" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary">Home</a>
-                    <a href="store.html" class="text-xs font-bold uppercase tracking-widest text-primary underline decoration-2 underline-offset-8">Store</a>
-                    <a href="about.html" class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary">About</a>
+            <div class="flex items-center gap-4 md:gap-8">
+                <nav class="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                    <a href="index.html" class="hover:text-primary">Home</a>
+                    <a href="store.html" class="text-primary border-b-2 border-primary pb-1">Store</a>
+                    <a href="about.html" class="hover:text-primary">About</a>
                 </nav>
 
-                <!-- Cart Button -->
-                <button onclick="toggleCart()" class="relative p-2">
-                    <span class="material-symbols-outlined text-dark">shopping_bag</span>
+                <!-- SVG CART ICON (No Words) -->
+                <button onclick="toggleCart()" class="relative p-2 hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                     <div id="cartCount" class="cart-badge">0</div>
                 </button>
 
-                <button onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center items-center w-8 h-8">
+                <button onclick="toggleMobileMenu()" class="lg:hidden flex flex-col justify-center items-center">
                     <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
                 </button>
             </div>
@@ -50,87 +50,99 @@
     </div>
 </header>
 
-<main class="pt-24 pb-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-4">The <span class="text-primary">Catalog.</span></h1>
-            <p class="text-slate-500 font-medium uppercase text-xs tracking-[0.3em]">Premium Nigerian Branding Solutions</p>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-[110] bg-white p-8 flex flex-col gap-8 uppercase text-sm font-black tracking-widest shadow-2xl">
+    <div class="flex justify-between items-center mb-4"><h2 class="text-dark">STORE MENU</h2><button onclick="toggleMobileMenu()" class="text-4xl">&times;</button></div>
+    <a href="index.html">Home</a>
+    <a href="store.html" class="text-primary">Store</a>
+    <a href="about.html">About Us</a>
+</div>
+
+<main class="pt-24 pb-20 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="mb-12 text-left">
+            <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-2">The <span class="text-primary">Catalog.</span></h1>
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Premium Prints & Souvenirs</p>
         </div>
 
-        <!-- Product Grid: 5 columns laptop, 2 columns mobile -->
-        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-            <!-- Dynamic Products Loading -->
+        <!-- Grid Layout: 5 columns laptop, 2 columns mobile -->
+        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
+            <!-- Dynamic Products Loading from Supabase -->
         </div>
     </div>
 </main>
 
-<!-- SHOPPING CART SIDEBAR -->
+<!-- CART SIDEBAR -->
 <div id="cartSidebar" class="fixed inset-0 z-[200] hidden">
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleCart()"></div>
-    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl p-8 flex flex-col">
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="toggleCart()"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl p-6 md:p-10 flex flex-col">
         <div class="flex justify-between items-center mb-8 border-b pb-4">
-            <h3 class="text-2xl font-black uppercase italic tracking-tighter text-dark">Your Cart</h3>
-            <button onclick="toggleCart()" class="text-3xl font-light">&times;</button>
+            <h3 class="text-2xl font-black uppercase italic tracking-tighter">Your Cart</h3>
+            <button onclick="toggleCart()" class="text-4xl leading-none">&times;</button>
         </div>
-        
-        <div id="cartItemsList" class="flex-1 overflow-y-auto space-y-6 no-scrollbar">
-            <!-- Cart items injected here -->
-        </div>
-
+        <div id="cartItemsList" class="flex-1 overflow-y-auto space-y-6 no-scrollbar"></div>
         <div class="border-t pt-6 mt-6 space-y-4">
-            <div class="flex justify-between font-black text-xl italic uppercase">
-                <span>Total:</span>
-                <span id="cartTotalText">₦0.00</span>
-            </div>
-            <button onclick="openCheckout()" class="w-full bg-primary text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:scale-105 transition-transform">Proceed to Checkout</button>
+            <div class="flex justify-between font-black text-xl italic uppercase"><span>Total:</span><span id="cartTotalText">₦0.00</span></div>
+            <button onclick="openCheckout()" class="w-full bg-primary text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest">Proceed to Checkout</button>
         </div>
     </div>
 </div>
 
-<!-- CHECKOUT FORM MODAL -->
-<div id="checkoutModal" class="fixed inset-0 z-[250] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl border border-primary/20">
-        <h3 class="text-2xl font-black uppercase italic mb-6">Checkout Details</h3>
+<!-- CHECKOUT MODAL -->
+<div id="checkoutModal" class="fixed inset-0 z-[250] bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-[2.5rem] max-w-xl w-full p-6 md:p-10 shadow-2xl my-8">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="text-2xl font-black uppercase italic tracking-tighter">Order Details</h3>
+            <button onclick="document.getElementById('checkoutModal').classList.add('hidden')" class="text-2xl">&times;</button>
+        </div>
         <form id="checkoutForm" class="space-y-4">
-            <input type="text" id="custName" placeholder="Full Name" required class="w-full bg-slate-50 border-none rounded-xl p-4 text-sm font-bold focus:ring-2 focus:ring-primary outline-none">
-            <input type="email" id="custEmail" placeholder="Email Address" required class="w-full bg-slate-50 border-none rounded-xl p-4 text-sm font-bold focus:ring-2 focus:ring-primary outline-none">
-            <input type="tel" id="custPhone" placeholder="Phone Number" required class="w-full bg-slate-50 border-none rounded-xl p-4 text-sm font-bold focus:ring-2 focus:ring-primary outline-none">
-            <textarea id="custAddress" placeholder="Delivery Address" required class="w-full bg-slate-50 border-none rounded-xl p-4 text-sm font-bold h-24 focus:ring-2 focus:ring-primary outline-none"></textarea>
-            <div class="bg-primary/10 p-4 rounded-xl border border-primary/20 flex justify-between items-center">
-                <p class="text-xs font-black uppercase">Final Total:</p>
-                <p id="checkoutAmount" class="text-xl font-black text-primary">₦0.00</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" id="custName" placeholder="Full Name" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm outline-none focus:ring-2 focus:ring-primary">
+                <input type="tel" id="custPhone" placeholder="Phone Number" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm outline-none focus:ring-2 focus:ring-primary">
             </div>
-            <button type="submit" class="w-full bg-dark text-primary py-5 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl">Pay Now with Paystack</button>
-            <button type="button" onclick="document.getElementById('checkoutModal').classList.add('hidden')" class="w-full text-slate-400 text-[10px] font-black uppercase">Cancel</button>
+            <input type="email" id="custEmail" placeholder="Email Address (For Receipt)" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm outline-none focus:ring-2 focus:ring-primary">
+            
+            <label class="text-[9px] font-black uppercase tracking-widest text-slate-400 block ml-2">Shipping Address</label>
+            <textarea id="custAddress" placeholder="Street, City, State" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm h-20 outline-none focus:ring-2 focus:ring-primary"></textarea>
+            
+            <label class="text-[9px] font-black uppercase tracking-widest text-slate-400 block ml-2">Billing Address</label>
+            <textarea id="billingAddress" placeholder="Same as shipping or different" required class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm h-20 outline-none focus:ring-2 focus:ring-primary"></textarea>
+            
+            <label class="text-[9px] font-black uppercase tracking-widest text-slate-400 block ml-2">Project Description</label>
+            <textarea id="projDesc" placeholder="Any specific customization instructions for your brand?" class="w-full bg-slate-50 rounded-xl p-4 font-bold text-sm h-24 outline-none focus:ring-2 focus:ring-primary"></textarea>
+
+            <div class="bg-primary/5 p-5 rounded-2xl border border-primary/20 flex justify-between items-center">
+                <p class="text-xs font-black uppercase">Final Amount:</p>
+                <p id="checkoutAmount" class="text-2xl font-black text-primary italic">₦0.00</p>
+            </div>
+            <button type="submit" class="w-full bg-dark text-primary py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl hover:scale-105 transition-transform">Proceed Payments</button>
         </form>
     </div>
 </div>
 
-<!-- PRODUCT DETAIL MODAL -->
+<!-- PRODUCT POPUP -->
 <div id="productModal" class="fixed inset-0 z-[150] bg-white hidden overflow-y-auto no-scrollbar">
     <div class="min-h-screen flex items-center justify-center p-4 md:p-10">
-        <div class="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white">
-            <button onclick="closeProductModal()" class="fixed top-8 right-8 text-4xl leading-none">&times;</button>
+        <div class="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white">
+            <button onclick="closeProductModal()" class="fixed top-6 right-6 text-4xl">&times;</button>
             <div class="space-y-4">
-                <img id="mainDetailImg" class="w-full aspect-square object-cover rounded-3xl shadow-xl border border-slate-100">
+                <img id="mainDetailImg" class="w-full aspect-square object-cover rounded-[2.5rem] border border-slate-50">
                 <div id="thumbList" class="flex gap-2 overflow-x-auto no-scrollbar"></div>
             </div>
-            <div class="space-y-8">
+            <div class="space-y-8 py-10">
                 <div>
-                    <span id="detailCat" class="text-primary text-[10px] font-black uppercase tracking-[0.4em]">Category</span>
+                    <span id="detailCat" class="text-primary text-[10px] font-black uppercase tracking-widest"></span>
                     <h2 id="detailTitle" class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter leading-none mt-2"></h2>
                     <p id="detailPrice" class="text-3xl font-black text-dark mt-4"></p>
                 </div>
                 <p id="detailDesc" class="text-slate-500 leading-relaxed text-sm"></p>
-                
-                <!-- Quantity & Add to Cart -->
                 <div class="flex items-center gap-6 pt-6 border-t">
-                    <div class="flex items-center border border-slate-200 rounded-xl overflow-hidden">
+                    <div class="flex items-center border rounded-xl overflow-hidden">
                         <button onclick="changeQty(-1)" class="px-5 py-3 hover:bg-slate-50 font-black">-</button>
                         <span id="buyQty" class="px-5 font-black">1</span>
                         <button onclick="changeQty(1)" class="px-5 py-3 hover:bg-slate-50 font-black">+</button>
                     </div>
-                    <button id="addToCartBtn" class="flex-1 bg-primary text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-lg shadow-primary/20">Add to Cart</button>
+                    <button id="addToCartBtn" class="flex-1 bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-xl">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -156,107 +168,80 @@
         const grid = document.getElementById('productGrid');
         grid.innerHTML = list.map(p => `
             <div onclick="openProduct('${p.id}')" class="group cursor-pointer">
-                <div class="aspect-square rounded-2xl overflow-hidden mb-4 bg-slate-50 border border-slate-100">
+                <div class="aspect-square rounded-3xl overflow-hidden mb-4 bg-slate-50 border border-slate-100">
                     <img src="${p.images[0]}" class="w-full h-full object-cover transition-transform group-hover:scale-110 duration-700">
                 </div>
-                <h3 class="text-[11px] font-black uppercase italic truncate text-dark">${p.name}</h3>
-                <p class="text-primary font-black text-sm">₦${parseFloat(p.price).toLocaleString()}</p>
+                <h3 class="text-[10px] font-black uppercase italic truncate text-dark">${p.name}</h3>
+                <p class="text-primary font-black text-xs">₦${parseFloat(p.price).toLocaleString()}</p>
             </div>
         `).join('');
     }
 
     function openProduct(id) {
         currentP = products.find(x => x.id === id);
-        qty = 1;
-        document.getElementById('buyQty').innerText = qty;
+        qty = 1; document.getElementById('buyQty').innerText = qty;
         document.getElementById('detailTitle').innerText = currentP.name;
         document.getElementById('detailCat').innerText = currentP.category;
         document.getElementById('detailPrice').innerText = `₦${parseFloat(currentP.price).toLocaleString()}`;
         document.getElementById('detailDesc').innerText = currentP.description;
         document.getElementById('mainDetailImg').src = currentP.images[0];
         document.getElementById('productModal').classList.remove('hidden');
-        
-        document.getElementById('addToCartBtn').onclick = () => {
-            addToCart(currentP, qty);
-            closeProductModal();
-        };
-    }
-
-    function changeQty(n) {
-        qty = Math.max(1, qty + n);
-        document.getElementById('buyQty').innerText = qty;
+        document.getElementById('addToCartBtn').onclick = () => { addToCart(currentP, qty); closeProductModal(); };
     }
 
     function addToCart(p, q) {
-        const exists = cart.find(item => item.id === p.id);
-        if(exists) exists.qty += q;
-        else cart.push({...p, qty: q});
+        const ex = cart.find(i => i.id === p.id);
+        if(ex) ex.qty += q; else cart.push({...p, qty: q});
         updateCartUI();
     }
 
     function updateCartUI() {
-        const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+        const totalItems = cart.reduce((acc, i) => acc + i.qty, 0);
         document.getElementById('cartCount').innerText = totalItems;
-        
         const list = document.getElementById('cartItemsList');
         let total = 0;
-        list.innerHTML = cart.map(item => {
-            const subtotal = item.price * item.qty;
-            total += subtotal;
-            return `
-                <div class="flex gap-4 items-center">
-                    <img src="${item.images[0]}" class="w-16 h-16 rounded-lg object-cover">
-                    <div class="flex-1">
-                        <h4 class="text-xs font-black uppercase italic">${item.name}</h4>
-                        <p class="text-[10px] font-bold text-slate-500">${item.qty} x ₦${parseFloat(item.price).toLocaleString()}</p>
-                    </div>
-                    <button onclick="removeFromCart('${item.id}')" class="text-red-500 text-xs font-bold uppercase">Remove</button>
-                </div>
-            `;
+        list.innerHTML = cart.map(i => {
+            total += i.price * i.qty;
+            return `<div class="flex gap-4 items-center">
+                <img src="${i.images[0]}" class="w-14 h-14 rounded-xl object-cover">
+                <div class="flex-1"><h4 class="text-xs font-black italic uppercase">${i.name}</h4><p class="text-[10px] font-bold">Qty: ${i.qty}</p></div>
+                <button onclick="removeFromCart('${i.id}')" class="text-red-500 font-black text-[10px] uppercase">X</button>
+            </div>`;
         }).join('');
-        
         document.getElementById('cartTotalText').innerText = `₦${total.toLocaleString()}`;
         document.getElementById('checkoutAmount').innerText = `₦${total.toLocaleString()}`;
     }
 
-    function removeFromCart(id) {
-        cart = cart.filter(item => item.id !== id);
-        updateCartUI();
-    }
-
+    function removeFromCart(id) { cart = cart.filter(i => i.id !== id); updateCartUI(); }
+    function changeQty(n) { qty = Math.max(1, qty + n); document.getElementById('buyQty').innerText = qty; }
     function toggleCart() { document.getElementById('cartSidebar').classList.toggle('hidden'); }
     function closeProductModal() { document.getElementById('productModal').classList.add('hidden'); }
+    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
     function openCheckout() {
-        if(cart.length === 0) return alert("Your cart is empty!");
+        if(cart.length === 0) return alert("Cart is empty");
         document.getElementById('checkoutModal').classList.remove('hidden');
     }
 
     document.getElementById('checkoutForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        payWithPaystack();
-    });
-
-    function payWithPaystack() {
-        const total = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-        const name = document.getElementById('custName').value;
+        const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
         const email = document.getElementById('custEmail').value;
+        const name = document.getElementById('custName').value;
+        const desc = document.getElementById('projDesc').value;
 
         let handler = PaystackPop.setup({
-            key: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your key
+            key: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your real key
             email: email,
             amount: total * 100,
-            callback: function(response) {
-                alert('Payment successful! Ref ID: ' + response.reference);
-                // Send WhatsApp summary
-                const orderSummary = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
-                const msg = `Hello! I just paid ₦${total.toLocaleString()} for ${orderSummary}. My Ref: ${response.reference}`;
-                window.open(`https://wa.me/2348033491036?text=${encodeURIComponent(msg)}`);
-                cart = []; updateCartUI();
-                location.reload();
+            callback: function(res) {
+                const summary = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
+                const msg = `Order Paid! ₦${total.toLocaleString()}%0A*Name:* ${name}%0A*Items:* ${summary}%0A*Notes:* ${desc}`;
+                window.open(`https://wa.me/2348033491036?text=${msg}`);
+                cart = []; updateCartUI(); location.reload();
             }
         });
         handler.openIframe();
-    }
+    });
 
     window.onload = initStore;
 </script>
