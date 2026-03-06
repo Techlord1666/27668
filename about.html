@@ -189,12 +189,80 @@
     </section>
 
     <!-- SECTION 5: Client Logo Slider -->
-    <section class="py-12 bg-white overflow-hidden border-y border-slate-100">
-        <div class="client-track">
-            <img src="27668grafix.jpg" class="client-logo"><img src="ecs2.png" class="client-logo"><img src="AIPLABRO-LOGO.jpg" class="client-logo"><img src="euromed.jpg" class="client-logo"><img src="images-1.png" class="client-logo"><img src="ecs3.png" class="client-logo"><img src="UBA-logo-3.gif" class="client-logo">
-            <img src="27668grafix.jpg" class="client-logo"><img src="ecs2.png" class="client-logo"><img src="AIPLABRO-LOGO.jpg" class="client-logo">
-        </div>
-    </section>
+    <section class="py-16 bg-white overflow-hidden border-y border-slate-100">
+    <p class="text-center text-[9px] font-black uppercase tracking-[0.4em] text-slate-400 mb-10 italic px-4">
+        "See the list of Clients we serve & impact creative solutions."
+    </p>
+    <div class="client-track">
+        <!-- First Set -->
+        <img src="27668grafix.com-comegain-consult (1).jpg" class="client-logo">
+        <img src="27668grafix (1).jpg" class="client-logo">
+        <img src="27668grafix.com-diplomat-logo.jpg" class="client-logo">
+        <img src="27668grafix.jpg" class="client-logo">
+        <img src="ecs2.png" class="client-logo">
+        <img src="AIPLABRO-LOGO.jpg" class="client-logo">
+        <img src="euromed.jpg" class="client-logo">
+        <img src="images-1.png" class="client-logo">
+        <img src="ecs3.png" class="client-logo">
+        <img src="UBA-logo-3.gif" class="client-logo">
+        <img src="27668grafix.com-union-homes-logo.png" class="client-logo">
+        <img src="images (2).png" class="client-logo">
+        <img src="harwosprint.ng-corporate-logo.jpg" class="client-logo">
+        <img src="27668grafix.com-rehoboth-logo.jpg" class="client-logo">
+        <img src="27668grafix.com-rccg-logo.png" class="client-logo">
+        <img src="27668grafix.com-optimalgroup.logo_.jpg" class="client-logo">
+        <img src="27668grafix.com-gti-logo-scaled.jpg" class="client-logo">
+        <img src="27668grafix.com-ncs-skane-logo.png" class="client-logo">
+        <img src="27668grafix.com-design-chic-logo.jpg" class="client-logo">
+
+        <!-- Duplicate Set for Seamless Infinite Loop -->
+        <img src="27668grafix.com-comegain-consult (1).jpg" class="client-logo">
+        <img src="27668grafix (1).jpg" class="client-logo">
+        <img src="27668grafix.com-diplomat-logo.jpg" class="client-logo">
+        <img src="27668grafix.jpg" class="client-logo">
+        <img src="ecs2.png" class="client-logo">
+        <img src="AIPLABRO-LOGO.jpg" class="client-logo">
+        <img src="euromed.jpg" class="client-logo">
+        <img src="images-1.png" class="client-logo">
+        <img src="ecs3.png" class="client-logo">
+        <img src="UBA-logo-3.gif" class="client-logo">
+        <img src="27668grafix.com-union-homes-logo.png" class="client-logo">
+        <img src="images (2).png" class="client-logo">
+        <img src="harwosprint.ng-corporate-logo.jpg" class="client-logo">
+        <img src="27668grafix.com-rehoboth-logo.jpg" class="client-logo">
+        <img src="27668grafix.com-rccg-logo.png" class="client-logo">
+        <img src="27668grafix.com-optimalgroup.logo_.jpg" class="client-logo">
+        <img src="27668grafix.com-gti-logo-scaled.jpg" class="client-logo">
+        <img src="27668grafix.com-ncs-skane-logo.png" class="client-logo">
+        <img src="27668grafix.com-design-chic-logo.jpg" class="client-logo">
+    </div>
+</section>
+
+    <style>
+    /* Full Color Client Slider */
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .client-track {
+        display: flex;
+        width: max-content;
+        animation: scroll 40s linear infinite;
+    }
+    .client-logo {
+        width: 130px; /* Adjusted size for better fit */
+        height: 70px;
+        object-fit: contain;
+        margin: 0 35px;
+        /* Removed grayscale filter to show colors */
+        filter: none !important; 
+        opacity: 1 !important;
+        transition: transform 0.3s ease;
+    }
+    .client-logo:hover {
+        transform: scale(1.1);
+    }
+    </style>
 
     <!-- SECTION 6: The Team -->
     <section class="py-24 px-6 lg:px-20 bg-slate-50 text-center">
