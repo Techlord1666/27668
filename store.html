@@ -3,37 +3,51 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Store | 27668grafix - Premium Branding</title>
+    <title>Store | 27668grafix - Premium Catalog</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { "primary": "#D4AF37", "dark": "#000000" } } }
+            theme: { extend: { colors: { "primary": "#D4AF37", "dark": "#000000", "gold-bright": "#FFD700" } } }
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #000000; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #000000; scroll-behavior: smooth; }
         .hamburger-line { display: block; width: 24px; height: 2px; background-color: #000; margin: 5px auto; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .cart-badge { position: absolute; top: -2px; right: -2px; background: #D4AF37; color: black; font-size: 9px; font-weight: 900; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid white; }
         input, textarea, select { font-size: 16px !important; border: 1px solid #e2e8f0 !important; border-radius: 12px !important; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
-        
-        /* Loading Animation */
-        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #D4AF37; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; }
+        .logo-container { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #D4AF37; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; shrink-0; }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #D4AF37; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden bg-white">
+<body class="antialiased overflow-x-hidden">
 
 <!-- NAVIGATION -->
 <header class="fixed top-0 z-[100] w-full bg-white/95 backdrop-blur-md border-b border-slate-100 px-4 sm:px-8">
     <div class="max-w-7xl mx-auto flex items-center justify-between h-16 md:h-20">
-        <h2 class="text-dark text-xl md:text-2xl font-black tracking-tighter uppercase italic cursor-pointer" onclick="window.location.href='index.html'">27668<span class="text-primary">grafix</span></h2>
+        <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+            <div class="logo-container"><img src="logo.png" class="w-full h-full object-cover"></div>
+            <h2 class="text-dark text-xl md:text-2xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
+        </div>
+        
         <div class="flex items-center gap-4">
-            <button onclick="toggleCart()" class="relative p-2"><svg class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg><div id="cartCount" class="cart-badge">0</div></button>
+            <nav class="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                <a href="index.html">Home</a>
+                <a href="store.html" class="text-primary border-b-2 border-primary pb-1">Store</a>
+                <a href="about.html">About</a>
+                <a href="signup.html">Signup</a>
+                <a href="login.html">Login</a>
+            </nav>
+            <button onclick="toggleCart()" class="relative p-2">
+                <svg class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                <div id="cartCount" class="cart-badge">0</div>
+            </button>
             <button onclick="toggleMobileMenu()" class="lg:hidden flex flex-col gap-1.5"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
         </div>
     </div>
@@ -41,10 +55,45 @@
 
 <main class="pt-24 pb-20 px-4 md:px-8">
     <div class="max-w-7xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-12">The <span class="text-primary">Catalog.</span></h1>
-        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8"></div>
+        <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-2">The <span class="text-primary">Catalog.</span></h1>
+        <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-12">Premium Branding Solutions // 5 Columns Laptop, 2 Columns Mobile</p>
+        
+        <!-- PRODUCT GRID -->
+        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
+            <!-- Loading products from Supabase -->
+        </div>
     </div>
 </main>
+
+<!-- PRODUCT DETAIL MODAL (The Popup Page) -->
+<div id="productModal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-md hidden overflow-y-auto no-scrollbar">
+    <div class="min-h-screen flex items-center justify-center p-4 md:p-10">
+        <div class="bg-white max-w-5xl w-full rounded-[2.5rem] overflow-hidden relative grid grid-cols-1 lg:grid-cols-2 shadow-2xl">
+            <button onclick="closeProductModal()" class="absolute top-6 right-6 text-4xl text-slate-400 z-20">&times;</button>
+            <div class="p-6">
+                <img id="mainDetailImg" class="w-full aspect-square object-cover rounded-3xl shadow-lg border border-slate-50">
+            </div>
+            <div class="p-8 md:p-12 flex flex-col justify-center">
+                <span id="detailCat" class="text-primary text-[10px] font-black uppercase tracking-widest">Category</span>
+                <h2 id="detailTitle" class="text-4xl md:text-5xl font-black italic uppercase tracking-tighter text-dark mt-2 leading-none"></h2>
+                <p id="detailPrice" class="text-2xl font-black text-dark mt-4"></p>
+                <div class="space-y-4 border-t border-slate-100 pt-6 mt-6">
+                    <p class="text-slate-400 text-[9px] font-black uppercase">Description</p>
+                    <p id="detailDesc" class="text-slate-600 leading-relaxed text-sm"></p>
+                </div>
+                <!-- Professional Quantity Selector -->
+                <div class="flex items-center gap-6 pt-10 mt-auto border-t border-slate-50">
+                    <div class="flex items-center border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                        <button onclick="changeQty(-1)" class="px-5 py-3 hover:bg-white font-black">-</button>
+                        <span id="buyQty" class="px-5 font-black text-sm w-12 text-center">1</span>
+                        <button onclick="changeQty(1)" class="px-5 py-3 hover:bg-white font-black">+</button>
+                    </div>
+                    <button id="addToCartBtn" class="flex-1 bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-primary hover:text-black transition-all">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- CART SIDEBAR -->
 <div id="cartSidebar" class="fixed inset-0 z-[200] hidden">
@@ -54,7 +103,7 @@
         <div id="cartItemsList" class="flex-1 overflow-y-auto space-y-4 no-scrollbar"></div>
         <div class="border-t pt-6 mt-6 space-y-4">
             <div class="flex justify-between font-black text-xl italic uppercase"><span>Total:</span><span id="cartTotalText">₦0.00</span></div>
-            <button onclick="openCheckout()" class="w-full bg-primary text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest">Checkout via Transfer</button>
+            <button onclick="openCheckout()" class="w-full bg-primary text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest">Proceed to Checkout</button>
         </div>
     </div>
 </div>
@@ -62,53 +111,76 @@
 <!-- TWO-STEP CHECKOUT MODAL -->
 <div id="checkoutModal" class="fixed inset-0 z-[250] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-2">
     <div class="bg-white rounded-[2rem] max-w-xl w-full flex flex-col max-h-[90vh] shadow-2xl overflow-hidden border border-primary/20">
-        
         <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-white">
             <h3 class="text-xl font-black uppercase italic tracking-tighter">Order Processing</h3>
             <button onclick="location.reload()" class="text-slate-400 text-2xl">&times;</button>
         </div>
-
-        <div class="overflow-y-auto p-6 space-y-6 modal-scroll" id="checkoutContainer">
+        <div class="overflow-y-auto p-6 space-y-6 modal-scroll">
             <!-- STEP 1: FORM -->
             <form id="checkoutForm" class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" id="custName" placeholder="Full Name" required class="w-full p-4 font-bold text-sm outline-none">
-                    <input type="tel" id="custPhone" placeholder="Phone Number" required class="w-full p-4 font-bold text-sm outline-none">
+                    <input type="text" id="custName" placeholder="Full Name" required class="w-full p-4 font-bold text-sm">
+                    <input type="tel" id="custPhone" placeholder="Phone Number" required class="w-full p-4 font-bold text-sm">
                 </div>
-                <input type="email" id="custEmail" placeholder="Email Address" required class="w-full p-4 font-bold text-sm outline-none">
-                <textarea id="custAddress" placeholder="Full Shipping Address" required class="w-full p-4 font-bold text-sm h-20 outline-none"></textarea>
-                <textarea id="projDesc" placeholder="Project Description & Customization Notes" required class="w-full p-4 font-bold text-sm h-24 outline-none"></textarea>
-                
-                <div class="flex justify-between items-center border-t pt-4">
-                    <span class="font-black text-primary text-xl" id="checkoutAmount">₦0.00</span>
-                    <button type="submit" id="proceedBtn" class="bg-dark text-primary px-8 py-4 rounded-xl font-black uppercase text-xs tracking-widest transition-all">Proceed to Payment</button>
-                </div>
+                <input type="email" id="custEmail" placeholder="Email Address" required class="w-full p-4 font-bold text-sm">
+                <textarea id="custAddress" placeholder="Full Shipping Address" required class="w-full p-4 font-bold text-sm h-20"></textarea>
+                <textarea id="projDesc" placeholder="Describe your project customization..." required class="w-full p-4 font-bold text-sm h-24"></textarea>
+                <button type="submit" id="proceedBtn" class="w-full bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs tracking-widest">Proceed to Payment</button>
             </form>
 
-            <!-- STEP 2: BANK DETAILS & LOADER (Hidden initially) -->
-            <div id="paymentStep" class="hidden space-y-6 animate-pulse">
-                <div class="text-center py-4">
-                    <div class="loader mb-2"></div>
-                    <p class="text-[10px] font-black uppercase tracking-widest text-primary">Generating Track ID...</p>
+            <!-- STEP 2: BANK DETAILS & LOADER -->
+            <div id="paymentStep" class="hidden space-y-6">
+                <div class="text-center py-4"><div class="loader mb-2"></div><p class="text-[9px] font-black uppercase tracking-widest text-primary">Creating Order Record...</p></div>
+                <div class="bg-dark text-white p-8 rounded-[2rem] border border-primary/40 text-center">
+                    <h4 class="text-primary text-[10px] font-black uppercase mb-4 tracking-[0.3em]">Official GTBank Account</h4>
+                    <p class="text-2xl font-black tracking-widest text-white italic mb-2">0030791230</p>
+                    <p class="text-[10px] font-bold uppercase text-white/50 tracking-widest">27.668grafix company</p>
                 </div>
-
-                <div class="bg-dark text-white p-6 rounded-3xl border border-primary/40 text-center">
-                    <h4 class="text-primary text-[10px] font-black uppercase mb-4 tracking-[0.3em]">Official Company Account</h4>
-                    <p class="text-xs opacity-60 uppercase mb-1">GTBANK</p>
-                    <p class="text-2xl font-black tracking-widest text-white italic mb-4">0030791230</p>
-                    <p class="text-[10px] font-bold uppercase text-white/70 tracking-widest">27.668grafix company</p>
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+                    <p class="text-[9px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Order ID / Track ID:</p>
+                    <p id="generatedTrackID" class="text-xl font-black text-dark tracking-tighter italic">#GRAF-XXXX-XXXX</p>
                 </div>
-
-                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200">
-                    <p class="text-xs font-bold text-slate-500 mb-1 uppercase">Your Track ID:</p>
-                    <p id="generatedTrackID" class="text-xl font-black text-dark tracking-tighter">#----</p>
-                </div>
-
-                <button onclick="confirmTransaction()" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl shadow-primary/20">
-                    I Have Made the Transaction
-                </button>
+                <button onclick="confirmWhatsAppPayment()" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl">I Have Made The Transaction</button>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- FOOTER (Matching Home Page) -->
+<footer class="bg-black text-primary pt-24 pb-12 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20 text-left">
+        <div class="space-y-8">
+            <h2 class="text-white text-3xl font-black uppercase italic leading-tight">The Perfect Prints <br> Solutions</h2>
+            <div class="flex gap-4">
+                <a href="https://www.facebook.com/share/1DNgLLHFEY/" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-4 h-4"></a>
+                <a href="https://x.com/27668grafix" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-4 h-4"></a>
+            </div>
+        </div>
+        <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest">
+            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest">Contact</h4>
+            <p>18, George Street, Igbobi, Lagos.</p>
+            <p>234 803 349 1036</p>
+        </div>
+        <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest">
+            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest">Information</h4>
+            <button onclick="openPolicyModal('return')" class="block hover:text-white">Return & Refund</button>
+            <button onclick="openPolicyModal('shipping')" class="block hover:text-white">Shipping Policy</button>
+        </div>
+        <div class="space-y-6">
+            <h4 class="text-white font-black uppercase text-[11px] tracking-widest border-l-2 border-primary pl-3">Payments</h4>
+            <div class="flex gap-2 opacity-90 bg-white p-2 rounded w-fit"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4"></div>
+            <a href="https://wa.me/2348033491036" class="block bg-primary text-black text-center py-2 rounded-lg font-black text-[9px] transition-all hover:scale-105">Chat with us</a>
+        </div>
+    </div>
+    <div class="text-center pt-8 border-t border-primary/10 text-[9px] font-black uppercase tracking-[0.4em]">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</div>
+</footer>
+
+<!-- Policy Popups -->
+<div id="policyModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[300] hidden flex items-center justify-center p-4">
+    <div class="bg-black border border-primary rounded-3xl max-w-xl w-full p-8 shadow-2xl relative">
+        <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl font-bold">&times;</button>
+        <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6"></h3>
+        <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto max-h-[60vh] modal-scroll space-y-4 font-bold"></div>
     </div>
 </div>
 
@@ -117,38 +189,69 @@
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
     const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    let products = [], cart = [], currentTrackID = "";
+    let allProducts = [], cart = [], currentP = null, currentQty = 1, activeTrackID = "";
 
-    async function initStore() {
+    async function init() {
         const { data } = await sb.from('products').select('*').order('created_at', { ascending: false });
-        if(data) { products = data; renderProducts(data); }
+        if(data) { allProducts = data; renderCatalog(data); }
     }
 
-    function renderProducts(list) {
+    function renderCatalog(list) {
         document.getElementById('productGrid').innerHTML = list.map(p => `
-            <div onclick="openProduct('${p.id}')" class="cursor-pointer group">
-                <div class="aspect-square rounded-2xl overflow-hidden mb-3 border border-slate-100 shadow-sm group-hover:shadow-md transition-all">
-                    <img src="${p.images[0]}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div onclick="openDetail('${p.id}')" class="cursor-pointer group">
+                <div class="aspect-[4/5] rounded-3xl overflow-hidden mb-3 border border-slate-100 shadow-sm group-hover:shadow-md transition-all">
+                    <img src="${p.images[0]}" class="w-full h-full object-cover group-hover:scale-110 duration-700">
                 </div>
-                <h3 class="text-[10px] font-black uppercase italic truncate">${p.name}</h3>
+                <h3 class="text-[10px] font-black uppercase italic truncate text-dark">${p.name}</h3>
                 <p class="text-primary font-black text-xs">₦${parseFloat(p.price).toLocaleString()}</p>
             </div>
         `).join('');
     }
 
-    // Logic to switch between Form and Bank Details
-    document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+    function openDetail(id) {
+        currentP = allProducts.find(x => x.id === id);
+        currentQty = 1;
+        document.getElementById('buyQty').innerText = currentQty;
+        document.getElementById('detailTitle').innerText = currentP.name;
+        document.getElementById('detailCat').innerText = currentP.category;
+        document.getElementById('detailPrice').innerText = `₦${parseFloat(currentP.price).toLocaleString()}`;
+        document.getElementById('detailDesc').innerText = currentP.description;
+        document.getElementById('mainDetailImg').src = currentP.images[0];
+        document.getElementById('productModal').classList.remove('hidden');
+        document.getElementById('addToCartBtn').onclick = () => { addToCart(currentP, currentQty); closeProductModal(); };
+    }
+
+    function changeQty(n) { currentQty = Math.max(1, currentQty + n); document.getElementById('buyQty').innerText = currentQty; }
+
+    function addToCart(p, q) {
+        const ex = cart.find(i => i.id === p.id);
+        if(ex) ex.qty += q; else cart.push({...p, qty: q});
+        updateCartUI();
+        toggleCart(true);
+    }
+
+    function updateCartUI() {
+        document.getElementById('cartCount').innerText = cart.reduce((acc, i) => acc + i.qty, 0);
+        let total = 0;
+        document.getElementById('cartItemsList').innerHTML = cart.map(i => {
+            total += i.price * i.qty;
+            return `<div class='flex gap-3 border-b pb-2'><img src='${i.images[0]}' class='w-10 h-10 rounded object-cover'><div class='flex-1'><p class='text-[10px] font-black uppercase'>${i.name}</p><p class='text-[10px]'>Qty: ${i.qty}</p></div><button onclick='removeFromCart("${i.id}")' class='text-red-500 text-[9px] font-black'>X</button></div>`;
+        }).join('');
+        document.getElementById('cartTotalText').innerText = `₦${total.toLocaleString()}`;
+    }
+
+    function removeFromCart(id) { cart = cart.filter(i => i.id !== id); updateCartUI(); }
+
+    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-        const btn = document.getElementById('proceedBtn');
-        btn.innerText = "Loading..."; btn.disabled = true;
+        document.getElementById('proceedBtn').innerText = "Generating ID...";
+        document.getElementById('proceedBtn').disabled = true;
 
         const phone = document.getElementById('custPhone').value;
-        const phoneSuffix = phone.slice(-4);
-        currentTrackID = `GRAF-${phoneSuffix}-${Math.floor(1000 + Math.random() * 9000)}`;
-        
-        // Save to Supabase for tracking
+        activeTrackID = `GRAF-${phone.slice(-4)}-${Math.floor(1000 + Math.random() * 9000)}`;
+
         const { error } = await sb.from('orders').insert([{
-            track_id: currentTrackID,
+            track_id: activeTrackID,
             customer_name: document.getElementById('custName').value,
             phone: phone,
             items: cart.map(i => `${i.name} (x${i.qty})`).join(', '),
@@ -156,51 +259,45 @@
             description: document.getElementById('projDesc').value
         }]);
 
-        if(error) return alert("System busy, please try again.");
-
-        // Show Payment Step
-        document.getElementById('checkoutForm').classList.add('hidden');
-        document.getElementById('paymentStep').classList.remove('hidden');
-        document.getElementById('generatedTrackID').innerText = currentTrackID;
+        if(!error) {
+            document.getElementById('checkoutForm').classList.add('hidden');
+            document.getElementById('paymentStep').classList.remove('hidden');
+            document.getElementById('generatedTrackID').innerText = activeTrackID;
+        } else {
+            alert("Error saving order. Please check connection.");
+            document.getElementById('proceedBtn').disabled = false;
+        }
     });
 
-    function confirmTransaction() {
+    function confirmWhatsAppPayment() {
         const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
         const name = document.getElementById('custName').value;
-        const desc = document.getElementById('projDesc').value;
         const summary = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
-
-        const msg = `Hello 27668grafix! 🔥%0A%0A*I HAVE MADE PAYMENT*%0A%0A*Track ID:* ${currentTrackID}%0A*Name:* ${name}%0A*Items:* ${summary}%0A*Total Paid:* ₦${total.toLocaleString()}%0A%0A*Project Description:*%0A${desc}%0A%0A_Please confirm my transaction._`;
-        
+        const msg = `Hello 27668grafix! 🔥%0A%0A*I HAVE MADE PAYMENT*%0A*Order ID:* ${activeTrackID}%0A*Items:* ${summary}%0A*Amount Paid:* ₦${total.toLocaleString()}%0A*Customer:* ${name}%0A%0A_Sent via store portal_`;
         window.open(`https://wa.me/2348033491036?text=${msg}`, '_blank');
         location.reload();
     }
 
-    // Helper functions
-    function toggleCart() { document.getElementById('cartSidebar').classList.toggle('hidden'); }
-    function openCheckout() { if(cart.length === 0) return alert("Cart empty!"); document.getElementById('checkoutModal').classList.remove('hidden'); }
-    function openProduct(id) { 
-        const p = products.find(x => x.id === id); 
-        const q = prompt(`How many ${p.name} do you want?`, "1");
-        if(q && !isNaN(q)) {
-            const ex = cart.find(i => i.id === p.id);
-            if(ex) ex.qty += parseInt(q); else cart.push({...p, qty: parseInt(q)});
-            updateCartUI();
-        }
+    function toggleCart(forceOpen = false) { 
+        const c = document.getElementById('cartSidebar');
+        if(forceOpen) c.classList.remove('hidden'); else c.classList.toggle('hidden'); 
     }
-    function updateCartUI() {
-        document.getElementById('cartCount').innerText = cart.reduce((acc, i) => acc + i.qty, 0);
-        let total = 0;
-        document.getElementById('cartItemsList').innerHTML = cart.map(i => {
-            total += i.price * i.qty;
-            return `<div class='flex gap-3 items-center border-b pb-2'><img src='${i.images[0]}' class='w-10 h-10 rounded object-cover'><div class='flex-1'><p class='text-[10px] font-black uppercase'>${i.name}</p><p class='text-[10px]'>Qty: ${i.qty}</p></div></div>`;
-        }).join('');
-        document.getElementById('cartTotalText').innerText = `₦${total.toLocaleString()}`;
-        document.getElementById('checkoutAmount').innerText = `₦${total.toLocaleString()}`;
-    }
+    function closeProductModal() { document.getElementById('productModal').classList.add('hidden'); }
+    function openCheckout() { if(cart.length === 0) return; document.getElementById('checkoutModal').classList.remove('hidden'); }
     function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
-    window.onload = initStore;
-</script>
+    
+    function openPolicyModal(type) {
+        const p = {
+            return: { title: "Return Policy", body: "Our policy lasts 30 days. Items must be unused and in original packaging." },
+            shipping: { title: "Shipping Policy", body: "Nigeria: 1-3 work days. International: 3-5 work days via DHL." }
+        };
+        document.getElementById('policyModalTitle').innerText = p[type].title;
+        document.getElementById('policyModalBody').innerHTML = p[type].body;
+        document.getElementById('policyModalOverlay').classList.remove('hidden');
+    }
+    function closePolicyModal() { document.getElementById('policyModalOverlay').classList.add('hidden'); }
 
+    window.onload = init;
+</script>
 </body>
 </html>
