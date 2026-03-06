@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Premium Store | 27668grafix - Branding Catalog</title>
+    <title>Store | 27668grafix - Premium Branding</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
@@ -50,11 +50,11 @@
             </div>
             
             <nav class="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-                <a href="index.html" class="hover:text-primary">Home</a>
+                <a href="index.html" class="hover:text-primary transition-all">Home</a>
                 <a href="store.html" class="text-primary border-b-2 border-primary pb-1">Store</a>
-                <a href="about.html" class="hover:text-primary">About</a>
-                <a href="signup.html" class="hover:text-primary">Signup</a>
-                <a href="login.html" class="hover:text-primary">Login</a>
+                <a href="about.html" class="hover:text-primary transition-all">About</a>
+                <a href="signup.html" class="hover:text-primary transition-all">Signup</a>
+                <a href="login.html" class="hover:text-primary transition-all">Login</a>
             </nav>
 
             <div class="flex items-center gap-2 md:gap-4">
@@ -90,51 +90,13 @@
             <p class="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">Premium Nigerian Branding & Unique Souvenirs</p>
         </div>
 
-        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 min-h-[400px]">
+        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
             <!-- Products will load here -->
         </div>
     </div>
 </main>
 
-<!-- FOOTER (Admin Access button restored) -->
-<footer class="bg-black text-primary pt-24 pb-12 px-6 border-t-2 border-primary/20 mt-20">
-    <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-16">
-            <div class="space-y-6">
-                <h2 class="text-white text-xl font-black uppercase italic tracking-tighter italic">27668<span class="text-primary">grafix</span></h2>
-                <p class="text-gold-bright text-xs font-bold leading-relaxed italic opacity-80 max-w-xs">Luxe Prints & Souvenirs meticulously produced in Nigeria for a global audience.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="w-9 h-9 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-4 h-4"></a>
-                    <a href="#" class="w-9 h-9 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-4 h-4"></a>
-                </div>
-            </div>
-            <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest text-slate-400">
-                <h4 class="text-white font-black border-l-2 border-primary pl-3">Studio</h4>
-                <p>18, George Street, Igbobi, Lagos.</p>
-                <p class="text-white">234 803 349 1036</p>
-            </div>
-            <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest">
-                <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest">Information</h4>
-                <button onclick="openPolicyModal('return')" class="block hover:text-white transition-all text-left uppercase">Returns & Refund</button>
-                <button onclick="openPolicyModal('shipping')" class="block hover:text-white transition-all text-left uppercase">Shipping Policy</button>
-            </div>
-            <div class="space-y-6">
-                <h4 class="text-white font-black uppercase text-[11px] border-l-2 border-primary pl-3">Payment</h4>
-                <p class="text-[10px] text-gold-bright leading-relaxed">GTBank<br>27.668grafix company<br>0030791230</p>
-                <a href="https://wa.me/2348033491036" class="block bg-primary text-black text-center py-2 rounded-lg font-black text-[9px] transition-all hover:scale-105">Chat with us</a>
-            </div>
-        </div>
-        <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-primary/10 gap-6">
-            <p class="text-[9px] font-black uppercase tracking-[0.4em] text-primary/40">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</p>
-            <!-- RESTORED ADMIN BUTTON -->
-            <button onclick="adminAuth()" class="text-slate-800 hover:text-slate-500 text-[9px] font-black uppercase tracking-widest transition-colors">Admin Access</button>
-        </div>
-    </div>
-</footer>
-
-<!-- MODALS -->
-
-<!-- Product Detail Modal -->
+<!-- PRODUCT DETAIL POPUP -->
 <div id="productModal" class="fixed inset-0 z-[150] bg-black/95 backdrop-blur-md hidden overflow-y-auto no-scrollbar">
     <div class="min-h-screen flex items-center justify-center p-4 md:p-10">
         <div class="bg-white max-w-5xl w-full rounded-[2.5rem] overflow-hidden relative grid grid-cols-1 lg:grid-cols-2 shadow-2xl">
@@ -160,7 +122,6 @@
                         </div>
                         <button id="addToCartBtn" class="flex-1 bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs tracking-widest transition-all">Add to Cart</button>
                     </div>
-                    <!-- DELETE BUTTON FOR ADMIN -->
                     <button id="adminDeleteBtn" class="text-red-500/20 hover:text-red-500 text-[9px] font-black uppercase tracking-widest">Delete Product (Admin Only)</button>
                 </div>
             </div>
@@ -168,7 +129,7 @@
     </div>
 </div>
 
-<!-- Cart Sidebar -->
+<!-- CART SIDEBAR -->
 <div id="cartSidebar" class="fixed inset-0 z-[200] hidden">
     <div class="absolute inset-0 bg-black/40" onclick="toggleCart()"></div>
     <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl p-6 md:p-10 flex flex-col">
@@ -184,7 +145,7 @@
     </div>
 </div>
 
-<!-- Checkout Modal -->
+<!-- TWO-STEP CHECKOUT -->
 <div id="checkoutModal" class="fixed inset-0 z-[250] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-2">
     <div class="bg-white rounded-[2rem] max-w-xl w-full flex flex-col max-h-[90vh] shadow-2xl overflow-hidden border border-primary/20">
         <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-white">
@@ -203,23 +164,67 @@
             </form>
 
             <div id="paymentStep" class="hidden space-y-6">
-                <div class="text-center py-4"><div class="loader mb-2"></div><p class="text-[9px] font-black uppercase text-primary italic tracking-[0.2em]">Authenticating...</p></div>
+                <div class="text-center py-4"><div class="loader mb-2"></div><p class="text-[9px] font-black uppercase text-primary italic tracking-[0.2em]">Generating Track ID...</p></div>
                 <div class="bg-dark text-white p-8 rounded-[2.5rem] border border-primary/40 text-center">
-                    <h4 class="text-primary text-[10px] font-black uppercase mb-4 tracking-[0.3em]">GTBank Account</h4>
+                    <h4 class="text-primary text-[10px] font-black uppercase mb-4 tracking-[0.3em]">Official GTBank Account</h4>
                     <p class="text-2xl font-black tracking-widest text-white italic mb-2">0030791230</p>
-                    <p class="text-[10px] font-bold uppercase text-white/50 tracking-widest">27.668grafix company</p>
+                    <p class="text-[10px] font-bold uppercase text-white/50 tracking-widest leading-none">27.668grafix company</p>
                 </div>
                 <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 text-center">
-                    <p class="text-[9px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Track ID:</p>
-                    <p id="generatedTrackID" class="text-xl font-black text-dark italic"></p>
+                    <p class="text-[9px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Order ID / Track ID:</p>
+                    <p id="generatedTrackID" class="text-xl font-black text-dark tracking-tighter italic"></p>
                 </div>
-                <button onclick="confirmWhatsAppPayment()" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs tracking-widest">I Have Made Payment</button>
+                <button onclick="confirmWhatsAppPayment()" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl shadow-primary/30 transform hover:scale-105 transition-all">I Have Made The Transaction</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Admin Upload Modal -->
+<!-- FOOTER WITH FIXED X ICON -->
+<footer class="bg-black text-primary pt-24 pb-12 px-6 border-t-2 border-primary/20 mt-20">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-16">
+        <div class="space-y-6">
+            <h2 class="text-white text-xl font-black uppercase italic tracking-tighter italic">27668<span class="text-primary">grafix</span></h2>
+            <p class="text-gold-bright text-xs font-bold leading-relaxed italic opacity-80 max-w-xs">The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events.</p>
+            <div class="flex gap-4">
+                <a href="https://www.facebook.com/share/1DNgLLHFEY/" target="_blank" class="w-9 h-9 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-4 h-4"></a>
+                <!-- ADDED X (TWITTER) ICON -->
+                <a href="https://x.com/27668grafix" target="_blank" class="w-9 h-9 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-4 h-4"></a>
+                <a href="https://www.instagram.com/27668grafix" target="_blank" class="w-9 h-9 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary transition-all"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-4 h-4"></a>
+            </div>
+        </div>
+        <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest text-slate-400">
+            <h4 class="text-white font-black border-l-2 border-primary pl-3">Studio</h4>
+            <p>18, George Street, Igbobi, Lagos.</p>
+            <p class="text-white">234 803 349 1036</p>
+        </div>
+        <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest">
+            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest">Information</h4>
+            <button onclick="openPolicyModal('return')" class="block hover:text-white transition-all text-left uppercase">Returns & Refund</button>
+            <button onclick="openPolicyModal('shipping')" class="block hover:text-white transition-all text-left uppercase">Shipping Policy</button>
+        </div>
+        <div class="space-y-6">
+            <h4 class="text-white font-black uppercase text-[11px] border-l-2 border-primary pl-3">Payment Accounts</h4>
+            <p class="text-[10px] text-gold-bright leading-relaxed">GTBank<br>27.668grafix company<br>0030791230</p>
+            <a href="https://wa.me/2348033491036" class="block bg-primary text-black text-center py-2 rounded-lg font-black text-[9px] transition-all hover:scale-105">Chat Us</a>
+        </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-primary/10 gap-6">
+        <p class="text-slate-700 text-[9px] font-black uppercase tracking-[0.4em]">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</p>
+        <button onclick="adminAuth()" class="text-slate-900 hover:text-slate-600 text-[9px] font-black uppercase tracking-widest transition-colors">Admin Access</button>
+    </div>
+</footer>
+
+<!-- POLICY MODAL -->
+<div id="policyModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[400] hidden flex items-center justify-center p-4">
+    <div class="bg-black border border-primary rounded-3xl max-w-xl w-full p-8 shadow-2xl relative flex flex-col max-h-[80vh]">
+        <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-primary transition-colors">&times;</button>
+        <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6 tracking-widest"></h3>
+        <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto modal-scroll space-y-4 pr-2 font-medium"></div>
+    </div>
+</div>
+
+<!-- ADMIN UPLOAD MODAL -->
 <div id="adminModal" class="fixed inset-0 z-[200] bg-black/95 hidden flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-slate-900 p-8 rounded-[2rem] max-w-2xl w-full border border-primary/20 my-10 relative">
         <button onclick="document.getElementById('adminModal').classList.add('hidden')" class="absolute top-6 right-6 text-slate-400 text-3xl">&times;</button>
@@ -238,15 +243,6 @@
             <input type="file" id="pImages" multiple accept="image/*" class="w-full text-slate-500 text-xs">
             <button type="submit" id="pSubmit" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs mt-6">Publish Live</button>
         </form>
-    </div>
-</div>
-
-<!-- Policy Popup -->
-<div id="policyModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[400] hidden flex items-center justify-center p-4">
-    <div class="bg-black border border-primary rounded-3xl max-w-xl w-full p-8 shadow-2xl relative flex flex-col max-h-[80vh]">
-        <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl font-bold transition-colors hover:text-primary">&times;</button>
-        <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6"></h3>
-        <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto modal-scroll space-y-4 pr-2 font-medium"></div>
     </div>
 </div>
 
@@ -384,7 +380,7 @@
     function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
     function toggleCart(open = false) { if(open) document.getElementById('cartSidebar').classList.remove('hidden'); else document.getElementById('cartSidebar').classList.toggle('hidden'); }
     function closeProductModal() { document.getElementById('productModal').classList.add('hidden'); }
-    function openCheckout() { document.getElementById('checkoutModal').classList.remove('hidden'); }
+    function openCheckout() { if(cart.length > 0) document.getElementById('checkoutModal').classList.remove('hidden'); }
 
     window.onload = init;
 </script>
