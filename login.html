@@ -150,44 +150,55 @@
         </div>
     </div>
 
-    <script>
-        const SUPABASE_URL = 'https://bmyimmssovqcznwixceu.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+   <script>
+    const SUPABASE_URL = 'https://bmyimmssovqcznwixceu.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
 
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('loginBtn');
-            btn.innerText = "Verifying..."; btn.disabled = true;
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('loginBtn');
+        const emailInput = document.getElementById('email').value.trim();
+        const passwordInput = document.getElementById('password').value;
 
-            const { data, error } = await supabaseClient.auth.signInWithPassword({
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-            });
+        btn.innerText = "Verifying..."; 
+        btn.disabled = true;
 
-            if (error) { 
-                alert("Login Error: " + error.message); 
-                btn.innerText = "Sign In"; btn.disabled = false; 
-            } else { 
-                window.location.href = 'custom.html'; 
-            }
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email: emailInput,
+            password: passwordInput,
         });
 
-        // Detailed Policy Data
-        const policyData = {
-            privacy: { title: "Privacy Policy", body: "<p>We protect your design files and personal data strictly for order fulfillment. Data is never shared with third parties.</p>" },
-            return: { title: "Return & Refund", body: "<div class='space-y-4 font-bold uppercase text-xs tracking-widest'><p>Policy lasts 30 days. Items must be unused and in original packaging.</p><p>Refunds are processed after a replacement perfect product has been exhausted.</p></div>" },
-            shipping: { title: "Shipping Policy", body: "<p>Lagos: Bolt/Kwik. International: DHL. Delivery in 3-5 working days following production.</p>" }
-        };
-
-        function openPolicyModal(type) {
-            document.getElementById('policyModalTitle').innerText = policyData[type].title;
-            document.getElementById('policyModalBody').innerHTML = policyData[type].body;
-            document.getElementById('policyModalOverlay').classList.remove('hidden');
+        if (error) { 
+            // Better Error Messaging
+            if (error.message.includes("Email not confirmed")) {
+                alert("Login Failed: Please check your email and confirm your account, or confirm it manually in the Supabase Dashboard.");
+            } else {
+                alert("Login Error: " + error.message + ". Please double-check your email and password.");
+            }
+            btn.innerText = "Sign In"; 
+            btn.disabled = false; 
+        } else { 
+            // Success!
+            window.location.href = 'custom.html'; 
         }
-        function closePolicyModal() { document.getElementById('policyModalOverlay').classList.add('hidden'); }
-    </script>
+    });
+
+    // Policy Popup Data
+    const policyData = {
+        privacy: { title: "Privacy Policy", body: "<p>We protect your brand files and personal data strictly for order fulfillment.</p>" },
+        return: { title: "Return & Refund", body: "<p>Policy lasts 30 days. Items must be unused and in original packaging.</p>" },
+        shipping: { title: "Shipping Policy", body: "<p>Lagos: 1-2 days. International: 3-5 days via DHL.</p>" }
+    };
+
+    function openPolicyModal(type) {
+        document.getElementById('policyModalTitle').innerText = policyData[type].title;
+        document.getElementById('policyModalBody').innerHTML = policyData[type].body;
+        document.getElementById('policyModalOverlay').classList.remove('hidden');
+    }
+    function closePolicyModal() { document.getElementById('policyModalOverlay').classList.add('hidden'); }
+</script>
 </body>
 </html>
