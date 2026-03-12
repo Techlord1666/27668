@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="favicon.png">
     <script>
         tailwind.config = {
             theme: { extend: { colors: { "primary": "#D4AF37", "dark": "#000000", "gold-bright": "#FFD700" } } }
@@ -21,9 +22,6 @@
         .logo-container { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #D4AF37; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; shrink-0; }
         .loader { border: 3px solid #f3f3f3; border-top: 3px solid #D4AF37; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .thumb-active { border-color: #D4AF37 !important; transform: scale(1.05); }
-        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        .animate-toast { animation: slideIn 0.4s ease-out forwards; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
     </style>
@@ -43,16 +41,15 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
             <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
-                <div class="logo-container"><img src="logo.png" class="w-full h-full object-cover"></div>
+                <div class="logo-container"><img src="logo.png" alt="Logo"></div>
                 <h2 class="text-dark text-lg md:text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
             
             <nav class="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-                <a href="index.html">Home</a>
+                <a href="index.html" class="hover:text-primary transition-all">Home</a>
                 <a href="store.html" class="text-primary border-b-2 border-primary pb-1">Store</a>
-                <a href="about.html">About</a>
-                <a href="signup.html">Signup</a>
-                <a href="custom.html">Dashboard</a>
+                <a href="about.html" class="hover:text-primary transition-all">About</a>
+                <a href="custom.html" class="hover:text-primary transition-all">Dashboard</a>
             </nav>
 
             <div class="flex items-center gap-2 md:gap-4">
@@ -77,100 +74,59 @@
     <a href="index.html" onclick="toggleMobileMenu()">Home</a>
     <a href="store.html" class="text-primary">Store Catalog</a>
     <a href="about.html" onclick="toggleMobileMenu()">About Us</a>
-    <a href="custom.html" onclick="toggleMobileMenu()">Dashboard</a>
+    <a href="custom.html" onclick="toggleMobileMenu()">My Dashboard</a>
 </div>
 
 <main class="pt-24 pb-20 px-4 md:px-8">
     <div class="max-w-7xl mx-auto">
-        <!-- SEARCH ICON & BAR -->
+        <!-- SEARCH AREA -->
         <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
-            <div class="text-left w-full">
-                <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-dark leading-tight">The <span class="text-primary">Catalog.</span></h1>
-            </div>
+            <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-dark leading-tight w-full">The <span class="text-primary">Catalog.</span></h1>
             <div class="relative w-full max-w-md">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-primary">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </span>
-                <input type="text" id="searchInput" onkeyup="filterCatalog()" placeholder="Search products or categories..." class="w-full pl-12 pr-4 py-4 bg-slate-50 border-none rounded-2xl shadow-sm outline-none focus:ring-2 focus:ring-primary/30 font-bold text-sm">
+                <input type="text" id="searchInput" onkeyup="filterCatalog()" placeholder="Search categories or products..." class="w-full pl-12 pr-4 py-4 bg-slate-50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-primary/30 font-bold text-sm">
             </div>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-8">
-            <!-- UPDATED CATEGORIES SIDEBAR -->
+            <!-- CATEGORIES -->
             <aside class="w-full lg:w-64 flex-shrink-0 space-y-4">
-                <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-4 ml-2">Product Categories</h4>
                 <div class="grid grid-cols-2 lg:grid-cols-1 gap-2">
-                    <button onclick="renderCatalog(allProducts)" class="cat-btn text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">All Products</button>
-                    <button onclick="filterByCategory('Brand Support')" class="cat-btn text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Brand Support</button>
-                    <button onclick="filterByCategory('Promotional Items')" class="cat-btn text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Promotional Items</button>
-                    <button onclick="filterByCategory('Party Souvenirs')" class="cat-btn text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Party Souvenirs</button>
-                    <button onclick="filterByCategory('Corporate Giftings')" class="cat-btn text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Corporate Giftings</button>
-                    <button onclick="filterByCategory('Large Formats')" class="cat-btn text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Large Formats</button>
-                    <button onclick="filterByCategory('Brand Collaterals - Offset')" class="cat-btn text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Offset Collaterals</button>
+                    <button onclick="renderCatalog(allProducts)" class="text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">All Products</button>
+                    <button onclick="filterByCategory('Brand Support')" class="text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Brand Support</button>
+                    <button onclick="filterByCategory('Promotional Items')" class="text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Promotional Items</button>
+                    <button onclick="filterByCategory('Party Souvenirs')" class="text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Party Souvenirs</button>
+                    <button onclick="filterByCategory('Corporate Giftings')" class="text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Corporate Giftings</button>
+                    <button onclick="filterByCategory('Large Formats')" class="text-left px-4 py-3 rounded-xl bg-slate-50 text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-all">Large Formats</button>
                 </div>
             </aside>
 
-            <!-- PRODUCT GRID (5 columns laptop, 2 columns mobile) -->
+            <!-- PRODUCT GRID (5 columns Laptop, 2 columns Mobile) -->
             <div id="productGrid" class="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
-                <!-- Products will load here -->
+                <!-- Products load here -->
             </div>
         </div>
     </div>
 </main>
 
-<!-- CART SIDEBAR (WITH DESIGN UPLOAD BUTTON) -->
+<!-- CART SIDEBAR -->
 <div id="cartSidebar" class="fixed inset-0 z-[200] hidden">
     <div class="absolute inset-0 bg-black/40" onclick="toggleCart()"></div>
     <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl p-6 md:p-10 flex flex-col">
         <div class="flex justify-between items-center mb-8 border-b pb-4">
-            <h3 class="text-xl font-black uppercase italic text-dark">Your Bag</h3>
+            <h3 class="text-xl font-black uppercase italic">Your Bag</h3>
             <button onclick="clearCart()" class="text-[9px] font-black text-primary border border-primary px-3 py-1 rounded-full uppercase">Clear All</button>
         </div>
         <div id="cartItemsList" class="flex-1 overflow-y-auto space-y-4 no-scrollbar"></div>
-        <div class="border-t pt-6 mt-6 space-y-4 text-left">
-            <!-- ARTWORK UPLOAD BUTTON -->
-            <a href="mailto:27.668grafix@gmail.com?subject=Artwork Upload for Order&body=Hello, I am uploading my design for my order. Please find it attached." class="flex items-center justify-center gap-3 w-full border-2 border-dark py-3 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-dark hover:text-white transition-all mb-4">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+        <div class="border-t pt-6 mt-6 space-y-4">
+            <a href="mailto:27.668grafix@gmail.com?subject=Artwork Upload" class="flex items-center justify-center gap-3 w-full border-2 border-dark py-3 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-dark hover:text-white transition-all mb-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                 Upload Design to Mailbox
             </a>
             <div class="flex justify-between font-black text-xl italic uppercase"><span>Total:</span><span id="cartTotalText">₦0.00</span></div>
-            <button onclick="openCheckout()" class="w-full bg-primary text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-lg">Proceed to Checkout</button>
-        </div>
-    </div>
-</div>
-
-<!-- TWO-STEP CHECKOUT (GENERATES ORDER ID) -->
-<div id="checkoutModal" class="fixed inset-0 z-[250] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-2">
-    <div class="bg-white rounded-[2rem] max-w-xl w-full flex flex-col max-h-[90vh] shadow-2xl overflow-hidden border border-primary/20">
-        <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-white">
-            <h3 class="text-xl font-black uppercase italic tracking-tighter text-dark">Order Processing</h3>
-            <button onclick="location.reload()" class="text-slate-400 text-2xl">&times;</button>
-        </div>
-        <div class="overflow-y-auto p-6 space-y-6 modal-scroll">
-            <form id="checkoutForm" class="space-y-4 text-left">
-                <div id="loginWarning" class="hidden p-3 bg-red-50 text-red-500 text-[10px] font-black uppercase rounded-lg">Log in to track this in your dashboard.</div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" id="custName" placeholder="Full Name" required class="w-full p-4 font-bold text-sm bg-slate-50 border-none">
-                    <input type="tel" id="custPhone" placeholder="Phone Number" required class="w-full p-4 font-bold text-sm bg-slate-50 border-none">
-                </div>
-                <input type="email" id="custEmail" placeholder="Email Address" required class="w-full p-4 font-bold text-sm bg-slate-50 border-none">
-                <textarea id="custAddress" placeholder="Full Shipping Address" required class="w-full p-4 font-bold text-sm h-20 bg-slate-50 border-none"></textarea>
-                <textarea id="projDesc" placeholder="Describe your project customization..." required class="w-full p-4 font-bold text-sm h-24 bg-slate-50 border-none"></textarea>
-                <button type="submit" id="proceedBtn" class="w-full bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-xl">Generate Order ID</button>
-            </form>
-
-            <div id="paymentStep" class="hidden space-y-6">
-                <div class="bg-dark text-white p-8 rounded-[2.5rem] border border-primary/40 text-center">
-                    <h4 class="text-primary text-[10px] font-black uppercase mb-4 tracking-[0.3em]">Official GTBank Account</h4>
-                    <p class="text-2xl font-black tracking-widest text-white italic mb-2">0030791230</p>
-                    <p class="text-[10px] font-bold uppercase text-white/50 tracking-widest leading-none">27.668grafix company</p>
-                </div>
-                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 text-center">
-                    <p class="text-[9px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Order / Track ID:</p>
-                    <p id="generatedTrackID" class="text-xl font-black text-dark tracking-tighter italic"></p>
-                </div>
-                <button onclick="confirmTransaction()" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl">I Have Made The Transaction</button>
-            </div>
+            <button onclick="openCheckout()" class="w-full bg-primary text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest">Proceed to Checkout</button>
         </div>
     </div>
 </div>
@@ -189,53 +145,105 @@
                 <h2 id="detailTitle" class="text-3xl md:text-5xl font-black italic uppercase tracking-tighter text-dark mt-2 leading-none"></h2>
                 <p id="detailPrice" class="text-2xl font-black text-dark mt-4"></p>
                 <div class="space-y-4 border-t border-slate-100 pt-6 mt-6">
-                    <p class="text-slate-400 text-[9px] font-black uppercase italic">Project Readiness: <span id="detailTime" class="text-dark"></span></p>
                     <p id="detailDesc" class="text-slate-600 leading-relaxed text-sm"></p>
                 </div>
-                <div class="flex items-center gap-4 pt-10 mt-auto">
-                    <div class="flex items-center border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
-                        <button onclick="changeQty(-1)" class="px-5 py-3 hover:bg-white font-black">-</button>
-                        <span id="buyQty" class="px-5 font-black text-sm w-12 text-center">1</span>
-                        <button onclick="changeQty(1)" class="px-5 py-3 hover:bg-white font-black">+</button>
+                <div class="flex flex-col gap-4 pt-10 mt-auto">
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                            <button onclick="changeQty(-1)" class="px-5 py-3 font-black">-</button>
+                            <span id="buyQty" class="px-5 font-black text-sm">1</span>
+                            <button onclick="changeQty(1)" class="px-5 py-3 font-black">+</button>
+                        </div>
+                        <button id="addToCartBtn" class="flex-1 bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs tracking-widest">Add to Cart</button>
                     </div>
-                    <button id="addToCartBtn" class="flex-1 bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs tracking-widest transition-all">Add to Cart</button>
+                    <!-- SECRET DELETE BUTTON: Only visible to logged-in admin -->
+                    <button id="adminDeleteBtn" class="hidden text-red-500 font-black text-[9px] uppercase tracking-widest mt-2">Delete Product (Admin Only)</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- FOOTER -->
+<!-- CHECKOUT MODAL -->
+<div id="checkoutModal" class="fixed inset-0 z-[250] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-2">
+    <div class="bg-white rounded-[2rem] max-w-xl w-full flex flex-col max-h-[95vh] shadow-2xl overflow-hidden border border-primary/20">
+        <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-white">
+            <h3 class="text-xl font-black uppercase italic tracking-tighter text-dark">Secure Checkout</h3>
+            <button onclick="location.reload()" class="text-slate-400 text-2xl">&times;</button>
+        </div>
+        <div class="overflow-y-auto p-6 space-y-6 modal-scroll">
+            <form id="checkoutForm" class="space-y-4 text-left">
+                <input type="text" id="custName" placeholder="Full Name" required class="w-full p-4 font-bold text-sm bg-slate-50 border-none">
+                <input type="tel" id="custPhone" placeholder="Phone Number" required class="w-full p-4 font-bold text-sm bg-slate-50 border-none">
+                <input type="email" id="custEmail" placeholder="Email" required class="w-full p-4 font-bold text-sm bg-slate-50 border-none">
+                <textarea id="custAddress" placeholder="Full Shipping Address" required class="w-full p-4 font-bold text-sm h-20 bg-slate-50 border-none"></textarea>
+                <textarea id="projDesc" placeholder="Project customization notes..." required class="w-full p-4 font-bold text-sm h-24 bg-slate-50 border-none"></textarea>
+                <button type="submit" id="proceedBtn" class="w-full bg-dark text-primary py-4 rounded-xl font-black uppercase text-xs">Proceed to Payment</button>
+            </form>
+
+            <div id="paymentStep" class="hidden space-y-6">
+                <div class="bg-dark text-white p-6 rounded-[2rem] border border-primary/40 text-center">
+                    <h4 class="text-primary text-[10px] font-black uppercase mb-4 tracking-widest italic">GTBank Account</h4>
+                    <p class="text-2xl font-black tracking-widest text-white italic">0030791230</p>
+                    <p class="text-[10px] font-bold uppercase text-white/50">27.668grafix company</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-2xl text-center border border-slate-100">
+                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Generated Track ID:</p>
+                    <p id="generatedTrackID" class="text-lg font-black text-dark tracking-tighter italic"></p>
+                </div>
+                <button onclick="confirmTransaction()" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs shadow-xl">I Have Made The Transaction</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER (WITH X ICON AND POLICIES) -->
 <footer class="bg-black text-primary pt-24 pb-12 px-6 border-t-2 border-primary/20 mt-20">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-16">
-        <div class="space-y-6">
-            <h2 class="text-white text-xl font-black uppercase italic tracking-tighter italic">27668<span class="text-primary">grafix</span></h2>
-            <p class="text-gold-bright text-xs font-bold leading-relaxed italic opacity-80 max-w-xs">Promotional items & prints solution powerhouse.</p>
+        <div class="space-y-8">
+            <h2 class="text-white text-xl font-black uppercase italic tracking-tighter">27668<span class="text-primary">grafix</span></h2>
+            <p class="text-gold-bright text-xs font-bold leading-relaxed italic opacity-80 max-w-xs leading-relaxed">The Perfect Prints Solutions, Promotional Gifts & Souvenirs for all events.</p>
             <div class="flex gap-4">
-                <a href="#" class="invert"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-4 h-4"></a>
-                <a href="#" class="invert"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-4 h-4"></a>
+                <a href="https://www.facebook.com/share/1DNgLLHFEY/" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-5 h-5"></a>
+                <!-- RESTORED X (TWITTER) ICON -->
+                <a href="https://x.com/27668grafix" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-5 h-5"></a>
+                <a href="https://www.instagram.com/27668grafix" target="_blank" class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center invert hover:bg-primary"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-5 h-5"></a>
             </div>
         </div>
         <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest text-slate-400">
-            <h4 class="text-white font-black border-l-2 border-primary pl-3">Studio</h4>
+            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest">Studio</h4>
             <p>18, George Street, Igbobi, Lagos.</p>
             <p class="text-white">234 803 349 1036</p>
         </div>
         <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest">
-            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest italic uppercase">Categories</h4>
-            <button onclick="filterByCategory('Brand Support')" class="block hover:text-white">Brand Support</button>
-            <button onclick="filterByCategory('Party Souvenirs')" class="block hover:text-white">Party Souvenirs</button>
-            <button onclick="filterByCategory('Large Formats')" class="block hover:text-white">Large Formats</button>
+            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest">Information</h4>
+            <!-- RESTORED POLICY LINKS -->
+            <button onclick="openPolicyModal('return')" class="block hover:text-white transition-all text-left uppercase font-bold">Returns & Refund</button>
+            <button onclick="openPolicyModal('shipping')" class="block hover:text-white transition-all text-left uppercase font-bold">Shipping Policy</button>
+            <button onclick="openPolicyModal('privacy')" class="block hover:text-white transition-all text-left uppercase font-bold">Privacy Policy</button>
         </div>
         <div class="space-y-6">
             <h4 class="text-white font-black uppercase text-[11px] border-l-2 border-primary pl-3">Direct Contact</h4>
-            <p class="text-xs text-gold-bright lowercase font-normal">27.668grafix@gmail.com</p>
-            <button onclick="adminAuth()" class="text-slate-900 hover:text-slate-700 text-[8px] uppercase tracking-widest block">Admin Login</button>
+            <p class="text-xs text-gold-bright lowercase font-normal italic">info@27668grafix.com</p>
+            <a href="https://wa.me/2348033491036" class="block bg-primary text-black text-center py-3 rounded-lg font-black text-[9px] tracking-widest">Chat Us Now</a>
         </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-primary/10 gap-6">
+        <p class="text-slate-700 text-[9px] font-black uppercase tracking-[0.4em]">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</p>
+        <button onclick="adminAuth()" class="text-slate-900 hover:text-slate-600 text-[9px] font-black uppercase tracking-widest transition-colors">Admin Access</button>
     </div>
 </footer>
 
-<!-- ADMIN MODAL -->
+<!-- POLICY MODAL -->
+<div id="policyModalOverlay" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[400] hidden flex items-center justify-center p-4">
+    <div class="bg-black border border-primary rounded-3xl max-w-xl w-full p-8 shadow-2xl relative flex flex-col max-h-[80vh]">
+        <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl font-bold transition-colors hover:text-primary">&times;</button>
+        <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6 tracking-widest"></h3>
+        <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto modal-scroll space-y-4 pr-2 font-medium"></div>
+    </div>
+</div>
+
+<!-- ADMIN UPLOAD MODAL -->
 <div id="adminModal" class="fixed inset-0 z-[200] bg-black/95 hidden flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-slate-900 p-8 rounded-[2rem] max-w-2xl w-full border border-primary/20 my-10 relative">
         <button onclick="document.getElementById('adminModal').classList.add('hidden')" class="absolute top-6 right-6 text-slate-400 text-3xl">&times;</button>
@@ -255,9 +263,8 @@
                 <option value="Brand Collaterals - Offset">Brand Collaterals - Offset</option>
             </select>
             <textarea id="pDesc" placeholder="Description..." required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 h-32 text-white"></textarea>
-            <label class="text-[10px] font-black uppercase text-primary">Upload Images (Max 5)</label>
             <input type="file" id="pImages" multiple accept="image/*" class="w-full text-slate-500 text-xs">
-            <button type="submit" id="pSubmit" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs mt-6">Publish Live</button>
+            <button type="submit" id="pSubmit" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs mt-6">Publish Product</button>
         </form>
     </div>
 </div>
@@ -267,14 +274,12 @@
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJteWltbXNzb3ZxY3pud2l4Y2V1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5MDY4MjcsImV4cCI6MjA4NzQ4MjgyN30.e5ywzLSv5v4TzeHrOZrc3uFe4UDV-l845RAMUS3PEe4';
     const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    let allProducts = [], cart = [], currentP = null, currentQty = 1, activeTrackID = "", currentUser = null;
+    let allProducts = [], cart = [], currentP = null, currentQty = 1, activeTrackID = "", isAdmin = false;
 
     function initCart() { const saved = localStorage.getItem('grafixCart'); if(saved) { cart = JSON.parse(saved); updateCartUI(); } }
     function saveCart() { localStorage.setItem('grafixCart', JSON.stringify(cart)); }
 
     async function init() {
-        const { data: { user } } = await sb.auth.getUser();
-        currentUser = user;
         const { data } = await sb.from('products').select('*').order('created_at', { ascending: false });
         if(data) { allProducts = data; renderCatalog(data); }
         initCart();
@@ -284,27 +289,12 @@
         document.getElementById('productGrid').innerHTML = list.map(p => `
             <div onclick="openDetail('${p.id}')" class="cursor-pointer group">
                 <div class="aspect-[4/5] rounded-3xl overflow-hidden mb-3 border border-slate-100 shadow-sm group-hover:shadow-md transition-all">
-                    <img src="${p.images[0]}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="${p.images[0]}" class="w-full h-full object-cover transition-transform group-hover:scale-110">
                 </div>
                 <h3 class="text-[10px] font-black uppercase italic truncate text-dark text-left">${p.name}</h3>
                 <p class="text-primary font-black text-xs text-left">₦${parseFloat(p.price).toLocaleString()}</p>
             </div>
         `).join('');
-    }
-
-    function filterByCategory(cat) {
-        const filtered = allProducts.filter(p => p.category === cat);
-        renderCatalog(filtered);
-    }
-
-    function filterCatalog() {
-        const term = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = allProducts.filter(p => 
-            p.name.toLowerCase().includes(term) || 
-            p.category.toLowerCase().includes(term) ||
-            p.description.toLowerCase().includes(term)
-        );
-        renderCatalog(filtered);
     }
 
     function openDetail(id) {
@@ -314,7 +304,6 @@
         document.getElementById('detailCat').innerText = currentP.category;
         document.getElementById('detailPrice').innerText = `₦${parseFloat(currentP.price).toLocaleString()}`;
         document.getElementById('detailDesc').innerText = currentP.description;
-        document.getElementById('detailTime').innerText = currentP.delivery_time || "3-5 Work Days";
         document.getElementById('mainDetailImg').src = currentP.images[0];
         
         const thumbs = document.getElementById('thumbList');
@@ -322,65 +311,92 @@
             thumbs.innerHTML = currentP.images.map((img, idx) => `<img src="${img}" onclick="document.getElementById('mainDetailImg').src='${img}'" class="w-16 h-16 rounded-xl object-cover border-2 border-transparent cursor-pointer hover:border-primary">`).join('');
         } else { thumbs.innerHTML = ""; }
 
+        // ADMIN PROTECTION: Show delete button ONLY if logged in
+        const delBtn = document.getElementById('adminDeleteBtn');
+        if(isAdmin) delBtn.classList.remove('hidden'); else delBtn.classList.add('hidden');
+
         document.getElementById('productModal').classList.remove('hidden');
-        document.getElementById('addToCartBtn').onclick = () => { addToCart(currentP, currentQty); };
     }
 
+    function adminAuth() {
+        if(prompt("Enter Admin Password:") === "27668grafix") {
+            isAdmin = true;
+            document.getElementById('adminModal').classList.remove('hidden');
+        } else { alert("Access Denied."); }
+    }
+
+    async function deleteItem(id) {
+        if(prompt("Password to DELETE:") === "27668grafix") {
+            const { error } = await sb.from('products').delete().eq('id', id);
+            if(!error) location.reload(); else alert(error.message);
+        }
+    }
+
+    const fullPolicies = {
+        return: { title: "Return Policy", body: "<p>30-day window for defective goods. Custom branded items are eligible for replacement if the error is on our part.</p>" },
+        shipping: { title: "Shipping Policy", body: "<p>Lagos: 1-2 days via Bolt/Kwik. International: 3-5 days via DHL. Trackable shipments.</p>" },
+        privacy: { title: "Privacy Policy", body: "<p>Your brand files and personal data are strictly used for order fulfillment and never shared with third parties.</p>" }
+    };
+
+    function openPolicyModal(type) {
+        document.getElementById('policyModalTitle').innerText = fullPolicies[type].title;
+        document.getElementById('policyModalBody').innerHTML = fullPolicies[type].body;
+        document.getElementById('policyModalOverlay').classList.remove('hidden');
+    }
+
+    // Existing functions (addToCart, updateCartUI, removeFromCart, checkoutForm logic) omitted here for brevity but stay in your file.
     function addToCart(p, q) {
         const ex = cart.find(i => i.id === p.id);
         if(ex) ex.qty += q; else cart.push({...p, qty: q});
         saveCart();
-        document.getElementById('successToast').classList.remove('hidden');
-        setTimeout(() => document.getElementById('successToast').classList.add('hidden'), 2500);
         updateCartUI(); closeProductModal(); toggleCart(true);
     }
-
     function updateCartUI() {
         document.getElementById('cartCount').innerText = cart.reduce((acc, i) => acc + i.qty, 0);
         let total = 0;
         document.getElementById('cartItemsList').innerHTML = cart.map(i => {
             total += i.price * i.qty;
-            return `<div class='flex gap-3 border-b pb-2 text-left'><img src='${i.images[0]}' class='w-12 h-12 rounded object-cover'><div class='flex-1'><p class='text-[10px] font-black uppercase italic'>${i.name}</p><p class='text-[10px] font-bold'>Qty: ${i.qty}</p></div><button onclick='removeFromCart("${i.id}")' class='text-red-500 font-black text-[9px]'>REMOVE</button></div>`;
+            return `<div class='flex gap-3 border-b pb-2 text-left'><img src='${i.images[0]}' class='w-12 h-12 rounded object-cover'><div class='flex-1'><p class='text-[10px] font-black uppercase italic'>${i.name}</p><p class='text-[10px] font-bold'>₦${i.price.toLocaleString()} (x${i.qty})</p></div><button onclick='removeFromCart("${i.id}")' class='text-red-500 font-black text-[9px]'>REMOVE</button></div>`;
         }).join('');
         document.getElementById('cartTotalText').innerText = `₦${total.toLocaleString()}`;
     }
-
     function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); updateCartUI(); }
     function clearCart() { if(confirm("Clear cart?")) { cart = []; saveCart(); updateCartUI(); } }
     function changeQty(n) { currentQty = Math.max(1, currentQty + n); document.getElementById('buyQty').innerText = currentQty; }
+    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+    function toggleCart(open = false) { if(open) document.getElementById('cartSidebar').classList.remove('hidden'); else document.getElementById('cartSidebar').classList.toggle('hidden'); }
+    function closeProductModal() { document.getElementById('productModal').classList.add('hidden'); }
+    function openCheckout() { if(cart.length > 0) document.getElementById('checkoutModal').classList.remove('hidden'); }
+    function closePolicyModal() { document.getElementById('policyModalOverlay').classList.add('hidden'); }
 
-    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const phone = document.getElementById('custPhone').value;
-        activeTrackID = `GRAF-${phone.slice(-4)}-${Math.floor(1000 + Math.random() * 9000)}`;
-        const { error } = await sb.from('orders').insert([{ user_id: currentUser ? currentUser.id : null, track_id: activeTrackID, customer_name: document.getElementById('custName').value, phone: phone, items: cart.map(i => `${i.name} (x${i.qty})`).join(', '), total_price: cart.reduce((acc, i) => acc + (i.price * i.qty), 0), description: document.getElementById('projDesc').value }]);
-        if(!error) { document.getElementById('checkoutForm').classList.add('hidden'); document.getElementById('paymentStep').classList.remove('hidden'); document.getElementById('generatedTrackID').innerText = activeTrackID; }
-    });
-
+    // Final Order logic
     function confirmTransaction() {
         const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
         const name = document.getElementById('custName').value;
         const summary = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
-        
-        // 1. Send WhatsApp
-        const msg = `Hello 27668grafix! 🔥%0A%0A*I HAVE MADE PAYMENT*%0A*Order ID:* ${activeTrackID}%0A*Items:* ${summary}%0A*Amount:* ₦${total.toLocaleString()}%0A*Customer:* ${name}`;
+        const msg = `Hello 27668grafix! 🔥%0A%0A*I HAVE MADE PAYMENT*%0A*Order ID:* ${activeTrackID}%0A*Items:* ${summary}%0A*Amount Paid:* ₦${total.toLocaleString()}%0A*Customer:* ${name}`;
         window.open(`https://wa.me/2348033491036?text=${msg}`, '_blank');
         
-        // 2. Open Email Draft for Artwork Records
-        const mailSubject = encodeURIComponent(`Order Records - ID: ${activeTrackID}`);
-        const mailBody = encodeURIComponent(`Customer Name: ${name}\nOrder ID: ${activeTrackID}\nTotal Amount: ₦${total.toLocaleString()}\nItems: ${summary}\n\nPlease find my artwork attached below.`);
+        // Automated Email record
+        const mailSubject = encodeURIComponent(`Order Proof - ID: ${activeTrackID}`);
+        const mailBody = encodeURIComponent(`Customer: ${name}\nID: ${activeTrackID}\nTotal: ₦${total.toLocaleString()}\nItems: ${summary}\n\nAttaching artwork below:`);
         window.location.href = `mailto:27.668grafix@gmail.com?subject=${mailSubject}&body=${mailBody}`;
 
         cart = []; saveCart(); location.reload();
     }
 
-    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
-    function toggleCart(open = false) { if(open) document.getElementById('cartSidebar').classList.remove('hidden'); else document.getElementById('cartSidebar').classList.toggle('hidden'); }
-    function closeProductModal() { document.getElementById('productModal').classList.add('hidden'); }
-    function openCheckout() { if(cart.length > 0) document.getElementById('checkoutModal').classList.remove('hidden'); }
-    function adminAuth() { if(prompt("Admin Password:") === "27668grafix") document.getElementById('adminModal').classList.remove('hidden'); }
+    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        document.getElementById('proceedBtn').innerText = "Processing...";
+        const phone = document.getElementById('custPhone').value;
+        activeTrackID = `GRAF-${phone.slice(-4)}-${Math.floor(1000 + Math.random() * 9000)}`;
+        const { error } = await sb.from('orders').insert([{ track_id: activeTrackID, customer_name: document.getElementById('custName').value, phone: phone, items: cart.map(i => `${i.name} (x${i.qty})`).join(', '), total_price: cart.reduce((acc, i) => acc + (i.price * i.qty), 0), description: document.getElementById('projDesc').value }]);
+        if(!error) { document.getElementById('checkoutForm').classList.add('hidden'); document.getElementById('paymentStep').classList.remove('hidden'); document.getElementById('generatedTrackID').innerText = activeTrackID; }
+    });
 
     window.onload = init;
+    window.onclick = (e) => { if(e.target.id === 'policyModalOverlay') closePolicyModal(); }
 </script>
+
 </body>
 </html>
