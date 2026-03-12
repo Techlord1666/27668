@@ -25,11 +25,9 @@
         .logo-container { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #D4AF37; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; shrink-0; }
         .logo-container img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* Text Shadows for Clarity */
         .text-pop { text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6); }
         .gold-pop { text-shadow: 0px 0px 15px rgba(212, 175, 55, 0.5); }
 
-        /* Client Slider Animation */
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .client-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
         .client-logo { width: 120px; height: 60px; object-fit: contain; margin: 0 30px; transition: all 0.3s ease; }
@@ -52,7 +50,7 @@
                 <h2 class="text-dark text-xl font-black tracking-tighter uppercase italic">27668<span class="text-primary">grafix</span></h2>
             </div>
             
-            <nav class="hidden lg:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest text-slate-600">
+            <nav class="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest">
                 <a href="index.html" class="hover:text-primary transition-all">Home</a>
                 <a href="store.html" class="hover:text-primary transition-all">Store</a>
                 <a href="about.html" class="text-primary border-b-2 border-primary pb-1">About</a>
@@ -66,16 +64,16 @@
     </div>
 </header>
 
-<!-- Mobile Menu -->
+<!-- Mobile Menu Overlay -->
 <div id="mobile-menu" class="hidden fixed inset-0 z-[150] bg-white p-8 flex flex-col gap-8 uppercase text-sm font-black tracking-widest shadow-2xl overflow-y-auto">
     <div class="flex justify-between items-center pb-4 border-b border-slate-100">
         <div class="logo-container"><img src="logo.png"></div>
-        <button onclick="toggleMobileMenu()" class="text-4xl">&times;</button>
+        <button onclick="toggleMobileMenu()" class="text-4xl text-primary">&times;</button>
     </div>
-    <a href="index.html">Home</a>
-    <a href="store.html">Store</a>
+    <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+    <a href="store.html" onclick="toggleMobileMenu()">Store Catalog</a>
     <a href="about.html" class="text-primary">About Us</a>
-    <a href="login.html">Login</a>
+    <a href="login.html" onclick="toggleMobileMenu()">Login</a>
 </div>
 
 <main>
@@ -85,7 +83,7 @@
         <img src="Hero.png" class="absolute inset-0 w-full h-full object-cover" alt="Hero Image">
         
         <div class="relative z-20 text-center px-6 max-w-5xl">
-            <span class="inline-block px-5 py-1.5 rounded-full bg-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-6 border border-primary/30 backdrop-blur-sm">Premium Design & Prints</span>
+            <span class="inline-block px-5 py-1.5 rounded-full bg-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-6 border border-primary/30 backdrop-blur-sm">Premium Branding Powerhouse</span>
             <h1 class="text-white text-5xl md:text-8xl font-black leading-none uppercase italic tracking-tighter mb-8 text-pop">
                 redefining excellence with <span class="text-primary gold-pop">creative solutions.</span>
             </h1>
@@ -102,13 +100,13 @@
                 <img src="ABOUT1.PNG" alt="Smart Prints" class="w-full h-auto rounded-[2.5rem] shadow-2xl border border-slate-100">
             </div>
             <div class="order-1 lg:order-2 space-y-8 text-left">
-                <h2 class="text-4xl md:text-5xl font-black text-dark uppercase italic tracking-tighter leading-tight">Bringing Joy of <br> <span class="text-primary">Smart Prints & Branding</span></h2>
+                <h2 class="text-4xl md:text-6xl font-black text-dark uppercase italic tracking-tighter leading-tight">Bringing Joy of <br> <span class="text-primary">Smart Prints & Branding</span></h2>
                 <p class="text-slate-500 text-lg leading-relaxed max-w-lg">Gift Set for Everyone. Get a headstart with free design templates you can customize in a few clicks.</p>
                 <ul class="space-y-4 font-bold text-xs uppercase tracking-widest text-dark">
                     <li class="flex items-center gap-4"><svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Top quality prints using the latest technology</li>
                     <li class="flex items-center gap-4"><svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg> Mix and match colors, sizes, and designs</li>
                 </ul>
-                <a href="https://wa.me/2348033491036" class="inline-block bg-dark text-primary px-10 py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-xl hover:bg-primary hover:text-white transition-all">Start Designing ></a>
+                <a href="https://wa.me/2348033491036" class="inline-block bg-dark text-primary border border-primary/20 px-10 py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-xl hover:bg-primary hover:text-white transition-all">Start Designing ></a>
             </div>
         </div>
     </section>
@@ -118,7 +116,6 @@
         <div class="max-w-7xl mx-auto">
             <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-20">What Makes <span class="text-primary italic">27.668grafix</span> Different?</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-20 gap-x-12">
-                <!-- SVG Icons Only (Bulletproof) -->
                 <div class="flex flex-col items-center space-y-4">
                     <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg></div>
                     <h4 class="font-black uppercase text-sm tracking-widest">Quality service</h4>
@@ -139,44 +136,23 @@
                     <h4 class="font-black uppercase text-sm tracking-widest">Custom Support B2B</h4>
                     <p class="text-slate-500 text-[10px] font-bold uppercase">Customer Satisfaction!</p>
                 </div>
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg></div>
-                    <h4 class="font-black uppercase text-sm tracking-widest">Shipping worldwide</h4>
-                </div>
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
-                    <h4 class="font-black uppercase text-sm tracking-widest">Minimums Minimized</h4>
-                </div>
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
-                    <h4 class="font-black uppercase text-sm tracking-widest">High Speed Services</h4>
-                    <p class="text-slate-500 text-[10px] font-bold uppercase">Urgent Orders & 3-5 Days</p>
-                </div>
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="text-primary"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div>
-                    <h4 class="font-black uppercase text-sm tracking-widest">Free templates</h4>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4: Solution & Mission -->
+    <!-- SECTION 4: Best Solution -->
     <section class="py-24 px-6 lg:px-20 bg-white">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div class="space-y-10">
-                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter leading-tight text-dark">We are your best solution for <span class="text-primary">Promotional Items and Print Productions</span></h2>
+                <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter leading-tight text-dark text-left">We are your best solution for <span class="text-primary leading-tight">Promotional Items and Print Productions</span></h2>
                 <div class="space-y-6 text-slate-500 text-sm leading-relaxed">
                     <p><strong>Designs</strong> - Creative Concepts that sells your brand. Logo, Callcards, Letterheads, Brochures & more.</p>
-                    <p><strong>Print</strong> - Technology meets Skills & experience to deliver world-class results.</p>
+                    <p><strong>Print</strong> - Technology meets Skills & experience. Better and faster with experience.</p>
                     <p><strong>Branding</strong> - Souvenirs, Promotional Gifts, Indoor & Outdoor advertising.</p>
                 </div>
-                <div class="border-t border-slate-100 pt-8">
-                    <h4 class="text-dark font-black uppercase text-xs tracking-[0.2em] mb-4 underline decoration-primary decoration-4 underline-offset-8 italic">Our Mission</h4>
-                    <p class="text-slate-600 leading-relaxed italic">In a fast paced developing world, only solution providers are truly value added. 27.668grafix is all about solving needs perfectly.</p>
-                </div>
                 <div class="flex gap-16">
-                    <div><p class="text-4xl font-black text-primary italic tracking-tighter">1k+</p><p class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Happy clients</p></div>
-                    <div><p class="text-4xl font-black text-primary italic tracking-tighter">92%</p><p class="text-[10px] font-black uppercase text-slate-400 tracking-widest">5 Star Reviews</p></div>
+                    <div><p class="text-4xl font-black text-primary italic tracking-tighter">1k+</p><p class="text-[10px] font-black uppercase text-slate-400 tracking-widest text-left">Happy clients</p></div>
+                    <div><p class="text-4xl font-black text-primary italic tracking-tighter">92%</p><p class="text-[10px] font-black uppercase text-slate-400 tracking-widest text-left">5 Star Reviews</p></div>
                 </div>
             </div>
             <div class="flex justify-center"><img src="ABOUT2.PNG" alt="Collage" class="w-full max-w-lg drop-shadow-2xl"></div>
@@ -191,55 +167,30 @@
         </div>
     </section>
 
-    <!-- SECTION 6: The Team (Corrected Names & Roles) -->
+    <!-- SECTION 6: The Team -->
     <section class="py-24 px-6 lg:px-20 bg-slate-50 text-center">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-20 text-dark">Meet our team!</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <!-- Member 1 -->
-                <div class="space-y-4">
-                    <img src="CEO00.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg border border-primary/20">
-                    <h5 class="text-dark font-black uppercase italic text-sm tracking-widest">David Mobolade Ajibike</h5>
-                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Team Lead • Graphics/Web design & Product manager</p>
-                </div>
-                <!-- Member 2 -->
-                <div class="space-y-4">
-                    <img src="CEO002.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg">
-                    <h5 class="text-dark font-black uppercase italic text-sm tracking-widest">Raymond Oyetayo Ojoade</h5>
-                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Motion graphics / Video / Cinematography</p>
-                </div>
-                <!-- Member 3 -->
-                <div class="space-y-4">
-                    <img src="CEO003.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg">
-                    <h5 class="text-dark font-black uppercase italic text-sm tracking-widest">Samuel Awolola</h5>
-                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Production</p>
-                </div>
+                <div class="space-y-4"><img src="CEO00.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg border border-primary/20"><h5 class="text-dark font-black uppercase italic text-sm">David Mobolade Ajibike</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest leading-relaxed">Team Lead • Graphics/Web design & Product manager</p></div>
+                <div class="space-y-4"><img src="CEO002.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg"><h5 class="text-dark font-black uppercase italic text-sm">Raymond Oyetayo Ojoade</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest leading-relaxed">Motion graphics / Video / Cinematography</p></div>
+                <div class="space-y-4"><img src="CEO003.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg"><h5 class="text-dark font-black uppercase italic text-sm">Samuel Awolola</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest leading-relaxed">Production</p></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-                <!-- Member 4 -->
-                <div class="space-y-4">
-                    <img src="CEO004.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg">
-                    <h5 class="text-dark font-black uppercase italic text-sm tracking-widest">Adefunke Opeyemi Adeyemo</h5>
-                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">Logistics & Support</p>
-                </div>
-                <!-- Member 5 -->
-                <div class="space-y-4">
-                    <img src="CEO005.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg">
-                    <h5 class="text-dark font-black uppercase italic text-sm tracking-widest">Elizabeth Damilola Ajibike</h5>
-                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">UI/UX Product Designer</p>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto text-center">
+                <div class="space-y-4"><img src="CEO004.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg"><h5 class="text-dark font-black uppercase italic text-sm">Adefunke Opeyemi Adeyemo</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest leading-relaxed">Logistics & Support</p></div>
+                <div class="space-y-4"><img src="CEO005.PNG" class="w-full aspect-square object-cover rounded-2xl shadow-lg"><h5 class="text-dark font-black uppercase italic text-sm">Elizabeth Damilola Ajibike</h5><p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest leading-relaxed">UI/UX Product Designer</p></div>
             </div>
         </div>
     </section>
 </main>
 
-<!-- BLACK & GOLD FOOTER (Mobile Payment Icons Fixed) -->
+<!-- BLACK & GOLD FOOTER (FIXED) -->
 <footer class="bg-black text-primary pt-24 pb-12 px-6">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20 text-left">
             <div class="space-y-8">
                 <div class="flex items-center gap-3"><div class="logo-container border-white/20"><img src="logo.png"></div><h2 class="text-white text-xl font-black italic uppercase">27668<span class="text-primary">grafix</span></h2></div>
-                <p class="text-gold-bright text-sm font-bold italic leading-relaxed">Perfect Printing Solutions for all events.</p>
+                <p class="text-gold-bright text-xs font-bold italic leading-relaxed">Luxe Branding & Souvenirs for all events.</p>
             </div>
             <div>
                 <h4 class="text-white font-black uppercase tracking-widest text-[11px] mb-8 border-l-2 border-primary pl-4">Studio Details</h4>
@@ -255,15 +206,18 @@
                     <li><button onclick="openModal('returnModal')" class="hover:text-white transition-colors uppercase">Return & Refund</button></li>
                     <li><button onclick="openModal('shippingModal')" class="hover:text-white transition-colors uppercase">Shipping Policy</button></li>
                     <li><button onclick="openModal('privacyModal')" class="hover:text-white transition-colors uppercase">Privacy Policy</button></li>
+                    <li><button onclick="openModal('termsModal')" class="hover:text-white transition-colors uppercase">Terms & Conditions</button></li>
                 </ul>
             </div>
             <div class="space-y-6">
                 <h4 class="text-white font-black uppercase text-[11px] border-l-2 border-primary pl-4">Accepted Payments</h4>
-                <!-- Payment Container with flex-wrap for mobile -->
-                <div class="flex flex-wrap gap-2 opacity-90 mb-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="h-5 sm:h-6 bg-white px-2 py-1 rounded">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-5 sm:h-6 bg-white px-2 py-1 rounded">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-5 sm:h-6 bg-white px-2 py-1 rounded">
+                <!-- MOBILE WRAPPING FIXED -->
+                <div class="flex flex-wrap gap-2 opacity-90 mb-4 bg-white p-2 rounded-lg w-fit">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="h-4 sm:h-5" alt="Visa">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4 sm:h-5" alt="Mastercard">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="h-4 sm:h-5" alt="PayPal">
+                    <!-- VERVE LOGO -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Verve_logo.svg/1200px-Verve_logo.svg.png" class="h-4 sm:h-5" alt="Verve">
                 </div>
                 <a href="https://wa.me/2348033491036" class="bg-primary text-black px-8 py-3 rounded-lg font-black text-[10px] uppercase text-center block tracking-widest hover:scale-105 transition-transform">Chat with Us</a>
             </div>
@@ -286,9 +240,10 @@
 <script>
     function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
     const policyData = {
-        privacyModal: { title: "Privacy Policy", body: "<p>We protect your design files and personal data strictly for order fulfillment.</p>" },
-        returnModal: { title: "Return & Refund", body: `<div class='space-y-4'><p>30-Day Policy. Items must be unused and in original packaging.</p></div>` },
-        shippingModal: { title: "Shipping Policy", body: "<p>Lagos: 1-2 days. International: 3-5 days via DHL.</p>" }
+        privacyModal: { title: "Privacy Policy", body: "<p>We protect your design files and personal data strictly for order fulfillment. Data is never shared with third parties.</p>" },
+        returnModal: { title: "Return & Refund", body: `<div class='space-y-4'><p>30-Day return window for unused items in original packaging. Replacement is always our primary goal.</p></div>` },
+        shippingModal: { title: "Shipping Policy", body: "<p>Lagos: 1-2 days via Bolt/Kwik. International: 3-5 days via DHL. All items are meticulously tracked.</p>" },
+        termsModal: { title: "Terms & Conditions", body: "<p>By placing an order, you agree to our 3-5 day production timeline. Once a design is approved, spelling errors are the client's responsibility.</p>" }
     };
     function openModal(type) {
         const data = policyData[type];
