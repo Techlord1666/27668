@@ -9,6 +9,7 @@
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: { extend: { colors: { "primary": "#D4AF37", "dark": "#000000" } } }
@@ -29,9 +30,38 @@
         .animate-toast { animation: slideIn 0.4s ease-out forwards; }
         .modal-scroll::-webkit-scrollbar { width: 4px; }
         .modal-scroll::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+
+        /* FLOATING WHATSAPP BUTTON */
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 400;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            animation: whatsapp-pulse 2s infinite;
+        }
+        @keyframes whatsapp-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-white text-dark">
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/2348033491036" target="_blank" class="float-whatsapp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 <!-- SUCCESS TOAST -->
 <div id="successToast" class="fixed top-24 right-6 z-[300] hidden">
@@ -83,12 +113,11 @@
             <h1 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-dark leading-tight w-full">The <span class="text-primary">Catalog.</span></h1>
             <div class="relative w-full max-w-md">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-primary"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></span>
-                <input type="text" id="searchInput" onkeyup="filterCatalog()" onsearch="filterCatalog()" onkeydown="if(event.key === 'Enter') filterCatalog()" placeholder="Search products..." class="w-full pl-12 pr-4 py-4 bg-slate-50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-primary/30 font-bold text-sm">
+                <input type="text" id="searchInput" onkeyup="filterCatalog()" placeholder="Search products..." class="w-full pl-12 pr-4 py-4 bg-slate-50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-primary/30 font-bold text-sm">
             </div>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-8">
-            <!-- CATEGORIES (Optimized for 4 per row on mobile) -->
             <aside class="w-full lg:w-72 flex-shrink-0">
                 <h4 class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400 mb-4 ml-2 italic">Categories</h4>
                 <div id="categoryContainer" class="grid grid-cols-4 lg:grid-cols-1 gap-1.5 md:gap-2 text-dark">
@@ -101,8 +130,6 @@
                     <button onclick="filterByCategory('Brand Collaterals - Offset')" class="cat-btn text-center lg:text-left p-2 md:px-5 md:py-3 rounded-xl bg-slate-50 text-[7px] md:text-[10px] font-black uppercase tracking-tighter md:tracking-widest hover:bg-primary transition-all border border-slate-100 col-span-2 lg:col-span-1">Offset</button>
                 </div>
             </aside>
-
-            <!-- PRODUCT GRID (5 columns Laptop, 2 columns Mobile) -->
             <div id="productGrid" class="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 min-h-[400px]"></div>
         </div>
     </div>
@@ -125,7 +152,6 @@
                     <p class="text-slate-400 text-[9px] font-black uppercase italic">Project Readiness: <span id="detailTime" class="text-dark"></span></p>
                     <p id="detailDesc" class="text-slate-600 leading-relaxed text-sm"></p>
                 </div>
-                
                 <div class="flex flex-col gap-4 pt-10 mt-auto border-t border-slate-50">
                     <div class="flex items-center gap-4">
                         <div class="flex items-center border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
@@ -158,7 +184,7 @@
             </div>
             <textarea id="editDesc" required class="w-full bg-slate-50 border-none p-4 h-32 font-bold text-sm"></textarea>
             <div class="p-6 border-2 border-dashed border-primary/20 rounded-3xl bg-primary/5">
-                <label class="text-[9px] font-black uppercase text-primary mb-2 block tracking-widest">Replace Product Images (Up to 5)</label>
+                <label class="text-[9px] font-black uppercase text-primary mb-2 block tracking-widest">Replace Product Images</label>
                 <input type="file" id="editImages" multiple accept="image/*" class="w-full text-xs text-slate-500">
             </div>
             <button type="submit" id="editSubmit" class="w-full bg-dark text-primary py-5 rounded-2xl font-black uppercase text-xs shadow-xl">Update Live Catalog</button>
@@ -176,16 +202,14 @@
         </div>
         <div id="cartItemsList" class="flex-1 overflow-y-auto space-y-4 no-scrollbar"></div>
         <div class="border-t pt-6 mt-6 space-y-4">
-            <a href="mailto:27.668grafix@gmail.com?subject=Artwork Upload" class="flex items-center justify-center gap-3 w-full border-2 border-dark py-3.5 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-dark hover:text-white transition-all mb-2">
-                Upload Design to Mailbox
-            </a>
+            <a href="mailto:27.668grafix@gmail.com?subject=Artwork Upload" class="flex items-center justify-center gap-3 w-full border-2 border-dark py-3.5 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-dark hover:text-white transition-all mb-2">Upload Design to Mailbox</a>
             <div class="flex justify-between font-black text-xl italic uppercase px-2"><span>Total:</span><span id="cartTotalText">₦0.00</span></div>
             <button onclick="openCheckout()" class="w-full bg-primary text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-xl">Proceed to Checkout</button>
         </div>
     </div>
 </div>
 
-<!-- CHECKOUT MODAL (WITH PAYSTACK & TRANSFER) -->
+<!-- CHECKOUT MODAL -->
 <div id="checkoutModal" class="fixed inset-0 z-[250] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-2">
     <div class="bg-white rounded-[2rem] max-w-xl w-full flex flex-col max-h-[90vh] shadow-2xl overflow-hidden border border-primary/20">
         <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-white text-dark">
@@ -202,42 +226,26 @@
                 <input type="email" id="custEmail" placeholder="Email Address" required class="w-full p-4 font-bold text-sm bg-slate-50 border-none">
                 <textarea id="custAddress" placeholder="Full Shipping Address" required class="w-full p-4 font-bold text-sm h-20 bg-slate-50 border-none"></textarea>
                 <textarea id="projDesc" placeholder="Project customization notes..." required class="w-full p-4 font-bold text-sm h-24 bg-slate-50 border-none"></textarea>
-                
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-400 mt-4 ml-2 italic">Select Payment Method</p>
                 <div class="grid grid-cols-2 gap-4">
-                    <button type="button" onclick="setPayMethod('paystack')" id="payBtn_paystack" class="pay-method-btn flex flex-col items-center justify-center p-4 border-2 border-slate-100 rounded-2xl hover:border-primary transition-all">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4 mb-2">
-                        <span class="text-[9px] font-black uppercase">Pay Online</span>
-                    </button>
-                    <button type="button" onclick="setPayMethod('transfer')" id="payBtn_transfer" class="pay-method-btn flex flex-col items-center justify-center p-4 border-2 border-slate-100 rounded-2xl hover:border-primary transition-all">
-                        <svg class="w-6 h-6 mb-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                        <span class="text-[9px] font-black uppercase">Bank Transfer</span>
-                    </button>
+                    <button type="button" onclick="setPayMethod('paystack')" id="payBtn_paystack" class="pay-method-btn flex flex-col items-center justify-center p-4 border-2 border-slate-100 rounded-2xl hover:border-primary transition-all"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4 mb-2"><span class="text-[9px] font-black uppercase">Pay Online</span></button>
+                    <button type="button" onclick="setPayMethod('transfer')" id="payBtn_transfer" class="pay-method-btn flex flex-col items-center justify-center p-4 border-2 border-slate-100 rounded-2xl hover:border-primary transition-all"><svg class="w-6 h-6 mb-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-[9px] font-black uppercase">Bank Transfer</span></button>
                 </div>
                 <button type="submit" id="proceedBtn" class="w-full bg-dark text-primary py-5 rounded-2xl font-black uppercase text-xs mt-4 tracking-widest">Generate Record ID</button>
             </form>
-
             <div id="paymentStep" class="hidden space-y-6">
                 <div id="loaderArea" class="text-center py-4"><div class="loader mb-2"></div><p class="text-[9px] font-black uppercase text-primary italic">Authenticating...</p></div>
-                
                 <div id="bankDetails" class="hidden space-y-6">
                     <div class="bg-dark text-white p-8 rounded-[2.5rem] border border-primary/40 text-center shadow-xl">
                         <h4 class="text-primary text-[10px] font-black uppercase mb-4 tracking-[0.3em]">Official GTBank Account</h4>
                         <p class="text-2xl font-black tracking-widest italic mb-2">0030791230</p>
                         <p class="text-[10px] font-bold uppercase text-white/50">27.668grafix company</p>
                     </div>
-                    <div class="p-4 bg-slate-50 rounded-2xl text-center border border-slate-100">
-                        <p class="text-[9px] font-bold text-slate-400 uppercase mb-1">Your Unique Track ID:</p>
-                        <p id="generatedTrackID" class="text-xl font-black text-dark italic tracking-tighter"></p>
-                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl text-center border border-slate-100"><p class="text-[9px] font-bold text-slate-400 uppercase mb-1">Your Unique Track ID:</p><p id="generatedTrackID" class="text-xl font-black text-dark italic tracking-tighter"></p></div>
                     <button onclick="confirmTransaction('transfer')" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs">I Have Made Payment</button>
                 </div>
-
                 <div id="paystackInfo" class="hidden text-center space-y-6">
-                    <div class="p-10 bg-slate-50 rounded-3xl border border-slate-200">
-                        <p class="text-dark text-lg font-black uppercase italic mb-2">Pay via Paystack</p>
-                        <p class="text-slate-500 text-xs">Safe & Encrypted Payment Link</p>
-                    </div>
+                    <div class="p-10 bg-slate-50 rounded-3xl border border-slate-200"><p class="text-dark text-lg font-black uppercase italic mb-2">Pay via Paystack</p><p class="text-slate-500 text-xs">Safe & Encrypted Payment Link</p></div>
                     <button onclick="processPaystack()" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs">Proceed to Payment Gateway</button>
                 </div>
             </div>
@@ -247,18 +255,33 @@
 
 <!-- FOOTER -->
 <footer class="bg-black text-primary pt-24 pb-12 px-6 border-t-2 border-primary/20 mt-20">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-16">
-        <div class="space-y-6">
-            <h2 class="text-white text-xl font-black uppercase italic italic tracking-tighter">27668<span class="text-primary">grafix</span></h2>
-            <p class="text-gold-bright text-xs font-bold leading-relaxed italic opacity-80 max-w-xs">Premium Branding & Souvenir Powerhouse. Produced in Nigeria.</p>
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-16 uppercase font-bold italic">
+        <div class="space-y-8">
+            <h2 class="text-white text-xl font-black uppercase italic tracking-tighter">27668<span class="text-primary">grafix</span></h2>
+            <p class="text-gold-bright text-xs leading-relaxed italic opacity-80 max-w-xs">Premium Branding & Souvenir Powerhouse. Produced in Nigeria.</p>
             <div class="flex gap-4">
                 <a href="https://www.facebook.com/share/1DNgLLHFEY/" target="_blank" class="invert"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="w-4 h-4"></a>
                 <a href="https://x.com/27668grafix" target="_blank" class="invert"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-4 h-4"></a>
                 <a href="https://www.instagram.com/27668grafix" target="_blank" class="invert"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-4 h-4"></a>
             </div>
+
+            <!-- DELIVERY SECTION -->
+            <div class="space-y-4 pt-4">
+                <p class="text-primary font-black text-[9px] uppercase tracking-widest italic underline underline-offset-4 decoration-2">Delivery Partners</p>
+                <div class="flex items-center gap-3 bg-white/5 p-3 rounded-2xl border border-white/10 w-fit">
+                    <div class="bg-green-600 px-2 py-1 rounded text-white text-[10px] font-black italic">KWIK</div>
+                    <span class="text-white font-bold text-xs">+</span>
+                    <div class="bg-green-500 rounded-full w-8 h-8 flex items-center justify-center text-[8px] text-white font-black">BOLT</div>
+                    <span class="text-white font-bold text-xs">+</span>
+                    <div class="flex flex-col items-center">
+                        <span class="text-white font-black text-lg italic leading-none tracking-tighter uppercase">GIG</span>
+                        <span class="text-[6px] font-bold uppercase tracking-widest text-white">Logistics</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest text-slate-400">
-            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest">Studio</h4>
+            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest italic">Studio</h4>
             <p>18, George Street, Igbobi, Lagos.</p>
             <p class="text-white font-black">234 803 349 1036</p>
         </div>
@@ -269,9 +292,9 @@
             <button onclick="openPolicyModal('privacy')" class="block hover:text-white transition-all uppercase">Privacy Policy</button>
         </div>
         <div class="space-y-6">
-            <h4 class="text-white font-black uppercase text-[11px] border-l-2 border-primary pl-3">Contact</h4>
-            <p class="lowercase font-normal italic text-xs text-gold-bright">info@27668grafix.com</p>
-            <button onclick="adminAuth()" class="text-slate-900 hover:text-slate-700 text-[8px] uppercase tracking-widest block font-black">Admin Access</button>
+            <h4 class="text-white font-black uppercase text-[11px] border-l-2 border-primary pl-3 italic">Contact</h4>
+            <p class="lowercase font-normal italic text-xs text-primary underline decoration-primary decoration-1 underline-offset-4">info@27668grafix.com</p>
+            <button onclick="adminAuth()" class="text-dark hover:text-primary transition-all text-[8px] uppercase tracking-widest block font-black bg-primary/10 px-2 py-1 rounded">Admin Access</button>
         </div>
     </div>
     <div class="text-center pt-8 border-t border-primary/10 text-[9px] font-black uppercase tracking-[0.4em] text-primary/40">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</div>
@@ -293,7 +316,7 @@
             </select>
             <textarea id="pDesc" placeholder="Description..." required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 h-32"></textarea>
             <input type="file" id="pImages" multiple accept="image/*" class="w-full text-slate-500 text-xs">
-            <button type="submit" id="pSubmit" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs mt-6 tracking-widest italic font-black">Publish Live Catalog</button>
+            <button type="submit" id="pSubmit" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs mt-6 tracking-widest italic">Publish Live Catalog</button>
         </form>
     </div>
 </div>
@@ -303,7 +326,7 @@
     <div class="bg-black border border-primary rounded-3xl max-w-xl w-full p-8 shadow-2xl relative flex flex-col max-h-[80vh]">
         <button onclick="closePolicyModal()" class="absolute top-4 right-4 text-white text-3xl font-bold transition-colors hover:text-primary">&times;</button>
         <h3 id="policyModalTitle" class="text-xl font-black text-primary uppercase italic mb-6 tracking-widest"></h3>
-        <div id="policyModalBody" class="text-gold-bright text-sm leading-relaxed overflow-y-auto modal-scroll space-y-4 font-bold pr-2 font-medium"></div>
+        <div id="policyModalBody" class="text-primary/70 text-sm leading-relaxed overflow-y-auto modal-scroll space-y-4 pr-2 font-medium"></div>
     </div>
 </div>
 
@@ -336,11 +359,7 @@
         `).join('');
     }
 
-    function filterByCategory(cat) { 
-        const f = allProducts.filter(p => p.category === cat); 
-        renderCatalog(f); 
-    }
-
+    function filterByCategory(cat) { const f = allProducts.filter(p => p.category === cat); renderCatalog(f); }
     function filterCatalog() { 
         const t = document.getElementById('searchInput').value.toLowerCase().trim(); 
         const f = allProducts.filter(p => (p.name || "").toLowerCase().includes(t) || (p.category || "").toLowerCase().includes(t)); 
@@ -356,15 +375,9 @@
         document.getElementById('detailDesc').innerText = currentP.description;
         document.getElementById('detailTime').innerText = currentP.delivery_time || "3-5 Work Days";
         document.getElementById('mainDetailImg').src = currentP.images[0];
-        
         const thumbs = document.getElementById('thumbList');
-        if(currentP.images && currentP.images.length > 1) {
-            thumbs.innerHTML = currentP.images.map((img, idx) => `<img src="${img}" onclick="updateMainImg('${img}', this)" class="w-16 h-16 rounded-xl object-cover border-2 border-transparent cursor-pointer hover:border-primary transition-all">`).join('');
-        } else { thumbs.innerHTML = ""; }
-
-        if(isAdmin) document.getElementById('adminControls').classList.remove('hidden');
-        else document.getElementById('adminControls').classList.add('hidden');
-
+        if(currentP.images && currentP.images.length > 1) { thumbs.innerHTML = currentP.images.map((img) => `<img src="${img}" onclick="updateMainImg('${img}', this)" class="w-16 h-16 rounded-xl object-cover border-2 border-transparent cursor-pointer hover:border-primary transition-all">`).join(''); } else { thumbs.innerHTML = ""; }
+        if(isAdmin) document.getElementById('adminControls').classList.remove('hidden'); else document.getElementById('adminControls').classList.add('hidden');
         document.getElementById('productModal').classList.remove('hidden');
         document.getElementById('addToCartBtn').onclick = () => { addToCart(currentP, currentQty); };
     }
@@ -404,16 +417,12 @@
     document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         if(!selectedPaymentMethod) return alert("Select a payment method.");
-        
         document.getElementById('checkoutForm').classList.add('hidden');
         document.getElementById('paymentStep').classList.remove('hidden');
-
         const phone = document.getElementById('custPhone').value;
         activeTrackID = `GRAF-${phone.slice(-4)}-${Math.floor(1000 + Math.random() * 9000)}`;
         document.getElementById('generatedTrackID').innerText = activeTrackID;
-
         const { error } = await sb.from('orders').insert([{ user_id: currentUser ? currentUser.id : null, track_id: activeTrackID, customer_name: document.getElementById('custName').value, phone: phone, items: cart.map(i => `${i.name} (x${i.qty})`).join(', '), total_price: cart.reduce((acc, i) => acc + (i.price * i.qty), 0), description: document.getElementById('projDesc').value, payment_method: selectedPaymentMethod }]);
-
         document.getElementById('loaderArea').classList.add('hidden');
         if(selectedPaymentMethod === 'transfer') document.getElementById('bankDetails').classList.remove('hidden');
         else document.getElementById('paystackInfo').classList.remove('hidden');
@@ -435,8 +444,7 @@
         const summary = cart.map(i => `${i.name} (x${i.qty})`).join(', ');
         const waMsg = `Hello 27668grafix! 🔥%0A%0A*ORDER PAID (${method.toUpperCase()})*%0A*Order ID:* ${activeTrackID}%0A*Items:* ${summary}%0A*Total:* ₦${total.toLocaleString()}%0A*Customer:* ${document.getElementById('custName').value}`;
         window.open(`https://wa.me/2348033491036?text=${waMsg}`, '_blank');
-        const mSub = encodeURIComponent(`Order records - ID: ${activeTrackID}`);
-        window.location.href = `mailto:27.668grafix@gmail.com?subject=${mSub}&body=ID: ${activeTrackID}\nTotal: ₦${total.toLocaleString()}\nCustomer: ${document.getElementById('custName').value}\n\nAttach Artworks:`;
+        window.location.href = `mailto:27.668grafix@gmail.com?subject=Order Records&body=ID: ${activeTrackID}\nTotal: ₦${total.toLocaleString()}\nCustomer: ${document.getElementById('custName').value}`;
         cart = []; saveCart(); location.reload();
     }
 
@@ -473,8 +481,13 @@
     function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); updateCartUI(); }
     function clearCart() { if(confirm("Clear bag?")) { cart = []; saveCart(); updateCartUI(); } }
     function changeQty(n) { currentQty = Math.max(1, currentQty + n); document.getElementById('buyQty').innerText = currentQty; }
+    
     function openPolicyModal(type) {
-        const p = { return: { title: "Returns", body: "30-day window..." }, shipping: { title: "Shipping", body: "Lagos 1-2 days..." } };
+        const p = { 
+            return: { title: "Returns & Refunds", body: "Our refund policy lasts 30 days. To be eligible for a return, your item must be unused and in the same condition that you received it. Custom branded items are only refundable if defective upon delivery. Complete return requires proof of purchase." }, 
+            shipping: { title: "Shipping Policy", body: "We partner with KWIK, Bolt, and GIG Logistics for reliable delivery. Lagos deliveries take 1-2 working days. Outside Lagos takes 3-5 working days. Shipping costs are calculated based on weight and distance." },
+            privacy: { title: "Privacy Policy", body: "We collect only necessary information like name, email, and address to process your orders. Your data is encrypted and handled securely via Supabase. We do not sell your data to third parties." }
+        };
         document.getElementById('policyModalTitle').innerText = p[type].title;
         document.getElementById('policyModalBody').innerHTML = p[type].body;
         document.getElementById('policyModalOverlay').classList.remove('hidden');
