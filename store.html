@@ -256,6 +256,8 @@
 <!-- FOOTER -->
 <footer class="bg-black text-primary pt-24 pb-12 px-6 border-t-2 border-primary/20 mt-20">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-16 uppercase font-bold italic">
+        
+        <!-- COLUMN 1: BRAND & SOCIALS -->
         <div class="space-y-8">
             <h2 class="text-white text-xl font-black uppercase italic tracking-tighter">27668<span class="text-primary">grafix</span></h2>
             <p class="text-gold-bright text-xs leading-relaxed italic opacity-80 max-w-xs">Premium Branding & Souvenir Powerhouse. Produced in Nigeria.</p>
@@ -264,30 +266,63 @@
                 <a href="https://x.com/27668grafix" target="_blank" class="invert"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-4 h-4"></a>
                 <a href="https://www.instagram.com/27668grafix" target="_blank" class="invert"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-4 h-4"></a>
             </div>
+        </div>
 
-            <!-- DELIVERY SECTION -->
-            
+        <!-- COLUMN 2: STUDIO -->
         <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest text-slate-400">
             <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest italic">Studio</h4>
             <p>18, George Street, Igbobi, Lagos.</p>
             <p class="text-white font-black">234 803 349 1036</p>
         </div>
-        <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest">
-            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest uppercase italic">Policies</h4>
-            <button onclick="openPolicyModal('return')" class="block hover:text-white transition-all uppercase">Returns & Refund</button>
-            <button onclick="openPolicyModal('shipping')" class="block hover:text-white transition-all uppercase">Shipping Policy</button>
-            <button onclick="openPolicyModal('privacy')" class="block hover:text-white transition-all uppercase">Privacy Policy</button>
+
+        <!-- COLUMN 3: DELIVERY PARTNERS (ADDED DHL HERE) -->
+        <div class="space-y-4">
+            <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest italic text-[11px]">Logistics</h4>
+            <div class="flex flex-wrap items-center gap-3 bg-black/40 p-2 rounded-xl border border-slate-800 w-fit">
+                <!-- KWIK -->
+                <div class="bg-green-600 px-2 py-1 rounded flex items-center">
+                    <span class="text-[10px] font-black italic text-white leading-none">KWIK</span>
+                </div>
+                <span class="text-white font-bold text-xs">+</span>
+                <!-- Bolt -->
+                <div class="bg-green-500 rounded-full w-8 h-8 flex items-center justify-center text-[8px] font-black text-white">Bolt</div>
+                <span class="text-white font-bold text-xs">+</span>
+                <!-- GIG -->
+                <div class="flex flex-col items-center">
+                    <span class="text-white font-black text-sm leading-none tracking-tighter italic uppercase">GIG</span>
+                    <span class="text-[5px] font-bold uppercase tracking-widest text-white">Logistics</span>
+                </div>
+                <span class="text-white font-bold text-xs">+</span>
+                <!-- DHL -->
+                <div class="bg-[#FFCC00] px-2 py-1 rounded flex items-center justify-center">
+                    <span class="text-[#D40511] font-black italic text-[10px] leading-none tracking-tighter">DHL</span>
+                </div>
+            </div>
         </div>
+
+        <!-- COLUMN 4: POLICIES & CONTACT -->
         <div class="space-y-6">
-            <h4 class="text-white font-black uppercase text-[11px] border-l-2 border-primary pl-3 italic">Contact</h4>
-            <p class="lowercase font-normal italic text-xs text-primary underline decoration-primary decoration-1 underline-offset-4">info@27668grafix.com</p>
-            <button onclick="adminAuth()" class="text-dark hover:text-primary transition-all text-[8px] uppercase tracking-widest block font-black bg-primary/10 px-2 py-1 rounded">Admin Access</button>
+            <div class="text-[11px] space-y-4 font-bold uppercase tracking-widest">
+                <h4 class="text-white font-black border-l-2 border-primary pl-3 tracking-widest uppercase italic">Policies</h4>
+                <button onclick="openPolicyModal('return')" class="block hover:text-white transition-all uppercase">Returns & Refund</button>
+                <button onclick="openPolicyModal('shipping')" class="block hover:text-white transition-all uppercase">Shipping Policy</button>
+                <button onclick="openPolicyModal('privacy')" class="block hover:text-white transition-all uppercase">Privacy Policy</button>
+            </div>
+            <div class="space-y-4">
+                <h4 class="text-white font-black uppercase text-[11px] border-l-2 border-primary pl-3 italic">Contact</h4>
+                <p class="lowercase font-normal italic text-xs text-primary underline decoration-primary decoration-1 underline-offset-4">info@27668grafix.com</p>
+                <button onclick="adminAuth()" class="text-dark hover:text-primary transition-all text-[8px] uppercase tracking-widest block font-black bg-primary/10 px-2 py-1 rounded">Admin Access</button>
+            </div>
         </div>
     </div>
-    <div class="text-center pt-8 border-t border-primary/10 text-[9px] font-black uppercase tracking-[0.4em] text-primary/40">© 2024 27.668GRAFIX. ALL RIGHTS RESERVED.</div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center pt-8 border-t border-primary/10 text-[9px] font-black uppercase tracking-[0.4em] text-primary/40">
+        © 2024 27.668GRAFIX. ALL RIGHTS RESERVED.
+    </div>
 </footer>
 
-<!-- ADMIN UPLOAD MODAL -->
+<!-- ADMIN UPLOAD MODAL (Cleaned up) -->
 <div id="adminModal" class="fixed inset-0 z-[200] bg-black/95 hidden flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-slate-900 p-8 rounded-[2rem] max-w-2xl w-full border border-primary/20 my-10 relative shadow-2xl text-white">
         <button onclick="document.getElementById('adminModal').classList.add('hidden')" class="absolute top-6 right-6 text-slate-400 text-3xl font-bold">&times;</button>
@@ -299,42 +334,18 @@
                 <input type="text" id="pTime" placeholder="Delivery Time" required class="w-full bg-white/5 border border-white/10 rounded-xl p-4">
             </div>
             <select id="pCat" class="w-full bg-white/5 border border-white/10 rounded-xl p-4">
-                <option value="Brand Support">Brand Support</option><option value="Promotional Items">Promotional Items</option><option value="Party Souvenirs">Party Souvenirs</option><option value="Corporate Giftings">Corporate Giftings</option><option value="Large Formats">Large Formats</option><option value="Brand Collaterals - Offset">Brand Collaterals - Offset</option>
+                <option value="Brand Support">Brand Support</option>
+                <option value="Promotional Items">Promotional Items</option>
+                <option value="Party Souvenirs">Party Souvenirs</option>
+                <option value="Corporate Giftings">Corporate Giftings</option>
+                <option value="Large Formats">Large Formats</option>
+                <option value="Brand Collaterals - Offset">Brand Collaterals - Offset</option>
             </select>
             <textarea id="pDesc" placeholder="Description..." required class="w-full bg-white/5 border border-white/10 rounded-xl p-4 h-32"></textarea>
             <input type="file" id="pImages" multiple accept="image/*" class="w-full text-slate-500 text-xs">
             <button type="submit" id="pSubmit" class="w-full bg-primary text-black py-5 rounded-2xl font-black uppercase text-xs mt-6 tracking-widest italic">Publish Live Catalog</button>
         </form>
     </div>
-      <div class="space-y-4">
-    <p class="text-brandOrange font-bold text-xs uppercase tracking-widest">Delivery</p>
-    <div class="flex items-center gap-3 bg-black/40 p-2 rounded-xl border border-slate-800 w-fit">
-        <!-- KWIK -->
-        <div class="bg-green-600 px-2 py-1 rounded flex items-center gap-1">
-            <span class="text-[10px] font-black italic text-white leading-none">KWIK</span>
-        </div>
-        
-        <span class="text-white font-bold text-xs">+</span>
-        
-        <!-- Bolt -->
-        <div class="bg-green-500 rounded-full w-8 h-8 flex items-center justify-center text-[8px] font-black text-white">Bolt</div>
-        
-        <span class="text-white font-bold text-xs">+</span>
-        
-        <!-- GIG -->
-        <div class="flex flex-col items-center">
-            <span class="text-white font-black text-lg leading-none tracking-tighter italic uppercase">GIG</span>
-            <span class="text-[6px] font-bold uppercase tracking-widest text-white">Logistics</span>
-        </div>
-
-        <span class="text-white font-bold text-xs">+</span>
-
-        <!-- DHL -->
-        <div class="bg-[#FFCC00] px-2 py-1 rounded flex items-center justify-center">
-            <span class="text-[#D40511] font-black italic text-sm leading-none tracking-tighter">DHL</span>
-        </div>
-    </div>
-</div>
 </div>
 
   
